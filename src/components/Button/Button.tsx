@@ -1,56 +1,374 @@
 import React from "react";
 import "./button.css";
+import styled, { css } from 'styled-components'
+import Loader from "../Loader/Loader";
 
-export interface ButtonProps  {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary?: boolean;
-  /**
-   * What background color to use
-   */
-  backgroundColor?: string;
-  /**
-   * How large should the button be?
-   */
+export interface ButtonProps {
+  /*
+  ** Custom className attribute
+  */
+  className?: string;
+  /*
+  ** Style variants: primary | secondary | success | info | warning | danger
+  */
+  variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
+  /*
+  ** Preset button sizes
+  */
   size?: "small" | "medium" | "large";
-  /**
-   * Button contents
-   */
+  /*
+  ** Button text label
+  */
   label: string;
-  /**
-   * Optional click handler
-   */
+  /*
+  ** Disabled and uninteractive
+  */
+  disabled?: true | false;
+  /*
+  ** Show Spinner
+  */
+  loading?: true | false;
+  /*
+  ** DRUI Icon
+  */
+  icon?: () => void;
+  /*
+  ** Click event handler
+  */
   onClick?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 };
 
-/**
- * Primary UI component for user interaction
- */
 const Button = ({
-  primary = true,
-  backgroundColor,
+  className = '',
+  disabled = false,
+  loading = false,
   size = "medium",
+  variant = "primary",
   onClick,
   label,
 }: ButtonProps) => {
-  const mode = primary
-    ? "storybook-button--primary"
-    : "storybook-button--secondary";
   return (
-    <button
+    <StyledButton
       type="button"
-      className={["storybook-button", `storybook-button--${size}`, mode].join(
-        " "
-      )}
-      style={backgroundColor ? { backgroundColor }: {}}
-      onClick={onClick}
-    >
-      {label}
-    </button>
+      className={[
+        className,
+        "drui-button",
+        `drui-button--${size}`,
+        `drui-button--${variant}`,
+        `${disabled ? 'drui-button--disabled' : ''}`,
+        `${loading ? 'drui-button--loading' : ''}`].join(
+          " "
+        )}
+      onClick={onClick}>
+      <div className="drui-button__content">
+        {label}
+      </div>
+      {loading && <Loader /> }
+    </StyledButton>
   );
 };
+
+const StyledButton = styled.button(
+  ({ theme }) => css`
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 4px;
+  background: ${theme.button.primary.backgroundColor};
+  color: ${theme.button.primary.textColor};
+  border: none;
+  outline: none;
+  font-size: ${theme.fonts.size.normal};
+  font-weight: ${theme.fonts.weight.bold};
+  font-family: ${theme.fonts.family.primary};
+  cursor: pointer;
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  &:hover {
+    background: ${theme.button.primary.backgroundColorHover};
+  }
+
+  &:active {
+    background: ${theme.button.primary.backgroundColorActive};
+  }
+
+  .drui-loader {
+    border-color: ${theme.button.primary.loaderColor};
+  }
+}
+
+&.drui-button__icon {
+  width: 24px;
+  height: 24px;
+
+  path {
+    fill: ${theme.button.primary.iconColor};
+  }
+}
+
+&.drui-button--withTextAndIcon {
+  &.drui-button__icon {
+    margin-right: 12px;
+  }
+}
+
+&.drui-button__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+&.drui-button__dropdownIcon {
+  width: 24px;
+  height: 24px;
+
+  path {
+    fill: ${theme.button.primary.iconColor};
+  }
+}
+
+&.drui-button--withText {
+  &.drui-button__dropdownIcon {
+    margin-left: 8px;
+  }
+}
+
+  &.drui-button--withText, &.drui-button--withIcon {
+    padding: 0 16px;
+  }
+
+  &.drui-button--maxWidth {
+    width: 100%;
+  }
+
+  &.drui-button--disabled,
+  &.drui-button--disabled:hover {
+    background: ${theme.button.primary.backgroundColorDisabled};
+    box-shadow: none;
+    cursor: not-allowed;
+    border: none;
+  }
+  &.drui-button--loading,
+  &.drui-button--loading:hover {
+    background: ${theme.button.primary.backgroundColor};
+
+    .drui-button__content {
+      z-index: -1;
+    }
+  }
+
+  &.drui-button--success {
+    background: ${theme.button.primary.Success.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.Success.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.Success.backgroundColorActive};
+    }
+  }
+
+  &.drui-button--success&.drui-button--disabled {
+    background: ${theme.button.primary.Success.backgroundColorDisabled};
+    color: ${theme.button.primary.Success.textColorDisabled};
+  }
+
+  &.drui-button--success&.drui-button--loading {
+    background: ${theme.button.primary.Success.backgroundColor};
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+
+  &.drui-button--danger {
+    background: ${theme.button.primary.danger.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.danger.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.danger.backgroundColorActive};
+    }
+  }
+
+  &.drui-button--danger&.drui-button--disabled {
+    background: ${theme.button.primary.danger.backgroundColorDisabled};
+    color: ${theme.button.primary.danger.textColorDisabled};
+  }
+  &.drui-button--danger&.drui-button--loading {
+    background: ${theme.button.primary.danger.backgroundColor};
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+
+  &.drui-button--info {
+    background: ${theme.button.primary.info.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.info.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.info.backgroundColorActive};
+    }
+  }
+
+  &.drui-button--info&.drui-button--disabled {
+    background: ${theme.button.primary.info.backgroundColorDisabled};
+    color: ${theme.button.primary.info.textColorDisabled};
+  }
+
+  &.drui-button--info&.drui-button--loading {
+    background: ${theme.button.primary.info.backgroundColor};
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+
+  &.drui-button--warning {
+    background: ${theme.button.primary.warning.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.warning.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.warning.backgroundColorActive};
+    }
+  }
+
+  &.drui-button--warning&.drui-button--disabled {
+    background: ${theme.button.primary.warning.backgroundColorDisabled};
+    color: ${theme.button.primary.warning.textColorDisabled};
+  }
+
+  &.drui-button--warning&.drui-button--loading {
+    background: ${theme.button.primary.warning.backgroundColor};
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+
+  &.drui-button--secondary {
+    background: ${theme.button.secondary.backgroundColor};
+    border: 1px solid ${theme.button.secondary.borderColor};
+    font-weight: ${theme.fonts.weight.bolder};
+    color: ${theme.button.secondary.textColor};
+    box-shadow: none;
+
+    &:hover {
+      background: ${theme.button.secondary.backgroundColorHover};
+      border: 1px solid ${theme.button.secondary.borderColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.secondary.backgroundColorActive};
+    }
+
+    .drui-loader {
+      border-color: ${theme.button.secondary.loaderColor};
+    }
+
+    &.drui-button__icon {
+      path {
+        fill: ${theme.button.secondary.iconColor};
+      }
+    }
+
+    &.drui-button__dropdownIcon {
+      path {
+        fill: ${theme.button.secondary.iconColor};
+      }
+    }
+
+    &&.drui-button--disabled,
+    &&.drui-button--disabled:hover {
+      background: ${theme.button.secondary.backgroundColorDisabled};
+      border: 1px solid ${theme.button.secondary.borderColor};
+      color: ${theme.button.secondary.textColorDisabled};
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    &&.drui-button--loading,
+    &&.drui-button--loading:hover {
+      background: ${theme.button.secondary.backgroundColor};
+      border: 1px solid ${theme.button.secondary.borderColor};
+    }
+
+    &&.drui-button--danger {
+      background: none;
+      border: 1px solid ${theme.button.secondary.danger.borderColor};
+      color: ${theme.button.secondary.danger.textColor};
+
+      &.drui-button__icon {
+        path {
+          fill: ${theme.button.secondary.danger.borderColor};
+        }
+      }
+
+      &:hover {
+        border-color: ${theme.button.secondary.danger.borderColorHover};
+        color: ${theme.button.secondary.danger.textColorHover};
+
+        &.drui-button__icon {
+          path {
+            fill: ${theme.button.secondary.danger.borderColorHover};
+          }
+        }
+      }
+
+      &:active {
+        border-color: ${theme.button.secondary.danger.borderColorActive};
+        color: ${theme.button.secondary.danger.textColorActive};
+
+        &.drui-button__icon {
+          path {
+            fill: ${theme.button.secondary.danger.borderColorActive};
+          }
+        }
+      }
+    }
+
+    &&.drui-button--danger&.drui-button--disabled {
+      color: ${theme.button.secondary.danger.textColorDisabled};
+      border-color: ${theme.button.secondary.danger.borderColorDisabled};
+    }
+
+    &&.drui-button--danger&.drui-button--loading {
+      background: none;
+
+      .drui-loader {
+        border-color: ${theme.button.secondary.danger.borderColor};
+      }
+
+      &.drui-button__content {
+        z-index: -1;
+      }
+    }
+  }
+  `
+);
 
 export default Button;
