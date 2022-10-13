@@ -57,15 +57,15 @@ const Button = ({
         "drui-button",
         `drui-button--${size}`,
         `drui-button--${variant}`,
-        `${disabled ? 'drui-button--disabled' : ''}`,
-        `${loading ? 'drui-button--loading' : ''}`].join(
+        `${disabled && 'drui-button--disabled'}`,
+        `${loading && 'drui-button--loading'}`].join(
           " "
         )}
       onClick={onClick}>
-      <div className="drui-button__content">
-        {label}
-      </div>
-      {loading && <Loader /> }
+          <div className="drui-button__content">
+            {label}
+          </div>
+      {loading && <Loader />}
     </StyledButton>
   );
 };
@@ -80,6 +80,7 @@ const StyledButton = styled.button(
   box-sizing: border-box;
   width: auto;
   height: 40px;
+  min-width: 64px;
   padding: 0 12px;
   border-radius: 4px;
   background: ${theme.button.primary.backgroundColor};
