@@ -3,43 +3,75 @@ import "./button.css";
 import styled, { css } from 'styled-components'
 import Loader from "../Loader/Loader";
 
+/**
+ * @interface ButtonProps Instance of switch component item
+ * @member {String} className - Appends custom class names
+ * @member {String} variant - Style variants => primary | secondary | success | info | warning | danger
+ * @member {String} size - Size variants => small | medium | large
+ * @member {String} label - Text switch label
+ * @member {boolean} disabled - Disabled and uninteractive
+ * @member {boolean} loading - Shows loading spinner
+ * @member {boolean} icon - The button icon (DroplrUI)
+ * @member {Function} onClick - Click event handler
+*/
 export interface ButtonProps {
-  /*
-  ** Custom className attribute
+
+  /**
+  * @member {String} className - Appends custom class names
   */
   className?: string;
-  /*
-  ** Style variants: primary | secondary | success | info | warning | danger
+
+  /**
+  * @member {string} variant - Style variants
+  * @default 'primary'
+  * @options primary | secondary | success | info | warning | danger
   */
   variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
-  /*
-  ** Preset button sizes
+
+  /**
+  * @member {string} size - Button sizes
+  * @default 'medium'
+  * @options small | medium | large
   */
   size?: "small" | "medium" | "large";
-  /*
-  ** Button text label
+
+  /**
+  * @member {String} label - Button label text
+  * @default 'Button'
   */
   label: string;
-  /*
-  ** Disabled and uninteractive
+
+  /**
+  * @member {boolean} disabled - Disabled and uninteractive
+  * @default false
   */
   disabled?: true | false;
-  /*
-  ** Show Spinner
+
+  /**
+  * @member {boolean} loading - Show loading spinner
+  * @default false
   */
   loading?: true | false;
-  /*
-  ** DRUI Icon
+
+  /**
+  * @desc - The button icon (DroplrUI)
+  * @default null
   */
   icon?: () => void;
-  /*
-  ** Click event handler
+  /**
+   * @method onClick
+  * @desc - Click event handler
+  * @param {Function} event - Handler function
   */
   onClick?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
 };
 
+/**
+ * @desc Button component
+ * @param {ButtonProps} - Component props
+ */
 const Button = ({
   className = '',
   disabled = false,
@@ -47,7 +79,7 @@ const Button = ({
   size = "medium",
   variant = "primary",
   onClick,
-  label,
+  label = "Button",
 }: ButtonProps) => {
   return (
     <StyledButton
@@ -57,15 +89,15 @@ const Button = ({
         "drui-button",
         `drui-button--${size}`,
         `drui-button--${variant}`,
-        `${disabled ? 'drui-button--disabled' : ''}`,
-        `${loading ? 'drui-button--loading' : ''}`].join(
+        `${disabled && 'drui-button--disabled'}`,
+        `${loading && 'drui-button--loading'}`].join(
           " "
         )}
       onClick={onClick}>
       <div className="drui-button__content">
         {label}
       </div>
-      {loading && <Loader /> }
+      {loading && <Loader />}
     </StyledButton>
   );
 };
@@ -80,6 +112,7 @@ const StyledButton = styled.button(
   box-sizing: border-box;
   width: auto;
   height: 40px;
+  min-width: 64px;
   padding: 0 12px;
   border-radius: 4px;
   background: ${theme.button.primary.backgroundColor};
