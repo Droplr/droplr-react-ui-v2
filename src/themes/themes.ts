@@ -29,6 +29,8 @@ const colors = {
     grayChateau: '#A1AAB7',
     shuttleGray: '#5E646E',
     mako: '#44484F',
+    tuna:           '#3A3A43',
+    shark:          '#2D2E33',
     brandLight: '#A28FC6',
     brand: '#7A50C7',
     brandDark: '#542D9B',
@@ -46,8 +48,6 @@ const colors = {
     athensGray: '#E9EAED',
     blueHaze: '#CBCEDE',
     waterloo: '#878891',
-    tuna: '#3A3A43',
-    shark: '#2D2E33',
 };
 
 const buttonGradient = (color: string, invert: boolean) =>
@@ -68,6 +68,9 @@ const gradients = {
     blueHover: buttonGradient(colors.blueRibbon, true),
     yellow: buttonGradient(colors.yellowSea, false),
     yellowHover: buttonGradient(colors.yellowSea, true),
+    dark: 'linear-gradient(0deg, #464651 0%, #60606D 100%)',
+    darkHover: 'linear-gradient(0deg, #43434D 0%, #60606D 100%)',
+    darkActive: 'linear-gradient(0deg, #3D3D46 0%, #60606D 100%)',
 };
 
 const shadows = {
@@ -179,6 +182,7 @@ const button = {
         textColor: colors.white,
         iconColor: colors.white,
         loaderColor: colors.white,
+        borderColor: '',
         Success: {
             backgroundColor: gradients.green,
             backgroundColorHover: gradients.greenHover,
@@ -215,6 +219,8 @@ const button = {
         backgroundColorDisabled: colors.whiteLilac,
         borderColor: colors.mystic,
         borderColorHover: lightenDarkenColor(colors.mystic, -10),
+        borderColorDisabled: '',
+        iconColorDisabled: '',
         textColor: colors.black,
         textColorDisabled: colors.mystic,
         iconColor: colors.shuttleGray,
@@ -336,20 +342,20 @@ export const darkTheme: DefaultTheme = {
     },
     textSwitch: {
         // background
-        backgroundColor: colors.brandBlue,
+        backgroundColor: colors.white,
         backgroundColorAfter: colors.white,
         backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
-
+    
         // border
-        borderColor: colors.mystic,
-
-        // text
-        textColorActive: colors.white,
+        borderColor: colors.white,
+    
+        //text
+        textColorActive: colors.brandBlue,
         textColorDisabled: colors.grayChateau,
-        textColorLabel: colors.black,
-
+        textColorLabel: colors.white,
+    
         // icon
-        iconColorActive: colors.white,
+        iconColorActive: colors.brandBlue,
         iconColorDisabled: colors.grayChateau,
     },
     thumbnailSwitch: {
@@ -370,66 +376,69 @@ export const darkTheme: DefaultTheme = {
         checkmarkColor: colors.white,
     },
     button: {
-        primary: {
-            backgroundColor: gradients.purple,
-            backgroundColorHover: gradients.purpleHover,
-            backgroundColorActive: gradients.purpleActive,
-            backgroundColorDisabled: colors.brandLight,
-            shadowColor: lightenDarkenColor(colors.brand, -20),
-            textColor: colors.white,
-            iconColor: colors.white,
-            loaderColor: colors.white,
-            Success: {
-                backgroundColor: gradients.green,
-                backgroundColorHover: gradients.greenHover,
-                backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
-                backgroundColorDisabled: colors.asparagus,
-                textColorDisabled: colors.mystic,
-            },
-            danger: {
-                backgroundColor: gradients.red,
-                backgroundColorHover: gradients.redHover,
-                backgroundColorActive: lightenDarkenColor(colors.sunsetOrange, -10),
-                backgroundColorDisabled: colors.seaPink,
-                textColorDisabled: colors.white,
-            },
-            info: {
-                backgroundColor: gradients.blue,
-                backgroundColorHover: gradients.blueHover,
-                backgroundColorActive: lightenDarkenColor(colors.blueRibbon, -10),
-                backgroundColorDisabled: colors.dodgerBlue,
-                textColorDisabled: colors.white,
-            },
-            warning: {
-                backgroundColor: gradients.yellow,
-                backgroundColorHover: gradients.yellowHover,
-                backgroundColorActive: lightenDarkenColor(colors.yellowSea, -10),
-                backgroundColorDisabled: colors.goldenTainoi,
-                textColorDisabled: colors.white,
-            },
+      primary: {
+        backgroundColor: gradients.purple,
+        backgroundColorHover: gradients.purpleHover,
+        backgroundColorActive: gradients.purpleActive,
+        backgroundColorDisabled: colors.brandLight,
+        borderColor: colors.tuna,
+        textColor: colors.white,
+        iconColor: colors.white,
+        loaderColor: colors.white,
+        shadowColor: '',
+        Success: {
+          backgroundColor: gradients.green,
+          backgroundColorHover: gradients.greenHover,
+          backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
+          backgroundColorDisabled: colors.asparagus,
+          textColorDisabled: colors.mystic,
         },
-        secondary: {
-            backgroundColor: gradients.bright,
-            backgroundColorHover: gradients.bright,
-            backgroundColorActive: gradients.brightActive,
-            backgroundColorDisabled: colors.whiteLilac,
-            borderColor: colors.mystic,
-            borderColorHover: lightenDarkenColor(colors.mystic, -10),
-            textColor: colors.black,
-            textColorDisabled: colors.mystic,
-            iconColor: colors.shuttleGray,
-            loaderColor: colors.shuttleGray,
-            danger: {
-                borderColor: colors.sunsetOrange,
-                borderColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
-                borderColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
-                borderColorDisabled: lightenDarkenColor(colors.sunsetOrange, 125),
-                textColor: colors.sunsetOrange,
-                textColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
-                textColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
-                textColorDisabled: lightenDarkenColor(colors.sunsetOrange, 125),
-            }
+        danger: {
+          backgroundColor: gradients.red,
+          backgroundColorHover: gradients.redHover,
+          backgroundColorActive: lightenDarkenColor(colors.sunsetOrange, -10),
+          backgroundColorDisabled: colors.seaPink,
+          textColorDisabled: colors.white,
         },
+        info: {
+          backgroundColor: gradients.blue,
+          backgroundColorHover: gradients.blueHover,
+          backgroundColorActive: lightenDarkenColor(colors.blueRibbon, -10),
+          backgroundColorDisabled: colors.dodgerBlue,
+          textColorDisabled: colors.white,
+        },
+        warning: {
+          backgroundColor: gradients.yellow,
+          backgroundColorHover: gradients.yellowHover,
+          backgroundColorActive: lightenDarkenColor(colors.yellowSea, -10),
+          backgroundColorDisabled: colors.goldenTainoi,
+          textColorDisabled: colors.white,
+        },
+      },
+      secondary: {
+        backgroundColor: gradients.dark,
+        backgroundColorHover: gradients.darkHover,
+        backgroundColorActive: gradients.darkActive,
+        backgroundColorDisabled: colors.mako,
+        borderColor: colors.tuna,
+        borderColorDisabled: colors.shark,
+        borderColorHover: '',
+        textColor: colors.blueHaze,
+        textColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
+        iconColor: colors.blueHaze,
+        iconColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
+        loaderColor: colors.blueHaze,
+        danger: {
+          borderColor: colors.sunsetOrange,
+          borderColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
+          borderColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
+          borderColorDisabled: lightenDarkenColor(colors.seaPink, -115),
+          textColor: colors.sunsetOrange,
+          textColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
+          textColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
+          textColorDisabled: lightenDarkenColor(colors.seaPink, -115),
+        }
+      },
     },
     dualButton: {
         primary: {
