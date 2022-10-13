@@ -2,52 +2,86 @@ import React, { useEffect, useState } from "react";
 import "./text-switch.css";
 import styled, { css } from 'styled-components'
 
+/**
+ * @interface TextSwitchProps Component props
+ * @member {Array<TextSwitchItem} options - Select options (labels and handlers)
+ * @member {number} defaultIndex - Index of the default selected option
+ * @member {String} className - Appends custom class names
+ * @member {String} label - Text switch label
+ * @member {boolean} disabled - Disabled and uninteractive
+ * @member {Function} onChange - Click event handler, calls handler with selected item as the parameter
+*/
 export interface TextSwitchProps {
-    /*
-    ** Select options (labels and handlers)
+
+    /**
+    * @member {Array<TextSwitchItem} options - Select options (labels and handlers)
     */
     options?: Array<TextSwitchItem>;
-    /*
-    ** Index of the default selected option
+
+    /**
+    * @member {number} defaultIndex - Index of the default selected option
     */
     defaultIndex?: number;
-    /*
-    ** Custom className attribute
+
+    /**
+    * @member {String} className - Appends custom class names
     */
     className?: string;
-    /*
-    ** Text switch label
+
+    /**
+    * @member {String} label - Text switch label
     */
     label: string;
-    /*
-    ** Disabled and uninteractive
+
+    /**
+    * @member {boolean} disabled - Disabled and uninteractive
     */
     disabled?: true | false;
-    /*
-    ** Click event handler
+
+    /**
+     * @method onChange
+    * @desc - Click event handler, calls handler with selected item as the parameter
+    * @param {Function} arg - Handler function
+    * @returns {TextSwitchItem} - Selected item
     */
     onChange: (arg: TextSwitchItem) => void;
 };
 
+/**
+ * @interface TextSwitchItem - Instance of switch component item
+ * @member {number} id - Numerical ID of the item
+ * @member {String} label - Text label for the item
+ * @member {Icon} icon - DroplrUI icon component
+*/
 export interface TextSwitchItem {
-    /*
-    ** The item label
+    /**
+    * @desc - The item label
+    * @default 'Option 1'
     */
     label?: string;
-    /*
-    ** The item identifier
+
+    /**
+    * @desc - The item identifier
+    * @default 0
     */
     id?: Number;
-    /*
-    ** The item icon (fn)
+
+    /**
+    * @desc - The item icon (DroplrUI)
+    * @default null
     */
     icon?: () => {};
 }
 
+/**
+ * @desc TextSwitch component
+ * @param {TextSwitchProps} - Component props
+ * @param {Array<TextSwitchItem>} - Component item list
+ */
 const TextSwitch = ({
     className = '',
     disabled = false,
-    options = [{ id: 1, label: 'Option 1' }, { id: 2, label: 'Option 2' }],
+    options = [{ id: 0, label: 'Option 1' }, { id: 1, label: 'Option 2' }],
     label = "Text Switch",
     defaultIndex = 0,
     onChange,
@@ -102,7 +136,7 @@ const TextSwitch = ({
 };
 
 const StyledTextSwitchLabel = styled.div(
-    ({theme}) => css`
+    ({ theme }) => css`
     color: ${theme.textSwitch.textColorLabel};
     font-family: ${theme.fonts.family.primary};
     font-size: ${theme.fonts.size.normal};
