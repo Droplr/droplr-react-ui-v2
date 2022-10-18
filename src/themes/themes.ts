@@ -29,8 +29,8 @@ const colors = {
     grayChateau: '#A1AAB7',
     shuttleGray: '#5E646E',
     mako: '#44484F',
-    tuna:           '#3A3A43',
-    shark:          '#2D2E33',
+    tuna: '#3A3A43',
+    shark: '#2D2E33',
     brandLight: '#A28FC6',
     brand: '#7A50C7',
     brandDark: '#542D9B',
@@ -257,9 +257,11 @@ const loader = {
 const dropdown = {
     backgroundColor: colors.white,
     shadowColor: shadows.grayChateau,
+    titleColor: colors.black,
     borderColor: colors.mystic,
     headerTextColor: colors.shuttleGray,
     headerBorderColor: colors.whiteLilac,
+    disabledColor: colors.waterloo,
     transitionSettings: '150ms linear',
 };
 
@@ -345,15 +347,15 @@ export const darkTheme: DefaultTheme = {
         backgroundColor: colors.white,
         backgroundColorAfter: colors.white,
         backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
-    
+
         // border
         borderColor: colors.white,
-    
+
         //text
         textColorActive: colors.brandBlue,
         textColorDisabled: colors.grayChateau,
         textColorLabel: colors.white,
-    
+
         // icon
         iconColorActive: colors.brandBlue,
         iconColorDisabled: colors.grayChateau,
@@ -376,69 +378,69 @@ export const darkTheme: DefaultTheme = {
         checkmarkColor: colors.white,
     },
     button: {
-      primary: {
-        backgroundColor: gradients.purple,
-        backgroundColorHover: gradients.purpleHover,
-        backgroundColorActive: gradients.purpleActive,
-        backgroundColorDisabled: colors.brandLight,
-        borderColor: colors.tuna,
-        textColor: colors.white,
-        iconColor: colors.white,
-        loaderColor: colors.white,
-        shadowColor: '',
-        Success: {
-          backgroundColor: gradients.green,
-          backgroundColorHover: gradients.greenHover,
-          backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
-          backgroundColorDisabled: colors.asparagus,
-          textColorDisabled: colors.mystic,
+        primary: {
+            backgroundColor: gradients.purple,
+            backgroundColorHover: gradients.purpleHover,
+            backgroundColorActive: gradients.purpleActive,
+            backgroundColorDisabled: colors.brandLight,
+            borderColor: colors.tuna,
+            textColor: colors.white,
+            iconColor: colors.white,
+            loaderColor: colors.white,
+            shadowColor: '',
+            Success: {
+                backgroundColor: gradients.green,
+                backgroundColorHover: gradients.greenHover,
+                backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
+                backgroundColorDisabled: colors.asparagus,
+                textColorDisabled: colors.mystic,
+            },
+            danger: {
+                backgroundColor: gradients.red,
+                backgroundColorHover: gradients.redHover,
+                backgroundColorActive: lightenDarkenColor(colors.sunsetOrange, -10),
+                backgroundColorDisabled: colors.seaPink,
+                textColorDisabled: colors.white,
+            },
+            info: {
+                backgroundColor: gradients.blue,
+                backgroundColorHover: gradients.blueHover,
+                backgroundColorActive: lightenDarkenColor(colors.blueRibbon, -10),
+                backgroundColorDisabled: colors.dodgerBlue,
+                textColorDisabled: colors.white,
+            },
+            warning: {
+                backgroundColor: gradients.yellow,
+                backgroundColorHover: gradients.yellowHover,
+                backgroundColorActive: lightenDarkenColor(colors.yellowSea, -10),
+                backgroundColorDisabled: colors.goldenTainoi,
+                textColorDisabled: colors.white,
+            },
         },
-        danger: {
-          backgroundColor: gradients.red,
-          backgroundColorHover: gradients.redHover,
-          backgroundColorActive: lightenDarkenColor(colors.sunsetOrange, -10),
-          backgroundColorDisabled: colors.seaPink,
-          textColorDisabled: colors.white,
+        secondary: {
+            backgroundColor: gradients.dark,
+            backgroundColorHover: gradients.darkHover,
+            backgroundColorActive: gradients.darkActive,
+            backgroundColorDisabled: colors.mako,
+            borderColor: colors.tuna,
+            borderColorDisabled: colors.shark,
+            borderColorHover: '',
+            textColor: colors.blueHaze,
+            textColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
+            iconColor: colors.blueHaze,
+            iconColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
+            loaderColor: colors.blueHaze,
+            danger: {
+                borderColor: colors.sunsetOrange,
+                borderColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
+                borderColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
+                borderColorDisabled: lightenDarkenColor(colors.seaPink, -115),
+                textColor: colors.sunsetOrange,
+                textColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
+                textColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
+                textColorDisabled: lightenDarkenColor(colors.seaPink, -115),
+            }
         },
-        info: {
-          backgroundColor: gradients.blue,
-          backgroundColorHover: gradients.blueHover,
-          backgroundColorActive: lightenDarkenColor(colors.blueRibbon, -10),
-          backgroundColorDisabled: colors.dodgerBlue,
-          textColorDisabled: colors.white,
-        },
-        warning: {
-          backgroundColor: gradients.yellow,
-          backgroundColorHover: gradients.yellowHover,
-          backgroundColorActive: lightenDarkenColor(colors.yellowSea, -10),
-          backgroundColorDisabled: colors.goldenTainoi,
-          textColorDisabled: colors.white,
-        },
-      },
-      secondary: {
-        backgroundColor: gradients.dark,
-        backgroundColorHover: gradients.darkHover,
-        backgroundColorActive: gradients.darkActive,
-        backgroundColorDisabled: colors.mako,
-        borderColor: colors.tuna,
-        borderColorDisabled: colors.shark,
-        borderColorHover: '',
-        textColor: colors.blueHaze,
-        textColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
-        iconColor: colors.blueHaze,
-        iconColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
-        loaderColor: colors.blueHaze,
-        danger: {
-          borderColor: colors.sunsetOrange,
-          borderColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
-          borderColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
-          borderColorDisabled: lightenDarkenColor(colors.seaPink, -115),
-          textColor: colors.sunsetOrange,
-          textColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
-          textColorActive: lightenDarkenColor(colors.sunsetOrange, -40),
-          textColorDisabled: lightenDarkenColor(colors.seaPink, -115),
-        }
-      },
     },
     dualButton: {
         primary: {
@@ -454,29 +456,33 @@ export const darkTheme: DefaultTheme = {
     loader: {
         backgroundColor: colors.brand,
     },
+
     dropdown: {
-        backgroundColor: colors.white,
-        shadowColor: shadows.grayChateau,
-        borderColor: colors.mystic,
-        headerTextColor: colors.shuttleGray,
-        headerBorderColor: colors.whiteLilac,
-        transitionSettings: '150ms linear',
+        backgroundColor: colors.tuna,
+        titleColor: colors.white,
+        shadowColor: shadows.black,
+        borderColor: colors.white,
+        headerTextColor: colors.white,
+        headerBorderColor: colors.mako,
+        disabledColor: colors.waterloo,
+        transitionSettings: '',
     },
+
     dropdownItem: {
-        textColor: colors.mako,
-        textColorHover: colors.black,
-        backgroundColor: colors.white,
-        backgroundColorHover: colors.whiteLilac,
-        backgroundColorActive: lightenDarkenColor(colors.whiteLilac, -2),
-        iconColor: colors.shuttleGray,
-        iconColorHover: lightenDarkenColor(colors.shuttleGray, -20),
-        titleIconColor: colors.grayChateau,
-        titleIconColorHover: lightenDarkenColor(colors.grayChateau, -16),
-        disabledColor: colors.grayChateau,
+        textColor: colors.white,
+        textColorHover: colors.white,
+        backgroundColor: colors.tuna,
+        backgroundColorHover: lightenDarkenColor(colors.tuna, -10),
+        backgroundColorActive: lightenDarkenColor(colors.tuna, -15),
+        iconColor: colors.white,
+        iconColorHover: '',
+        titleIconColor: colors.white,
+        titleIconColorHover: colors.white,
+        disabledColor: colors.waterloo,
 
         description: {
-            textColor: colors.shuttleGray,
+            textColor: colors.blueHaze,
         },
-    },
+    }
 
 }
