@@ -5,63 +5,63 @@ import Loader from "../Loader/Loader";
 
 /**
  * @interface ButtonProps Instance of switch component item
- * @member {String} className - Appends custom class names
- * @member {String} variant - Style variants => primary | secondary | success | info | warning | danger
- * @member {String} size - Size variants => small | medium | large
- * @member {String} label - Text switch label
- * @member {boolean} disabled - Disabled and uninteractive
- * @member {boolean} loading - Shows loading spinner
- * @member {boolean} icon - The button icon (DroplrUI)
- * @member {Function} onClick - Click event handler
+ * @member {String} className  Appends custom class names
+ * @member {String} variant  Style variants => primary | secondary | success | info | warning | danger
+ * @member {String} size  Size variants => small | medium | large
+ * @member {String} label  Text switch label
+ * @member {boolean} disabled  Disabled and uninteractive
+ * @member {boolean} loading  Shows loading spinner
+ * @member {boolean} icon  The button icon (DroplrUI)
+ * @member {Function} onClick  Click event handler
 */
 export interface ButtonProps {
 
   /**
-  * @member {String} className - Appends custom class names
+  * @member {String} className  Appends custom class names
   */
   className?: string;
 
   /**
-  * @member {string} variant - Style variants
+  * @member {string} variant  Style variants
   * @default 'primary'
   * @options primary | secondary | success | info | warning | danger
   */
   variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 
   /**
-  * @member {string} size - Button sizes
+  * @member {string} size  Button sizes
   * @default 'medium'
   * @options small | medium | large
   */
   size?: "small" | "medium" | "large";
 
   /**
-  * @member {String} label - Button label text
+  * @member {String} label  Button label text
   * @default 'Button'
   */
   label: string;
 
   /**
-  * @member {boolean} disabled - Disabled and uninteractive
+  * @member {boolean} disabled  Disabled and uninteractive
   * @default false
   */
   disabled?: true | false;
 
   /**
-  * @member {boolean} loading - Show loading spinner
+  * @member {boolean} loading  Show loading spinner
   * @default false
   */
   loading?: true | false;
 
   /**
-  * @desc - The button icon (DroplrUI)
+  * @desc  The button icon (DroplrUI)
   * @default null
   */
   icon?: () => void;
   /**
    * @method onClick
-  * @desc - Click event handler
-  * @param {Function} event - Handler function
+  * @desc  Click event handler
+  * @param {Function} event  Handler function
   */
   onClick?: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -70,7 +70,7 @@ export interface ButtonProps {
 
 /**
  * @desc Button component
- * @param {ButtonProps} - Component props
+ * @param {ButtonProps}  Component props
  */
 const Button = ({
   className = '',
