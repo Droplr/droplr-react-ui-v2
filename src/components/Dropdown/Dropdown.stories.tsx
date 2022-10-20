@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Dropdown, { DropdownItemProps, DropdownProps } from "./Dropdown";
+import Icon from "../Icons";
 
 export default {
     title: "Components/Dropdown",
@@ -20,8 +21,6 @@ const args: DropdownItemProps = {
     title: 'First Item',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
     onClick: function (arg: any): void {},
-    closeOnItemClick: true,
-    closeDropdown: function (): void {}
 };
 
 export const SimpleDropdown = Template.bind({});
@@ -29,11 +28,15 @@ SimpleDropdown.args = {
     className: 'example',
     label: 'Simple Dropdown',
     minWidth: '128px',
+    defaultIndex: 2,
+    position: 'bottom',
+    closeOnItemClick : false,
+    closeOnMouseOut: true,
     items: [
         args, 
         {...args, disabled: true, title: 'Second Item'},
         {...args, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-         title: 'Third Item'},
+         title: 'Third Item', showItemStatus: true},
     ],
     onMouseLeave: DropdownChangeHandler
 };
