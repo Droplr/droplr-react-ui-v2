@@ -52,11 +52,12 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "react-is": "^18.2.0",
     "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "rollup -c --bundleConfigAsCjs",
+    "build": "rm -rf ./dist && rollup -c --bundleConfigAsCjs",
     "build-storybook": "build-storybook"
   }
 }
