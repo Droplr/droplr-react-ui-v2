@@ -346,7 +346,7 @@ export const darkTheme: DefaultTheme = {
   },
   textSwitch: {
     // background
-    backgroundColor: colors.white,
+    backgroundColor: colors.mako,
     backgroundColorAfter: colors.white,
     backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
 
@@ -354,7 +354,7 @@ export const darkTheme: DefaultTheme = {
     borderColor: colors.white,
 
     //text
-    textColorActive: colors.brandBlue,
+    textColorActive: colors.white,
     textColorDisabled: colors.grayChateau,
     textColorLabel: colors.white,
 
@@ -364,7 +364,7 @@ export const darkTheme: DefaultTheme = {
   },
   thumbnailSwitch: {
     // background
-    backgroundColor: colors.white,
+    backgroundColor: colors.mako,
     checkmarkBackgroundColor: colors.brandBlue,
 
     // border
@@ -373,7 +373,7 @@ export const darkTheme: DefaultTheme = {
     borderColorInactive: colors.mystic,
 
     // text
-    textColor: colors.black,
+    textColor: colors.white,
 
     // icon
     iconColor: colors.grayChateau,
