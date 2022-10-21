@@ -78,7 +78,7 @@ const Button = ({
   loading = false,
   size = "medium",
   variant = "primary",
-  onClick,
+  onClick = () => {},
   label = "Button",
 }: ButtonProps) => {
   return (

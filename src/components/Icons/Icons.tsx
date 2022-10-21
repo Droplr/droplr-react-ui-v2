@@ -222,7 +222,7 @@ const Icon = ({
   name,
   stroke = 1.5,
   className,
-  style,
+  style = {},
   viewBox = "0 0 24 24",
   color,
   size = 14,

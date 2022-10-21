@@ -184,7 +184,13 @@ const Dropdown = ({
   arrowStyles,
   onMouseLeave,
 }: DropdownProps) => {
-  const [selected, setSelected] = useState<DropdownItemProps | undefined>();
+  const [selected, setSelected] = useState<DropdownItemProps>(
+    {
+      title: "",
+      description: "",
+      onClick: () => {}
+    }
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
@@ -256,7 +262,11 @@ const Dropdown = ({
         }
         onClick={toggleDropdown}
       >
-        <span className="drui-dropdown-input-label">{selected?.title}</span>
+        <span className="drui-dropdown-input-label">
+          {
+            selected && selected.title
+          }
+          </span>
         <Icon
           name={"ChevronDown"}
           color={"rgb(94, 100, 110)"}
@@ -288,7 +298,7 @@ const Dropdown = ({
                    * @desc Dropdown items component
                    * @param {DropdownItemProps} DropdownItemProps The dropdown item props
                    */
-                  items.map((item, index) => {
+                  items.map((item : DropdownItemProps, index : Number) => {
                     const ActionElem = item.href ? "a" : "button";
                     const onItemElemClick = (e: React.ChangeEvent<any>) => {
                       e.stopPropagation();
