@@ -1,5 +1,5 @@
-.storybook
-*.stories.tsx
+# .storybook
+# *.stories.tsx
 
 # dependencies
 node_modules

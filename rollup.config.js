@@ -38,12 +38,6 @@ const config = [
       }),
     ],
   },
-  // {
-  //   input: "src/types/index.d.ts",
-  //   output: [{ file: "dist/index.d.ts", format: "esm" }],
-  //   external: [/\.css$/],
-  //   plugins: [dts()],
-  // },
 ];
 
 export default config;

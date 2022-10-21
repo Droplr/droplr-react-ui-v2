@@ -1,6 +1,6 @@
 {
   "name": "@droplr/droplr-react-ui-v2",
-  "version": "0.1.14",
+  "version": "0.1.17",
   "author": "Droplr Inc.",
   "private": false,
   "contributors": [
@@ -44,17 +44,18 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-scss": "^3.0.0",
     "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^4.8.4"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "dependencies": {
-    "react-is": "^18.2.0",
+    "typescript": "^4.8.4",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-ts": "^3.0.2",
     "styled-components": "^5.3.6"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.6"
+  },
+  "dependencies": {
+    "react-is": "^18.2.0"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
