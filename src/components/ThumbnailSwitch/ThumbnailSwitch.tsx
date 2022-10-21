@@ -2,10 +2,11 @@ import React, { ReactElement, useEffect, useState } from "react";
 import "./thumbnail-switch.css";
 import styled, { css } from "styled-components";
 import Icon from "../Icons";
+import { lightTheme } from "../../themes/themes";
 
 /**
  * @interface ThumbnailSwitch Component props
- * @member {Array<ThumbnailSwitchItemProps} options - Select options (labels and handlers)
+ * @member {Array<ThumbnailSwitchItemProps} items - Select items list (labels and handlers)
  * @member {number} defaultIndex - Index of the default selected option
  * @member {String} className - Appends custom class names
  * @member {String} label - Text switch label
@@ -14,9 +15,9 @@ import Icon from "../Icons";
  */
 export interface ThumbnailSwitchProps {
   /**
-   * @member {Array<ThumbnailSwitchItemProps} items - Select options (labels, icons and handlers)
+   * @member {Array<ThumbnailSwitchItemProps} items - Select items (labels, icons and handlers)
    */
-  items?: Array<ThumbnailSwitchItemProps>;
+  items: Array<ThumbnailSwitchItemProps>;
 
   /**
    * @member {number} defaultIndex - Index of the default selected item
@@ -95,13 +96,12 @@ const ThumbnailSwitch = ({
   onChange,
 }: ThumbnailSwitchProps) => {
   const [selected, setSelected] = useState(
-    (items[defaultIndex] && items[defaultIndex]) || { label: "Label", id: 0}
+    (items[defaultIndex] && items[defaultIndex]) || { label: "Label", id: 0 }
   );
   const [selectHistory, setSelectHistory] = useState<Array<Number>>([]);
 
   const handleOnChange = (item: ThumbnailSwitchItemProps) => {
     if (item.id != null && !selectHistory.includes(item.id)) {
-      console.log("appending");
       setSelectHistory((prev) => [...prev, item.id!]);
     }
     setSelected(item);
@@ -155,8 +155,11 @@ const ThumbnailSwitch = ({
   );
 };
 
-const StyledThumbnailSwitch = styled.div(
-  ({ theme }) => css`
+const StyledThumbnailSwitch = styled.div(({ theme }) => {
+  if (!theme.fonts) {
+    theme = lightTheme;
+  }
+  return css`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -253,7 +256,7 @@ const StyledThumbnailSwitch = styled.div(
         transform: translateX(calc(-6px / 5.5)) rotate(calc(-10deg / 5));
       }
     }
-  `
-);
+  `;
+});
 
 export default ThumbnailSwitch;
