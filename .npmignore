@@ -1,0 +1,16 @@
+.storybook
+*.stories.tsx
+
+# dependencies
+node_modules
+
+#misc
+npm-debug.log*
+*.swo
+*.swp
+.eslintcache
+.nyc_output
+*.log
+.vscode
+.idea
+.cache
