@@ -1,11 +1,12 @@
+.storybook
+*.stories.tsx
+
 # dependencies
 node_modules
-dist
-lib
 
 #misc
-npm-debug.log*
 .npmrc
+npm-debug.log*
 *.swo
 *.swp
 .eslintcache
