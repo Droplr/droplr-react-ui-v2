@@ -219,12 +219,12 @@ const IconRefs: Array<iconMap> = Object.keys(icons).map((key) => {
 });
 
 const Icon = ({
-  name,
+  name = "Alert",
   stroke = 1.5,
-  className,
+  className = "",
   style = {},
   viewBox = "0 0 24 24",
-  color,
+  color = "gray",
   size = 14,
 }: IconProps) => {
   const defaultStyles = { display: "inline-block", verticalAlign: "middle" };

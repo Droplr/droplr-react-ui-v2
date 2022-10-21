@@ -19,7 +19,7 @@ const TextSwitchHandler = (arg: TextSwitchItem) => {
 export const SimpleSwitch = Template.bind({});
 SimpleSwitch.args = {
     label: "Simple Switch",
-    options: [
+    items: [
         {
             id: 0, label: 'Option One'
         }, {
@@ -32,7 +32,7 @@ SimpleSwitch.args = {
 export const MutlipleVariables = Template.bind({});
 MutlipleVariables.args = {
     label: "Multi-variable Switch",
-    options: [
+    items: [
         {
             id: 0, label: 'Option One'
         }, {

@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./dropdown.css";
 import styled, { css } from "styled-components";
 import Icon from "../Icons";
+import { lightTheme } from "../../themes/themes";
 
 /**
  * @interface DropdownProps Component props
@@ -180,17 +181,15 @@ const Dropdown = ({
   items = [],
   label = "Text Switch",
   showItemStatus = true,
-  closeOnItemClick,
-  arrowStyles,
-  onMouseLeave,
+  closeOnItemClick = true,
+  arrowStyles = null,
+  onMouseLeave = (arg: any) => {},
 }: DropdownProps) => {
-  const [selected, setSelected] = useState<DropdownItemProps>(
-    {
-      title: "",
-      description: "",
-      onClick: () => {}
-    }
-  );
+  const [selected, setSelected] = useState<DropdownItemProps>({
+    title: "",
+    description: "",
+    onClick: () => {},
+  });
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
@@ -233,7 +232,7 @@ const Dropdown = ({
   };
 
   useEffect(() => {
-    if (defaultIndex && items.length > defaultIndex) {
+    if (items.length > defaultIndex) {
       setSelected(items[defaultIndex]);
     }
     if (inputRef.current != null) {
@@ -263,15 +262,13 @@ const Dropdown = ({
         onClick={toggleDropdown}
       >
         <span className="drui-dropdown-input-label">
-          {
-            selected && selected.title
-          }
-          </span>
+          {selected && selected.title}
+        </span>
         <Icon
           name={"ChevronDown"}
           color={"rgb(94, 100, 110)"}
           size={14}
-          style={{ transform: rotate, transition: "all 0.2s linear" }}
+          style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px" }}
         />
         {isOpen ? (
           <StyledDropdownList
@@ -298,7 +295,7 @@ const Dropdown = ({
                    * @desc Dropdown items component
                    * @param {DropdownItemProps} DropdownItemProps The dropdown item props
                    */
-                  items.map((item : DropdownItemProps, index : Number) => {
+                  items.map((item: DropdownItemProps, index: Number) => {
                     const ActionElem = item.href ? "a" : "button";
                     const onItemElemClick = (e: React.ChangeEvent<any>) => {
                       e.stopPropagation();
@@ -392,8 +389,11 @@ const Dropdown = ({
   );
 };
 
-const StyledDropdown = styled.div(
-  ({ theme }) => css`
+const StyledDropdown = styled.div(({ theme }) => {
+  if (!theme.fonts) {
+    theme = lightTheme;
+  }
+  return css`
     font-family: ${theme.fonts.family.primary};
     font-size: ${theme.fonts.size.normal};
     color: ${theme.dropdown.titleColor};
@@ -425,11 +425,14 @@ const StyledDropdown = styled.div(
       display: inline-block;
       width: auto;
     }
-  `
-);
+  `;
+});
 
-const StyledDropdownLabel = styled.div(
-  ({ theme }) => css`
+const StyledDropdownLabel = styled.div(({ theme }) => {
+  if (!theme.fonts) {
+    theme = lightTheme;
+  }
+  return css`
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -438,11 +441,14 @@ const StyledDropdownLabel = styled.div(
     margin: 0 20px 10px;
     border-bottom: 1px solid ${theme.dropdown.headerBorderColor};
     white-space: nowrap;
-  `
-);
+  `;
+});
 
-const StyledDropdownList = styled.div(
-  ({ theme }) => css`
+const StyledDropdownList = styled.div(({ theme }) => {
+  if (!theme.fonts) {
+    theme = lightTheme;
+  }
+  return css`
     display: table;
     position: absolute;
     z-index: 9;
@@ -558,11 +564,14 @@ const StyledDropdownList = styled.div(
       padding: 0px;
       margin: 0;
     }
-  `
-);
+  `;
+});
 
-const StyledDropdownItem = styled.div(
-  ({ theme }) => css`
+const StyledDropdownItem = styled.div(({ theme }) => {
+  if (!theme.fonts) {
+    theme = lightTheme;
+  }
+  return css`
     flex: 1 0 auto;
     max-width: 100%;
     min-width: 0;
@@ -738,7 +747,7 @@ const StyledDropdownItem = styled.div(
     text-align: left;
     color: ${theme.dropdownItem.description.textColor};
   }
-`
-);
+`;
+});
 
 export default Dropdown;
