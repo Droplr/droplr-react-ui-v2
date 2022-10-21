@@ -1,6 +1,6 @@
 {
   "name": "@droplr/droplr-react-ui-v2",
-  "version": "0.1.1",
+  "version": "0.1.14",
   "author": "Droplr Inc.",
   "private": false,
   "contributors": [
@@ -14,11 +14,12 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "main": "dist/index.js",
+  "main": "lib/index.ts",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "devDependencies": {
     "@babel/core": "^7.19.3",
