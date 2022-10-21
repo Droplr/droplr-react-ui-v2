@@ -8,6 +8,9 @@
     "Haris Muhibic <haris.muhibic@droplr.com> (https://github.com/harismuha123)",
     "Asmir Ljumic <asmir.ljumic@droplr.com> (https://github.com/asmirljumicdrp)"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",

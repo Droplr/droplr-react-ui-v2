@@ -5,6 +5,7 @@ lib
 
 #misc
 npm-debug.log*
+.npmrc
 *.swo
 *.swp
 .eslintcache

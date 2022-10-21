@@ -5,6 +5,7 @@
 node_modules
 
 #misc
+.npmrc
 npm-debug.log*
 *.swo
 *.swp
