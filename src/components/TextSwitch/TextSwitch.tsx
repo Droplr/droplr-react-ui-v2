@@ -58,13 +58,13 @@ export interface TextSwitchItem {
     * @desc - The item label
     * @default 'Option 1'
     */
-    label?: string;
+    label: string;
 
     /**
     * @desc - The item identifier
     * @default 0
     */
-    id?: Number;
+    id: Number;
 
     /**
     * @desc - The item icon (DroplrUI)
@@ -86,7 +86,7 @@ const TextSwitch = ({
     defaultIndex = 0,
     onChange,
 }: TextSwitchProps) => {
-    const [selected, setSelected] = useState(options[defaultIndex] && options[defaultIndex] || {});
+    const [selected, setSelected] = useState(options[defaultIndex] && options[defaultIndex] || {label: "Label", id: 0});
 
     const handleChange = (ID: Number) => {
         const selectedOption = options.find(x => x.id === ID);

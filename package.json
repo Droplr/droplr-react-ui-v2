@@ -14,12 +14,11 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
-  "main": "lib/index.ts",
-  "module": "dist/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -53,11 +52,13 @@
   },
   "dependencies": {
     "react-is": "^18.2.0",
+    "rollup-plugin-dts": "^5.0.0",
+    "rollup-plugin-ts": "^3.0.2",
     "styled-components": "^5.3.6"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "rm -rf ./dist && rollup -c --bundleConfigAsCjs",
+    "build": "rm -rf ./dist && rm -rf ./types && npx tsc && rollup -c --bundleConfigAsCjs",
     "build-storybook": "build-storybook"
   }
 }

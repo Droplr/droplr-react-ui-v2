@@ -74,9 +74,9 @@ export interface ThumbnailSwitchItemProps {
 
   /**
    * @desc - The item icon (DroplrUI)
-   * @default null
+   * @default none
    */
-  icon: ReactElement;
+  icon?: ReactElement;
 }
 
 /**
@@ -95,7 +95,7 @@ const ThumbnailSwitch = ({
   onChange,
 }: ThumbnailSwitchProps) => {
   const [selected, setSelected] = useState(
-    (items[defaultIndex] && items[defaultIndex]) || {}
+    (items[defaultIndex] && items[defaultIndex]) || { label: "Label", id: 0}
   );
   const [selectHistory, setSelectHistory] = useState<Array<Number>>([]);
 
