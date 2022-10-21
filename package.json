@@ -1,6 +1,6 @@
 {
   "name": "@droplr/droplr-react-ui-v2",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Droplr Inc.",
   "private": false,
   "contributors": [
@@ -8,6 +8,9 @@
     "Haris Muhibic <haris.muhibic@droplr.com> (https://github.com/harismuha123)",
     "Asmir Ljumic <asmir.ljumic@droplr.com> (https://github.com/asmirljumicdrp)"
   ],
+  "repository": {
+    "url": "https://github.com/Droplr/droplr-react-ui-v2.git"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
