@@ -21,7 +21,7 @@ export interface ThumbnailSwitchProps {
 
   /**
    * @member {number} defaultIndex - Index of the default selected item
-   * @default 0
+   * @defaultValue 0
    */
   defaultIndex?: number;
 
@@ -37,13 +37,13 @@ export interface ThumbnailSwitchProps {
 
   /**
    * @member {boolean} disabled - Disabled and uninteractive
-   * @default false
+   * @defaultValue false
    */
   disabled?: true | false;
 
   /**
    * @member {boolean} withAnimation - Show wobble animation on select
-   * @default true
+   * @defaultValue true
    */
   withAnimation?: true | false;
 
@@ -75,7 +75,7 @@ export interface ThumbnailSwitchItemProps {
 
   /**
    * @desc - The item icon (DroplrUI)
-   * @default none
+   * @defaultValue none
    */
   icon?: ReactElement;
 }

@@ -30,31 +30,31 @@ export interface DropdownProps {
 
   /**
    * @member {number} [defaultIndex] The default selected option
-   * @default 0
+   * @defaultValue 0
    */
   defaultIndex?: number;
 
   /**
    * @member {boolean} [fullWidth] Sets the dropdown input field to it's containers full width, default is 'max-content'
-   * @default false
+   * @defaultValue false
    */
   fullWidth?: boolean;
 
   /**
    * @member {number} [minWidth] The miniumum width for the input field of the component (in pixels)
-   * @default 0px
+   * @defaultValue 0px
    */
   minWidth?: string;
 
   /**
    * @member {boolean} [closeOnMouseOut] Close dropdown on mouse-out event
-   * @default true
+   * @defaultValue true
    */
   closeOnMouseOut?: boolean;
 
   /**
    * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
-   * @default false
+   * @defaultValue false
    */
   showItemStatus?: boolean;
 
@@ -71,19 +71,19 @@ export interface DropdownProps {
   /**
    * @member {string} [position] Dropdown position alignment
    * ToBeImplemented
-   * @default bottom
+   * @defaultValue bottom
    */
   position?: "top" | "right" | "left" | "bottom";
 
   /**
    * @member {boolean} [disabled] Disables the component
-   * @default false
+   * @defaultValue false
    */
   disabled?: true | false;
 
   /**
    * @member {boolean} closeOnItemClick Close list on item click
-   * @default true
+   * @defaultValue true
    */
   closeOnItemClick?: true | false;
 
@@ -111,13 +111,13 @@ export interface DropdownProps {
 export interface DropdownItemProps {
   /**
    * @member {String} [className] Appends custom class names
-   * @default false
+   * @defaultValue false
    */
   className?: string | null;
 
   /**
    * @member {boolean} [disabled] Disables the item
-   * @default false
+   * @defaultValue false
    */
   disabled?: boolean;
 
@@ -154,7 +154,7 @@ export interface DropdownItemProps {
 
   /**
    * @member {boolean} [showItemStatus] Show status checkmark of the item
-   * @default true
+   * @defaultValue true
    */
   showItemStatus?: boolean;
 
