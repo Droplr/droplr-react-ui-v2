@@ -7,8 +7,8 @@ import { DroplrThemeProvider } from "../..";
 
 /**
  * @interface ButtonProps Instance of switch component item
- * @member {String} className  Appends custom class names
- * @member {String} variant  Style variants => primary | secondary | success | info | warning | danger
+ * @member className  Appends custom class names
+ * @member  Style variants => primary | secondary | success | info | warning | danger
  * @member {String} size  Size variants => small | medium | large
  * @member {String} label  Text switch label
  * @member {boolean} disabled  Disabled and uninteractive
@@ -18,45 +18,46 @@ import { DroplrThemeProvider } from "../..";
  */
 export interface ButtonProps {
   /**
-   * @member {String} className  Appends custom class names
+   * @member {string} className  Appends custom class names
    */
   className?: string;
 
   /**
-   * @member {string} variant  Style variants
-   * @default 'primary'
+   * variant  Style variants
+   * @enum
+   * @defaultValue 'primary'
    * @options primary | secondary | success | info | warning | danger
    */
   variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 
   /**
    * @member {string} size  Button sizes
-   * @default 'medium'
+   * @defaultValue 'medium'
    * @options small | medium | large
    */
   size?: "small" | "medium" | "large";
 
   /**
    * @member {String} label  Button label text
-   * @default 'Button'
+   * @defaultValue 'Button'
    */
   label: string;
 
   /**
    * @member {boolean} disabled  Disabled and uninteractive
-   * @default false
+   * @defaultValue false
    */
   disabled?: true | false;
 
   /**
    * @member {boolean} loading  Show loading spinner
-   * @default false
+   * @defaultValue false
    */
   loading?: true | false;
 
   /**
    * @desc  The button icon (DroplrUI)
-   * @default null
+   * @defaultValue null
    */
   icon?: () => void;
   /**
@@ -68,8 +69,9 @@ export interface ButtonProps {
 }
 
 /**
- * @desc Button component
- * @param {ButtonProps}  Component props
+ * @component
+ * @desc The button component
+ * @param {ButtonProps}  props The component props, instance of Button Props
  */
 const Button = ({
   className = "",

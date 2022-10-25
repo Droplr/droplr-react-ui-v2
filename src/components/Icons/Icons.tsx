@@ -187,12 +187,12 @@ export interface IconProps {
   viewBox?: string | undefined;
   /**
    * @member {number} [size] Pixel-size of element, ie. (14x14)
-   * @default 14
+   * @defaultValue 14
    */
   size?: number;
   /**
    * @member {number} [stroke] Stroke width of SVG path lines
-   * @default 1.5
+   * @defaultValue 1.5
    */
   stroke?: number;
   /**
@@ -211,7 +211,7 @@ const IconRefs: Array<iconMap> = Object.keys(icons).map((key) => {
 
 const Icon = ({
   name = "Alert",
-  stroke = 1.5,
+  stroke = 1,
   className = "",
   style = {},
   viewBox = "0 0 24 24",

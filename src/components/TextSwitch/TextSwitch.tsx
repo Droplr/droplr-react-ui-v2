@@ -16,7 +16,7 @@ export interface TextSwitchProps {
   /**
    * @member {Array<TextSwitchItem} items - Select items (labels and handlers)
    */
-  items: Array<TextSwitchItem>;
+  items: Array<TextSwitchItemProps>;
 
   /**
    * @member {number} defaultIndex - Index of the default selected option
@@ -42,33 +42,33 @@ export interface TextSwitchProps {
    * @method onChange
    * @desc - Click event handler, calls handler with selected item as the parameter
    * @param {Function} arg - Handler function
-   * @returns {TextSwitchItem} - Selected item
+   * @returns {TextSwitchItemProps} - Selected item
    */
-  onChange: (arg: TextSwitchItem) => void;
+  onChange: (arg: TextSwitchItemProps) => void;
 }
 
 /**
  * @interface TextSwitchItem - Instance of switch component item
  * @member {number} id - Numerical ID of the item
  * @member {String} label - Text label for the item
- * @member {Icon} icon - DroplrUI icon component
+ * @member {Icon} [icon] - DroplrUI icon component
  */
-export interface TextSwitchItem {
+export interface TextSwitchItemProps {
   /**
    * @desc - The item label
-   * @default 'Option 1'
+   * @defaultValue 'Option 1'
    */
   label: string;
 
   /**
    * @desc - The item identifier
-   * @default 0
+   * @defaultValue 0
    */
   id: Number;
 
   /**
    * @desc - The item icon (DroplrUI)
-   * @default null
+   * @defaultValue null
    */
   icon?: () => {};
 }
@@ -76,7 +76,7 @@ export interface TextSwitchItem {
 /**
  * @desc TextSwitch component
  * @param {TextSwitchProps} - Component props
- * @param {Array<TextSwitchItem>} - Component item list
+ * @param {Array<TextSwitchItemProps>} - Component item list
  */
 const TextSwitch = ({
   className = "",

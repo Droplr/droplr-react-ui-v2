@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
-import TextSwitch, { TextSwitchItem, TextSwitchProps } from "./TextSwitch";
+import TextSwitch, { TextSwitchItemProps, TextSwitchProps } from "./TextSwitch";
 
 export default {
     title: "Components/TextSwitch",
@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 const Template: Story<TextSwitchProps> = (args) => <TextSwitch {...args} />;
-const TextSwitchHandler = (arg: TextSwitchItem) => {
+const TextSwitchHandler = (arg: TextSwitchItemProps) => {
     // Handle the arg (the selected item)
     return;
 }
