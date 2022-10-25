@@ -1,5 +1,5 @@
 {
-  "name": "@droplr/droplr-react-ui-v2",
+  "name": "droplr-react-ui-v2",
   "version": "0.2.0",
   "author": "Droplr Inc.",
   "private": false,
@@ -10,9 +10,6 @@
   ],
   "repository": {
     "url": "https://github.com/Droplr/droplr-react-ui-v2.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -40,14 +37,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^3.2.3",
+    "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-scss": "^3.0.0",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "typescript": "^4.8.4",
-    "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-ts": "^3.0.2",
-    "styled-components": "^5.3.6"
+    "rollup-plugin-typescript2": "^0.34.1",
+    "styled-components": "^5.3.6",
+    "typescript": "^4.8.4"
   },
   "peerDependencies": {
     "react": "^18.2.0",
