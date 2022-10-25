@@ -1,61 +1,63 @@
 {
-  "name": "droplr-react-ui-v2",
-  "version": "0.2.1",
-  "author": "Droplr Inc.",
-  "private": false,
-  "contributors": [
-    "Hamdija Radoncic <hamdija.radoncic@droplr.com> (https://github.com/hamdij4)",
-    "Haris Muhibic <haris.muhibic@droplr.com> (https://github.com/harismuha123)",
-    "Asmir Ljumic <asmir.ljumic@droplr.com> (https://github.com/asmirljumicdrp)"
-  ],
-  "repository": {
-    "url": "https://github.com/Droplr/droplr-react-ui-v2.git"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@rollup/plugin-commonjs": "^23.0.0",
-    "@rollup/plugin-node-resolve": "^15.0.0",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-interactions": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/builder-webpack4": "^6.5.12",
-    "@storybook/manager-webpack4": "^6.5.12",
-    "@storybook/react": "^6.5.12",
-    "@storybook/testing-library": "0.0.13",
-    "@types/react": "^18.0.21",
-    "@types/styled-components": "^5.1.26",
-    "babel-loader": "^8.2.5",
-    "postcss": "^8.4.18",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-is": "^18.2.0",
-    "rollup": "^3.2.3",
-    "rollup-plugin-dts": "^5.0.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-scss": "^3.0.0",
-    "rollup-plugin-ts": "^3.0.2",
-    "rollup-plugin-typescript2": "^0.34.1",
-    "styled-components": "^5.3.6",
-    "typedoc": "^0.23.18",
-    "typedoc-plugin-markdown": "^3.13.6",
-    "typescript": "^4.8.4"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6"
-  },
-  "scripts": {
-    "start": "start-storybook -p 6006",
-    "build": "rm -rf ./dist && rm -rf ./types && npx tsc && rollup -c --bundleConfigAsCjs",
-    "build-storybook": "build-storybook"
+	"name": "droplr-react-ui-v2",
+	"version": "0.2.3",
+	"author": "Droplr Inc.",
+	"private": false,
+	"contributors": [
+	  "Hamdija Radoncic <hamdija.radoncic@droplr.com> (https://github.com/hamdij4)",
+	  "Haris Muhibic <haris.muhibic@droplr.com> (https://github.com/harismuha123)",
+	  "Asmir Ljumic <asmir.ljumic@droplr.com> (https://github.com/asmirljumicdrp)"
+	],
+	"homepage": "https://github.com/Droplr/droplr-react-ui-v2#readme",
+	"repository": {
+	  "url": "https://github.com/Droplr/droplr-react-ui-v2.git"
+	},
+	"main": "dist/cjs/index.js",
+	"module": "dist/esm/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+	  "dist"
+	],
+	"devDependencies": {
+	  "@babel/core": "^7.19.3",
+	  "@rollup/plugin-commonjs": "^23.0.0",
+	  "@rollup/plugin-node-resolve": "^15.0.0",
+	  "@storybook/addon-actions": "^6.5.12",
+	  "@storybook/addon-essentials": "^6.5.12",
+	  "@storybook/addon-interactions": "^6.5.12",
+	  "@storybook/addon-links": "^6.5.12",
+	  "@storybook/builder-webpack4": "^6.5.12",
+	  "@storybook/manager-webpack4": "^6.5.12",
+	  "@storybook/react": "^6.5.12",
+	  "@storybook/testing-library": "0.0.13",
+	  "@types/react": "^18.0.21",
+	  "@types/styled-components": "^5.1.26",
+	  "babel-loader": "^8.2.5",
+	  "postcss": "^8.4.18",
+	  "react": "^18.2.0",
+	  "react-dom": "^18.2.0",
+	  "react-is": "^18.2.0",
+	  "rollup": "^3.2.3",
+	  "rollup-plugin-dts": "^5.0.0",
+	  "rollup-plugin-peer-deps-external": "^2.2.4",
+	  "rollup-plugin-postcss": "^4.0.2",
+	  "rollup-plugin-scss": "^3.0.0",
+	  "rollup-plugin-ts": "^3.0.2",
+	  "rollup-plugin-typescript2": "^0.34.1",
+	  "styled-components": "^5.3.6",
+	  "typedoc": "^0.23.18",
+	  "typedoc-plugin-markdown": "^3.13.6",
+	  "typescript": "^4.8.4"
+	},
+	"peerDependencies": {
+	  "react": "^18.2.0",
+	  "react-dom": "^18.2.0",
+	  "styled-components": "^5.3.6"
+	},
+	"scripts": {
+	  "start": "start-storybook -p 6006",
+	  "build": "rm -rf ./dist && rm -rf ./types && npx tsc && rollup -c --bundleConfigAsCjs",
+	  "build-storybook": "build-storybook"
+	}
   }
-}
+  
