@@ -216,7 +216,7 @@ const Icon = ({
   stroke = 1,
   className = "",
   style = {},
-  viewBox = "0 0 24 24",
+  viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : "0 0 24 24",
   color = "gray",
   size = 14,
 }: IconProps) => {
@@ -240,7 +240,7 @@ const Icon = ({
   return (
     <svg
       className={className}
-      style={styles}
+      style={{...styles, transform: (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? 'scale(1.5)' : 'none'}}
       viewBox={viewBox}
       width={`${size}px`}
       height={`${size}px`}
