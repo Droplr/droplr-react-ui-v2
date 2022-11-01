@@ -17,6 +17,7 @@ export interface IconProps {
    * @member {String} name The Icon name
    */
   name:
+    | "Screen"
     | "Add"
     | "AddPeople"
     | "AddToBoard"
@@ -42,7 +43,6 @@ export interface IconProps {
     | "Check"
     | "ChevronDown"
     | "ChevronRight"
-    | "ChevronDown"
     | "ChevronLeft"
     | "Chrome"
     | "Clipboard"
@@ -168,6 +168,8 @@ export interface IconProps {
     | "Wallet"
     | "Warning"
     | "WatchFolder"
+    | "WebcamScreen"
+    | "Webcam"
     | "Window"
     | "Zip"
     | "ZoomIn"
