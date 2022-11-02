@@ -142,6 +142,7 @@ const ThumbnailSwitch = ({
                       ? " wobble"
                       : "",
                   ].join("")}
+                  stroke={1.5}
                   color={"#fff"}
                 />
               </>

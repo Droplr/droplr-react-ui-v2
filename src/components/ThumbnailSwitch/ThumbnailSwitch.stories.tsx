@@ -26,15 +26,15 @@ ThreeItemSwitch.args = {
         {
             id: 0, 
             label: 'Option One', 
-            icon: <Icon name={'BrowserTab'} size={32} color={"#A1AAB7"} stroke={1}/>
+            icon: <Icon name={'Screen'} size={32} color={"#A1AAB7"} stroke={1.5}/>
         }, {
             id: 1,
             label: 'Option Two',
-            icon: <Icon name={'Dashboard'} size={32} color={"#A1AAB7"} stroke={1}/>
+            icon: <Icon name={'Webcam'} size={32} color={"#A1AAB7"} stroke={1.5}/>
         }, {
             id: 2,
             label: 'Option Three',
-            icon: <Icon name={'EntirePage'} size={32} color={"#A1AAB7"} stroke={1}/>
+            icon: <Icon name={'WebcamScreen'} size={32} color={"#A1AAB7"} stroke={1.5}/>
         }
     ],
     onChange: ThumbnailSwitchHandler
