@@ -244,7 +244,7 @@ Element
 | `items` | Array<TextSwitchComponentProps> <br/> **required** | The list of the switch control items <br/> Instances of `TextSwitchItemProps` |
 | `label` | string <br/> **required** | The label of the component |
 | `className` | string <br/> *optional* | Appends custom class name |
-| `defaultIndex` | number <br/>*optional* | Index of the default selected item in the switch <br/> *Default*: 0|
+| `defaultIndex` | number|string <br/>*optional* | Index (or label) of the default selected item in the switch <br/> *Default*: 0|
 | `disabled` | boolean <br/> *optional* | Sets the component to the disabled state. <br/> *Default*: `false`|
 | `onChange` | Function <br/> *optional* | The function that handles the change of state. Passes the currently active item as arg, `typeof TextSwitchItemProps`|
 
@@ -312,7 +312,7 @@ Element
 | `items` | Array<TextSwitchComponentProps> <br/> **required** | The list of the switch control items <br/> Instances of `TextSwitchItemProps` |
 | `label` | string <br/> **required** | The label of the component |
 | `className` | string <br/> *optional* | Appends custom class name |
-| `defaultIndex` | number <br/>*optional* | Index of the default selected item in the switch <br/> *Default*: 0|
+| `defaultIndex` | number|string <br/>*optional* | Index (or label) of the default selected item in the switch <br/> *Default*: 0|
 | `disabled` | boolean <br/> *optional* | Sets the component to the disabled state. <br/> *Default*: `false`|
 | `onChange` | Function <br/> *optional* | The function that handles the change of state. Passes the currently active item as arg, `typeof ThumbnailSwitchItemProps`|
 

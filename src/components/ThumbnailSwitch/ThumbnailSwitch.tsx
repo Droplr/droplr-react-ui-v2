@@ -20,10 +20,10 @@ export interface ThumbnailSwitchProps {
   items: Array<ThumbnailSwitchItemProps>;
 
   /**
-   * @member {number} defaultIndex - Index of the default selected item
+   * @member {number|string} defaultIndex - Index (or label) of the default selected item
    * @defaultValue 0
    */
-  defaultIndex?: number;
+  defaultIndex?: number | string;
 
   /**
    * @member {String} className - Appends custom class names
@@ -95,9 +95,28 @@ const ThumbnailSwitch = ({
   defaultIndex = 0,
   onChange,
 }: ThumbnailSwitchProps) => {
-  const [selected, setSelected] = useState(
-    (items[defaultIndex] && items[defaultIndex]) || { label: "Label", id: 0 }
-  );
+
+  const setDefaultIndex = (): ThumbnailSwitchItemProps => {
+    if (typeof defaultIndex !== typeof "") {
+      if (defaultIndex > items.length - 1) {
+        return items[0];
+      } else {
+        return items[defaultIndex];
+      }
+    } else {
+      if (!isNaN(parseInt(defaultIndex.toString()))) {
+        if (parseInt(defaultIndex.toString()) > items.length - 1) {
+          return items[0];
+        } else {
+          return items.find(x => x.id === parseInt(defaultIndex.toString()))
+        }
+      } else {
+        return items.find(x => x.label === defaultIndex)
+      }
+    }
+  }
+
+  const [selected, setSelected] = useState(setDefaultIndex());
   const [selectHistory, setSelectHistory] = useState<Array<Number>>([]);
 
   const handleOnChange = (item: ThumbnailSwitchItemProps) => {

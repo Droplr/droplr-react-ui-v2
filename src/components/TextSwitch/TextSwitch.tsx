@@ -19,9 +19,9 @@ export interface TextSwitchProps {
   items: Array<TextSwitchItemProps>;
 
   /**
-   * @member {number} defaultIndex - Index of the default selected option
+   * @member {number} defaultIndex - Index (or label) of the default selected option
    */
-  defaultIndex?: number;
+  defaultIndex?: number | string;
 
   /**
    * @member {String} className - Appends custom class names
@@ -89,12 +89,26 @@ const TextSwitch = ({
   defaultIndex = 0,
   onChange,
 }: TextSwitchProps) => {
-  const [selected, setSelected] = useState(
-    (items[defaultIndex] && items[defaultIndex]) || {
-      label: "Label",
-      id: 0,
+  const setDefaultIndex = (): TextSwitchItemProps => {
+    if (typeof defaultIndex !== typeof "") {
+      if (defaultIndex > items.length - 1) {
+        return items[0];
+      } else {
+        return items[defaultIndex];
+      }
+    } else {
+      if (!isNaN(parseInt(defaultIndex.toString()))) {
+        if (parseInt(defaultIndex.toString()) > items.length - 1) {
+          return items[0];
+        } else {
+          return items.find(x => x.id === parseInt(defaultIndex.toString()))
+        }
+      } else {
+        return items.find(x => x.label === defaultIndex)
+      }
     }
-  );
+  }
+  const [selected, setSelected] = useState(setDefaultIndex());
 
   const handleChange = (ID: Number) => {
     const selectedOption = items.find((x) => x.id === ID);
