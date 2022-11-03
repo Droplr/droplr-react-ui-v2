@@ -10,6 +10,9 @@ The up-to-date touchoup to Droplr's react UI Library.
 - [Button](#button)
     - [ButtonProps](#buttonProps)
     - [Example](#buttonExample)
+- [Input](#input)
+    - [InputProps](#inputProps)
+    - [Example](#inputExample)
 - [Dropdown](#dropdown)
     - [DropdownProps](#dropdownProps)
     - [DropdownItemProps](#dropdownItemProps)
@@ -68,91 +71,71 @@ Element
 #### Example
 
 ```
-<Button label='Button' onClick={clickHandler} variant='secondary' size='large'/>
+<Button 
+    label='Button' 
+    onClick={clickHandler} 
+    variant='secondary' 
+    size='large' />
 ```
-
-
-#### Defined in
-
-[components/Button/Button.tsx:76](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/Button/Button.tsx#L76)
-
 ___
 
-<a name="dropdown"></a>
-### Dropdown
+<a name="input"></a>
+### Input
 
-▸ **Dropdown**(`Component`): Element
+▸ **Input**(`Component`): Element
 
 **`Desc`**
 
-Dropdown component
+Input component
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `Component` | DropdownProps | props |
+| `Component` | InputProps | props |
 
 #### Returns
 
 Element
 
-<a name="dropdownProps"></a>
-▸ **DropdownProps**: Interface
+<a name="inputProps"></a>
+▸ **InputProps**: Interface
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `items` | Array<DropdownItem> <br/> **required** | The list of the dropdown items <br/> Instances of `DropdownItemProps` |
-| `label` | string <br/> **required** | The label of the dropdown |
+| `value` | string <br/> *optional* | The default value of the input field |
+| `type` | string <br/> *optional* | The input field type, <br/>**Options** <br/>`text` `password` `number` *Default*: `text`|
 | `className` | string <br/> *optional* | Appends custom class name |
-| `defaultIndex` | number <br/>*optional* | Index of the default selected item in the items array. <br/> *Default*: 0|
-| `disabled` | boolean <br/> *optional* | Sets the dropdown input field to the disabled state. <br/> *Default*: `false`|
-| `fullWidth`| boolean <br/> *optional*  | Has the dropdown input field occupy the full width of its parent <br/> *Default*: false |
-| `minWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the minimum width for the input field <br/> *Default*: 0px|
-| `closeOnMouseOut`| boolean <br/> *optional*  | Closes the dropdown when the mouse leaves the list <br/> *Default*: true|
-| `closeOnItemClick`| boolean <br/> *optional*  | Closes the dropdown when an option in selected <br/> *Default*: true|
-| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
-| `onMouseLeave` | Function <br/> *optional* | Handler function for when the mouse leaves the dropdown |
+| `label` | string <br/> *optional* | The label above the input field |
+| `sublabel` | string <br/> *optional* | A smaller label under the {label} prop |
+| `disabled` | boolean <br/> *optional* | Disables the component |
+| `placeholder` | string <br/> *optional* | The placeholder text of the input field |
+| `info` | string <br/> *optional* | Small informative text under the input field |
+| `error` | string <br/> *optional* | Displays an error message under the input field |
+| `autoFocus` | boolean <br/> *optional* | Autofocuses the input field |
+| `readOnly` | boolean <br/> *optional* | Makes the component uneditable |
+| `passwordVisible` | boolean <br/> *optional* | Shows or hides the password text |
+| `useHidePasswordIcon` | boolean <br/> *optional* | Uses the library's hide password icon to toggle visibility |
+| `onBlur` | function <br/> *optional* | Event handler for the 'onBlur' event |
+| `onFocus` | function <br/> *optional* | Event handler for the 'onFocus' event |
+| `onKeyPress` | function <br/> *optional* | Event handler for the 'onKeyPress' event |
+| `onChange` | function <br/> *optional* | Event handler for the 'onChange' event |
 
-<a name="dropdownItemProps"></a>
-▸ **DropdownItemProps**: Interface
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `title` | string <br/> **required** | The title of the list item |
-| `onClick` | Function <br/> **required** | The click handler function for the list item. <br/> Provides the currently selected item as the argument (`typeof DropdownItemProps`) |
-| `description` | string <br/> *optional* | The description of the list item |
-| `disabled` | boolean <br/> *optional* | Sets the list item to the disabled state. <br/> *Default*: `false`|
-| `className` | string <br/> *optional* | Appends custom class name |
-| `icon` | Icon <br/> *optional* | Renders an icon before the title text of the list item |
-| `href` | string <br/> *optional* | The `href` attribute target for the item click |
-| `target` | string <br/> *optional* | The `target` attribute target for the item click |
-| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected item<br/> *Default*: `false` |
-| `active` | boolean <br/> *optional* | Sets the item to active state by default <br/> *Default*: false|
-
-<a name="dropdownExample"></a>
+<a name="inputExample"></a>
 #### Example
 ```
-const dropdown_items: Array<DropdownItemProps> = [{
-    title: 'My list item - one',
-    icon: <Icon name='Calendar' size={12} />,
-    onClick: itemClickHandler(),
-    disabled: false,
-    },{
-    title: 'My list item - two',
-    description: 'My item's description',
-    icon: <Icon name='List' size={12} />,
-    onClick: itemClickHandler(),
-    disabled: true,
-}];
+const onChange = (e) => {
+    // Gets the text from the input field
+    handleInput(e.target.value);
+};
 
-<Dropdown items={dropdown_items} label='My Dropdown' closeOnMouseOut={false} />
+<Input 
+    value={'My Input Component' }
+    type={'text'} 
+    autoFocus 
+    info={'Please fill out the form'} 
+    onChange={onChange}/>
 ```
-
-#### Defined in
-
-[components/Dropdown/Dropdown.tsx:173](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/Dropdown/Dropdown.tsx#L173)
-
 ___
 
 <a name="droplrThemeProvider"></a>
@@ -171,11 +154,6 @@ ___
       <App />
 </DroplrThemeProvider>
 ```
-
-#### Defined in
-
-[themes/provider.tsx:5](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/themes/provider.tsx#L5)
-
 ___
 
 <a name="icon"></a>
@@ -211,12 +189,12 @@ Element
 #### Example
 
 ```
-<Icon name={'Add'} size={12} color={'#000'} stroke={0.75}/>
+<Icon 
+    name={'Add'} 
+    size={12} 
+    color={'#000'} 
+    stroke={0.75} />
 ```
-#### Defined in
-
-[components/Icons/Icons.tsx:212](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/Icons/Icons.tsx#L212)
-
 ___
 
 <a name="textSwitch"></a>
@@ -277,13 +255,12 @@ const switch_items = items: [
     }
 ];
 
-<TextSwitch items={switch_items} label='My Switch' onChange={onChangeHandler} />
+<TextSwitch 
+    items={switch_items} 
+    label='My Switch' 
+    onChange={onChangeHandler} />
 
 ```
-
-#### Defined in
-
-[components/TextSwitch/TextSwitch.tsx:81](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/TextSwitch/TextSwitch.tsx#L81)
 
 ___
 
@@ -345,10 +322,10 @@ const switch_items = items: [
     }
 ];
 
-<ThumbnailSwitch items={switch_items} label='My Switch' onChange={onChangeHandler} />
+<ThumbnailSwitch 
+    items={switch_items} 
+    label='My Switch' 
+    onChange={onChangeHandler} />
 
 ```
 
-#### Defined in
-
-[components/ThumbnailSwitch/ThumbnailSwitch.tsx:89](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/ThumbnailSwitch/ThumbnailSwitch.tsx#L89)

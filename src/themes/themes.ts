@@ -105,6 +105,7 @@ const input = {
   // text
   textColor: colors.shuttleGray,
   textColorFocus: colors.black,
+  disabledTextColor: colors.grayChateau,
 
   // border
   borderColor: colors.mystic,
@@ -314,6 +315,7 @@ export const darkTheme: DefaultTheme = {
     // text
     textColor: colors.athensGray,
     textColorFocus: colors.white,
+    disabledTextColor: colors.grayChateau,
 
     // border
     borderColor: colors.shark,
