@@ -11,7 +11,7 @@ The up-to-date touchoup to Droplr's react UI Library.
     - [ButtonProps](#buttonProps)
     - [Example](#buttonExample)
 - [Input](#input)
-    - [DropdownProps](#inputProps)
+    - [InputProps](#inputProps)
     - [Example](#inputExample)
 - [Dropdown](#dropdown)
     - [DropdownProps](#dropdownProps)
@@ -71,7 +71,11 @@ Element
 #### Example
 
 ```
-<Button label='Button' onClick={clickHandler} variant='secondary' size='large'/>
+<Button 
+    label='Button' 
+    onClick={clickHandler} 
+    variant='secondary' 
+    size='large' />
 ```
 ___
 
@@ -125,7 +129,12 @@ const onChange = (e) => {
     handleInput(e.target.value);
 };
 
-<Input value={'My Input Component' } type={'text'} autoFocus info={'Please fill out the form'} />
+<Input 
+    value={'My Input Component' }
+    type={'text'} 
+    autoFocus 
+    info={'Please fill out the form'} 
+    onChange={onChange}/>
 ```
 ___
 
@@ -180,7 +189,11 @@ Element
 #### Example
 
 ```
-<Icon name={'Add'} size={12} color={'#000'} stroke={0.75}/>
+<Icon 
+    name={'Add'} 
+    size={12} 
+    color={'#000'} 
+    stroke={0.75} />
 ```
 ___
 
@@ -242,7 +255,10 @@ const switch_items = items: [
     }
 ];
 
-<TextSwitch items={switch_items} label='My Switch' onChange={onChangeHandler} />
+<TextSwitch 
+    items={switch_items} 
+    label='My Switch' 
+    onChange={onChangeHandler} />
 
 ```
 
@@ -306,7 +322,10 @@ const switch_items = items: [
     }
 ];
 
-<ThumbnailSwitch items={switch_items} label='My Switch' onChange={onChangeHandler} />
+<ThumbnailSwitch 
+    items={switch_items} 
+    label='My Switch' 
+    onChange={onChangeHandler} />
 
 ```
 
