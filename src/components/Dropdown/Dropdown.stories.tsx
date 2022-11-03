@@ -14,12 +14,14 @@ export default {
 const Template: Story<DropdownProps> = (args) => <Dropdown {...args} />;
 const DropdownChangeHandler = (arg: any) => {
     // Handle the arg (the selected item)
+    console.log(arg);
     return;
 }
 
 const args: DropdownItemProps = {
     title: 'First Item',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+    id: 0,
     onClick: function (arg: any): void {},
 };
 
@@ -34,9 +36,9 @@ SimpleDropdown.args = {
     closeOnMouseOut: true,
     items: [
         args, 
-        {...args, disabled: true, title: 'Second Item'},
+        {...args, disabled: true, title: 'Second Item', id: 1},
         {...args, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
-         title: 'Third Item', showItemStatus: true},
+         title: 'Third Item', showItemStatus: true, id: 2},
     ],
-    onMouseLeave: DropdownChangeHandler
+    onClick: DropdownChangeHandler
 };

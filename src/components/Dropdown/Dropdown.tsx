@@ -93,6 +93,13 @@ export interface DropdownProps {
    * @param {Function} arg Handler function
    */
   onMouseLeave?: (arg: any) => void;
+
+  /**
+   * @method onClick
+   * @desc onClick event handler
+   * @param {Function} arg Handler function
+   */
+   onClick?: (arg: any) => void;
 }
 
 /**
@@ -109,6 +116,11 @@ export interface DropdownProps {
  */
 
 export interface DropdownItemProps {
+  /**
+   * @member {string|number} [id] Custom ID for the item
+   */
+  id?: string | number;
+  
   /**
    * @member {String} [className] Appends custom class names
    * @defaultValue false
@@ -166,6 +178,7 @@ export interface DropdownItemProps {
    */
   onClick?: (arg: any) => void;
 }
+
 /**
  * @desc Dropdown component
  * @param {DropdownProps} Component props
@@ -184,6 +197,7 @@ const Dropdown = ({
   closeOnItemClick = true,
   arrowStyles = null,
   onMouseLeave = (arg: any) => {},
+  onClick = (arg: any) => {},
 }: DropdownProps) => {
   const [selected, setSelected] = useState<DropdownItemProps>({
     title: "",
@@ -299,7 +313,7 @@ const Dropdown = ({
                     const ActionElem = item.href ? "a" : "button";
                     const onItemElemClick = (e: React.ChangeEvent<any>) => {
                       e.stopPropagation();
-                      if (item.onClick) item.onClick(item);
+                      if (onClick) onClick(item);
                       if (closeOnItemClick) {
                         toggleDropdown();
                       }
