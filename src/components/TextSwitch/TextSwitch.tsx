@@ -64,7 +64,7 @@ export interface TextSwitchItemProps {
    * @desc - The item identifier
    * @defaultValue 0
    */
-  id: Number;
+  id: number | string;
 
   /**
    * @desc - The item icon (DroplrUI)
@@ -136,7 +136,7 @@ const TextSwitch = ({
                 selected.id == item.id && "active",
               ].join(" ")}
               onClick={() => {
-                handleChange(item.id || 0);
+                handleChange(parseInt(item.id) || 0);
               }}
             >
               <label>{item.label}</label>
