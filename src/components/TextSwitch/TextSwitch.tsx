@@ -104,7 +104,7 @@ const TextSwitch = ({
           return items.find(x => x.id === parseInt(defaultIndex.toString()))
         }
       } else {
-        return items.find(x => x.label === defaultIndex)
+        return items.find(x => x.label === defaultIndex.toString())
       }
     }
   }

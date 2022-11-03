@@ -223,7 +223,7 @@ const Icon = ({
   viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : "0 0 24 24",
   color = "gray",
   size = 14,
-  onClick,
+  onClick = (arg) => {},
 }: IconProps) => {
   const defaultStyles = { display: "inline-block", verticalAlign: "middle" };
   const styles = { ...defaultStyles, ...style };
