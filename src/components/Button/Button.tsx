@@ -3,12 +3,11 @@ import "./button.css";
 import styled, { css, useTheme } from "styled-components";
 import Loader from "../Loader/Loader";
 import { lightTheme } from "../../themes/themes";
-import { DroplrThemeProvider } from "../..";
 
 /**
  * @interface ButtonProps Instance of switch component item
- * @member className  Appends custom class names
- * @member  Style variants => primary | secondary | success | info | warning | danger
+ * @member {String} className  Appends custom class names
+ * @member {String} Style variants => primary | secondary | success | info | warning | danger
  * @member {String} size  Size variants => small | medium | large
  * @member {String} label  Text switch label
  * @member {boolean} disabled  Disabled and uninteractive

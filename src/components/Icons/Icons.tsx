@@ -201,6 +201,10 @@ export interface IconProps {
    * @member {string} [color] The color of the icon
    */
   color?: string;
+  /**
+   * @member {function} [onClick] onClick function handler
+   */
+  onClick?: (arg: string) => void;
 }
 
 interface iconMap {
@@ -219,6 +223,7 @@ const Icon = ({
   viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : "0 0 24 24",
   color = "gray",
   size = 14,
+  onClick,
 }: IconProps) => {
   const defaultStyles = { display: "inline-block", verticalAlign: "middle" };
   const styles = { ...defaultStyles, ...style };
@@ -247,6 +252,7 @@ const Icon = ({
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       fill="none"
+      onClick={() => onClick(name)}
     >
       {getPaths(IconRefs.find((ref: any) => ref.k === name)!.v)}
     </svg>
