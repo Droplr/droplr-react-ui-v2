@@ -53,31 +53,10 @@ MutlipleVariables.args = {
   onChange: TextSwitchHandler,
 };
 
-export const LabelAsDefaultIndex = Template.bind({});
-LabelAsDefaultIndex.args = {
-  label: "Label used for default index",
-  defaultIndex: "Option Two",
-  items: [
-    {
-      id: "0",
-      label: "Option One",
-    },
-    {
-      id: "1",
-      label: "Option Two",
-    },
-    {
-      id: "2",
-      label: "Option Three",
-    },
-  ],
-  onChange: TextSwitchHandler,
-};
-
 export const StringKeyAsIndex = Template.bind({});
 StringKeyAsIndex.args = {
-  label: "Label used for default index",
-  defaultIndex: "Option Two",
+  label: "String used for default index",
+  defaultIndex: "KEY_ONE",
   items: [
     {
       id: "KEY_ONE",

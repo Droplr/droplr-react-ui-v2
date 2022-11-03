@@ -87,7 +87,7 @@ const TextSwitch = ({
   onChange,
 }: TextSwitchProps) => {
   const setDefaultIndex = (): TextSwitchItemProps => {
-    if (typeof defaultIndex !== typeof "") {
+    if (typeof defaultIndex === typeof 1) {
       if (defaultIndex > items.length - 1) {
         return items[0];
       } else {
@@ -98,17 +98,17 @@ const TextSwitch = ({
         if (parseInt(defaultIndex.toString()) > items.length - 1) {
           return items[0];
         } else {
-          return items.find(x => x.id === parseInt(defaultIndex.toString()))
+          return items.find((x) => x.id.toString() === defaultIndex.toString());
         }
       } else {
-        return items.find(x => x.label === defaultIndex.toString())
+        return items.find((x) => x.id.toString() === defaultIndex.toString());
       }
     }
-  }
+  };
   const [selected, setSelected] = useState(setDefaultIndex());
 
-  const handleChange = (ID: string) => {
-    const selectedOption = items.find((x) => x.id === ID);
+  const handleChange = (selectedId: string) => {
+    const selectedOption = items.find((x) => x.id.toString() === selectedId);
     setSelected(selectedOption || items[0]);
   };
 
@@ -117,6 +117,7 @@ const TextSwitch = ({
       onChange(selected);
     }
   }, [selected]);
+
   return (
     <>
       {label && <StyledTextSwitchLabel>{label}</StyledTextSwitchLabel>}
