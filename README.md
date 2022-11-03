@@ -181,6 +181,8 @@ ___
 <a name="icon"></a>
 ### Icon
 
+[Icons](https://github.com/Droplr/droplr-react-ui-v2/src/assets/icons_0-2-7.png)
+
 ▸ **Icon**(`props`): Element
 
 #### Parameters
