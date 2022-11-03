@@ -81,10 +81,7 @@ export interface TextSwitchItemProps {
 const TextSwitch = ({
   className = "",
   disabled = false,
-  items = [
-    { id: 0, label: "Option 1" },
-    { id: 1, label: "Option 2" },
-  ],
+  items = [],
   label = "",
   defaultIndex = 0,
   onChange,
@@ -110,7 +107,7 @@ const TextSwitch = ({
   }
   const [selected, setSelected] = useState(setDefaultIndex());
 
-  const handleChange = (ID: Number) => {
+  const handleChange = (ID: string) => {
     const selectedOption = items.find((x) => x.id === ID);
     setSelected(selectedOption || items[0]);
   };
@@ -136,7 +133,7 @@ const TextSwitch = ({
                 selected.id == item.id && "active",
               ].join(" ")}
               onClick={() => {
-                handleChange(parseInt(item.id) || 0);
+                handleChange(item.id.toString());
               }}
             >
               <label>{item.label}</label>

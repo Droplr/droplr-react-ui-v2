@@ -13,6 +13,7 @@ export default {
 const Template: Story<TextSwitchProps> = (args) => <TextSwitch {...args} />;
 const TextSwitchHandler = (arg: TextSwitchItemProps) => {
   // Handle the arg (the selected item)
+  console.log(arg);
   return;
 };
 
@@ -58,15 +59,36 @@ LabelAsDefaultIndex.args = {
   defaultIndex: "Option Two",
   items: [
     {
-      id: 0,
+      id: "0",
       label: "Option One",
     },
     {
-      id: 1,
+      id: "1",
       label: "Option Two",
     },
     {
-      id: 2,
+      id: "2",
+      label: "Option Three",
+    },
+  ],
+  onChange: TextSwitchHandler,
+};
+
+export const StringKeyAsIndex = Template.bind({});
+StringKeyAsIndex.args = {
+  label: "Label used for default index",
+  defaultIndex: "Option Two",
+  items: [
+    {
+      id: "KEY_ONE",
+      label: "Option One",
+    },
+    {
+      id: "KEY_TWO",
+      label: "Option Two",
+    },
+    {
+      id: "KEY_THREE",
       label: "Option Three",
     },
   ],
