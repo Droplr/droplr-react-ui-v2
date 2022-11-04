@@ -92,11 +92,12 @@ const ThumbnailSwitch = ({
   items = [],
   label = "Thumbnail Switch",
   withAnimation = true,
-  defaultIndex = 0,
+  defaultIndex,
   onChange,
 }: ThumbnailSwitchProps) => {
 
   const setDefaultIndex = (): ThumbnailSwitchItemProps => {
+    if(defaultIndex === null || defaultIndex === undefined) return items[0];
     if (typeof defaultIndex !== typeof "") {
       if (defaultIndex > items.length - 1) {
         return items[0];

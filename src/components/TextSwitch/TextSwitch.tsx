@@ -75,19 +75,20 @@ export interface TextSwitchItemProps {
 
 /**
  * @desc TextSwitch component
- * @param {TextSwitchProps} - Component props
- * @param {Array<TextSwitchItemProps>} - Component item list
+ * @param {TextSwitchProps} TextSwitchProps Component props
+ * @param {Array<TextSwitchItemProps>} items Component item list
  */
 const TextSwitch = ({
   className = "",
   disabled = false,
   items = [],
   label = "",
-  defaultIndex = 0,
+  defaultIndex,
   onChange,
 }: TextSwitchProps) => {
   const setDefaultIndex = (): TextSwitchItemProps => {
-    if (typeof defaultIndex === typeof 1) {
+    if(defaultIndex === null || defaultIndex === undefined) return items[0];
+    if (typeof defaultIndex !== typeof "") {
       if (defaultIndex > items.length - 1) {
         return items[0];
       } else {
@@ -98,17 +99,17 @@ const TextSwitch = ({
         if (parseInt(defaultIndex.toString()) > items.length - 1) {
           return items[0];
         } else {
-          return items.find((x) => x.id.toString() === defaultIndex.toString());
+          return items.find(x => x.id.toString() === defaultIndex.toString())
         }
       } else {
-        return items.find((x) => x.id.toString() === defaultIndex.toString());
+        return items.find(x => x.id === defaultIndex)
       }
     }
   };
   const [selected, setSelected] = useState(setDefaultIndex());
 
-  const handleChange = (selectedId: string) => {
-    const selectedOption = items.find((x) => x.id.toString() === selectedId);
+  const handleChange = (selectedId: any) => {
+    const selectedOption = items.find((x) => x.id.toString() === selectedId.toString());
     setSelected(selectedOption || items[0]);
   };
 
@@ -130,11 +131,12 @@ const TextSwitch = ({
               key={i}
               id={`text-switch-${i}${className && "-" + className}`}
               className={[
-                "text-switch-item",
-                selected.id == item.id && "active",
-              ].join(" ")}
+                `${className}`,
+                " text-switch-item",
+                selected.id === item.id ? " active" : "",
+              ].join("")}
               onClick={() => {
-                handleChange(item.id.toString());
+                handleChange(item.id);
               }}
             >
               <label>{item.label}</label>

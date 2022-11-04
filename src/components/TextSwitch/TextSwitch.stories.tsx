@@ -13,7 +13,6 @@ export default {
 const Template: Story<TextSwitchProps> = (args) => <TextSwitch {...args} />;
 const TextSwitchHandler = (arg: TextSwitchItemProps) => {
   // Handle the arg (the selected item)
-  console.log(arg);
   return;
 };
 
@@ -36,6 +35,7 @@ SimpleSwitch.args = {
 export const MutlipleVariables = Template.bind({});
 MutlipleVariables.args = {
   label: "Multi-variable Switch",
+  defaultIndex: 1,
   items: [
     {
       id: 0,
@@ -56,7 +56,7 @@ MutlipleVariables.args = {
 export const StringKeyAsIndex = Template.bind({});
 StringKeyAsIndex.args = {
   label: "String used for default index",
-  defaultIndex: "KEY_ONE",
+  defaultIndex: "KEY_THREE",
   items: [
     {
       id: "KEY_ONE",

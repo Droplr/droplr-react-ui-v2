@@ -52,6 +52,7 @@ ThreeItemSwitch.args = {
 export const TwoItemSwitch = Template.bind({});
 TwoItemSwitch.args = {
   label: "Two Item Switch",
+  defaultIndex: 1,
   items: [
     {
       id: 0,
@@ -67,23 +68,23 @@ TwoItemSwitch.args = {
   onChange: ThumbnailSwitchHandler,
 };
 
-export const LabelAsDefaultIndex = Template.bind({});
-LabelAsDefaultIndex.args = {
+export const StringAsDefaultIndex = Template.bind({});
+StringAsDefaultIndex.args = {
   label: "Label as default index",
   defaultIndex: 1,
   items: [
     {
-      id: 0,
+      id: "ONE",
       label: "Option One",
       icon: <Icon name={"Screen"} size={32} color={"#A1AAB7"} stroke={1.5} />,
     },
     {
-      id: 1,
+      id: "TWO",
       label: "Option Two",
       icon: <Icon name={"Webcam"} size={32} color={"#A1AAB7"} stroke={1.5} />,
     },
     {
-      id: 2,
+      id: "THREE",
       label: "Option Three",
       icon: (
         <Icon name={"WebcamScreen"} size={32} color={"#A1AAB7"} stroke={1.5} />
