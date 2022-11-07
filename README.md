@@ -138,6 +138,81 @@ const onChange = (e) => {
 ```
 ___
 
+<a name="dropdown"></a>
+### Dropdown
+
+▸ **Dropdown**(`Component`): Element
+
+**`Desc`**
+
+Dropdown component
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `Component` | DropdownProps | props |
+
+#### Returns
+
+Element
+
+<a name="dropdownProps"></a>
+▸ **DropdownProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `items` | Array<DropdownItem> <br/> **required** | The list of the dropdown items <br/> Instances of `DropdownItemProps` |
+| `label` | string <br/> **required** | The label of the dropdown |
+| `className` | string <br/> *optional* | Appends custom class name |
+| `defaultIndex` | number <br/>*optional* | Index of the default selected item in the items array. <br/> *Default*: 0|
+| `disabled` | boolean <br/> *optional* | Sets the dropdown input field to the disabled state. <br/> *Default*: `false`|
+| `fullWidth`| boolean <br/> *optional*  | Has the dropdown input field occupy the full width of its parent <br/> *Default*: false |
+| `minWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the minimum width for the input field <br/> *Default*: 0px|
+| `closeOnMouseOut`| boolean <br/> *optional*  | Closes the dropdown when the mouse leaves the list <br/> *Default*: true|
+| `closeOnItemClick`| boolean <br/> *optional*  | Closes the dropdown when an option in selected <br/> *Default*: true|
+| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
+| `onMouseLeave` | Function <br/> *optional* | Handler function for when the mouse leaves the dropdown |
+
+<a name="dropdownItemProps"></a>
+▸ **DropdownItemProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `title` | string <br/> **required** | The title of the list item |
+| `onClick` | Function <br/> **required** | The click handler function for the list item. <br/> Provides the currently selected item as the argument (`typeof DropdownItemProps`) |
+| `description` | string <br/> *optional* | The description of the list item |
+| `disabled` | boolean <br/> *optional* | Sets the list item to the disabled state. <br/> *Default*: `false`|
+| `className` | string <br/> *optional* | Appends custom class name |
+| `icon` | Icon <br/> *optional* | Renders an icon before the title text of the list item |
+| `href` | string <br/> *optional* | The `href` attribute target for the item click |
+| `target` | string <br/> *optional* | The `target` attribute target for the item click |
+| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected item<br/> *Default*: `false` |
+| `active` | boolean <br/> *optional* | Sets the item to active state by default <br/> *Default*: false|
+
+<a name="dropdownExample"></a>
+#### Example
+```
+const dropdown_items: Array<DropdownItemProps> = [{
+    title: 'My list item - one',
+    icon: <Icon name='Calendar' size={12} />,
+    onClick: itemClickHandler(),
+    disabled: false,
+    },{
+    title: 'My list item - two',
+    description: 'My item's description',
+    icon: <Icon name='List' size={12} />,
+    onClick: itemClickHandler(),
+    disabled: true,
+}];
+<Dropdown items={dropdown_items} label='My Dropdown' closeOnMouseOut={false} />
+```
+
+#### Defined in
+
+[components/Dropdown/Dropdown.tsx:173](https://github.com/Droplr/droplr-react-ui-v2/blob/f340b40/src/components/Dropdown/Dropdown.tsx#L173)
+___
+
 <a name="droplrThemeProvider"></a>
 ### DroplrThemeProvider
 

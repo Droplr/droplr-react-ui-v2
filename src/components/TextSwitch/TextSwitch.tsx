@@ -133,7 +133,7 @@ const TextSwitch = ({
               className={[
                 `${className}`,
                 " text-switch-item",
-                selected.id === item.id ? " active" : "",
+                (selected !== null && selected !== undefined && selected.id === item.id) ? " active" : "",
               ].join("")}
               onClick={() => {
                 handleChange(item.id);

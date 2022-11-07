@@ -21,7 +21,7 @@ export interface DropdownProps {
   /**
    * @member {String} label Dropdown component label
    */
-  label: string;
+  label?: string;
 
   /**
    * @member {Array<DropdownItemProps>} items Dropdown list items, array of DropdownItemProps objects
@@ -187,12 +187,12 @@ const Dropdown = ({
   className = "",
   disabled = false,
   position = "bottom",
-  defaultIndex = 0,
+  defaultIndex,
   fullWidth = true,
   minWidth = "0px",
   closeOnMouseOut = false,
   items = [],
-  label = "Text Switch",
+  label,
   showItemStatus = true,
   closeOnItemClick = true,
   arrowStyles = null,
@@ -220,7 +220,7 @@ const Dropdown = ({
       }
     }
   };
-  
+
   const [selected, setSelected] = useState<DropdownItemProps>(setDefaultIndex());
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
@@ -263,9 +263,15 @@ const Dropdown = ({
     return coords;
   };
 
+  useEffect(
+    () => {
+      setSelected(setDefaultIndex());
+    }, [items]
+  )
+
   useEffect(() => {
     if (items.length > defaultIndex) {
-      setSelected(items[defaultIndex]);
+      setSelected(setDefaultIndex());
     }
     if (inputRef.current != null) {
       setInputElementSize({
@@ -286,7 +292,7 @@ const Dropdown = ({
         ref={inputRef}
         style={
           fullWidth
-            ? { width: "max-content" }
+            ? { width: "100%" }
             : minWidth
             ? { width: minWidth }
             : {}
@@ -294,7 +300,7 @@ const Dropdown = ({
         onClick={toggleDropdown}
       >
         <span className="drui-dropdown-input-label">
-          {selected && selected.title}
+          {selected !== null && selected !== undefined ? selected.title : ""}
         </span>
         <Icon
           name={"ChevronDown"}
@@ -311,11 +317,11 @@ const Dropdown = ({
           >
             <span className="drui-dropdown__arrow" style={arrowStyles} />
             <div className="drui-dropdown__inner">
-              {label && (
+              {label !== "" && label !== undefined ? (
                 <StyledDropdownLabel className="drui-dropdown__header">
                   <span className="drui-dropdown__title">{label}</span>
                 </StyledDropdownLabel>
-              )}
+              ) : <></>}
 
               <ul
                 className="drui-dropdown__itemsList"
@@ -378,7 +384,7 @@ const Dropdown = ({
                               {/* No custom icon, menu item is active */}
                               {!item.Icon &&
                                 (item.showItemStatus || showItemStatus) &&
-                                selected === item && (
+                                (selected !== undefined && selected !== null && selected.id === item.id) && (
                                   <Icon
                                     name={"Check"}
                                     color={"rgb(94, 100, 110)"}

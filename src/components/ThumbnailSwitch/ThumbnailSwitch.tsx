@@ -142,7 +142,7 @@ const ThumbnailSwitch = ({
             key={i}
             className={[
               "thumbnail-switch-container",
-              selected.id === item.id ? " active" : "",
+              (selected !== null && selected !== undefined && selected.id === item.id) ? " active" : "",
               className && ` ${className}`,
             ].join("")}
             onClick={() => {
@@ -151,7 +151,7 @@ const ThumbnailSwitch = ({
           >
             {item.icon && item.icon}
             <div className="thumbnail-switch-label">{item.label}</div>
-            {selected.id === item.id ? (
+            { (selected !== null && selected !== undefined && selected.id === item.id) ? (
               <>
                 <Icon
                   name={"Check"}
