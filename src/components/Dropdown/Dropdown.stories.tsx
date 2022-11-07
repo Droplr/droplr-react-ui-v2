@@ -42,3 +42,22 @@ SimpleDropdown.args = {
     ],
     onClick: DropdownChangeHandler
 };
+
+
+export const DropdownWithStringAsIndex = Template.bind({});
+DropdownWithStringAsIndex.args = {
+    className: 'example',
+    label: 'Simple Dropdown',
+    minWidth: '128px',
+    defaultIndex: 'KEY_ONE',
+    position: 'bottom',
+    closeOnItemClick : false,
+    closeOnMouseOut: true,
+    items: [
+        {...args, title: 'First Item', id: 'KEY_ONE'},
+        {...args, disabled: true, title: 'Second Item', id: 'KEY_TWO'},
+        {...args, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+         title: 'Third Item', showItemStatus: true,  id: 'KEY_THREE'},
+    ],
+    onClick: DropdownChangeHandler
+};

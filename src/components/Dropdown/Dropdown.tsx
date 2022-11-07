@@ -119,7 +119,7 @@ export interface DropdownItemProps {
   /**
    * @member {string|number} [id] Custom ID for the item
    */
-  id?: string | number;
+  id: string | number;
   
   /**
    * @member {String} [className] Appends custom class names
@@ -199,11 +199,29 @@ const Dropdown = ({
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
-  const [selected, setSelected] = useState<DropdownItemProps>({
-    title: "",
-    description: "",
-    onClick: () => {},
-  });
+
+  const setDefaultIndex = (): DropdownItemProps => {
+    if(defaultIndex === null || defaultIndex === undefined) return items[0];
+    if (typeof defaultIndex !== typeof "") {
+      if (defaultIndex > items.length - 1) {
+        return items[0];
+      } else {
+        return items[defaultIndex];
+      }
+    } else {
+      if (!isNaN(parseInt(defaultIndex.toString()))) {
+        if (parseInt(defaultIndex.toString()) > items.length - 1) {
+          return items[0];
+        } else {
+          return items.find(x => x.id.toString() === defaultIndex.toString())
+        }
+      } else {
+        return items.find(x => x.id === defaultIndex)
+      }
+    }
+  };
+  
+  const [selected, setSelected] = useState<DropdownItemProps>(setDefaultIndex());
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
