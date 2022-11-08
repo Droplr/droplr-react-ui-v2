@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Button, { ButtonProps } from "./Button";
+import Icon from "../Icons/Icons";
 
 export default {
   title: "Components/Button",
@@ -26,3 +27,12 @@ Warning.args = { label: "Warning", size: "large", variant: "warning" };
 
 export const Danger = Template.bind({});
 Danger.args = { label: "Danger", size: "large", variant: "danger" };
+
+export const Alternative = Template.bind({});
+Alternative.args = { label: "Alternative", size: "large", variant: "alternative" };
+
+export const WithIcon = Template.bind({});
+WithIcon.args = { label: "With Icon", size: "large", variant: "primary", icon: <Icon name="Audio" color="#fff" size={18} stroke={2}/> };
+
+export const WithoutLabel = Template.bind({});
+WithoutLabel.args = { size: "large", variant: "info", icon: <Icon name="Notification" color="#fff" size={24} stroke={2}/> };
