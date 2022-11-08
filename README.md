@@ -61,7 +61,7 @@ Element
 | `label` | string <br/> **required** | The label on the button |
 | `onClick` | Function <br/> *optional* | The click handler function for the button |
 | `className` | string <br/> *optional* | Appends custom class name |
-| `variant` | string <br/>*optional* | Style variants of the button, <br/>**Options** <br/>`primary` `secondary` `success` `info`  `warning` `danger` <br/> *Default*: `primary`|
+| `variant` | string <br/>*optional* | Style variants of the button, <br/>**Options** <br/>`primary` `secondary` `success` `info`  `warning`  `alternative` `danger` <br/> *Default*: `primary`|
 | `size`| string <br/> *optional*  | Size variants of the button <br/> **Options** <br/> `small` `medium` `large`  <br/> *Default*: `medium`|
 | `disabled` | boolean <br/> *optional* | Sets the button to the disabled state. <br/> *Default*: `false`|
 | `loading` | boolean <br/> *optional* | Renders a spinner over the button <br/> *Default*: `false` |

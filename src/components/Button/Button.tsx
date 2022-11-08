@@ -3,11 +3,12 @@ import "./button.css";
 import styled, { css, useTheme } from "styled-components";
 import Loader from "../Loader/Loader";
 import { lightTheme } from "../../themes/themes";
+import Icon from "../Icons/Icons";
 
 /**
  * @interface ButtonProps Instance of switch component item
  * @member {String} className  Appends custom class names
- * @member {String} Style variants => primary | secondary | success | info | warning | danger
+ * @member {String} Style variants => primary | secondary | success | info | warning | danger | alternative
  * @member {String} size  Size variants => small | medium | large
  * @member {String} label  Text switch label
  * @member {boolean} disabled  Disabled and uninteractive
@@ -27,7 +28,14 @@ export interface ButtonProps {
    * @defaultValue 'primary'
    * @options primary | secondary | success | info | warning | danger
    */
-  variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "success"
+    | "info"
+    | "warning"
+    | "danger"
+    | "alternative";
 
   /**
    * @member {string} size  Button sizes
@@ -58,7 +66,7 @@ export interface ButtonProps {
    * @desc  The button icon (DroplrUI)
    * @defaultValue null
    */
-  icon?: () => void;
+  icon?: JSX.Element;
   /**
    * @method onClick
    * @desc  Click event handler
@@ -78,9 +86,11 @@ const Button = ({
   loading = false,
   size = "medium",
   variant = "primary",
+  icon,
   onClick = () => {},
-  label = "Button",
+  label = "",
 }: ButtonProps) => {
+  console.log(icon !== undefined)
   return (
     <StyledButton
       type="button"
@@ -94,7 +104,12 @@ const Button = ({
       ].join(" ")}
       onClick={onClick}
     >
-      <div className="drui-button__content">{label}</div>
+      <div className="drui-button__content">
+        <>
+          {icon && <span className={label !== "" ? "drui-button__icon" : ""}>{icon}</span>}
+          {label}
+        </>
+      </div>
       {loading && <Loader />}
     </StyledButton>
   );
@@ -143,19 +158,8 @@ const StyledButton = styled.button(({ theme }) => {
     }
   }
   
-  &.drui-button__icon {
-    width: 24px;
-    height: 24px;
-  
-    path {
-      fill: ${theme.button.primary.iconColor};
-    }
-  }
-  
-  &.drui-button--withTextAndIcon {
-    &.drui-button__icon {
-      margin-right: 12px;
-    }
+  .drui-button__icon {
+    margin-right: 12px;
   }
   
   &.drui-button__content {
@@ -164,6 +168,7 @@ const StyledButton = styled.button(({ theme }) => {
     align-items: center;
     position: relative;
     flex: 1;
+
   }
   
   &.drui-button__dropdownIcon {
@@ -288,6 +293,18 @@ const StyledButton = styled.button(({ theme }) => {
   
       &:active {
         background: ${theme.button.primary.warning.backgroundColorActive};
+      }
+    }
+  
+    &.drui-button--alternative {
+      background: ${theme.button.primary.Success.backgroundColor};
+  
+      &:hover {
+        background: ${theme.button.primary.Success.backgroundColorHover};
+      }
+  
+      &:active {
+        background: ${theme.button.primary.Success.backgroundColorActive};
       }
     }
   

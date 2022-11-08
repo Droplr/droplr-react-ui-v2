@@ -244,7 +244,10 @@ const Icon = ({
   };
   return (
     <svg
-      className={className}
+      className={[
+        'drui-icon',
+        className ? ` ${className}` : ''
+      ].join('')}
       style={{...styles, transform: (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? 'scale(1.5)' : 'none'}}
       viewBox={viewBox}
       width={`${size}px`}
