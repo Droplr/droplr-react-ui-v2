@@ -102,7 +102,7 @@ const Button = ({
         `${disabled && "drui-button--disabled"}`,
         `${loading && "drui-button--loading"}`,
       ].join(" ")}
-      onClick={onClick}
+      onClick={!disabled ? onClick : null}
     >
       <div className="drui-button__content">
         <>
