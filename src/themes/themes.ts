@@ -190,7 +190,7 @@ const button = {
       backgroundColor: gradients.green,
       backgroundColorHover: gradients.greenHover,
       backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
-      backgroundColorDisabled: colors.asparagus,
+      backgroundColorDisabled: lightenDarkenColor(colors.sushi, -30),
       textColorDisabled: colors.mystic,
     },
     danger: {
