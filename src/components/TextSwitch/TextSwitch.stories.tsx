@@ -19,6 +19,7 @@ const TextSwitchHandler = (arg: TextSwitchItemProps) => {
 export const SimpleSwitch = Template.bind({});
 SimpleSwitch.args = {
   label: "Simple Switch",
+  defaultIndex: 0,
   items: [
     {
       id: 0,

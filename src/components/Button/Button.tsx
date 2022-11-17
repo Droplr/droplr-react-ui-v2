@@ -89,7 +89,7 @@ const Button = ({
   onClick = () => {},
   label = "",
 }: ButtonProps) => {
-  console.log(icon !== undefined)
+  
   return (
     <StyledButton
       type="button"
