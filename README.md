@@ -3,7 +3,7 @@
 
 ![Logo](/.storybook/logo.png)
 <br/>
-The up-to-date touchoup to Droplr's react UI Library. 
+The up-to-date touch-up to Droplr's react UI Library. 
 
 ## Table of contents
 
@@ -34,7 +34,7 @@ The up-to-date touchoup to Droplr's react UI Library.
     - [ThumbnailSwitchItemProps](#thumbnailSwitchItemProps)
     - [Example](#thumbnailSwitchExample)
 
-## Functions
+## Components
 <a name="button"></a>
 ### Button
 
