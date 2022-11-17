@@ -27,6 +27,7 @@ const ThumbnailSwitchHandler = (arg: ThumbnailSwitchItemProps) => {
 export const ThreeItemSwitch = Template.bind({});
 ThreeItemSwitch.args = {
   label: "Three Item Switch",
+  defaultIndex: 1,
   items: [
     {
       id: 0,
@@ -71,7 +72,7 @@ TwoItemSwitch.args = {
 export const StringAsDefaultIndex = Template.bind({});
 StringAsDefaultIndex.args = {
   label: "Label as default index",
-  defaultIndex: 1,
+  defaultIndex: "ONE",
   items: [
     {
       id: "ONE",

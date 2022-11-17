@@ -34,8 +34,7 @@ export interface ButtonProps {
     | "success"
     | "info"
     | "warning"
-    | "danger"
-    | "alternative";
+    | "danger";
 
   /**
    * @member {string} size  Button sizes
@@ -90,7 +89,7 @@ const Button = ({
   onClick = () => {},
   label = "",
 }: ButtonProps) => {
-  console.log(icon !== undefined)
+  
   return (
     <StyledButton
       type="button"
@@ -102,7 +101,7 @@ const Button = ({
         `${disabled && "drui-button--disabled"}`,
         `${loading && "drui-button--loading"}`,
       ].join(" ")}
-      onClick={onClick}
+      onClick={!disabled ? onClick : null}
     >
       <div className="drui-button__content">
         <>
@@ -293,18 +292,6 @@ const StyledButton = styled.button(({ theme }) => {
   
       &:active {
         background: ${theme.button.primary.warning.backgroundColorActive};
-      }
-    }
-  
-    &.drui-button--alternative {
-      background: ${theme.button.primary.Success.backgroundColor};
-  
-      &:hover {
-        background: ${theme.button.primary.Success.backgroundColorHover};
-      }
-  
-      &:active {
-        background: ${theme.button.primary.Success.backgroundColorActive};
       }
     }
   

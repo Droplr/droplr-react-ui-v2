@@ -3,7 +3,7 @@
 
 ![Logo](/.storybook/logo.png)
 <br/>
-The up-to-date touchoup to Droplr's react UI Library. 
+The up-to-date touch-up to Droplr's react UI Library. 
 
 ## Table of contents
 
@@ -22,6 +22,9 @@ The up-to-date touchoup to Droplr's react UI Library.
 - [Icon](#icon)
     - [IconProps](#iconProps)
     - [Example](#iconExample)
+- [Switch](#switch)
+    - [SwitchProps](#switchProps)
+    - [Example](#switchExample)
 - [TextSwitch](#textSwitch)
     - [TextSwitchProps](#textSwitchProps)
     - [TextSwitchItemProps](#textSwitchItemProps)
@@ -31,7 +34,7 @@ The up-to-date touchoup to Droplr's react UI Library.
     - [ThumbnailSwitchItemProps](#thumbnailSwitchItemProps)
     - [Example](#thumbnailSwitchExample)
 
-## Functions
+## Components
 <a name="button"></a>
 ### Button
 
@@ -270,6 +273,51 @@ Element
     color={'#000'} 
     stroke={0.75} />
 ```
+___
+
+<a name="switch"></a>
+### Switch
+
+▸ **Switch**(`props`): Element
+
+**`Desc`**
+
+Switch component
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | SwitchProps |
+
+#### Returns
+
+Element
+
+<a name="switchProps"></a>
+▸ **SwitchProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `label` | string <br/> *optional* | The label of the component |
+| `labelPosition` | string <br/> *optional* | The position of the label <br>**Options** <br/> `top` `bottom` `left` `right`|
+| `className` | string <br/> *optional* | Appends custom class name |
+| `checked` | boolean <br/>**required** | The state of the switch component |
+| `disabled` | boolean <br/> *optional* | Sets the component to the disabled state. <br/> *Default*: `false`|
+| `onChange` | Function <br/> *optional* | The function that handles the change of state. Passes the current state  as arg, `typeof boolean`|
+
+<a name="switchExample"></a>
+#### Example
+
+```
+
+<Switch 
+    checked={true} 
+    label='My Switch' 
+    onChange={onChangeHandler} />
+
+```
+
 ___
 
 <a name="textSwitch"></a>

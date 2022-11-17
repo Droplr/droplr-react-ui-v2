@@ -86,27 +86,19 @@ const TextSwitch = ({
   defaultIndex,
   onChange,
 }: TextSwitchProps) => {
-  const setDefaultIndex = (): TextSwitchItemProps => {
-    if(defaultIndex === null || defaultIndex === undefined) return items[0];
-    if (typeof defaultIndex !== typeof "") {
-      if (defaultIndex > items.length - 1) {
-        return items[0];
+
+  const isActive = (item: TextSwitchItemProps) => {
+    if(selected == null || selected == undefined) {
+      if (typeof defaultIndex == typeof 5) {
+        return items.indexOf(item) == defaultIndex;
       } else {
-        return items[defaultIndex];
+        return (defaultIndex?.toString() || '') == item.id.toString();
       }
     } else {
-      if (!isNaN(parseInt(defaultIndex.toString()))) {
-        if (parseInt(defaultIndex.toString()) > items.length - 1) {
-          return items[0];
-        } else {
-          return items.find(x => x.id.toString() === defaultIndex.toString())
-        }
-      } else {
-        return items.find(x => x.id === defaultIndex)
-      }
+      return (selected.id?.toString() || '') === item.id.toString();
     }
-  };
-  const [selected, setSelected] = useState(setDefaultIndex());
+  }
+  const [selected, setSelected] = useState(null);
 
   const handleChange = (selectedId: any) => {
     const selectedOption = items.find((x) => x.id.toString() === selectedId.toString());
@@ -133,7 +125,7 @@ const TextSwitch = ({
               className={[
                 `${className}`,
                 " text-switch-item",
-                (selected !== null && selected !== undefined && selected.id === item.id) ? " active" : "",
+                isActive(item) ? " active" : "",
               ].join("")}
               onClick={() => {
                 handleChange(item.id);

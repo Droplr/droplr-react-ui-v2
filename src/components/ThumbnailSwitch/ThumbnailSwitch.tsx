@@ -90,34 +90,13 @@ const ThumbnailSwitch = ({
   className = "",
   disabled = false,
   items = [],
-  label = "Thumbnail Switch",
+  label = "",
   withAnimation = true,
   defaultIndex,
   onChange,
 }: ThumbnailSwitchProps) => {
 
-  const setDefaultIndex = (): ThumbnailSwitchItemProps => {
-    if(defaultIndex === null || defaultIndex === undefined) return items[0];
-    if (typeof defaultIndex !== typeof "") {
-      if (defaultIndex > items.length - 1) {
-        return items[0];
-      } else {
-        return items[defaultIndex];
-      }
-    } else {
-      if (!isNaN(parseInt(defaultIndex.toString()))) {
-        if (parseInt(defaultIndex.toString()) > items.length - 1) {
-          return items[0];
-        } else {
-          return items.find(x => x.id === parseInt(defaultIndex.toString()))
-        }
-      } else {
-        return items.find(x => x.label === defaultIndex)
-      }
-    }
-  }
-
-  const [selected, setSelected] = useState(setDefaultIndex());
+  const [selected, setSelected] = useState(null);
   const [selectHistory, setSelectHistory] = useState<Array<Number>>([]);
 
   const handleOnChange = (item: ThumbnailSwitchItemProps) => {
@@ -127,6 +106,18 @@ const ThumbnailSwitch = ({
     setSelected(item);
     onChange(item);
   };
+
+  const isActive = (item: ThumbnailSwitchItemProps) => {
+    if(selected == null || selected == undefined) {
+      if (typeof defaultIndex == typeof 5) {
+        return items.indexOf(item) == defaultIndex;
+      } else {
+        return (defaultIndex.toString() || '') == item.id.toString();
+      }
+    } else {
+      return (selected.id?.toString() || '') === item.id.toString();
+    }
+  }
 
   return (
     <StyledThumbnailSwitch
@@ -142,7 +133,9 @@ const ThumbnailSwitch = ({
             key={i}
             className={[
               "thumbnail-switch-container",
-              (selected !== null && selected !== undefined && selected.id === item.id) ? " active" : "",
+              isActive(item)
+                ? " active"
+                : "",
               className && ` ${className}`,
             ].join("")}
             onClick={() => {
@@ -151,7 +144,8 @@ const ThumbnailSwitch = ({
           >
             {item.icon && item.icon}
             <div className="thumbnail-switch-label">{item.label}</div>
-            { (selected !== null && selected !== undefined && selected.id === item.id) ? (
+            {
+              isActive(item)? (
               <>
                 <Icon
                   name={"Check"}

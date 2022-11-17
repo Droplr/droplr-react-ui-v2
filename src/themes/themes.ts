@@ -127,8 +127,17 @@ const standardSwitch = {
   // background
   backgroundColor: lightenDarkenColor(colors.mystic, 10),
   backgroundColorAfter: colors.white,
-  backgroundColorChecked: gradients.greenSwitchChecked,
+  backgroundColorCheckedPrimary: gradients.greenSwitchChecked,
+  backgroundColorCheckedSecondary: gradients.blueHover,
+  backgroundColorCheckedInfo: gradients.greenSwitchChecked,
+  backgroundColorCheckedSuccess: gradients.greenSwitchChecked,
+  backgroundColorCheckedWarning: gradients.greenSwitchChecked,
+  backgroundColorCheckedDanger: gradients.greenSwitchChecked,
   backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
+
+  // text
+  textColor: colors.black,
+  textColorDisabled: colors.grayChateau,
 
   // border
   borderColor: colors.mystic,
@@ -190,7 +199,7 @@ const button = {
       backgroundColor: gradients.green,
       backgroundColorHover: gradients.greenHover,
       backgroundColorActive: lightenDarkenColor(colors.sushi, -10),
-      backgroundColorDisabled: colors.asparagus,
+      backgroundColorDisabled: lightenDarkenColor(colors.sushi, -30),
       textColorDisabled: colors.mystic,
     },
     danger: {
@@ -334,14 +343,23 @@ export const darkTheme: DefaultTheme = {
   },
   standardSwitch: {
     // background
-    backgroundColor: lightenDarkenColor(colors.mystic, 10),
+    backgroundColor: colors.shuttleGray,
     backgroundColorAfter: colors.white,
-    backgroundColorChecked: gradients.greenSwitchChecked,
-    backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
+    backgroundColorCheckedPrimary: gradients.greenSwitchChecked,
+    backgroundColorCheckedSecondary: gradients.blue,
+    backgroundColorCheckedInfo: gradients.greenSwitchChecked,
+    backgroundColorCheckedSuccess: gradients.greenSwitchChecked,
+    backgroundColorCheckedWarning: gradients.greenSwitchChecked,
+    backgroundColorCheckedDanger: gradients.greenSwitchChecked,
+    backgroundColorDisabled: lightenDarkenColor(colors.shuttleGray, -20),
 
     // border
     borderColor: colors.mystic,
-    borderColorChecked: lightenDarkenColor(colors.sushi, -10),
+    borderColorChecked: lightenDarkenColor(colors.sushi, -0),
+
+    // text
+    textColor: colors.white,
+    textColorDisabled: colors.grayChateau,
 
     // other
     shadowColor: shadows.black,
