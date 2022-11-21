@@ -160,7 +160,7 @@ const StyledTextSwitch = styled.div(({ theme }) => {
   return css`
     padding: 4px;
     border: 1px solid ${theme.textSwitch.borderColor};
-    border-radius: 5px;
+    border-radius: 3px;
     width: max-content;
     display: flex;
     flex-direction: row;
@@ -175,8 +175,8 @@ const StyledTextSwitch = styled.div(({ theme }) => {
       font-weight: ${theme.fonts.weight.bold};
       text-align: center;
       text-shadow: none;
-      padding: 8px 18px;
-      border-radius: 5px;
+      padding: 6px 10px 6px 10px;
+      border-radius: 3px;
       transition: all 250ms ease-in-out;
 
       path {

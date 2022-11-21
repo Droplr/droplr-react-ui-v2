@@ -25,6 +25,7 @@ const colors = {
   whiteLilac: "#F8F9FC",
   mystic: "#DEE3EB",
   grayChateau: "#A1AAB7",
+  lighrgray: "lightgray",
   shuttleGray: "#5E646E",
   mako: "#44484F",
   tuna: "#3A3A43",
@@ -154,7 +155,7 @@ const textSwitch = {
   backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
 
   // border
-  borderColor: colors.mystic,
+  borderColor: colors.lighrgray,
 
   // text
   textColorActive: colors.white,
