@@ -178,6 +178,7 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     .thumbnail-switch-container {
       padding: 16px 24px 4px 24px;
@@ -227,11 +228,11 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
     .check-icon {
       display: block;
       position: absolute;
-      padding: 2px;
+      padding: 4px;
       bottom: -12px;
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
+      height: 1em;
+      width: 1em;
       background-color: ${theme.thumbnailSwitch.checkmarkBackgroundColor};
       transition: all 250ms ease-in-out;
     }

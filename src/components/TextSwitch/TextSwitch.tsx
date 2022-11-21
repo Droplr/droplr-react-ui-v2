@@ -174,7 +174,7 @@ const StyledTextSwitch = styled.div(({ theme }) => {
       font-weight: ${theme.fonts.weight.bold};
       text-align: center;
       text-shadow: none;
-      padding: 6px 10px 6px 10px;
+      padding: 6px 12px 6px 12px;
       border-radius: 3px;
       transition: all 250ms ease-in-out;
 

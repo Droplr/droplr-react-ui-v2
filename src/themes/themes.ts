@@ -52,7 +52,7 @@ const colors = {
 const buttonGradient = (color: String, invert: Boolean) =>
   `linear-gradient(${
     invert ? "0" : "180"
-  }deg, ${color} 0%, ${lightenDarkenColor(color, -10)} 100%)`;
+  }deg, ${color} 0%, ${lightenDarkenColor(color, -30)} 100%)`;
 
 const gradients = {
   purple: "linear-gradient(0deg, #6B3CC1 0%, #7A50C7 100%)",
