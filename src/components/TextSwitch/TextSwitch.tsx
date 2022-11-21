@@ -166,7 +166,6 @@ const StyledTextSwitch = styled.div(({ theme }) => {
     flex-direction: row;
     flex-wrap: wrap;
     .text-switch-item {
-      min-width: 64px;
       width: max-content;
       background-color: transparent;
       color: ${theme.textSwitch.textColorDisabled};

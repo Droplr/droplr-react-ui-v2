@@ -47,7 +47,7 @@ export interface ButtonProps {
    * @member {String} label  Button label text
    * @defaultValue 'Button'
    */
-  label: string;
+  label?: string;
 
   /**
    * @member {boolean} disabled  Disabled and uninteractive
