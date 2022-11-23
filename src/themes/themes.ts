@@ -59,6 +59,7 @@ const gradients = {
   purpleHover: "linear-gradient(0deg, #7A50C7 0%, #6B3CC1 100%)",
   purpleActive: "linear-gradient(0deg, #5E34AA 0%, #6F49B5 100%)",
   bright: "linear-gradient(0deg, #F8F9FC 0%, #FFF 100%)",
+  brightHover: "linear-gradient(0deg, #F1F1F1 0%, #FFF 100%)",
   brightActive: "linear-gradient(0deg, #FFF 0%, #F8F9FC 100%)",
   greenSwitchChecked: `${colors.sushi} linear-gradient(180deg, ${
     colors.sushi
@@ -227,7 +228,7 @@ const button = {
   },
   secondary: {
     backgroundColor: gradients.bright,
-    backgroundColorHover: gradients.bright,
+    backgroundColorHover: gradients.brightHover,
     backgroundColorActive: gradients.brightActive,
     backgroundColorDisabled: colors.whiteLilac,
     borderColor: colors.mystic,
