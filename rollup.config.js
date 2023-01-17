@@ -4,7 +4,6 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import ts from "rollup-plugin-ts";
-import dts from "rollup-plugin-dts";
 
 const packageJson = require("./package.json");
 
@@ -16,6 +15,8 @@ const config =
       file: packageJson.main,
       format: "cjs",
       sourcemap: true,
+      exports: "named",
+      interop: "auto",
     },
     {
       file: packageJson.module,
