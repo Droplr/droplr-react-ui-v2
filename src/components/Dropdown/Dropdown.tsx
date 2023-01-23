@@ -306,7 +306,7 @@ const Dropdown = ({
           name={"ChevronDown"}
           color={"rgb(94, 100, 110)"}
           size={14}
-          style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px" }}
+          style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px", marginTop: "2px" }}
         />
         {isOpen ? (
           <StyledDropdownList
@@ -437,7 +437,7 @@ const StyledDropdown = styled.div(({ theme }) => {
     color: ${theme.dropdown.titleColor};
     background: ${theme.dropdown.backgroundColor};
     border-radius: 4px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid ${theme.dropdown.borderColor};
     display: flex;
     justify-content: space-between;

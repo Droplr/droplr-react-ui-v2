@@ -25,6 +25,7 @@ const colors = {
   whiteLilac: "#F8F9FC",
   mystic: "#DEE3EB",
   grayChateau: "#A1AAB7",
+  lighrgray: "lightgray",
   shuttleGray: "#5E646E",
   mako: "#44484F",
   tuna: "#3A3A43",
@@ -51,13 +52,14 @@ const colors = {
 const buttonGradient = (color: String, invert: Boolean) =>
   `linear-gradient(${
     invert ? "0" : "180"
-  }deg, ${color} 0%, ${lightenDarkenColor(color, -10)} 100%)`;
+  }deg, ${color} 0%, ${lightenDarkenColor(color, -30)} 100%)`;
 
 const gradients = {
   purple: "linear-gradient(0deg, #6B3CC1 0%, #7A50C7 100%)",
   purpleHover: "linear-gradient(0deg, #7A50C7 0%, #6B3CC1 100%)",
   purpleActive: "linear-gradient(0deg, #5E34AA 0%, #6F49B5 100%)",
   bright: "linear-gradient(0deg, #F8F9FC 0%, #FFF 100%)",
+  brightHover: "linear-gradient(0deg, #F1F1F1 0%, #FFF 100%)",
   brightActive: "linear-gradient(0deg, #FFF 0%, #F8F9FC 100%)",
   greenSwitchChecked: `${colors.sushi} linear-gradient(180deg, ${
     colors.sushi
@@ -154,7 +156,7 @@ const textSwitch = {
   backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
 
   // border
-  borderColor: colors.mystic,
+  borderColor: colors.lighrgray,
 
   // text
   textColorActive: colors.white,
@@ -226,7 +228,7 @@ const button = {
   },
   secondary: {
     backgroundColor: gradients.bright,
-    backgroundColorHover: gradients.bright,
+    backgroundColorHover: gradients.brightHover,
     backgroundColorActive: gradients.brightActive,
     backgroundColorDisabled: colors.whiteLilac,
     borderColor: colors.mystic,

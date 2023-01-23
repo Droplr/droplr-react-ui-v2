@@ -47,7 +47,7 @@ export interface ButtonProps {
    * @member {String} label  Button label text
    * @defaultValue 'Button'
    */
-  label: string;
+  label?: string;
 
   /**
    * @member {boolean} disabled  Disabled and uninteractive
@@ -134,6 +134,7 @@ const StyledButton = styled.button(({ theme }) => {
     color: ${theme.button.primary.textColor};
     border: none;
     outline: none;
+    transition-duration: 250ms;
     font-size: ${theme.fonts.size.normal};
     font-weight: ${theme.fonts.weight.bold};
     font-family: ${theme.fonts.family.primary};
@@ -146,14 +147,18 @@ const StyledButton = styled.button(({ theme }) => {
   
     &:hover {
       background: ${theme.button.primary.backgroundColorHover};
+      cursor: pointer;
+      transition-duration: 250ms;
     }
   
     &:active {
       background: ${theme.button.primary.backgroundColorActive};
+      transition-duration: 250ms;
     }
   
     .drui-loader {
       border-color: ${theme.button.primary.loaderColor};
+      transition-duration: 250ms;
     }
   }
   
