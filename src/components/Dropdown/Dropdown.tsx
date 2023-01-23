@@ -192,7 +192,7 @@ const Dropdown = ({
   minWidth = "0px",
   closeOnMouseOut = false,
   items = [],
-  label,
+  label = "",
   showItemStatus = true,
   closeOnItemClick = true,
   arrowStyles = null,
