@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { lightTheme } from "../../themes/themes";
+import Dropdown from "../Dropdown";
 
 /**
  * @interface SwitchProps Component props
