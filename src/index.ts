@@ -5,6 +5,7 @@ import TextSwitch from "./components/TextSwitch";
 import Switch from "./components/Switch";
 import ThumbnailSwitch from "./components/ThumbnailSwitch";
 import Icon from "./components/Icons/Icons";
+import Input from "./components/Input";
 import DroplrThemeProvider from "./themes/provider";
 
 export {
@@ -15,4 +16,5 @@ export {
   TextSwitch,
   ThumbnailSwitch,
   Icon,
+  Input,
 };
