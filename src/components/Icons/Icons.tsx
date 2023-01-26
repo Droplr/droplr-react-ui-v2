@@ -222,9 +222,13 @@ const Icon = ({
   className = "",
   style = {},
   /*
-  * Some SVG paths require larger viewboxes
-  */
-  viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : (name === 'WebcamScreenAlt') ? "0 0 32 32" : "0 0 24 24",
+   * Some SVG paths require larger viewboxes
+   */
+  viewBox = name === "Screen" || name === "Webcam" || name === "WebcamScreen"
+    ? "0 0 46 46"
+    : name === "WebcamScreenAlt"
+    ? "0 0 32 32"
+    : "0 0 24 24",
   color = "gray",
   size = 14,
   onClick = (arg) => {},
@@ -234,40 +238,90 @@ const Icon = ({
 
   const getPaths = (paths: Array<string>) => {
     return paths.map((data, i) => {
-      /*
-      * Circle
-      */
-      if (data.includes("C+")) {
-        let parts = data.split("+");
-        let cx, cy, r;
-        parts.forEach(
-          (part) => {
-            if(part.includes("CX")) cx = part.split('-')[1];
-            else if(part.includes("CY")) cy = part.split('-')[1];
-            else if(part.includes("R")) r = part.split('-')[1];
+      let attributes = {
+        cx: "",
+        cy: "",
+        r: "",
+        fill: "none",
+        stroke: "0",
+        strokeLinejoin: "",
+        strokeLinecap: "",
+        strokeWidth: 0,
+        path: "",
+      };
+      let attrSplit = data.split("|");
+      if (attrSplit.length > 1 && attrSplit[1].length > 1) {
+        let parts = attrSplit[1].split("+");
+        attributes.path = attrSplit[0];
+        // Line Paths
+        parts.forEach((part) => {
+          if (part.includes("SLCF"))
+            attributes.strokeLinecap = part.split("-")[1];
+          else if (part.includes("SLJF"))
+            attributes.strokeLinejoin = part.split("-")[1];
+          else if (part.includes("HF")) attributes.fill = color;
+          else if (part.includes("SF")) attributes.stroke = color;
+          else if (part.includes("SWF"))
+            attributes.strokeWidth = parseFloat(part.split("-")[1]);
+        });
+      } else if (attrSplit.length == 1 || attrSplit[1].length < 2) {
+        attributes.path = attrSplit[0];
+      }
+      // Circles
+      if (attributes.path.includes("C+")) {
+        let parts = attributes.path.split("+");
+        parts.forEach((part) => {
+          if (part.includes("CX")) {
+            attributes.cx = part.split("-")[1];
+          } else if (part.includes("CY")) {
+            attributes.cy = part.split("-")[1];
+          } else if (part.includes("R")) {
+            attributes.r = part.split("-")[1];
           }
-        )
+        });
+      }
+      if (data.includes("C+")) {
+        /*
+         * Circle
+         */
         return (
           <circle
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill={color}
+            cx={attributes.cx}
+            cy={attributes.cy}
+            r={attributes.r}
+            key={i}
+            stroke={color}
+            strokeWidth={
+              attributes.fill != "none"
+                ? attributes.strokeWidth
+                : Math.max(attributes.strokeWidth + stroke, 1)
+            }
+            strokeLinecap={"round"
+            }
+            strokeLinejoin={"round"
+            }
+            fill={attributes.fill}
           />
         );
-      }
-      else {
+      } else {
         /*
-        * Line Path
-        */
+         * Line Path
+         */
         return (
           <path
-            stroke={color}
-            d={data}
+            d={attributes.path}
             key={i}
-            strokeWidth={stroke}
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            stroke={color}
+            strokeWidth={
+              attributes.fill != "none"
+                ? attributes.strokeWidth
+                : Math.max(attributes.strokeWidth + stroke, 1)
+            }
+            strokeLinecap={"round"
+            }
+            strokeLinejoin={"round"
+            }
+            fill={attributes.fill}
           />
         );
       }
@@ -275,11 +329,14 @@ const Icon = ({
   };
   return (
     <svg
-      className={[
-        'drui-icon',
-        className ? ` ${className}` : ''
-      ].join('')}
-      style={{...styles, transform: (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? 'scale(1.5)' : 'none'}}
+      className={["drui-icon", className ? ` ${className}` : ""].join("")}
+      style={{
+        ...styles,
+        transform:
+          name === "Screen" || name === "Webcam" || name === "WebcamScreen"
+            ? "scale(1.5)"
+            : "none",
+      }}
       viewBox={viewBox}
       width={`${size}px`}
       height={`${size}px`}
