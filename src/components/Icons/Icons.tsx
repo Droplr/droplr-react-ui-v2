@@ -238,7 +238,6 @@ const Icon = ({
       * Circle
       */
       if (data.includes("C+")) {
-        console.log('here')
         let parts = data.split("+");
         let cx, cy, r;
         parts.forEach(
