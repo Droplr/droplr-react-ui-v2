@@ -79,7 +79,8 @@ const Calendar = [
 	"M10 15H8V17H10V15Z"
 ];
 const Camera = [
-	"M5 7H6C7.10457 7 8 6.10457 8 5C8 4.44772 8.44772 4 9 4H15C15.5523 4 16 4.44772 16 5C16 6.10457 16.8954 7 18 7H19C20.1046 7 21 7.89543 21 9V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V9C3 7.89543 3.89543 7 5 7"
+	"M5 7H6C7.10457 7 8 6.10457 8 5C8 4.44772 8.44772 4 9 4H15C15.5523 4 16 4.44772 16 5C16 6.10457 16.8954 7 18 7H19C20.1046 7 21 7.89543 21 9V18C21 19.1046 20.1046 20 19 20H5C3.89543 20 3 19.1046 3 18V9C3 7.89543 3.89543 7 5 7",
+	"C+CX-12+CY-13+R-3"
 ];
 const Cancel = [
 	"M8,0 C3.58,0 0,3.58 0,8 C0,12.42 3.58,16 8,16 C12.42,16 16,12.42 16,8 C16,3.58 12.42,0 8,0 Z M12,10.87 L10.87,12 L8,9.13 L5.13,12 L4,10.87 L6.87,8 L4,5.13 L5.13,4 L8,6.87 L10.87,4 L12,5.13 L9.13,8 L12,10.87 Z"
@@ -118,7 +119,8 @@ const Code = [
 	"M16.7,15.7147008 L15.3,14.3209375 L17.6,12.0311836 L15.3,9.7414296 L16.7,8.34766632 L19.7,11.3343019 C20.1,11.73252 20.1,12.3298471 19.7,12.7280652 L16.7,15.7147008 Z M7.3,15.7147008 L4.3,12.7280652 C3.9,12.3298471 3.9,11.73252 4.3,11.3343019 L7.3,8.34766632 L8.7,9.7414296 L6.4,12.0311836 L8.7,14.3209375 L7.3,15.7147008 Z M10,19 C9.9,19 9.8,19 9.7,18.9004455 C9.2,18.7013364 8.9,18.2035638 9.1,17.6062367 L13.1,5.65969427 C13.3,5.16192166 13.8,4.8632581 14.4,5.06236714 C14.9,5.26147619 15.2,5.75924879 15,6.35657591 L11,18.3031184 C10.8,18.7013364 10.4,19 10,19 Z"
 ];
 const CodeBlock = [
-	"M16.7,15.7147008 L15.3,14.3209375 L17.6,12.0311836 L15.3,9.7414296 L16.7,8.34766632 L19.7,11.3343019 C20.1,11.73252 20.1,12.3298471 19.7,12.7280652 L16.7,15.7147008 Z M7.3,15.7147008 L4.3,12.7280652 C3.9,12.3298471 3.9,11.73252 4.3,11.3343019 L7.3,8.34766632 L8.7,9.7414296 L6.4,12.0311836 L8.7,14.3209375 L7.3,15.7147008 Z"
+	"M16.7,15.7147008 L15.3,14.3209375 L17.6,12.0311836 L15.3,9.7414296 L16.7,8.34766632 L19.7,11.3343019 C20.1,11.73252 20.1,12.3298471 19.7,12.7280652 L16.7,15.7147008 Z M7.3,15.7147008 L4.3,12.7280652 C3.9,12.3298471 3.9,11.73252 4.3,11.3343019 L7.3,8.34766632 L8.7,9.7414296 L6.4,12.0311836 L8.7,14.3209375 L7.3,15.7147008 Z",
+	"C+CX-12+CY-12+R-2.25"
 ];
 const Comment = [
 	"M12,4 C7.6,4 4,7.1 4,11 C4,14.9 7.6,18 12,18 L12.6,18 L18,20 L18,15.6 C19.2,14.4 20,12.8 20,11 C20,7.1 16.4,4 12,4 Z M16,14.8 L16,17.1 L12.9,16 L12,16 C8.7,16 6,13.8 6,11 C6,8.2 8.7,6 12,6 C15.3,6 18,8.2 18,11 C18,13.2 16,14.8 16,14.8 Z"
@@ -539,6 +541,13 @@ const Warning = [
 const WatchFolder = [
 	"M10.375,5.5 L12,7.125 L18.5,7.125 C19.39375,7.125 20.125,7.85625 20.125,8.75 L20.125,16.875 C20.125,17.76875 19.39375,18.5 18.5,18.5 L5.5,18.5 C4.60625,18.5 3.875,17.76875 3.875,16.875 L3.883125,7.125 C3.883125,6.23125 4.60625,5.5 5.5,5.5 L10.375,5.5 Z M14.8347054,16 C17.1513091,16 18.6460033,13.3994191 18.7085078,13.289175 C18.7926674,13.1395579 18.7931596,12.9564739 18.709,12.8068568 C18.6469877,12.6961205 17.163121,10.0940631 14.8347054,10.0940631 C12.4944779,10.0940631 11.0209467,12.6971048 10.9594265,12.8078411 C10.8762512,12.956966 10.8767434,13.1385736 10.9604108,13.2876985 C11.0224232,13.3979426 12.5062898,16 14.8347054,16 Z M14.8347054,11.0783859 C16.2319516,11.0783859 17.3132302,12.4736635 17.6981005,13.0470316 C17.3122459,13.6208918 16.2309673,15.0156772 14.8347054,15.0156772 C13.4364748,15.0156772 12.3551962,13.6189231 11.9708182,13.0465394 C12.3532276,12.4736635 13.4300767,11.0783859 14.8347054,11.0783859 Z M15.530727,12.35101 C15.1463248,11.9666093 14.523086,11.9666093 14.1386839,12.35101 C13.7542822,12.7354122 13.7542822,13.3586509 14.1386839,13.7430531 C14.523086,14.1274548 15.1463248,14.1274548 15.530727,13.7430531 C15.9151276,13.3586509 15.9151276,12.7354122 15.530727,12.35101 Z"
 ];
+const WebcamScreenAlt = [
+	"M26.6667 5.3335H5.33333C4.59695 5.3335 4 5.93045 4 6.66683V20.0002C4 20.7365 4.59695 21.3335 5.33333 21.3335H26.6667C27.403 21.3335 28 20.7365 28 20.0002V6.66683C28 5.93045 27.403 5.3335 26.6667 5.3335Z",
+	"M9.33331 26.6665H22.6666",
+	"M12 21.3335V26.6668",
+	"M20 21.3335V26.6668",
+	"C+CX-22+CY-16+R-3"
+];
 const WebcamScreen = [
 	"M22 10h16s1 0 1 1v10s0 1 -1 1h-16s-1 0 -1 -1v-10s0 -1 1 -1",
 	"M25 26H35",
@@ -728,6 +737,7 @@ export {
 	Wallet,
 	Warning,
 	WatchFolder,
+	WebcamScreenAlt,
 	WebcamScreen,
 	Webcam,
 	Window,
@@ -737,4 +747,4 @@ export {
 	ZoomReset
 };
 // The following is used for TS Strict Types
-// 'Screen' | 'Add' | 'AddPeople' | 'AddToBoard' | 'Alert' | 'AlignCenter' | 'AlignLeft' | 'AlignRight' | 'AllItems' | 'Arrow' | 'Audio' | 'Back' | 'Bell' | 'Binoculars' | 'Board' | 'Bold' | 'Browser' | 'BrowserTab' | 'CalendarTime' | 'Calendar' | 'Camera' | 'Cancel' | 'CheckCircle' | 'Check' | 'ChevronDown' | 'ChevronRight' | 'ChevronLeft' | 'Chrome' | 'Clipboard' | 'Close' | 'CloudUpload' | 'Code' | 'CodeBlock' | 'Comment' | 'CreateBoard' | 'Crop' | 'Cross' | 'CrossBold' | 'Cut' | 'Dashboard' | 'Delete' | 'Destruct' | 'DetachBoard' | 'Disable' | 'Documents' | 'Dots' | 'Down' | 'Download' | 'Draw' | 'DropdownDown' | 'DropdownUp' | 'Edit' | 'Elements' | 'Enable' | 'EntirePage' | 'Error' | 'ExpireTime' | 'EyeOff' | 'Eye' | 'Face' | 'Facebook' | 'FileText' | 'FileZip' | 'Folder' | 'FullScreen' | 'FullDesktop' | 'Gear' | 'HeadlineFirst' | 'HeadlineSecond' | 'Heart' | 'Hyperlink' | 'Image' | 'Info' | 'Italic' | 'Key' | 'LayoutGrid' | 'LayoutList' | 'Link' | 'LockOpen' | 'Lock' | 'Logout' | 'Mail' | 'Markdown' | 'Money' | 'More' | 'Move' | 'NewWindow' | 'Nib' | 'Notes' | 'NotesBold' | 'Notification' | 'OrderArrow' | 'OrderedList' | 'Others' | 'PadlockLock' | 'PadlockUnlock' | 'Paragraph' | 'Pause' | 'Pen' | 'Phone' | 'Photo' | 'PhotoCamera' | 'Play' | 'Plugin' | 'PlusToBoard' | 'Private' | 'Profile' | 'Public' | 'PublicFolder' | 'QuestionMark' | 'Quote' | 'Redo' | 'Refresh' | 'RemoveTag' | 'Resume' | 'Save' | 'Screenrecording' | 'Search' | 'SearchBold' | 'SelectedArea' | 'Send' | 'Separator' | 'Share' | 'Shared' | 'Sort' | 'Star' | 'Success' | 'TagFilled' | 'Tags' | 'Task' | 'Team' | 'Terminal' | 'TrashBin' | 'Twitter' | 'Typography' | 'Underline' | 'Undo' | 'UnorderedList' | 'Up' | 'Upload' | 'UploadFile' | 'Url' | 'VerticalDots' | 'Video' | 'VideoCam' | 'VideoCamPlus' | 'ViewGrid' | 'ViewList' | 'Wallet' | 'Warning' | 'WatchFolder' | 'WebcamScreen' | 'Webcam' | 'Window' | 'Zip' | 'ZoomIn' | 'ZoomOut' | 'ZoomReset'
+// 'Screen' | 'Add' | 'AddPeople' | 'AddToBoard' | 'Alert' | 'AlignCenter' | 'AlignLeft' | 'AlignRight' | 'AllItems' | 'Arrow' | 'Audio' | 'Back' | 'Bell' | 'Binoculars' | 'Board' | 'Bold' | 'Browser' | 'BrowserTab' | 'CalendarTime' | 'Calendar' | 'Camera' | 'Cancel' | 'CheckCircle' | 'Check' | 'ChevronDown' | 'ChevronRight' | 'ChevronLeft' | 'Chrome' | 'Clipboard' | 'Close' | 'CloudUpload' | 'Code' | 'CodeBlock' | 'Comment' | 'CreateBoard' | 'Crop' | 'Cross' | 'CrossBold' | 'Cut' | 'Dashboard' | 'Delete' | 'Destruct' | 'DetachBoard' | 'Disable' | 'Documents' | 'Dots' | 'Down' | 'Download' | 'Draw' | 'DropdownDown' | 'DropdownUp' | 'Edit' | 'Elements' | 'Enable' | 'EntirePage' | 'Error' | 'ExpireTime' | 'EyeOff' | 'Eye' | 'Face' | 'Facebook' | 'FileText' | 'FileZip' | 'Folder' | 'FullScreen' | 'FullDesktop' | 'Gear' | 'HeadlineFirst' | 'HeadlineSecond' | 'Heart' | 'Hyperlink' | 'Image' | 'Info' | 'Italic' | 'Key' | 'LayoutGrid' | 'LayoutList' | 'Link' | 'LockOpen' | 'Lock' | 'Logout' | 'Mail' | 'Markdown' | 'Money' | 'More' | 'Move' | 'NewWindow' | 'Nib' | 'Notes' | 'NotesBold' | 'Notification' | 'OrderArrow' | 'OrderedList' | 'Others' | 'PadlockLock' | 'PadlockUnlock' | 'Paragraph' | 'Pause' | 'Pen' | 'Phone' | 'Photo' | 'PhotoCamera' | 'Play' | 'Plugin' | 'PlusToBoard' | 'Private' | 'Profile' | 'Public' | 'PublicFolder' | 'QuestionMark' | 'Quote' | 'Redo' | 'Refresh' | 'RemoveTag' | 'Resume' | 'Save' | 'Screenrecording' | 'Search' | 'SearchBold' | 'SelectedArea' | 'Send' | 'Separator' | 'Share' | 'Shared' | 'Sort' | 'Star' | 'Success' | 'TagFilled' | 'Tags' | 'Task' | 'Team' | 'Terminal' | 'TrashBin' | 'Twitter' | 'Typography' | 'Underline' | 'Undo' | 'UnorderedList' | 'Up' | 'Upload' | 'UploadFile' | 'Url' | 'VerticalDots' | 'Video' | 'VideoCam' | 'VideoCamPlus' | 'ViewGrid' | 'ViewList' | 'Wallet' | 'Warning' | 'WatchFolder' | 'WebcamScreenAlt' | 'WebcamScreen' | 'Webcam' | 'Window' | 'Zip' | 'ZoomIn' | 'ZoomOut' | 'ZoomReset'

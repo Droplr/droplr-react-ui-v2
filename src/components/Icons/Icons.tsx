@@ -169,6 +169,7 @@ export interface IconProps {
     | "Warning"
     | "WatchFolder"
     | "WebcamScreen"
+    | "WebcamScreenAlt"
     | "Webcam"
     | "Window"
     | "Zip"
@@ -220,7 +221,10 @@ const Icon = ({
   stroke = 1,
   className = "",
   style = {},
-  viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : "0 0 24 24",
+  /*
+  * Some SVG paths require larger viewboxes
+  */
+  viewBox = (name === "Screen" || name === "Webcam" || name === "WebcamScreen") ? "0 0 46 46" : (name === 'WebcamScreenAlt') ? "0 0 32 32" : "0 0 24 24",
   color = "gray",
   size = 14,
   onClick = (arg) => {},
@@ -230,16 +234,44 @@ const Icon = ({
 
   const getPaths = (paths: Array<string>) => {
     return paths.map((data, i) => {
-      return (
-        <path
-          stroke={color}
-          d={data}
-          key={i}
-          strokeWidth={stroke}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      );
+      /*
+      * Circle
+      */
+      if (data.includes("C+")) {
+        console.log('here')
+        let parts = data.split("+");
+        let cx, cy, r;
+        parts.forEach(
+          (part) => {
+            if(part.includes("CX")) cx = part.split('-')[1];
+            else if(part.includes("CY")) cy = part.split('-')[1];
+            else if(part.includes("R")) r = part.split('-')[1];
+          }
+        )
+        return (
+          <circle
+          cx={cx}
+          cy={cy}
+          r={r}
+          fill={color}
+          />
+        );
+      }
+      else {
+        /*
+        * Line Path
+        */
+        return (
+          <path
+            stroke={color}
+            d={data}
+            key={i}
+            strokeWidth={stroke}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        );
+      }
     });
   };
   return (
