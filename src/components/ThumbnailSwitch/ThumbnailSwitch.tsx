@@ -61,6 +61,7 @@ export interface ThumbnailSwitchProps {
  * @member {number} id - Numerical ID of the item
  * @member {String} label - Text label for the item
  * @member {icon} icon - DroplrUI icon component
+ * @member {number} iconSize - The pixel size of the thumbnails icon
  */
 export interface ThumbnailSwitchItemProps {
   /**
@@ -78,6 +79,11 @@ export interface ThumbnailSwitchItemProps {
    * @defaultValue none
    */
   icon?: ReactElement;
+
+  /**
+   * @desc - The pixel size of the thumbnails icon
+   */
+  iconSize: number;
 }
 
 /**
@@ -149,7 +155,7 @@ const ThumbnailSwitch = ({
               <>
                 <Icon
                   name={"Check"}
-                  size={18}
+                  size={item.iconSize > 1 ? item.iconSize : 12}
                   className={[
                     "check-icon",
                     selectHistory.includes(item.id!) && withAnimation
