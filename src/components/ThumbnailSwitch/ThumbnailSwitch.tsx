@@ -62,6 +62,7 @@ export interface ThumbnailSwitchProps {
  * @member {String} label - Text label for the item
  * @member {icon} icon - DroplrUI icon component
  * @member {number} iconSize - The pixel size of the thumbnails icon
+ * @member {boolean} disabled - Disables the specific item
  */
 export interface ThumbnailSwitchItemProps {
   /**
@@ -84,6 +85,12 @@ export interface ThumbnailSwitchItemProps {
    * @desc - The pixel size of the thumbnails icon
    */
   iconSize: number;
+
+  /**
+   * @desc - Disables the specific item
+   * @defaultValue falls
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -139,13 +146,16 @@ const ThumbnailSwitch = ({
             key={i}
             className={[
               "thumbnail-switch-container",
+              item.disabled ? " thumbnail_switch-item-disabled" : "",
               isActive(item)
                 ? " active"
                 : "",
               className && ` ${className}`,
             ].join("")}
             onClick={() => {
-              handleOnChange(item);
+              if(!item.disabled) {
+                handleOnChange(item);
+              }
             }}
           >
             {item.icon && item.icon}
@@ -247,6 +257,12 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
       border: 1px solid ${theme.thumbnailSwitch.borderColorActive};
       color: ${theme.thumbnailSwitch.textColor};
       position: relative;
+    }
+    .thumbnail_switch-item-disabled {
+      opacity: 0.4;
+      &:hover {
+        cursor: not-allowed;
+      }
     }
 
     .wobble {

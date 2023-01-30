@@ -45,6 +45,7 @@ ThreeItemSwitch.args = {
       icon: (
         <Icon name={"WebcamScreen"} size={32} color={"#A1AAB7"} stroke={1.5} />
       ),
+      disabled: true,
     },
   ],
   onChange: ThumbnailSwitchHandler,
