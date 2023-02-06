@@ -86,7 +86,7 @@ const Button = ({
   size = "medium",
   variant = "primary",
   icon,
-  onClick = () => {},
+  onClick = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {},
   label = "",
 }: ButtonProps) => {
   
@@ -101,7 +101,7 @@ const Button = ({
         `${disabled && "drui-button--disabled"}`,
         `${loading && "drui-button--loading"}`,
       ].join(" ")}
-      onClick={!disabled ? onClick : null}
+      onClick={!disabled ? (e)=> {onClick(e)} : null}
     >
       <div className="drui-button__content">
         <>

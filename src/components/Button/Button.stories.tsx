@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import Button, { ButtonProps } from "./Button";
 import Icon from "../Icons/Icons";
 
-const text = () => console.log('click')
+const text = (e) => console.log(e)
 export default {
   title: "Components/Button",
   component: Button,
