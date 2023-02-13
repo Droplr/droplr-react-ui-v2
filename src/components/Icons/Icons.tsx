@@ -292,7 +292,7 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : "none"
+              attributes.fill != "none" ? attributes.strokeWidth : stroke > 0.1 ? stroke  : 'none'
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
@@ -309,7 +309,7 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : "none"
+              attributes.fill != "none" ? attributes.strokeWidth : stroke > 0.1 ? stroke  : 'none'
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}

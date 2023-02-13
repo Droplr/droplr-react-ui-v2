@@ -158,7 +158,7 @@ const ThumbnailSwitch = ({
               }
             }}
           >
-            {item.icon && item.icon}
+          {item.icon && item.icon}
             <div className="thumbnail-switch-label">{item.label}</div>
             {
               isActive(item)? (
@@ -172,7 +172,7 @@ const ThumbnailSwitch = ({
                       ? " wobble"
                       : "",
                   ].join("")}
-                  stroke={1.5}
+                  stroke={2}
                   color={"#fff"}
                 />
               </>
