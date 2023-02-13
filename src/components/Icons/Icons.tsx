@@ -218,7 +218,7 @@ const IconRefs: Array<iconMap> = Object.keys(icons).map((key) => {
 
 const Icon = ({
   name = "Alert",
-  stroke = 1,
+  stroke = 0.1,
   className = "",
   style = {},
   /*
@@ -292,14 +292,10 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none"
-                ? attributes.strokeWidth
-                : Math.max(attributes.strokeWidth + stroke, 1)
+              attributes.fill != "none" ? attributes.strokeWidth : "none"
             }
-            strokeLinecap={"round"
-            }
-            strokeLinejoin={"round"
-            }
+            strokeLinecap={"round"}
+            strokeLinejoin={"round"}
             fill={attributes.fill}
           />
         );
@@ -313,14 +309,10 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none"
-                ? attributes.strokeWidth
-                : Math.max(attributes.strokeWidth + stroke, 1)
+              attributes.fill != "none" ? attributes.strokeWidth : "none"
             }
-            strokeLinecap={"round"
-            }
-            strokeLinejoin={"round"
-            }
+            strokeLinecap={"round"}
+            strokeLinejoin={"round"}
             fill={attributes.fill}
           />
         );
