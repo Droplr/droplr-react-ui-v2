@@ -17,6 +17,9 @@ export interface IconProps {
    * @member {String} name The Icon name
    */
   name:
+    | "Emoji"
+    | "LineArrow"
+    | "LineStroke"
     | "Screen"
     | "Add"
     | "AddPeople"
@@ -26,7 +29,6 @@ export interface IconProps {
     | "AlignLeft"
     | "AlignRight"
     | "AllItems"
-    | "Arrow"
     | "Audio"
     | "Back"
     | "Bell"
@@ -168,8 +170,8 @@ export interface IconProps {
     | "Wallet"
     | "Warning"
     | "WatchFolder"
-    | "WebcamScreen"
     | "WebcamScreenAlt"
+    | "WebcamScreen"
     | "Webcam"
     | "Window"
     | "Zip"
@@ -222,12 +224,14 @@ const Icon = ({
   className = "",
   style = {},
   /*
-   * Some SVG paths require larger viewboxes
+   * Some SVG paths require different viewboxes
    */
   viewBox = name === "Screen" || name === "Webcam" || name === "WebcamScreen"
     ? "0 0 46 46"
     : name === "WebcamScreenAlt"
     ? "0 0 32 32"
+    : name === "LineArrow"
+    ? "0 0 20 20"
     : "0 0 24 24",
   color = "gray",
   size = 14,
@@ -292,7 +296,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : stroke > 0.1 ? stroke  : 'none'
+              attributes.fill != "none"
+                ? attributes.strokeWidth
+                : stroke > 0.1
+                ? stroke
+                : "none"
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
@@ -309,7 +317,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : stroke > 0.1 ? stroke  : 'none'
+              attributes.fill != "none"
+                ? attributes.strokeWidth
+                : stroke > 0.1
+                ? stroke
+                : "none"
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
