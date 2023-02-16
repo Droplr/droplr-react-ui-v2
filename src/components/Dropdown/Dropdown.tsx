@@ -269,6 +269,13 @@ const Dropdown = ({
     }, [items]
   )
 
+  useEffect(
+    () => {
+      setSelected(setDefaultIndex());
+      console.log('triggered')
+    }, [defaultIndex]
+  )
+
   useEffect(() => {
     if (items.length > defaultIndex) {
       setSelected(setDefaultIndex());
