@@ -99,7 +99,7 @@ export interface DropdownProps {
    * @desc onClick event handler
    * @param {Function} arg Handler function
    */
-   onClick?: (arg: any) => void;
+  onClick?: (arg: any) => void;
 }
 
 /**
@@ -120,7 +120,7 @@ export interface DropdownItemProps {
    * @member {string|number} [id] Custom ID for the item
    */
   id: string | number;
-  
+
   /**
    * @member {String} [className] Appends custom class names
    * @defaultValue false
@@ -199,9 +199,8 @@ const Dropdown = ({
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
-
   const setDefaultIndex = (): DropdownItemProps => {
-    if(defaultIndex === null || defaultIndex === undefined) return items[0];
+    if (defaultIndex === null || defaultIndex === undefined) return items[0];
     if (typeof defaultIndex !== typeof "") {
       if (defaultIndex > items.length - 1) {
         return items[0];
@@ -213,15 +212,18 @@ const Dropdown = ({
         if (parseInt(defaultIndex.toString()) > items.length - 1) {
           return items[0];
         } else {
-          return items.find(x => x.id.toString() === defaultIndex.toString())
+          return items.find((x) => x.id.toString() === defaultIndex.toString());
         }
       } else {
-        return items.find(x => x.id === defaultIndex)
+        return items.find((x) => x.id === defaultIndex);
       }
     }
   };
 
-  const [selected, setSelected] = useState<DropdownItemProps>(setDefaultIndex());
+  const [selected, setSelected] = useState<DropdownItemProps>(
+    setDefaultIndex()
+  );
+  
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
@@ -251,31 +253,27 @@ const Dropdown = ({
   };
 
   const getDropdownPosition = () => {
-    let coords = { top: "0px", right: "0px", left: "0px", bottom: "0px" };
+    let style = { top: "0px", right: "0px", left: "0px", bottom: "0px"};
     switch (position) {
       case "top":
-        coords.top = `${-inputElementSize.height}px`;
+        style.top = `${-inputElementSize.height}px`;
         break;
       case "bottom":
-        coords.top = `${inputElementSize.height}px`;
+        style.top = `${inputElementSize.height}px`;
         break;
     }
-    return coords;
+
+    return style;
   };
 
-  useEffect(
-    () => {
-      setSelected(setDefaultIndex());
-    }, [items]
-  )
+  useEffect(() => {
+    setSelected(setDefaultIndex());
+  }, [items]);
 
-  useEffect(
-    () => {
-      setSelected(setDefaultIndex());
-      console.log('triggered')
-    }, [defaultIndex]
-  )
-
+  useEffect(() => {
+    setSelected(setDefaultIndex());
+  }, [defaultIndex]);
+  
   useEffect(() => {
     if (items.length > defaultIndex) {
       setSelected(setDefaultIndex());
@@ -298,13 +296,10 @@ const Dropdown = ({
         ].join(" ")}
         ref={inputRef}
         style={
-          fullWidth
-            ? { width: "100%" }
-            : minWidth
-            ? { width: minWidth }
-            : {}
+          fullWidth ? { width: "100%" } : minWidth ? { width: minWidth } : {}
         }
         onClick={toggleDropdown}
+        onMouseLeave={handleMouseLeave}
       >
         <span className="drui-dropdown-input-label">
           {selected !== null && selected !== undefined ? selected.title : ""}
@@ -313,7 +308,12 @@ const Dropdown = ({
           name={"ChevronDown"}
           color={"rgb(94, 100, 110)"}
           size={14}
-          style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px", marginTop: "2px" }}
+          style={{
+            transform: rotate,
+            transition: "all 0.2s linear",
+            marginLeft: "12px",
+            marginTop: "2px",
+          }}
         />
         {isOpen ? (
           <StyledDropdownList
@@ -328,8 +328,9 @@ const Dropdown = ({
                 <StyledDropdownLabel className="drui-dropdown__header">
                   <span className="drui-dropdown__title">{label}</span>
                 </StyledDropdownLabel>
-              ) : <></>}
-
+              ) : (
+                <></>
+              )}
               <ul
                 className="drui-dropdown__itemsList"
                 tabIndex={-1}
@@ -381,7 +382,6 @@ const Dropdown = ({
                                 ? "noopener nofollow"
                                 : undefined
                             }
-                            disabled={item.disabled}
                             onClick={onItemElemClick}
                           >
                             <div className="drui-dropdownItem__iconWrapper">
@@ -391,7 +391,9 @@ const Dropdown = ({
                               {/* No custom icon, menu item is active */}
                               {!item.Icon &&
                                 (item.showItemStatus || showItemStatus) &&
-                                (selected !== undefined && selected !== null && selected.id === item.id) && (
+                                selected !== undefined &&
+                                selected !== null &&
+                                selected.id === item.id && (
                                   <Icon
                                     name={"Check"}
                                     color={"rgb(94, 100, 110)"}
@@ -414,7 +416,7 @@ const Dropdown = ({
                             {/* Item description */}
                             {item.description && (
                               <span className="drui-dropdownItem__description">
-                                {item.description}
+                              {item.description}
                               </span>
                             )}
                           </ActionElem>
@@ -499,9 +501,7 @@ const StyledDropdownList = styled.div(({ theme }) => {
     z-index: 9;
     font-family: ${theme.fonts.family.primary};
     padding: 12px 0;
-    width: auto;
-    max-width: 320px;
-    width: max-content;
+    width: inherit;
     box-sizing: border-box;
     border-radius: 4px;
     background: ${theme.dropdown.backgroundColor};
@@ -651,7 +651,7 @@ const StyledDropdownItem = styled.div(({ theme }) => {
   &.drui-dropdownItem.drui-dropdownItem--disabled {
     .drui-dropdownItem__action {
       &:hover {
-        cursor: not-allowed;
+        cursor: default;
         background-color: transparent;
       }
     }

@@ -37,14 +37,14 @@ SimpleDropdown.args = {
     items: [
         args, 
         {...args, disabled: true, title: 'Second Item', id: 1},
-        {...args, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
+        {...args, disabled: true, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
          title: 'Third Item', showItemStatus: true, id: 2},
     ],
     onClick: DropdownChangeHandler
 };
 
 const dynamicItems = [
-    {...args, title: 'First Item', id: 'KEY_ONE'},
+    {...args, title: 'First Item First Item First Item First Item First Item', id: 'KEY_ONE'},
     {...args, disabled: true, title: 'Second Item', id: 'KEY_TWO'},
     {...args, description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor',
      title: 'Third Item', showItemStatus: true,  id: 'KEY_THREE'}
