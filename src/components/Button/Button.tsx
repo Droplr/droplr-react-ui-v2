@@ -203,6 +203,8 @@ const StyledButton = styled.button(({ theme }) => {
       background: ${theme.button.primary.backgroundColorDisabled};
       box-shadow: none;
       cursor: not-allowed;
+      user-select: none;
+      pointer-events: none;
       border: none;
     }
     &.drui-button--loading,

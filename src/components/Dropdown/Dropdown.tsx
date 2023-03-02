@@ -463,6 +463,8 @@ const StyledDropdown = styled.div(({ theme }) => {
     &.disabled {
       cursor: not-allowed;
       color: ${theme.dropdown.disabledColor};
+      user-select: none;
+      pointer-events: none;
       &:hover {
         box-shadow: none;
       }

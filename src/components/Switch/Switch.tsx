@@ -95,6 +95,8 @@ const StyledSwitch = styled.label(({ theme }) => {
 
     &.disabled {
       cursor: not-allowed;
+      user-select: none;
+      pointer-events: none;
       color: ${theme.standardSwitch.textColorDisabled};
     }
 
