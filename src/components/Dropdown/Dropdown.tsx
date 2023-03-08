@@ -463,8 +463,6 @@ const StyledDropdown = styled.div(({ theme }) => {
     &.disabled {
       cursor: not-allowed;
       color: ${theme.dropdown.disabledColor};
-      user-select: none;
-      pointer-events: none;
       &:hover {
         box-shadow: none;
       }
@@ -651,6 +649,9 @@ const StyledDropdownItem = styled.div(({ theme }) => {
   }
 
   &.drui-dropdownItem.drui-dropdownItem--disabled {
+    cursor: not-allowed !important;
+    user-select: none !important;
+    pointer-events: none !important;
     .drui-dropdownItem__action {
       &:hover {
         cursor: default;
@@ -662,6 +663,9 @@ const StyledDropdownItem = styled.div(({ theme }) => {
     .drui-dropdownItem__title,
     .drui-dropdownItem__titleIcon,
     .drui-dropdownItem__description {
+      cursor: not-allowed !important;
+      user-select: none !important;
+      pointer-events: none !important;
       opacity: 0.6;
       color: ${theme.dropdownItem.disabledColor};
       fill: ${theme.dropdownItem.disabledColor};
@@ -672,6 +676,9 @@ const StyledDropdownItem = styled.div(({ theme }) => {
       .drui-dropdownItem__title,
       .drui-dropdownItem__titleIcon,
       .drui-dropdownItem__description {
+        cursor: not-allowed !important;
+        user-select: none !important;
+        pointer-events: none !important;
         opacity: 0.6;
         color: ${theme.dropdownItem.disabledColor};
         fill: ${theme.dropdownItem.disabledColor};
