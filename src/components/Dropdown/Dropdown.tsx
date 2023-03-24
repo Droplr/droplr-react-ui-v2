@@ -99,7 +99,18 @@ export interface DropdownProps {
    * @desc onClick event handler
    * @param {Function} arg Handler function
    */
-   onClick?: (arg: any) => void;
+  onClick?: (arg: any) => void;
+
+  /**
+   * @method closeOnClick
+   * @desc closes dropdown on next click
+   */
+
+  /**
+   * @member {boolean} closeOnClick Close list on any click
+   * @defaultValue false
+   */
+  closeOnClick?: true | false;
 }
 
 /**
@@ -195,6 +206,7 @@ const Dropdown = ({
   label = "",
   showItemStatus = true,
   closeOnItemClick = true,
+  closeOnClick = false,
   arrowStyles = null,
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
@@ -235,8 +247,22 @@ const Dropdown = ({
 
   const toggleDropdown = () => {
     if (disabled) return;
+    const currentState = isOpen;
     setIsOpen(!isOpen);
     handleRotate();
+
+    if (closeOnClick && !currentState) {
+      setTimeout(() => {
+        document.addEventListener(
+          "click",
+          () => {
+            setIsOpen(false);
+            handleRotate();
+          },
+          { once: true }
+        );
+      }, 100);
+    }
   };
 
   const handleRotate = () => {
