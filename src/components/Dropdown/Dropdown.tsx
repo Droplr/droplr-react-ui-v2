@@ -251,18 +251,18 @@ const Dropdown = ({
     setIsOpen(!isOpen);
     handleRotate();
 
+    document.removeEventListener("click", closeDropdown);
     if (closeOnClick && !currentState) {
       setTimeout(() => {
-        document.addEventListener(
-          "click",
-          () => {
-            setIsOpen(false);
-            handleRotate();
-          },
-          { once: true }
-        );
+        document.addEventListener("click", closeDropdown);
       }, 100);
     }
+  };
+
+  const closeDropdown = () => {
+    document.removeEventListener("click", closeDropdown);
+    setIsOpen(false);
+    setRotateChevron(false);
   };
 
   const handleRotate = () => {
@@ -270,7 +270,8 @@ const Dropdown = ({
   };
 
   const handleMouseLeave = () => {
-    if (isOpen && closeOnMouseOut) toggleDropdown();
+    document.getElementsByTagName("body")[0]?.click();
+    if (isOpen && closeOnMouseOut) closeDropdown();
     if (onMouseLeave) {
       onMouseLeave(selected);
     }
