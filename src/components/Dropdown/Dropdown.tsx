@@ -240,6 +240,7 @@ const Dropdown = ({
     width: 0,
   });
   const [rotateChevron, setRotateChevron] = useState(false);
+  const [dropdownHeight, setDropdownHeight] = useState(120);
 
   const inputRef = useRef<HTMLDivElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -343,7 +344,13 @@ const Dropdown = ({
             ref={dropdownRef}
           >
             <span className="drui-dropdown__arrow" style={arrowStyles} />
-            <div className="drui-dropdown__inner">
+            <div className="drui-dropdown__inner"
+            style={{maxHeight: `${dropdownHeight}px`}}
+            ref={(r) => {
+              if (typeof r === typeof undefined || !r) return;
+              var spaceFromBottom = window.innerHeight - r.getBoundingClientRect().top - 25;
+              setDropdownHeight(spaceFromBottom);
+            }}>
               {label !== "" && label !== undefined ? (
                 <StyledDropdownLabel className="drui-dropdown__header">
                   <span className="drui-dropdown__title">{label}</span>
@@ -589,7 +596,7 @@ const StyledDropdownList = styled.div(({ theme }) => {
       flex-direction: column;
       width: auto;
       height: auto;
-      max-height: 420px;
+      max-height: 180px;
       overflow-y: auto;
       padding: 0;
     }
