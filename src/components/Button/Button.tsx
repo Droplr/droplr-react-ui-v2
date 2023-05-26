@@ -28,13 +28,12 @@ export interface ButtonProps {
    * @defaultValue 'primary'
    * @options primary | secondary | success | info | warning | danger
    */
-  variant?:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "info"
-    | "warning"
-    | "danger";
+  variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
+
+  /**
+   * @member {boolean} flat  Uses a solid color instead of a gradient
+   */
+  flat?: boolean;
 
   /**
    * @member {string} size  Button sizes
@@ -88,8 +87,8 @@ const Button = ({
   icon,
   onClick = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {},
   label = "",
+  flat = false,
 }: ButtonProps) => {
-  
   return (
     <StyledButton
       type="button"
@@ -97,15 +96,25 @@ const Button = ({
         className,
         "drui-button",
         `drui-button--${size}`,
-        `drui-button--${variant}`,
+        flat ? `drui-button--${variant}--flat` : `drui-button--${variant}`,
         `${disabled && "drui-button--disabled"}`,
         `${loading && "drui-button--loading"}`,
       ].join(" ")}
-      onClick={!disabled ? (e)=> {onClick(e)} : null}
+      onClick={
+        !disabled
+          ? (e) => {
+              onClick(e);
+            }
+          : null
+      }
     >
       <div className="drui-button__content">
         <>
-          {icon && <span className={label !== "" ? "drui-button__icon" : ""}>{icon}</span>}
+          {icon && (
+            <span className={label !== "" ? "drui-button__icon" : ""}>
+              {icon}
+            </span>
+          )}
           {label}
         </>
       </div>
@@ -213,31 +222,83 @@ const StyledButton = styled.button(({ theme }) => {
         z-index: -1;
       }
     }
+
+&.drui-button--primary--flat {
+  background: ${theme.button.primary.backgroundColorFlat};
+  border: 1px solid ${theme.button.primary.borderColor};
+  font-weight: ${theme.fonts.weight.bolder};
+  color: ${theme.button.primary.textColor};
+  box-shadow: none;
+
+&:hover {
+  background: ${theme.button.primary.backgroundColorHoverFlat};
+}
+
+&:active {
+  background: ${theme.button.primary.backgroundColorActiveFlat};
+}
+
+
+&.drui-button--disabled,
+  &.drui-button--disabled:hover {
+    background: ${theme.button.primary.backgroundColorDisabledFlat};
+    border: 1px solid ${theme.button.primary.borderColor};
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &.drui-button--loading,
+  &.drui-button--loading:hover {
+    background: ${theme.button.primary.backgroundColorActiveFlat};
+    border: 1px solid ${theme.button.primary.borderColor};
+  }
+}
   
-    &.drui-button--success {
-      background: ${theme.button.primary.Success.backgroundColor};
-  
-      &:hover {
-        background: ${theme.button.primary.Success.backgroundColorHover};
-      }
-  
-      &:active {
-        background: ${theme.button.primary.Success.backgroundColorActive};
-      }
+  &.drui-button--success {
+    background: ${theme.button.primary.Success.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.Success.backgroundColorHover};
     }
-  
-    &.drui-button--success&.drui-button--disabled {
+
+    &:active {
+      background: ${theme.button.primary.Success.backgroundColorActive};
+    }
+    &.drui-button--disabled {
       background: ${theme.button.primary.Success.backgroundColorDisabled};
       color: ${theme.button.primary.Success.textColorDisabled};
     }
-  
-    &.drui-button--success&.drui-button--loading {
+    &.drui-button--loading {
       background: ${theme.button.primary.Success.backgroundColor};
   
       &.drui-button__content {
         z-index: -1;
       }
     }
+  }
+  
+  &.drui-button--success--flat {
+    background: ${theme.button.primary.Success.backgroundColorFlat};
+
+    &:hover {
+      background: ${theme.button.primary.Success.backgroundColorHoverFlat};
+    }
+
+    &:active {
+      background: ${theme.button.primary.Success.backgroundColorActiveFlat};
+    }
+    &.drui-button--disabled {
+    background: ${theme.button.primary.Success.backgroundColorDisabledFlat};
+    color: ${theme.button.primary.Success.textColorDisabled};
+    } 
+    &.drui-button--loading {
+      background: ${theme.button.primary.Success.backgroundColorFlat};
+
+      &.drui-button__content {
+        z-index: -1;
+      }
+    }
+  }
   
     &.drui-button--danger {
       background: ${theme.button.primary.danger.backgroundColor};
@@ -249,67 +310,172 @@ const StyledButton = styled.button(({ theme }) => {
       &:active {
         background: ${theme.button.primary.danger.backgroundColorActive};
       }
+  
+      &.drui-button--disabled {
+        background: ${theme.button.primary.danger.backgroundColorDisabled};
+        color: ${theme.button.primary.danger.textColorDisabled};
+      }
+      &.drui-button--loading {
+        background: ${theme.button.primary.danger.backgroundColor};
+
+        &.drui-button__content {
+          z-index: -1;
+        }
+      }
     }
   
-    &.drui-button--danger&.drui-button--disabled {
-      background: ${theme.button.primary.danger.backgroundColorDisabled};
+  &.drui-button--danger--flat {
+    background: ${theme.button.primary.danger.backgroundColorFlat};
+
+    &:hover {
+      background: ${theme.button.primary.danger.backgroundColorHoverFlat};
+    }
+
+    &:active {
+      background: ${theme.button.primary.danger.backgroundColorActiveFlat};
+    }
+    &.drui-button--disabled {
+      background: ${theme.button.primary.danger.backgroundColorDisabledFlat};
       color: ${theme.button.primary.danger.textColorDisabled};
     }
-    &.drui-button--danger&.drui-button--loading {
-      background: ${theme.button.primary.danger.backgroundColor};
+    &.drui-button--loading {
+      background: ${theme.button.primary.danger.backgroundColorFlat};
   
       &.drui-button__content {
         z-index: -1;
       }
     }
+  }
   
-    &.drui-button--info {
-      background: ${theme.button.primary.info.backgroundColor};
-  
-      &:hover {
-        background: ${theme.button.primary.info.backgroundColorHover};
-      }
-  
-      &:active {
-        background: ${theme.button.primary.info.backgroundColorActive};
-      }
+  &.drui-button--info {
+    background: ${theme.button.primary.info.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.info.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.info.backgroundColorActive};
     }
   
-    &.drui-button--info&.drui-button--disabled {
+    &.drui-button--disabled {
       background: ${theme.button.primary.info.backgroundColorDisabled};
       color: ${theme.button.primary.info.textColorDisabled};
     }
-  
-    &.drui-button--info&.drui-button--loading {
+
+    &.drui-button--loading {
       background: ${theme.button.primary.info.backgroundColor};
-  
+
       &.drui-button__content {
         z-index: -1;
       }
     }
+  }
   
-    &.drui-button--warning {
-      background: ${theme.button.primary.warning.backgroundColor};
-  
-      &:hover {
-        background: ${theme.button.primary.warning.backgroundColorHover};
-      }
-  
-      &:active {
-        background: ${theme.button.primary.warning.backgroundColorActive};
-      }
+  &.drui-button--info--flat {
+    background: ${theme.button.primary.info.backgroundColorFlat};
+
+    &:hover {
+      background: ${theme.button.primary.info.backgroundColorHoverFlat};
+    }
+
+    &:active {
+      background: ${theme.button.primary.info.backgroundColorActiveFlat};
     }
   
-    &.drui-button--warning&.drui-button--disabled {
+  &.drui-button--disabled {
+    background: ${theme.button.primary.info.backgroundColorDisabledFlat};
+    color: ${theme.button.primary.info.textColorDisabled};
+  }
+
+  &.drui-button--loading {
+    background: ${theme.button.primary.info.backgroundColorFlat};
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+  }
+  
+  &.drui-button--warning {
+    background: ${theme.button.primary.warning.backgroundColor};
+
+    &:hover {
+      background: ${theme.button.primary.warning.backgroundColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.primary.warning.backgroundColorActive};
+    }
+  
+    &.drui-button--disabled {
       background: ${theme.button.primary.warning.backgroundColorDisabled};
       color: ${theme.button.primary.warning.textColorDisabled};
     }
-  
-    &.drui-button--warning&.drui-button--loading {
+
+    &.drui-button--loading {
       background: ${theme.button.primary.warning.backgroundColor};
-  
+
       &.drui-button__content {
         z-index: -1;
+      }
+    }
+  }
+  
+  &.drui-button--warning--flat {
+    background: ${theme.button.primary.warning.backgroundColorFlat};
+
+    &:hover {
+      background: ${theme.button.primary.warning.backgroundColorHoverFlat};
+    }
+
+    &:active {
+      background: ${theme.button.primary.warning.backgroundColorActiveFlat};
+    }
+    &.drui-button--disabled {
+      background: ${theme.button.primary.warning.backgroundColorDisabledFlat};
+      color: ${theme.button.primary.warning.textColorDisabled};
+    }
+
+    &.drui-button--loading {
+      background: ${theme.button.primary.warning.backgroundColorFlat};
+
+      &.drui-button__content {
+        z-index: -1;
+      }
+    }
+  }
+
+    &.drui-button--secondary--flat {
+      background: ${theme.button.secondary.backgroundColorFlat};
+      border: 1px solid ${theme.button.secondary.borderColor};
+      font-weight: ${theme.fonts.weight.bolder};
+      color: ${theme.button.secondary.textColor};
+      box-shadow: none;
+  
+    &:hover {
+      background: ${theme.button.secondary.backgroundColorHoverFlat};
+      border: 1px solid ${theme.button.secondary.borderColorHover};
+    }
+
+    &:active {
+      background: ${theme.button.secondary.backgroundColorActiveFlat};
+    }
+
+  
+    &.drui-button--disabled,
+      &.drui-button--disabled:hover {
+        background: ${theme.button.secondary.backgroundColorDisabledFlat};
+        border: 1px solid ${theme.button.secondary.borderColor};
+        color: ${theme.button.secondary.textColorDisabled};
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+  
+      &.drui-button--loading,
+      &.drui-button--loading:hover {
+        background: ${theme.button.secondary.backgroundColorDisabledFlat};
+        border: 1px solid ${theme.button.secondary.borderColor};
       }
     }
   

@@ -17,6 +17,11 @@ export interface IconProps {
    * @member {String} name The Icon name
    */
   name:
+    | "ClipboardVariant"
+    | "Emoji"
+    | "LineArrow"
+    | "LineStroke"
+    | "NewWindowVariant"
     | "Screen"
     | "Add"
     | "AddPeople"
@@ -26,7 +31,6 @@ export interface IconProps {
     | "AlignLeft"
     | "AlignRight"
     | "AllItems"
-    | "Arrow"
     | "Audio"
     | "Back"
     | "Bell"
@@ -168,8 +172,8 @@ export interface IconProps {
     | "Wallet"
     | "Warning"
     | "WatchFolder"
-    | "WebcamScreen"
     | "WebcamScreenAlt"
+    | "WebcamScreen"
     | "Webcam"
     | "Window"
     | "Zip"
@@ -226,6 +230,8 @@ const Icon = ({
    */
   viewBox = name === "Screen" || name === "Webcam" || name === "WebcamScreen"
     ? "0 0 46 46"
+    : name === "NewWindowVariant" || name === "ClipboardVariant"
+    ? "0 0 30 30"
     : name === "WebcamScreenAlt"
     ? "0 0 32 32"
     : "0 0 24 24",
@@ -237,6 +243,10 @@ const Icon = ({
   const styles = { ...defaultStyles, ...style };
 
   const getPaths = (paths: Array<string>) => {
+    /**
+     * The tags like SLCF, SLJF, HF, SF, etc. are created by the generation script and
+     * are used to apply per-image rules and parsing
+     */
     return paths.map((data, i) => {
       let attributes = {
         cx: "",
@@ -292,7 +302,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : "none"
+              stroke != 0.1
+                ? stroke
+                : attributes.fill != "none"
+                ? attributes.strokeWidth
+                : "none"
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
