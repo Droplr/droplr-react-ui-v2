@@ -55,6 +55,7 @@ export interface IconProps {
     | "Code"
     | "CodeBlock"
     | "Comment"
+    | "Copy"
     | "CreateBoard"
     | "Crop"
     | "Cross"
@@ -234,6 +235,8 @@ const Icon = ({
     ? "0 0 30 30"
     : name === "WebcamScreenAlt"
     ? "0 0 32 32"
+    : name === "Copy"
+    ? "0 0 36 36"
     : "0 0 24 24",
   color = "gray",
   size = 14,
