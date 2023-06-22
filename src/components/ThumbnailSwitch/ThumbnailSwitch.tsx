@@ -10,6 +10,9 @@ import { lightTheme } from "../../themes/themes";
  * @member {number} defaultIndex - Index of the default selected option
  * @member {String} className - Appends custom class names
  * @member {String} label - Text switch label
+ * @member {number} fontSize - Font size of the label
+ * @member {String} fontColor - Font color of the label
+ * @member {boolean} showCheckmark - Show checkmark on selected item
  * @member {boolean} disabled - Disabled and uninteractive
  * @member {Function} onChange - Click event handler, calls handler with selected item as the parameter
  */
@@ -34,6 +37,22 @@ export interface ThumbnailSwitchProps {
    * @member {String} label - Text switch label
    */
   label: string;
+
+  /**
+   * @member {number} fontSize - Font size of the label
+   * @defaultValue 14
+   */
+  fontSize?: number;
+  /**
+   * @member {String} fontColor - Font color of the label
+   * @defaultValue #000
+   */
+  fontColor?: string;
+
+  /**
+   * @member {boolean} showCheckmark - Show checkmark on selected item
+   */
+  showCheckmark?: boolean;
 
   /**
    * @member {boolean} disabled - Disabled and uninteractive
@@ -104,6 +123,9 @@ const ThumbnailSwitch = ({
   disabled = false,
   items = [],
   label = "",
+  fontSize = 14,
+  showCheckmark = true,
+  fontColor = "#000",
   withAnimation = true,
   defaultIndex,
   onChange,
@@ -136,8 +158,8 @@ const ThumbnailSwitch = ({
     <StyledThumbnailSwitch
       className={[
         "thumbnail-switch",
-        disabled && " thumbnail-switch--disabled",
-        className && ` ${className}`,
+        disabled ? " thumbnail-switch--disabled" : "",
+        className ? ` ${className}` : "",
       ].join("")}
     >
       {items.map((item, i) => {
@@ -157,11 +179,12 @@ const ThumbnailSwitch = ({
                 handleOnChange(item);
               }
             }}
+            style={{opacity: isActive(item) ? 1 : 0.8}}
           >
             {item.icon && item.icon}
-            <div className="thumbnail-switch-label">{item.label}</div>
+            <div className="thumbnail-switch-label" style={{fontSize: fontSize, color: fontColor}}>{item.label}</div>
             {
-              isActive(item)? (
+              isActive(item) && showCheckmark ? (
               <>
                 <Icon
                   name={"Check"}
