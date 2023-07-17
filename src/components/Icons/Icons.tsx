@@ -237,6 +237,10 @@ const Icon = ({
     ? "0 0 32 32"
     : name === "Copy"
     ? "0 0 36 36"
+    : name === "LineArrow"
+    ? "0 0 14 14"
+    : name === "Emoji"
+    ? "0 0 20 20"
     : "0 0 24 24",
   color = "gray",
   size = 14,
@@ -326,7 +330,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              attributes.fill != "none" ? attributes.strokeWidth : "none"
+              stroke != 0.1
+                ? stroke
+                : attributes.fill != "none"
+                ? attributes.strokeWidth
+                : "none"
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
