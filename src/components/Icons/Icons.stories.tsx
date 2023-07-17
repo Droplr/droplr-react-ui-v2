@@ -22,7 +22,7 @@ const GetIcons = () => {
     return (
       <StyledIconContainer key={index}>
         {/* Omitt Type error */}
-        <Icon name={icon.k} size={32} stroke={0.5}/>
+        <Icon name={icon.k} size={32} stroke={1}/>
         <div className="gallery-item-title">{icon.k}</div>
       </StyledIconContainer>
     );
