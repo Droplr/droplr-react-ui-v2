@@ -70,6 +70,7 @@ export interface IconProps {
     | "Dots"
     | "Down"
     | "Download"
+    | "Drag"
     | "Draw"
     | "DropdownDown"
     | "DropdownUp"
@@ -208,6 +209,11 @@ export interface IconProps {
    */
   color?: string;
   /**
+   * @member {boolean} [filled] Fill the icon with color
+   * @defaultValue false
+   */
+  filled?: boolean;
+  /**
    * @member {function} [onClick] onClick function handler
    */
   onClick?: (arg: string) => void;
@@ -229,7 +235,9 @@ const Icon = ({
   /*
    * Some SVG paths require larger viewboxes
    */
-  viewBox = name === "Screen" || name === "Webcam" || name === "WebcamScreen"
+  viewBox = name === "Screen" ||
+  name === "Webcam" ||
+  name === "WebcamScreen"
     ? "0 0 46 46"
     : name === "NewWindowVariant" || name === "ClipboardVariant"
     ? "0 0 30 30"
@@ -241,8 +249,11 @@ const Icon = ({
     ? "0 0 14 14"
     : name === "Emoji"
     ? "0 0 20 20"
+    : name === "Drag"
+    ? "0 0 62 62"
     : "0 0 24 24",
   color = "gray",
+  filled = false,
   size = 14,
   onClick = (arg) => {},
 }: IconProps) => {
@@ -309,15 +320,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              stroke != 0.1
-                ? stroke
-                : attributes.fill != "none"
-                ? attributes.strokeWidth
-                : "none"
+              stroke
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
-            fill={attributes.fill}
+            fill={filled ? color : "none"}
           />
         );
       } else {
@@ -330,15 +337,11 @@ const Icon = ({
             key={i}
             stroke={color}
             strokeWidth={
-              stroke != 0.1
-                ? stroke
-                : attributes.fill != "none"
-                ? attributes.strokeWidth
-                : "none"
+              stroke
             }
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
-            fill={attributes.fill}
+            fill={filled ? color : "none"}
           />
         );
       }
