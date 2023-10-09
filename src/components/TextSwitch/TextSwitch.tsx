@@ -39,6 +39,16 @@ export interface TextSwitchProps {
   disabled?: true | false;
 
   /**
+   * @member {String} activeColor - Background color
+   */
+  activeColor?: string;
+
+  /**
+   * @member {String} fontColor - Text color
+   */
+  fontColor?: string;
+
+  /**
    * @method onChange
    * @desc - Click event handler, calls handler with selected item as the parameter
    * @param {Function} arg - Handler function
@@ -84,6 +94,8 @@ const TextSwitch = ({
   items = [],
   label = "",
   defaultIndex,
+  activeColor,
+  fontColor,
   onChange,
 }: TextSwitchProps) => {
 
@@ -122,6 +134,7 @@ const TextSwitch = ({
             <div
               key={i}
               id={`text-switch-${i}${className && "-" + className}`}
+              style={{backgroundColor: (activeColor !== "" && isActive(item)) ? activeColor : ""}}
               className={[
                 `${className}`,
                 " text-switch-item",
@@ -131,7 +144,8 @@ const TextSwitch = ({
                 handleChange(item.id);
               }}
             >
-              <label>{item.label}</label>
+              <label
+              style={{color: (fontColor !== "" && isActive(item)) ? fontColor : ""}}>{item.label}</label>
             </div>
           );
         })}
