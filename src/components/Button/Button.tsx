@@ -147,6 +147,8 @@ const StyledButton = styled.button(({ theme }) => {
     font-size: ${theme.fonts.size.normal};
     font-weight: ${theme.fonts.weight.bold};
     font-family: ${theme.fonts.family.primary};
+    user-select: none;
+    
     cursor: pointer;
     *,
     *::before,
@@ -455,7 +457,6 @@ const StyledButton = styled.button(({ theme }) => {
   
     &:hover {
       background: ${theme.button.secondary.backgroundColorHoverFlat};
-      border: 1px solid ${theme.button.secondary.borderColorHover};
     }
 
     &:active {
