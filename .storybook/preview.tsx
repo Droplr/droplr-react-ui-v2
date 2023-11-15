@@ -18,7 +18,7 @@ const ThemeBlock = styled.div<{ left?: boolean; fill?: boolean }>(
   ({ theme }) =>
     css`
       background: ${theme.name === "dark"
-        ? theme.colors.tuna
+        ? theme.colors.darkModeBlueBg
         : theme.colors.white};
       border-radius: 5px;
       padding: 24px;

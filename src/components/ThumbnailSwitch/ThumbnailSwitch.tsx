@@ -125,7 +125,7 @@ const ThumbnailSwitch = ({
   label = "",
   fontSize = 14,
   showCheckmark = true,
-  fontColor = "#000",
+  fontColor = "",
   withAnimation = true,
   defaultIndex,
   onChange,
@@ -252,7 +252,7 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
       margin-top: 12px;
       margin-bottom: 12px;
       background-color: transparent;
-      color: ${theme.thumbnailSwitch.textColor};
+      color: ${theme.thumbnailSwitch.textColor} !important;
       font-family: ${theme.fonts.family.primary};
       font-size: ${theme.fonts.size.normal};
       font-weight: ${theme.fonts.weight.bold};
@@ -276,13 +276,13 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
       transition: all 250ms ease-in-out;
     }
     .active {
-      background-color: ${theme.thumbnailSwitch.backgroundColor};
+      background-color: ${theme.thumbnailSwitch.backgroundColorActive};
       border: 1px solid ${theme.thumbnailSwitch.borderColorActive};
       color: ${theme.thumbnailSwitch.textColor};
       position: relative;
     }
     .thumbnail_switch-item-disabled {
-      opacity: 0.4;
+      opacity: 0.3 !important;
       &:hover {
         cursor: not-allowed;
       }

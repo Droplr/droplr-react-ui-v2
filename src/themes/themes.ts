@@ -57,6 +57,11 @@ const colors = {
   athensGray: "#E9EAED",
   blueHaze: "#CBCEDE",
   waterloo: "#878891",
+  darkModeBlueAccent: "#2C6BF2",
+  darkModeBlueBg: "#0A0F1C",
+  darkModeBlueBgAccent: "#0E1424",
+  darkModeBlueBgActive: "#101D38",
+  darkModeBorder: "#1E2946"
 };
 
 const buttonGradient = (color: String, invert: Boolean) =>
@@ -181,6 +186,7 @@ const textSwitch = {
 const thumbnailSwitch = {
   // background
   backgroundColor: colors.white,
+  backgroundColorActive: colors.white,
   checkmarkBackgroundColor: colors.brandBlue,
 
   // border
@@ -381,7 +387,7 @@ export const darkTheme: DefaultTheme = {
     // background
     backgroundColor: colors.shuttleGray,
     backgroundColorAfter: colors.white,
-    backgroundColorCheckedPrimary: gradients.greenSwitchChecked,
+    backgroundColorCheckedPrimary: colors.brandBlue,
     backgroundColorCheckedSecondary: gradients.blue,
     backgroundColorCheckedInfo: gradients.greenSwitchChecked,
     backgroundColorCheckedSuccess: gradients.greenSwitchChecked,
@@ -390,8 +396,8 @@ export const darkTheme: DefaultTheme = {
     backgroundColorDisabled: lightenDarkenColor(colors.shuttleGray, -20),
 
     // border
-    borderColor: colors.mystic,
-    borderColorChecked: lightenDarkenColor(colors.sushi, -0),
+    borderColor: colors.darkModeBorder,
+    borderColorChecked: colors.brandBlue,
 
     // text
     textColor: colors.white,
@@ -402,12 +408,12 @@ export const darkTheme: DefaultTheme = {
   },
   textSwitch: {
     // background
-    backgroundColor: colors.mako,
+    backgroundColor: "#303A54",
     backgroundColorAfter: colors.white,
-    backgroundColorDisabled: lightenDarkenColor(colors.mystic, 10),
+    backgroundColorDisabled: lightenDarkenColor(colors.darkModeBlueBg, 10),
 
     // border
-    borderColor: colors.white,
+    borderColor: colors.darkModeBorder,
 
     //text
     textColorActive: colors.white,
@@ -420,19 +426,20 @@ export const darkTheme: DefaultTheme = {
   },
   thumbnailSwitch: {
     // background
-    backgroundColor: colors.mako,
+    backgroundColor: colors.darkModeBlueBgAccent,
+    backgroundColorActive: colors.darkModeBlueBgActive,
     checkmarkBackgroundColor: colors.brandBlue,
 
     // border
-    borderColorActive: colors.brandBlue,
-    borderColorHover: colors.grayChateau,
-    borderColorInactive: colors.mystic,
+    borderColorActive: colors.darkModeBlueAccent,
+    borderColorHover: colors.brandBlue,
+    borderColorInactive: colors.darkModeBorder,
 
     // text
     textColor: colors.white,
 
     // icon
-    iconColor: colors.grayChateau,
+    iconColor: colors.white,
     checkmarkColor: colors.white,
   },
   button: {
@@ -496,22 +503,22 @@ export const darkTheme: DefaultTheme = {
       },
     },
     secondary: {
-      backgroundColor: gradients.bright,
-      backgroundColorHover: gradients.brightHover,
-      backgroundColorActive: gradients.brightActive,
-      backgroundColorDisabled: colors.whiteLilac,
-      backgroundColorFlat: colors.shuttleGray,
-      backgroundColorHoverFlat: lightenDarkenColor(colors.shuttleGray, -20),
-      backgroundColorActiveFlat: lightenDarkenColor(colors.athensGray, -10),
-      backgroundColorDisabledFlat: lightenDarkenColor(colors.athensGray, -50),
-      borderColor: colors.tuna,
-      borderColorDisabled: colors.shark,
-      borderColorHover: "",
-      textColor: colors.blueHaze,
-      textColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
-      iconColor: colors.blueHaze,
-      iconColorDisabled: `rgba(${convertToRgb(colors.waterloo)}, 0.5)`,
-      loaderColor: colors.blueHaze,
+      backgroundColor: colors.darkModeBlueBg,
+      backgroundColorHover: colors.darkModeBlueBgAccent,
+      backgroundColorActive: lightenDarkenColor(colors.darkModeBlueAccent, -20),
+      backgroundColorDisabled: colors.darkModeBorder,
+      backgroundColorFlat: colors.darkModeBlueBg,
+      backgroundColorHoverFlat: colors.darkModeBlueBgAccent,
+      backgroundColorActiveFlat: lightenDarkenColor(colors.darkModeBlueAccent, -20),
+      backgroundColorDisabledFlat: colors.darkModeBorder,
+      borderColor: colors.darkModeBorder,
+      borderColorDisabled: lightenDarkenColor(colors.darkModeBorder, -20),
+      borderColorHover: colors.brandBlue,
+      textColor: colors.white,
+      textColorDisabled: `rgba(${convertToRgb(colors.white)}, 0.5)`,
+      iconColor: colors.white,
+      iconColorDisabled: `rgba(${convertToRgb(colors.white)}, 0.5)`,
+      loaderColor: colors.white,
       danger: {
         borderColor: colors.sunsetOrange,
         borderColorHover: lightenDarkenColor(colors.sunsetOrange, -10),
@@ -540,22 +547,21 @@ export const darkTheme: DefaultTheme = {
   },
 
   dropdown: {
-    backgroundColor: colors.tuna,
+    backgroundColor: colors.darkModeBlueBg,
     titleColor: colors.white,
     shadowColor: shadows.black,
-    borderColor: colors.white,
+    borderColor: colors.darkModeBorder,
     headerTextColor: colors.white,
-    headerBorderColor: colors.mako,
+    headerBorderColor: colors.darkModeBorder,
     disabledColor: colors.waterloo,
     transitionSettings: "",
   },
-
   dropdownItem: {
     textColor: colors.white,
-    textColorHover: colors.white,
-    backgroundColor: colors.tuna,
-    backgroundColorHover: lightenDarkenColor(colors.tuna, -10),
-    backgroundColorActive: lightenDarkenColor(colors.tuna, -15),
+    textColorHover: colors.brandBlue,
+    backgroundColor: colors.darkModeBlueBgAccent,
+    backgroundColorHover: lightenDarkenColor(colors.darkModeBlueBgAccent, 10),
+    backgroundColorActive: lightenDarkenColor(colors.darkModeBlueBgAccent, -15),
     iconColor: colors.white,
     iconColorHover: "",
     titleIconColor: colors.white,

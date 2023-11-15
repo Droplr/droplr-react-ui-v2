@@ -3,7 +3,6 @@ import "./button.css";
 import styled, { css, useTheme } from "styled-components";
 import Loader from "../Loader/Loader";
 import { lightTheme } from "../../themes/themes";
-import Icon from "../Icons/Icons";
 
 /**
  * @interface ButtonProps Instance of switch component item
@@ -457,6 +456,7 @@ const StyledButton = styled.button(({ theme }) => {
   
     &:hover {
       background: ${theme.button.secondary.backgroundColorHoverFlat};
+      border: 1px solid ${theme.button.secondary.borderColorHover};
     }
 
     &:active {
@@ -467,7 +467,7 @@ const StyledButton = styled.button(({ theme }) => {
     &.drui-button--disabled,
       &.drui-button--disabled:hover {
         background: ${theme.button.secondary.backgroundColorDisabledFlat};
-        border: 1px solid ${theme.button.secondary.borderColor};
+        border: 1px solid ${theme.button.secondary.borderColorDisabled};
         color: ${theme.button.secondary.textColorDisabled};
         box-shadow: none;
         cursor: not-allowed;
@@ -561,12 +561,12 @@ const StyledButton = styled.button(({ theme }) => {
         }
       }
   
-      &&.drui-button--danger&.drui-button--disabled {
+      &&.drui-button--danger &.drui-button--disabled {
         color: ${theme.button.secondary.danger.textColorDisabled};
         border-color: ${theme.button.secondary.danger.borderColorDisabled};
       }
   
-      &&.drui-button--danger&.drui-button--loading {
+      &&.drui-button--danger &.drui-button--loading {
         background: none;
   
         .drui-loader {
@@ -577,7 +577,7 @@ const StyledButton = styled.button(({ theme }) => {
           z-index: -1;
         }
       }
-    }
+    
     `;
 });
 
