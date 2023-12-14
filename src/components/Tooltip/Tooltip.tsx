@@ -69,7 +69,7 @@ const Tooltip = ({
 
   useEffect(() => {}, [position, title, content]);
 
-  const HideTooltip = (hasBeenClicked?: boolean) => {
+  const HideTooltip = (hasBeenClicked?: boolean): void => {
     /**
      * Closing on click has priority
      */
@@ -116,7 +116,10 @@ const Tooltip = ({
     }
   };
 
-  const CalculateBounds = () => {
+  /**
+   * @returns The maximum height and width properties for the tooltip bubble
+   */
+  const CalculateBounds = (): Object => {
     const bodyRef = document.getElementsByTagName("body")[0];
     const childrenRef = document.getElementsByClassName(
       "tooltip-children-wrapper"
