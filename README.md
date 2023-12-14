@@ -29,6 +29,9 @@ The up-to-date touch-up to Droplr's react UI Library.
     - [TextSwitchProps](#textSwitchProps)
     - [TextSwitchItemProps](#textSwitchItemProps)
     - [Example](#textSwitchExample)
+- [Tooltip](#tooltip)
+    - [TooltipProps](#tooltipProps)
+    - [Example](#tooltipExample)
 - [ThumbnailSwitch](#thumbnailSwitch)
     - [ThumbnailSwitchProps](#thumbnailSwitchProps)
     - [ThumbnailSwitchItemProps](#thumbnailSwitchItemProps)
@@ -382,6 +385,62 @@ const switch_items = items: [
     items={switch_items} 
     label='My Switch' 
     onChange={onChangeHandler} />
+
+```
+
+___
+
+<a name="tooltip"></a>
+### Tooltip
+
+▸ **Tooltip**(`props`): Element
+
+**`Desc`**
+
+The Tooltip component
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | TooltipProps |
+
+#### Returns
+
+Element
+
+<a name="tooltipProps"></a>
+▸ **TooltipProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `content` | any **required** | The content of the tooltip, ideally text |
+| `onTooltipShow` | Function  <br/> *optional* | The callback for when the tooltip is shown |
+| `onTooltipHide` | Function  <br/> *optional* | The callback for when the tooltip is hidden |
+| `position` | `top`, `bottom`, `left`, `right`  <br/> *optional* | The placement of the tooltip with regards to the element it is wrapping<br/> *Default*: `top`|
+| `hideDelay` | number <br/> *optional* | The delay (in ms) before hiding the tooltip <br/> *Default*: `250`|
+| `title` | string <br/> *optional* | The title text of the tooltip|
+| `closeOnClick` | boolean <br/> *optional* | Enables closing the tooltip on click, defaults to `false`|
+
+<a name="tooltipExample"></a>
+#### Example
+
+```
+// A simple tooltip
+<Tooltip content={"Hooray!"}>
+    Hover over me!
+</Tooltip>
+
+// A tooltip with a few custom properties
+<Tooltip
+    title={"Hey!"}
+    content={"I'm down here!}
+    position="bottom"
+    hideDelay={500}
+    onTooltipHide={() => console.log("Bye!")}
+    >
+    Hover over me!
+</Tooltip>
 
 ```
 

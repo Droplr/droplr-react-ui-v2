@@ -7,6 +7,7 @@ import ThumbnailSwitch from "./components/ThumbnailSwitch";
 import Icon from "./components/Icons/Icons";
 import Input from "./components/Input";
 import DroplrThemeProvider from "./themes/provider";
+import Tooltip from "./components/Tooltip";
 
 export {
   DroplrThemeProvider,
@@ -15,6 +16,7 @@ export {
   Switch,
   TextSwitch,
   ThumbnailSwitch,
+  Tooltip,
   Icon,
   Input,
 };
