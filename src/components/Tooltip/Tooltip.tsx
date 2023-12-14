@@ -13,20 +13,20 @@ import { lightTheme } from "../../themes/themes";
  * @member {boolean} closeOnClick Enables closing the tooltip on click, defaults to `false`
  */
 export interface TooltipProps {
-  // Just the children props attr
-  children: React.ReactNode;
   /**
    * @member {any} content The content within the tooltip - ideally text
    */
   content: any;
+  // Just the children props attr
+  children?: React.ReactNode;
   /**
    * @member {Function} onTooltipShow The callback triggered when the tooltip is shown
    */
-  onTooltipShow: () => void;
+  onTooltipShow?: () => void;
   /**
    * @member {Function} onTooltipHide The Callback triggered when the tooltip is hidden
    */
-  onTooltipHide: () => void;
+  onTooltipHide?: () => void;
   /**
    * @member {"top" | "bottom" | "left" | "right"} position The placement of the tooltip with regards to the item it is wrapping
    */
@@ -47,10 +47,10 @@ export interface TooltipProps {
 
 /**
  * @desc The tooltip component
- * @param {TooltipProps} TooltipProps Component props
  * Is used as a wrapper, examples can be found on the library's page
  */
 const Tooltip = ({
+  children,
   content = <div></div>,
   onTooltipHide = () => {},
   onTooltipShow = () => {},
@@ -58,7 +58,6 @@ const Tooltip = ({
   title = "",
   closeOnClick = false,
   position = "top",
-  children,
 }: React.PropsWithChildren<TooltipProps>) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const childrenRef = React.useRef(null);
