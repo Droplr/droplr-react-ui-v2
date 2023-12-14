@@ -17,6 +17,7 @@ declare module "styled-components" {
     loader: typeof loader;
     dropdown: typeof dropdown;
     dropdownItem: typeof dropdownItem;
+    tooltip: typeof tooltip;
   }
 }
 
@@ -292,6 +293,12 @@ const button = {
   },
 };
 
+const tooltip = {
+  backgroundColor: colors.white,
+  textColor: colors.shuttleGray,
+  titleColor: colors.black,
+};
+
 const dualButton = {
   primary: {
     separatorColor: colors.brand,
@@ -351,6 +358,7 @@ export const lightTheme: DefaultTheme = {
   loader,
   dropdown,
   dropdownItem,
+  tooltip,
 };
 
 export const darkTheme: DefaultTheme = {
@@ -382,6 +390,11 @@ export const darkTheme: DefaultTheme = {
     label: {
       textColor: colors.white,
     },
+  },
+  tooltip: {
+    backgroundColor: colors.darkModeBorder,
+    textColor: colors.white,
+    titleColor: colors.white,
   },
   standardSwitch: {
     // background
