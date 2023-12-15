@@ -12,7 +12,7 @@ export default {
 
 const Template: Story<TooltipProps> = (args) => (
   <Tooltip {...args}>
-    <div style={{ fontFamily: "sans-serif", fontWeight: "bolder" }}>
+    <div style={{ fontFamily: "sans-serif", fontWeight: "bolder"}}>
       Hover over me!
     </div>
   </Tooltip>
@@ -23,12 +23,12 @@ ExampleTooltip.args = {
   title: "Tooltip Title",
   content: (
     <div>
-      {/* This is a giant tooltip component This is a giant tooltip component This
+      This is a giant tooltip component This is a giant tooltip component This
       is a giant tooltip component This is a giant tooltip component This is a
       giant tooltip component This is a giant tooltip component This is a giant
       tooltip component This is a giant tooltip component This is a giant
-      tooltip component This is a giant tooltip component */}
-      This is a descriptive tooltip
+      tooltip component This is a giant tooltip component
+      {/* This is a descriptive tooltip */}
     </div>
   ),
   position: "bottom",

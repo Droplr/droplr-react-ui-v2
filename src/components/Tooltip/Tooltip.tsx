@@ -51,7 +51,7 @@ export interface TooltipProps {
  */
 const Tooltip = ({
   children,
-  content = <div></div>,
+  content,
   onTooltipHide = () => {},
   onTooltipShow = () => {},
   hideDelay = 250,
@@ -61,14 +61,25 @@ const Tooltip = ({
 }: React.PropsWithChildren<TooltipProps>) => {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const childrenRef = React.useRef(null);
-  const ShowTooltip = () => {
-    setTooltipVisible(true);
-    onTooltipShow();
-  };
+  const bubbleRef = React.useRef(null);
 
   useEffect(() => {}, [position, title, content]);
 
+  const ShowTooltip = () => {
+    setTooltipVisible(true);
+    onTooltipShow();
+    setTimeout(() => {
+      CheckIfOutOfBoundsAndCorrect();
+    }, 50);
+  };
+
   const HideTooltip = (hasBeenClicked?: boolean): void => {
+    if (document.getElementsByClassName("tooltip-bubble").length === 0) return;
+    if (
+      typeof document.getElementsByClassName("tooltip-bubble")[0].classList ===
+      "undefined"
+    )
+      return;
     /**
      * Closing on click has priority
      */
@@ -116,6 +127,95 @@ const Tooltip = ({
   };
 
   /**
+   * Check and update the absolute positioning of the tooltip bubble to properly fit into the top-most (body) container
+   * -
+   * Might not work properly with iframes, check at later time
+   * The //@ts-ignore tags are there because rollup building seems to ignore typecasts (?)
+   */
+  const CheckIfOutOfBoundsAndCorrect = (): void => {
+    /**
+     * Use recursion in case the DOM hasn't created the element yet
+     * (might be an issue in the extension use-case due to slower machines)
+     */
+    if (
+      typeof bubbleRef.current === "undefined" ||
+      document.getElementsByClassName("tooltip-bubble").length === 0
+    ) {
+      setTimeout(() => CheckIfOutOfBoundsAndCorrect, 25);
+      return;
+    }
+    const bodyRef = document.getElementsByTagName("body")[0];
+    const bubble = bubbleRef.current;
+    const bounds = bubble.getBoundingClientRect();
+    console.log(bounds);
+    /**
+     * Check if the tooltip bubble is within the bounds
+     */
+    if (
+      bounds.x > 10 &&
+      bounds.y > 10 &&
+      bounds.x < bodyRef.clientWidth &&
+      bounds.y < bodyRef.clientHeight
+    )
+      return;
+
+    /**
+     * Check for offenders and update the positioning
+     * -
+     * When out of bounds, position to the edge of the page with an added margin
+     * When the margin is too low, increase it artificially
+     */
+
+    // Left-side
+    if (bounds.x < 0) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.left = `calc(50% + ${bounds.x * -1 + 6}px)`;
+    }
+    if (bounds.x < 10) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.left = `calc(50% + ${10 - bounds.x}px)`;
+    }
+
+    // Bottom-side
+    if (bounds.y > bodyRef.clientHeight) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.top = `calc(100% + ${
+        bodyRef.clientHeight - bounds.y + 6
+      }px)`;
+    }
+    if (bodyRef.clientHeight - bounds.y < 10) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.top = `calc(100% + ${
+        bodyRef.clientHeight - bounds.y
+      }px)`;
+    }
+
+    // Top-side
+    if (bounds.y < 0) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.top = `calc(100% + ${bounds.y * -1 + 6}px)`;
+    }
+    if (bounds.y < 10) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.left = `calc(50% + ${10 - bounds.y}px)`;
+    }
+
+    // Right-side
+    if (bounds.x > bodyRef.clientWidth) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.left = `calc(50% + ${
+        bodyRef.clientWidth - bounds.x + 6
+      }px)`;
+    }
+    if (bodyRef.clientWidth - bounds.x < 10) {
+      //@ts-ignore
+      (bubble as HTMLElement).style.left = `calc(50% + ${
+        bodyRef.clientWidth - bounds.x
+      }px)`;
+    }
+  };
+
+  /**
    * @returns The maximum height and width properties for the tooltip bubble
    */
   const CalculateBounds = (): Object => {
@@ -154,7 +254,7 @@ const Tooltip = ({
     <div
       className="tooltip-wrapper"
       onMouseEnter={ShowTooltip}
-      onMouseLeave={() => HideTooltip()}
+      onMouseLeave={() => HideTooltip(false)}
       style={{ position: "relative", display: "inline-block" }}
     >
       <div className="tooltip-children-wrapper" ref={childrenRef}>
@@ -165,6 +265,7 @@ const Tooltip = ({
           className={`tooltip-bubble tooltip-position-${position}`}
           onClick={() => (closeOnClick ? HideTooltip(true) : null)}
           style={CalculateBounds()}
+          ref={bubbleRef}
         >
           {title && <div className="tooltip-title">{title}</div>}
           <div className="tooltip-content" style={CalculateBounds()}>
@@ -191,7 +292,7 @@ const StyledTooltip = styled.div(({ theme }) => {
     font-size: 14px;
     font-family: sans-serif;
     line-height: 1;
-    z-index: 100;
+    z-index: 2147483647 !important;
     width: max-content;
     box-shadow: 0px 4px 6px 4px rgba(66, 79, 104, 0.06);
     animation: fadeIn 250ms ease-in-out;
@@ -199,19 +300,6 @@ const StyledTooltip = styled.div(({ theme }) => {
 
     &.fade-out {
       animation: fadeOut 250ms ease-in-out;
-    }
-
-    // ::before draws the border triangles
-    &::before {
-      content: " ";
-      left: 50%;
-      border: solid transparent;
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-width: 6px;
-      margin-left: -5px;
     }
 
     .tooltip-title {
@@ -227,43 +315,22 @@ const StyledTooltip = styled.div(({ theme }) => {
     }
 
     &.tooltip-position-top {
-      bottom: calc(100% + 10px);
-      &::before {
-        top: 100%;
-        border-top-color: ${theme.tooltip.backgroundColor};
-      }
+      bottom: calc(100% + 6px);
     }
 
     &.tooltip-position-right {
-      left: calc(100% + 10px);
+      left: calc(100% + 6px);
       top: 50%;
       transform: translate(0, -50%);
-      &::before {
-        left: -6px;
-        top: 50%;
-        transform: translate(0, -50%);
-        border-right-color: ${theme.tooltip.backgroundColor};
-      }
     }
 
     &.tooltip-position-bottom {
-      top: calc(100% + 10px);
-      &::before {
-        bottom: 100%;
-        border-bottom-color: ${theme.tooltip.backgroundColor};
-      }
+      top: calc(100% + 6px);
     }
     &.tooltip-position-left {
       top: 50%;
       left: calc(-100% + 24px);
       transform: translate(-100%, -50%);
-      &::before {
-        left: calc(100% + 4px);
-        top: calc(50% - 3px);
-        transform: translate(-100%, -550%);
-        transform: rotate(180deg);
-        border-right-color: ${theme.tooltip.backgroundColor};
-      }
     }
 
     @keyframes fadeIn {
