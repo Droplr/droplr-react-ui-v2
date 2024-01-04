@@ -247,6 +247,7 @@ const StyledThumbnailSwitch = styled.div(({ theme }) => {
     .thumbnail-switch-label {
       display: flex;
       align-items: center;
+      justify-content: center;
       min-width: 64px;
       width: max-content;
       margin-top: 12px;
