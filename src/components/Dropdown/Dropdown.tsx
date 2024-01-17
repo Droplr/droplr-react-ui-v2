@@ -334,6 +334,7 @@ const Dropdown = ({
           name={"ChevronDown"}
           color={"rgb(94, 100, 110)"}
           size={14}
+          stroke={2}
           style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px", marginTop: "2px" }}
         />
         {isOpen ? (
