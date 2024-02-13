@@ -294,7 +294,7 @@ const Dropdown = ({
   useEffect(
     () => {
       setSelected(setDefaultIndex());
-    }, [items]
+    }, [items, defaultIndex]
   )
 
   useEffect(() => {
