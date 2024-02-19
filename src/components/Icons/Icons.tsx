@@ -149,6 +149,7 @@ export interface IconProps {
     | "Shared"
     | "Sort"
     | "Star"
+    | "Step"
     | "Success"
     | "TagFilled"
     | "Tags"
@@ -235,9 +236,7 @@ const Icon = ({
   /*
    * Some SVG paths require larger viewboxes
    */
-  viewBox = name === "Screen" ||
-  name === "Webcam" ||
-  name === "WebcamScreen"
+  viewBox = name === "Screen" || name === "Webcam" || name === "WebcamScreen"
     ? "0 0 46 46"
     : name === "NewWindowVariant" || name === "ClipboardVariant"
     ? "0 0 30 30"
@@ -249,6 +248,8 @@ const Icon = ({
     ? "0 0 14 14"
     : name === "Emoji"
     ? "0 0 20 20"
+    : name === "Step"
+    ? "0 0 27 27"
     : name === "Drag"
     ? "0 0 62 62"
     : "0 0 24 24",
@@ -319,9 +320,7 @@ const Icon = ({
             r={attributes.r}
             key={i}
             stroke={color}
-            strokeWidth={
-              stroke
-            }
+            strokeWidth={stroke}
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
             fill={filled ? color : "none"}
@@ -336,9 +335,7 @@ const Icon = ({
             d={attributes.path}
             key={i}
             stroke={color}
-            strokeWidth={
-              stroke
-            }
+            strokeWidth={stroke}
             strokeLinecap={"round"}
             strokeLinejoin={"round"}
             fill={filled ? color : "none"}
