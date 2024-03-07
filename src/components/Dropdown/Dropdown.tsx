@@ -1,8 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./dropdown.css";
-import styled, { css } from "styled-components";
 import Icon from "../Icons";
-import { lightTheme } from "../../themes/themes";
 
 /**
  * @interface DropdownProps Component props
@@ -131,7 +129,7 @@ export interface DropdownItemProps {
    * @member {string|number} [id] Custom ID for the item
    */
   id: string | number;
-  
+
   /**
    * @member {String} [className] Appends custom class names
    * @defaultValue false
@@ -198,7 +196,7 @@ const Dropdown = ({
   className = "",
   disabled = false,
   position = "bottom",
-  defaultIndex,
+  defaultIndex = 0,
   fullWidth = true,
   minWidth = "0px",
   closeOnMouseOut = false,
@@ -211,9 +209,8 @@ const Dropdown = ({
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
-
   const setDefaultIndex = (): DropdownItemProps => {
-    if(defaultIndex === null || defaultIndex === undefined) return items[0];
+    if (defaultIndex === null || defaultIndex === undefined) return items[0];
     if (typeof defaultIndex !== typeof "") {
       if (defaultIndex > items.length - 1) {
         return items[0];
@@ -225,15 +222,17 @@ const Dropdown = ({
         if (parseInt(defaultIndex.toString()) > items.length - 1) {
           return items[0];
         } else {
-          return items.find(x => x.id.toString() === defaultIndex.toString())
+          return items.find((x) => x.id.toString() === defaultIndex.toString());
         }
       } else {
-        return items.find(x => x.id === defaultIndex)
+        return items.find((x) => x.id === defaultIndex);
       }
     }
   };
 
-  const [selected, setSelected] = useState<DropdownItemProps>(setDefaultIndex());
+  const [selected, setSelected] = useState<DropdownItemProps>(
+    setDefaultIndex()
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
@@ -291,11 +290,9 @@ const Dropdown = ({
     return coords;
   };
 
-  useEffect(
-    () => {
-      setSelected(setDefaultIndex());
-    }, [items, defaultIndex]
-  )
+  useEffect(() => {
+    setSelected(setDefaultIndex());
+  }, [items, defaultIndex]);
 
   useEffect(() => {
     if (items.length > defaultIndex) {
@@ -311,7 +308,7 @@ const Dropdown = ({
 
   return (
     <>
-      <StyledDropdown
+      <div
         className={[
           "drui-dropdown-input",
           "drui-dropdown__togglerWrapper",
@@ -319,11 +316,7 @@ const Dropdown = ({
         ].join(" ")}
         ref={inputRef}
         style={
-          fullWidth
-            ? { width: "100%" }
-            : minWidth
-            ? { width: minWidth }
-            : {}
+          fullWidth ? { width: "100%" } : minWidth ? { width: minWidth } : {}
         }
         onClick={toggleDropdown}
       >
@@ -335,28 +328,38 @@ const Dropdown = ({
           color={"rgb(94, 100, 110)"}
           size={14}
           stroke={2}
-          style={{ transform: rotate, transition: "all 0.2s linear", marginLeft: "12px", marginTop: "2px" }}
+          style={{
+            transform: rotate,
+            transition: "all 0.2s linear",
+            marginLeft: "12px",
+            marginTop: "2px",
+          }}
         />
         {isOpen ? (
-          <StyledDropdownList
+          <div
             className={["drui-dropdown", className && `${className}`].join(" ")}
             onMouseLeave={handleMouseLeave}
             style={getDropdownPosition()}
             ref={dropdownRef}
           >
             <span className="drui-dropdown__arrow" style={arrowStyles} />
-            <div className="drui-dropdown__inner"
-            style={{maxHeight: `${dropdownHeight}px`}}
-            ref={(r) => {
-              if (typeof r === typeof undefined || !r) return;
-              var spaceFromBottom = window.innerHeight - r.getBoundingClientRect().top - 25;
-              setDropdownHeight(spaceFromBottom);
-            }}>
+            <div
+              className="drui-dropdown__inner"
+              style={{ maxHeight: `${dropdownHeight}px` }}
+              ref={(r) => {
+                if (typeof r === typeof undefined || !r) return;
+                var spaceFromBottom =
+                  window.innerHeight - r.getBoundingClientRect().top - 25;
+                setDropdownHeight(spaceFromBottom);
+              }}
+            >
               {label !== "" && label !== undefined ? (
-                <StyledDropdownLabel className="drui-dropdown__header">
+                <div className="drui-dropdown__header">
                   <span className="drui-dropdown__title">{label}</span>
-                </StyledDropdownLabel>
-              ) : <></>}
+                </div>
+              ) : (
+                <></>
+              )}
 
               <ul
                 className="drui-dropdown__itemsList"
@@ -384,7 +387,7 @@ const Dropdown = ({
                         className="drui-dropdown__listItemWrapper"
                         key={`drui-dropdown-item-${index}`}
                       >
-                        <StyledDropdownItem
+                        <div
                           className={[
                             "drui-dropdownItem",
                             (className && `${className}`) || "",
@@ -419,7 +422,9 @@ const Dropdown = ({
                               {/* No custom icon, menu item is active */}
                               {!item.Icon &&
                                 (item.showItemStatus || showItemStatus) &&
-                                (selected !== undefined && selected !== null && selected.id === item.id) && (
+                                selected !== undefined &&
+                                selected !== null &&
+                                selected.id === item.id && (
                                   <Icon
                                     name={"Check"}
                                     color={"rgb(94, 100, 110)"}
@@ -446,381 +451,20 @@ const Dropdown = ({
                               </span>
                             )}
                           </ActionElem>
-                        </StyledDropdownItem>
+                        </div>
                       </li>
                     );
                   })
                 }
               </ul>
             </div>
-          </StyledDropdownList>
+          </div>
         ) : (
           <></>
         )}
-      </StyledDropdown>
+      </div>
     </>
   );
 };
-
-const StyledDropdown = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    font-family: ${theme.fonts.family.primary};
-    font-size: ${theme.fonts.size.normal};
-    color: ${theme.dropdown.titleColor};
-    background: ${theme.dropdown.backgroundColor};
-    border-radius: 4px;
-    padding: 8px;
-    border: 1px solid ${theme.dropdown.borderColor};
-    display: flex;
-    justify-content: space-between;
-    box-shadow: none;
-    transition-duration: 250ms;
-    position: relative;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 2px 12px -1px ${theme.dropdown.shadowColor};
-      transition-duration: 250ms;
-    }
-
-    &.disabled {
-      cursor: not-allowed;
-      color: ${theme.dropdown.disabledColor};
-      &:hover {
-        box-shadow: none;
-      }
-    }
-    &.drui_dropdown__wrapper {
-      position: relative; // Dropdown is positioned relatively to this wrapper
-      display: inline-block;
-      width: auto;
-    }
-  `;
-});
-
-const StyledDropdownLabel = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    align-content: center;
-    padding: 8px 0;
-    margin: 0 20px 10px;
-    border-bottom: 1px solid ${theme.dropdown.headerBorderColor};
-    white-space: nowrap;
-  `;
-});
-
-const StyledDropdownList = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    display: table;
-    position: absolute;
-    z-index: 9;
-    font-family: ${theme.fonts.family.primary};
-    padding: 12px 0;
-    width: auto;
-    max-width: 320px;
-    width: max-content;
-    box-sizing: border-box;
-    border-radius: 4px;
-    background: ${theme.dropdown.backgroundColor};
-    box-shadow: 0 2px 12px -1px ${theme.dropdown.shadowColor};
-
-    .drui-dropdown--top {
-      top: auto;
-      bottom: 100%;
-      margin: {
-        top: auto;
-        bottom: 4px;
-      }
-
-      .drui-dropdown__arrow {
-        top: auto;
-        bottom: -4px;
-        transform: translate(-50%, -20%) rotate(45deg);
-        box-shadow: 2px 2px 1px -2px ${theme.dropdown.shadowColor};
-      }
-
-      &.drui-dropdown--right {
-        .drui-dropdown__arrow {
-          transform: translate(50%, -20%) rotate(45deg);
-        }
-      }
-    }
-
-    .drui-dropdown--bottom {
-      top: 100%;
-      bottom: auto;
-      margin: {
-        top: 4px;
-        bottom: auto;
-      }
-
-      &.drui-dropdown--right {
-        .drui-dropdown__arrow {
-          transform: translate(50%, 20%) rotate(45deg);
-        }
-      }
-    }
-
-    .drui-dropdown--right {
-      right: 0;
-      left: auto;
-      transform: translate(0, 0);
-    }
-
-    .drui-dropdown--left {
-      right: auto;
-      left: 0;
-      transform: translate(0, 0);
-    }
-
-    .drui-dropdown--center {
-      right: auto;
-      left: 50%;
-      transform: translate(-50%, 0);
-    }
-
-    .drui-dropdown__inner {
-      display: block;
-      position: relative;
-      z-index: 1;
-      flex-direction: column;
-      width: auto;
-      height: auto;
-      max-height: 180px;
-      overflow-y: auto;
-      padding: 0;
-    }
-
-    .drui-dropdown__arrow {
-      display: block;
-      position: absolute;
-      z-index: 0;
-      top: -4px;
-      left: 50%;
-      transform: translate(-50%, 20%) rotate(45deg);
-      width: 10px;
-      height: 10px;
-      background: ${theme.dropdown.backgroundColor};
-      box-shadow: -2px -2px 1px -2px ${theme.dropdown.shadowColor};
-    }
-
-    .drui-dropdown__title {
-      font-size: ${theme.fonts.size.small};
-      text-transform: uppercase;
-      color: ${theme.dropdown.headerTextColor};
-      font-weight: ${theme.fonts.weight.bold};
-    }
-
-    .drui-dropdown__itemsList {
-      display: flex;
-      flex-direction: column;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      overflow-y: auto;
-    }
-
-    .drui-dropdown__listItemWrapper {
-      display: flex;
-      padding: 0px;
-      margin: 0;
-    }
-  `;
-});
-
-const StyledDropdownItem = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    flex: 1 0 auto;
-    max-width: 100%;
-    min-width: 0;
-    height: 34px;
-    font-family: ${theme.fonts.family.primary};
-    box-sizing: border-box;
-    background-color: ${theme.dropdownItem.backgroundColor};
-
-    *,
-    *:before,
-    *:after {
-      box-sizing: inherit;
-      font-family: ${theme.fonts.family.primary};
-    }
-
-    &.drui-dropdownItem--withDescription {
-      height: auto;
-
-      .drui-dropdownItem__action {
-        flex-wrap: wrap;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-
-      .drui-dropdownItem__iconWrapper {
-        align-items: flex-start;
-        padding-top: 10px;
-      }
-    }
-  }
-
-  &.drui-dropdownItem.drui-dropdownItem--disabled {
-    .drui-dropdownItem__action {
-      &:hover {
-        cursor: not-allowed;
-        background-color: transparent;
-      }
-    }
-
-    .drui-dropdownItem__icon,
-    .drui-dropdownItem__title,
-    .drui-dropdownItem__titleIcon,
-    .drui-dropdownItem__description {
-      opacity: 0.6;
-      color: ${theme.dropdownItem.disabledColor};
-      fill: ${theme.dropdownItem.disabledColor};
-    }
-
-    &:hover {
-      .drui-dropdownItem__icon,
-      .drui-dropdownItem__title,
-      .drui-dropdownItem__titleIcon,
-      .drui-dropdownItem__description {
-        opacity: 0.6;
-        color: ${theme.dropdownItem.disabledColor};
-        fill: ${theme.dropdownItem.disabledColor};
-      }
-    }
-  }
-
-  &.drui-dropdownItem--showItemStatus,
-  &.drui-dropdownItem--withIcon {
-    .drui-dropdownItem__action {
-      padding: 5px 46px 5px 46px;
-    }
-  }
-
-  .drui-dropdownItem__action {
-    display: flex;
-    position: relative;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    transition: background-color ${theme.dropdown.transitionSettings};
-    text-decoration: none;
-    cursor: pointer;
-
-    &:hover {
-      background-color: ${theme.dropdownItem.backgroundColorHover};
-      cursor: pointer;
-
-      .drui-dropdownItem__title {
-        color: ${theme.dropdownItem.textColorHover};
-      }
-
-      .drui-dropdownItem__icon {
-        fill: ${theme.dropdownItem.iconColorHover};
-      }
-
-      .drui-dropdownItem__titleIcon {
-        fill: ${theme.dropdownItem.titleIconColorHover};
-
-        * {
-          fill: inherit;
-        }
-      }
-    }
-
-    &:focus {
-      outline: none;
-    }
-
-    &:active {
-      background-color: ${theme.dropdownItem.backgroundColorActive};
-    }
-  }
-
-  .drui-dropdownItem__iconWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 20px;
-    width: 20px;
-    height: 100%;
-  }
-
-  .drui-dropdownItem__icon {
-    fill: ${theme.dropdownItem.iconColor};
-    transition: fill ${theme.dropdown.transitionSettings};
-
-    * {
-      fill: inherit;
-    }
-  }
-
-  &.drui-dropdownItem__title {
-    flex: 0 1 auto;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    font-size: ${theme.fonts.size.normal};
-    font-weight: ${theme.fonts.weight.normal};
-    color: ${theme.dropdownItem.textColor};
-    transition: color ${theme.dropdown.transitionSettings};
-
-    &.drui-dropdownItem__titleIcon {
-      margin-left: 6px;
-    }
-  }
-
-  .drui-dropdownItem__titleText {
-    color: ${theme.dropdownItem.textColor};
-    display: flex; // needed to elliminate browser paddings
-    flex: 0 0 auto;
-    min-width: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 100%;
-  }
-
-  .drui-dropdownItem__titleIcon {
-    flex: 0 1 24px;
-    display: block;
-    fill: ${theme.dropdownItem.titleIconColor};
-    transition: fill 75ms linear;
-
-    * {
-      fill: inherit;
-      transition: fill 75ms linear;
-    }
-  }
-
-  .drui-dropdownItem__description {
-    flex: 0 0 100%;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: left;
-    color: ${theme.dropdownItem.description.textColor};
-  }
-`;
-});
 
 export default Dropdown;

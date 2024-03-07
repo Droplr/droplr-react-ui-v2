@@ -1,7 +1,24 @@
 .icon-gallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.drui-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin: 12px;
+
+  color: var(--color-light-gray);
+
+  .gallery-item-title {
+    margin-top: 4px;
+    font-size: var(--font-size-small);
+    color: black;
+  }
 }

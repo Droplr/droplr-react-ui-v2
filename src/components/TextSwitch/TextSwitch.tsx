@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./text-switch.css";
-import styled, { css } from "styled-components";
-import { lightTheme } from "../../themes/themes";
 
 /**
  * @interface TextSwitchProps Component props
@@ -31,7 +29,7 @@ export interface TextSwitchProps {
   /**
    * @member {String} label - Text switch label
    */
-  label: string;
+  label?: string;
 
   /**
    * @member {boolean} disabled - Disabled and uninteractive
@@ -93,9 +91,9 @@ const TextSwitch = ({
   disabled = false,
   items = [],
   label = "",
-  defaultIndex,
-  activeColor,
-  fontColor,
+  defaultIndex = 0,
+  activeColor = "",
+  fontColor = "",
   onChange,
 }: TextSwitchProps) => {
 
@@ -125,9 +123,9 @@ const TextSwitch = ({
 
   return (
     <>
-      {label && <StyledTextSwitchLabel>{label}</StyledTextSwitchLabel>}
-      <StyledTextSwitch
-        className={[disabled && "text-switch--disabled"].join(" ")}
+      {label && <div className="drui-text-switch__label">{label}</div>}
+      <div
+        className={[disabled && "text-switch--disabled", "drui-text-switch"].join(" ")}
       >
         {items.map((item, i) => {
           return (
@@ -149,76 +147,8 @@ const TextSwitch = ({
             </div>
           );
         })}
-      </StyledTextSwitch>
+      </div>
     </>
   );
 };
-
-const StyledTextSwitchLabel = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    color: ${theme.textSwitch.textColorLabel};
-    font-family: ${theme.fonts.family.primary};
-    font-size: ${theme.fonts.size.normal};
-    font-weight: ${theme.fonts.weight.bold};
-    padding-bottom: 8px;
-  `;
-});
-
-const StyledTextSwitch = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    padding: 4px;
-    border: 1px solid ${theme.textSwitch.borderColor};
-    border-radius: 3px;
-    width: max-content;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    .text-switch-item {
-      width: max-content;
-      background-color: transparent;
-      color: ${theme.textSwitch.textColorDisabled};
-      font-family: ${theme.fonts.family.primary};
-      font-size: ${theme.fonts.size.normal};
-      font-weight: ${theme.fonts.weight.bold};
-      text-align: center;
-      text-shadow: none;
-      padding: 6px 12px 6px 12px;
-      border-radius: 3px;
-      transition: all 250ms ease-in-out;
-
-      path {
-        fill: ${theme.textSwitch.iconColorDisabled};
-      }
-    }
-    label {
-      display: flex;
-      align-items: center;
-    }
-    label:hover {
-      cursor: pointer;
-    }
-
-    .drui-button__icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-    }
-
-    .active {
-      background-color: ${theme.textSwitch.backgroundColor};
-      color: ${theme.textSwitch.textColorActive};
-
-      path {
-        fill: ${theme.textSwitch.iconColorActive};
-      }
-    }
-  `;
-});
-
 export default TextSwitch;

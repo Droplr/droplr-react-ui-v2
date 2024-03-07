@@ -1,6 +1,6 @@
 {
 	"name": "droplr-react-ui-v2",
-	"version": "0.5.5",
+	"version": "0.6.0",
 	"author": "Droplr Inc.",
 	"private": false,
 	"contributors": [
@@ -36,7 +36,6 @@
 		"@storybook/react": "^6.5.12",
 		"@storybook/testing-library": "0.0.13",
 		"@types/react": "^18.0.21",
-		"@types/styled-components": "^5.1.26",
 		"babel-loader": "^8.2.5",
 		"postcss": "^8.4.18",
 		"react": "^18.2.0",
@@ -55,7 +54,6 @@
 	},
 	"peerDependencies": {
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"styled-components": "^5.3.6"
+		"react-dom": "^18.2.0"
 	}
 }

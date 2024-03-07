@@ -1,7 +1,4 @@
-import { ThemeProvider } from "styled-components";
 import { DecoratorFn } from "@storybook/react";
-import { darkTheme, lightTheme } from "../src/themes/themes";
-import styled, { css } from "styled-components";
 import React from "react";
 
 export const parameters = {
@@ -14,26 +11,15 @@ export const parameters = {
     },
   },
 };
-const ThemeBlock = styled.div<{ left?: boolean; fill?: boolean }>(
-  ({ theme }) =>
-    css`
-      background: ${theme.name === "dark"
-        ? theme.colors.darkModeBlueBg
-        : theme.colors.white};
-      border-radius: 5px;
-      padding: 24px;
-    `
-);
 
 const withTheme: DecoratorFn = (StoryFn, context) => {
   const theme = context.parameters.theme || context.globals.theme;
-  const storyTheme = theme === "dark" ? darkTheme : lightTheme;
   return (
-    <ThemeProvider theme={storyTheme}>
-      <ThemeBlock fill>
+    <>
+      <div className={`theme-${theme}`} style={{backgroundColor: theme === "dark" ? "#101d38" : "#FFF", padding: '32px'}}>
         <StoryFn />
-      </ThemeBlock>
-    </ThemeProvider>
+      </div>
+    </>
   );
 };
 
