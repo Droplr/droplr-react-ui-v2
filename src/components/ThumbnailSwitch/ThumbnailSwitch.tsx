@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "./thumbnail-switch.css";
 import Icon from "../Icons";
 

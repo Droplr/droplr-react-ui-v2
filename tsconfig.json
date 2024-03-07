@@ -12,6 +12,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "react": ["./node_modules/@types/react"]
+    },
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,

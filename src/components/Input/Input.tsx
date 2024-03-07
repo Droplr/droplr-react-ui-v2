@@ -34,6 +34,11 @@ export interface InputProps {
   type?: "text" | "password" | "number";
 
   /**
+   * @member {string} [name]  The name attribute for the input field
+   */
+  name? :string;
+
+  /**
    * @member {string} [className]  Append a custom class to the component
    */
   className?: string;
@@ -91,22 +96,22 @@ export interface InputProps {
   /**
    * @member {function} [onBlur]  Event handler for the 'onBlur' event
    */
-  onBlur?: () => void;
+  onBlur?: (e) => void;
 
   /**
    * @member {function} [onFocus]  Event handler for the 'onFocus' event
    */
-  onFocus?: () => void;
+  onFocus?: (e) => void;
 
   /**
    * @member {function} [onKeyPress]  Event handler for the 'onKeyPress' event
    */
-  onKeyPress?: () => void;
+  onKeyPress?: (e) => void;
 
   /**
    * @member {function} [onChange]  Event handler for the 'onChange' event
    */
-  onChange?: () => void;
+  onChange?: (e) => void;
 }
 
 /**
@@ -120,6 +125,7 @@ const Input = ({
   className = "",
   label = "",
   sublabel = "",
+  name="input-filed",
   disabled = false,
   placeholder = "",
   info = "",
@@ -128,10 +134,10 @@ const Input = ({
   readOnly = false,
   passwordVisible = false,
   useHidePasswordIcon = false,
-  onBlur = () => {},
-  onChange = () => {},
-  onFocus = () => {},
-  onKeyPress = () => {},
+  onBlur = (e) => {},
+  onChange = (e) => {},
+  onFocus = (e) => {},
+  onKeyPress = (e) => {},
 }: InputProps) => {
   const [isPasswordVisible, setIsPasswordVisible] =
     useState<boolean>(passwordVisible);
@@ -162,6 +168,7 @@ const Input = ({
             autoFocus={autoFocus}
             readOnly={readOnly}
             disabled={disabled}
+            name={name}
             onBlur={onBlur}
             onFocus={onFocus}
             onKeyPress={onKeyPress}
