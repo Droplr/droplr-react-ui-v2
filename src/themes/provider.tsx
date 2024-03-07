@@ -7,6 +7,10 @@ const DroplrThemeProvider = ({ theme, children }) => {
         "drui-theme-wrapper",
         theme === "light" ? "theme-light" : "theme-dark",
       ].join(" ")}
+      style={{
+        height: "100%",
+        width: "100%",
+      }}
     >
       {children}
     </div>
