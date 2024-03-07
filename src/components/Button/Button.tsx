@@ -82,7 +82,7 @@ const Button = ({
   loading = false,
   size = "medium",
   variant = "primary",
-  icon = null,
+  icon = "None" as any,
   onClick = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {},
   label = "",
   flat = false,
@@ -107,7 +107,7 @@ const Button = ({
     >
       <div className="drui-button__content">
         <>
-          {icon && (
+          {icon !== ("None" as any) && (
             <span className={label !== "" ? "drui-button__icon" : ""}>
               {icon}
             </span>

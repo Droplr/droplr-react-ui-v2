@@ -8,18 +8,23 @@
   --color-primary--active: #1f4aa8;
   --color-secondary: #e0e9fd;
   --color-secondary--hover: #d3e0f9;
+  --color-secondary--active: #c6d1f5;
   --color-secondary--disabled: #e0e9fd52;
   --color-success: #4fbf18;
   --color-success--hover: #3fae0f;
+  --color-success--active: #2f9d06;
   --color-success--disabled: #50bf1852;
   --color-info: #fff;
   --color-info--hover: #f3f4f6;
+  --color-info--active: #e8e9ec;
   --color-info--disabled: #ffffff52;
   --color-danger: #e23218;
-  --color-danger--hover: #d22e14;
+  --color-danger--hover: #b22a10;
+  --color-danger--active: #d22e14;
   --color-danger--disabled: #e233184e;
   --color-warning: #ffad0c;
   --color-warning--hover: #e89e0c;
+  --color-warning--active: #cc8c0d;
   --color-warning--disabled: #ffad0c52;
   /**
     * Dark Theme Colors

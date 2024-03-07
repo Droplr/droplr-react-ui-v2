@@ -196,7 +196,7 @@ const Dropdown = ({
   className = "",
   disabled = false,
   position = "bottom",
-  defaultIndex,
+  defaultIndex = 0,
   fullWidth = true,
   minWidth = "0px",
   closeOnMouseOut = false,

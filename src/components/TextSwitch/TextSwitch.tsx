@@ -29,7 +29,7 @@ export interface TextSwitchProps {
   /**
    * @member {String} label - Text switch label
    */
-  label: string;
+  label?: string;
 
   /**
    * @member {boolean} disabled - Disabled and uninteractive
@@ -91,9 +91,9 @@ const TextSwitch = ({
   disabled = false,
   items = [],
   label = "",
-  defaultIndex,
-  activeColor,
-  fontColor,
+  defaultIndex = 0,
+  activeColor = "",
+  fontColor = "",
   onChange,
 }: TextSwitchProps) => {
 

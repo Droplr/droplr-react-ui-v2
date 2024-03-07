@@ -14,7 +14,7 @@ export interface SwitchProps {
   /**
    * @member {boolean} checked - Toggle the switch component
    */
-  checked: boolean;
+  checked?: boolean;
   /**
    * @member {boolean} disabled - Disabled and uninteractive
    */
@@ -35,7 +35,7 @@ export interface SwitchProps {
   /**
    * @member {Function} onChange - Click event handler, calls handler with switch state as the parameter
    */
-  onChange: (arg: any) => void;
+  onChange?: (arg: any) => void;
 }
 
 
@@ -44,12 +44,11 @@ export interface SwitchProps {
  * @param {SwitchProps} SwitchProps Component props
  */
 const Switch = ({
-  checked,
-  disabled,
-  className,
-  //   variant,
-  label,
-  labelPosition,
+  checked = false,
+  disabled = false,
+  className = "",
+  label = "",
+  labelPosition = "top",
   onChange,
 }: SwitchProps) => {
   return (

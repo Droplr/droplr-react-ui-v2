@@ -125,7 +125,7 @@ const ThumbnailSwitch = ({
   showCheckmark = true,
   fontColor = "",
   withAnimation = true,
-  defaultIndex,
+  defaultIndex = 0,
   onChange,
 }: ThumbnailSwitchProps) => {
   const [selected, setSelected] = useState(null);

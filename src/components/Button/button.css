@@ -109,9 +109,11 @@
 .drui-button--success {
   background: var(--color-success);
 
-  &:hover,
-  &:active {
+  &:hover {
     background: var(--color-success--hover);
+  }
+  &:active {
+    background: var(--color-success--active);
   }
 
   &.drui-button--disabled {
@@ -131,7 +133,9 @@
 .drui-button--danger {
   background: var(--color-danger);
 
-  &:hover,
+  &:hover {
+    background: var(--color-danger--active);
+  }
   &:active {
     background: var(--color-danger--hover);
   }
@@ -154,7 +158,9 @@
   background: var(--color-info);
   color: var(--color-dark-gray);
 
-  &:hover,
+  &:hover {
+    background: var(--color-info--active);
+  }
   &:active {
     background: var(--color-info--hover);
   }
@@ -176,9 +182,11 @@
 .drui-button--warning {
   background: var(--color-warning);
 
-  &:hover,
-  &:active {
+  &:hover{
     background: var(--color-warning--hover);
+  }
+  &:active {
+    background: var(--color-warning--active);
   }
 
   &.drui-button--disabled {
@@ -216,7 +224,7 @@
 
 .drui-button--secondary {
   &:active {
-    background: var(--color-secondary--hover);
+    background: var(--color-secondary--active);
   }
 
   &.drui-button__icon path,

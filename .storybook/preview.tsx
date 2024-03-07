@@ -16,7 +16,7 @@ const withTheme: DecoratorFn = (StoryFn, context) => {
   const theme = context.parameters.theme || context.globals.theme;
   return (
     <>
-      <div className={`theme-${theme}`} style={{backgroundColor: theme === "dark" ? "var(--color-black)" : "#FFF", padding: '32px'}}>
+      <div className={`theme-${theme}`} style={{backgroundColor: theme === "dark" ? "#101d38" : "#FFF", padding: '32px'}}>
         <StoryFn />
       </div>
     </>
