@@ -38,7 +38,7 @@ const config =
       extensions: [".css"],
     }),
   ],
-  external: ["react", "react-dom", "styled-components"]
+  external: ["react", "react-dom"]
 };
 
 export default config;

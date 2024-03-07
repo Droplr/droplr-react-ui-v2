@@ -1,5 +1,4 @@
 import React from "react";
-import { CSSProperties } from "styled-components";
 import * as icons from "./IconList/IconList";
 
 /**
@@ -17,46 +16,107 @@ export interface IconProps {
    * @member {String} name The Icon name
    */
   name:
+    | "Blur"
+    | "Checkmark"
     | "ClipboardVariant"
+    | "DragHand"
+    | "Drag"
+    | "Edit2"
+    | "Embed"
     | "Emoji"
+    | "FolderSearch"
+    | "FolderMove"
+    | "Folders"
+    | "FullScreenTab"
+    | "FullDesktopScreen"
+    | "Group"
+    | "Info"
     | "LineArrow"
     | "LineStroke"
+    | "Merge"
+    | "NewWindowTabExternal"
     | "NewWindowVariant"
+    | "Notes"
+    | "Pause"
+    | "PhotoCopyClipboard"
+    | "RateStarFull"
+    | "RateStar"
+    | "RemoveMulti"
+    | "Remove"
     | "Screen"
+    | "Search"
+    | "SelfDestructTimer2"
+    | "SelfDestructTimer"
+    | "SendShare"
+    | "Settings"
+    | "ShareMemberAdd"
+    | "StackLayers"
+    | "TagOff"
+    | "Tag"
+    | "Tags"
+    | "TextEditor"
+    | "User"
+    | "UsersShared"
+    | "Users"
+    | "WholePage"
+    | "Window"
     | "Add"
+    | "AddOn"
     | "AddPeople"
     | "AddToBoard"
+    | "AdjustModify"
     | "Alert"
     | "AlignCenter"
     | "AlignLeft"
     | "AlignRight"
     | "AllItems"
+    | "ArrowBold"
+    | "ArrowLeftNarrow"
+    | "ArrowRightNarrow"
     | "Audio"
     | "Back"
     | "Bell"
+    | "Billing"
+    | "BillingInvoice"
     | "Binoculars"
     | "Board"
+    | "BoardShared"
+    | "BoardSingle"
     | "Bold"
     | "Browser"
     | "BrowserTab"
     | "CalendarTime"
     | "Calendar"
+    | "CamOnly"
+    | "CamOnlyOff"
     | "Camera"
     | "Cancel"
-    | "CheckCircle"
+    | "ChartAnalytics"
     | "Check"
+    | "CheckCircle"
+    | "CheckboxOff"
+    | "CheckboxOn"
+    | "CheckboxOnFilled"
     | "ChevronDown"
-    | "ChevronRight"
     | "ChevronLeft"
+    | "ChevronRight"
     | "Chrome"
     | "Clipboard"
     | "Close"
+    | "CloudDownload"
     | "CloudUpload"
+    | "CloudUploadOld"
     | "Code"
     | "CodeBlock"
+    | "CollapseSidebar"
     | "Comment"
     | "Copy"
+    | "CopyDuplicate"
+    | "CopyDuplicateAdd"
+    | "CopyDuplicateMulti"
+    | "CopyDuplicateVariant"
     | "CreateBoard"
+    | "CreditCard"
     | "Crop"
     | "Cross"
     | "CrossBold"
@@ -70,16 +130,19 @@ export interface IconProps {
     | "Dots"
     | "Down"
     | "Download"
-    | "Drag"
     | "Draw"
     | "DropdownDown"
+    | "DropdownLeft"
+    | "DropdownRight"
     | "DropdownUp"
     | "Edit"
     | "Elements"
     | "Enable"
     | "EntirePage"
     | "Error"
+    | "ExpandSidebar"
     | "ExpireTime"
+    | "Export"
     | "EyeOff"
     | "Eye"
     | "Face"
@@ -90,28 +153,35 @@ export interface IconProps {
     | "FullScreen"
     | "FullDesktop"
     | "Gear"
+    | "Gif"
+    | "HdVideo"
     | "HeadlineFirst"
     | "HeadlineSecond"
     | "Heart"
     | "Hyperlink"
     | "Image"
-    | "Info"
     | "Italic"
     | "Key"
+    | "KeyboardShortcuts"
     | "LayoutGrid"
     | "LayoutList"
+    | "Leave"
     | "Link"
+    | "LockOpenUnlock"
     | "LockOpen"
     | "Lock"
     | "Logout"
     | "Mail"
     | "Markdown"
+    | "MicrophoneOff"
+    | "Microphone"
     | "Money"
+    | "MoreHorizontal"
+    | "MoreVertical"
     | "More"
     | "Move"
     | "NewWindow"
     | "Nib"
-    | "Notes"
     | "NotesBold"
     | "Notification"
     | "OrderArrow"
@@ -120,11 +190,11 @@ export interface IconProps {
     | "PadlockLock"
     | "PadlockUnlock"
     | "Paragraph"
-    | "Pause"
     | "Pen"
     | "Phone"
     | "Photo"
     | "PhotoCamera"
+    | "PlayFilled"
     | "Play"
     | "Plugin"
     | "PlusToBoard"
@@ -137,25 +207,30 @@ export interface IconProps {
     | "Redo"
     | "Refresh"
     | "RemoveTag"
+    | "Restore"
     | "Resume"
     | "Save"
+    | "ScreenOnly"
     | "Screenrecording"
-    | "Search"
     | "SearchBold"
     | "SelectedArea"
     | "Send"
     | "Separator"
     | "Share"
     | "Shared"
+    | "SortAsc"
+    | "SortBy"
+    | "SortDesc"
     | "Sort"
     | "Star"
     | "Step"
     | "Success"
     | "TagFilled"
-    | "Tags"
     | "Task"
     | "Team"
     | "Terminal"
+    | "TimerCountdown"
+    | "ToolCustomize"
     | "TrashBin"
     | "Twitter"
     | "Typography"
@@ -178,7 +253,7 @@ export interface IconProps {
     | "WebcamScreenAlt"
     | "WebcamScreen"
     | "Webcam"
-    | "Window"
+    | "XClear"
     | "Zip"
     | "ZoomIn"
     | "ZoomOut"
@@ -190,7 +265,7 @@ export interface IconProps {
   /**
    * @member {CSSProperties} [style] Appends custom styles
    */
-  style?: CSSProperties;
+  style?: any;
   /**
    * @member {String} [viewBox] SVG ViewBox parameter
    */
@@ -228,9 +303,121 @@ const IconRefs: Array<iconMap> = Object.keys(icons).map((key) => {
   return { k: key, v: icons[key as keyof typeof icons] };
 });
 
+const FilledIcons = [
+  "CheckboxOnFilled",
+  "Browser",
+  "Checkmark",
+  "Drag",
+  "Pause",
+  "RateStarFull",
+  "SendShare",
+  "AlignCenter",
+  "AlignLeft",
+  "AlignRight",
+  "AllItems",
+  "Bell",
+  "Binoculars",
+  "Board",
+  "BrowserTab",
+  "Cancel",
+  "ChevronLeft",
+  "Chrome",
+  "Code",
+  "CodeBlock",
+  "Comment", 
+  "Cross",
+  "CrossBold",
+  "Dashboard",
+  "Destruct",
+  "DetachBoard",
+  "Disable",
+  "Dots",
+  "Down",
+  "DropdownDown",
+  "DropdownLeft",
+  "DropdownRight",
+  "DropdownUp",
+  "Elements",
+  "Enable",
+  "EntirePage",
+  "Error",
+  "ExpireTime",
+  "Face",
+  "Facebook",
+  "FullDesktop",
+  "Gear",
+  "HeadlineFirst",
+  "HeadlineSecond",
+  "Heart",
+  "Image",
+  "Italic",
+  "LayoutGrid",
+  "LayoutList",
+  "Logout",
+  "Mail",
+  "Money",
+  "MoreHorizontal",
+  "MoreVertical",
+  "Move",
+  "More",
+  "Nib",
+  "NotesBold",
+  "CreateBoard",
+  "NewWindow",
+  "Notification",
+  "OrderArrow",
+  "OrderedList",
+  "Others",
+  "PadlockLock",
+  "PadlockUnlock",
+  "Paragraph",
+  "Pen",
+  "PhotoCamera",
+  "PlayFilled",
+  "Plugin",
+  "PlusToBoard",
+  "Private",
+  "Profile",
+  "Public",
+  "QuestionMark",
+  "Quote",
+  "RemoveTag",
+  "Resume",
+  "SearchBold",
+  "SelectedArea",
+  "Send",
+  "Separator",
+  "Shared",
+  "Sort",
+  "Success",
+  "TagFilled",
+  "Task",
+  "Team",
+  "ToolCustomize",
+  "TrashBin",
+  "Twitter",
+  "Typography",
+  "Underline",
+  "UnorderedList",
+  "Up",
+  "UploadFile",
+  "Url",
+  "VerticalDots",
+  "VideoCamPlus",
+  "Wallet",
+  "Warning",
+  "WatchFolder",
+  "XClear",
+  "ZoomIn",
+  "ZoomOut",
+  "ZoomReset",
+  "AddToBoard",
+  "AddPeople",
+  "Documents"
+]
 const Icon = ({
   name = "Alert",
-  stroke = 0.1,
+  stroke = FilledIcons.includes(name) ? 0 : 1.5,
   className = "",
   style = {},
   /*
@@ -247,14 +434,12 @@ const Icon = ({
     : name === "LineArrow"
     ? "0 0 14 14"
     : name === "Emoji"
-    ? "0 0 20 20"
+    ? "0 0 24 24"
     : name === "Step"
     ? "0 0 27 27"
-    : name === "Drag"
-    ? "0 0 62 62"
     : "0 0 24 24",
   color = "gray",
-  filled = false,
+  filled = FilledIcons.includes(name) ? true : false,
   size = 14,
   onClick = (arg) => {},
 }: IconProps) => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
-import { lightTheme } from "../../themes/themes";
+import "./tooltip.css";
 
 /**
  * @interface TooltipProps Component Props
@@ -261,8 +260,8 @@ const Tooltip = ({
         {children}
       </div>
       {tooltipVisible && (
-        <StyledTooltip
-          className={`tooltip-bubble tooltip-position-${position}`}
+        <div
+          className={`drui-tooltip tooltip-bubble tooltip-position-${position}`}
           onClick={() => (closeOnClick ? HideTooltip(true) : null)}
           style={CalculateBounds()}
           ref={bubbleRef}
@@ -271,85 +270,10 @@ const Tooltip = ({
           <div className="tooltip-content" style={CalculateBounds()}>
             {content}
           </div>
-        </StyledTooltip>
+        </div>
       )}
     </div>
   );
 };
 
-const StyledTooltip = styled.div(({ theme }) => {
-  if (!theme.fonts) {
-    theme = lightTheme;
-  }
-  return css`
-    position: absolute;
-    border-radius: 4px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 6px;
-    color: ${theme.tooltip.textColor};
-    background: ${theme.tooltip.backgroundColor};
-    font-size: 14px;
-    font-family: sans-serif;
-    line-height: 1;
-    z-index: 2147483647 !important;
-    width: max-content;
-    box-shadow: 0px 4px 6px 4px rgba(66, 79, 104, 0.06);
-    animation: fadeIn 250ms ease-in-out;
-    user-select: none;
-
-    &.fade-out {
-      animation: fadeOut 250ms ease-in-out;
-    }
-
-    .tooltip-title {
-      font-size: 14px;
-      font-weight: bold;
-      width: 100%;
-      padding: 4px;
-    }
-
-    .tooltip-content {
-      font-size: 12px;
-      padding: 4px;
-    }
-
-    &.tooltip-position-top {
-      bottom: calc(100% + 6px);
-    }
-
-    &.tooltip-position-right {
-      left: calc(100% + 6px);
-      top: 50%;
-      transform: translate(0, -50%);
-    }
-
-    &.tooltip-position-bottom {
-      top: calc(100% + 6px);
-    }
-    &.tooltip-position-left {
-      top: 50%;
-      left: calc(-100% + 24px);
-      transform: translate(-100%, -50%);
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeOut {
-      0% {
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-  `;
-});
 export default Tooltip;

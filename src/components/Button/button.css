@@ -1,0 +1,254 @@
+.drui-button {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  height: 40px;
+  min-width: 64px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  outline: none;
+  transition-duration: 250ms;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-primary);
+  user-select: none;
+  cursor: pointer;
+
+  * {
+    box-sizing: inherit;
+
+    &::before,
+    &::after {
+      box-sizing: inherit;
+    }
+  }
+
+  &:hover {
+    background: var(--color-primary--hover);
+    cursor: pointer;
+    transition-duration: 250ms;
+  }
+
+  &:active {
+    background: var(--color-primary--active);
+    transition-duration: 250ms;
+  }
+}
+
+.drui-button__icon {
+  margin-right: 12px;
+}
+
+.drui-button__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.drui-button__dropdownIcon {
+  width: 24px;
+  height: 24px;
+
+  path {
+    fill: var(--color-white);
+  }
+}
+
+.drui-button--withText {
+  &.drui-button__dropdownIcon {
+    margin-left: 8px;
+  }
+
+  padding: 0 16px;
+}
+
+.drui-button--withIcon {
+  padding: 0 16px;
+}
+
+.drui-button--maxWidth {
+  width: 100%;
+}
+
+.drui-button--disabled {
+  background: var(--color-primary--disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+  border: none;
+
+  &:hover {
+    background: var(--color-primary--disabled);
+    box-shadow: none;
+    cursor: not-allowed;
+    border: none;
+  }
+}
+
+.drui-button--loading {
+  background: var(--color-primary--hover);
+
+  &:hover {
+    background: var(--color-primary--hover);
+  }
+
+  .drui-button__content,
+  &:hover .drui-button__content {
+    z-index: -1;
+  }
+}
+
+.drui-button--success {
+  background: var(--color-success);
+
+  &:hover,
+  &:active {
+    background: var(--color-success--hover);
+  }
+
+  &.drui-button--disabled {
+    background: var(--color-success--disabled);
+    color: var(--color-white);
+  }
+
+  &.drui-button--loading {
+    background: var(--color-white);
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+}
+
+.drui-button--danger {
+  background: var(--color-danger);
+
+  &:hover,
+  &:active {
+    background: var(--color-danger--hover);
+  }
+
+  &.drui-button--disabled {
+    background: var(--color-danger--disabled);
+    color: var(--color-white);
+  }
+
+  &.drui-button--loading {
+    background: var(--color-white);
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+}
+
+.drui-button--info {
+  background: var(--color-info);
+  color: var(--color-dark-gray);
+
+  &:hover,
+  &:active {
+    background: var(--color-info--hover);
+  }
+
+  &.drui-button--disabled {
+    background: var(--color-info--disabled);
+    color: var(--color-pale-gray);
+  }
+
+  &.drui-button--loading {
+    background: var(--color-light-gray);
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+}
+
+.drui-button--warning {
+  background: var(--color-warning);
+
+  &:hover,
+  &:active {
+    background: var(--color-warning--hover);
+  }
+
+  &.drui-button--disabled {
+    background: var(--color-warning--disabled);
+    color: var(--color-white);
+  }
+
+  &.drui-button--loading {
+    background: var(--color-white);
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+}
+
+.drui-button--secondary {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+.theme-dark .drui-button--secondary {
+  background: var(--color-secondary--dark-mode);
+  color: var(--color-white);
+}
+
+.drui-button--secondary:hover {
+  background: var(--color-secondary--hover);
+}
+
+.theme-dark .drui-button--secondary:hover {
+  background: var(--color-secondary--hover--dark-mode);
+}
+
+.drui-button--secondary {
+  &:active {
+    background: var(--color-secondary--hover);
+  }
+
+  &.drui-button__icon path,
+  &.drui-button__dropdownIcon path {
+    fill: var(--color-primary);
+  }
+
+  &.drui-button--secondary.drui-button--disabled {
+    background: var(--color-secondary--disabled);
+    color: var(--color-primary--disabled);
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &:hover {
+      background: var(--color-secondary--disabled);
+      color: var(--color-primary--disabled);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.theme-dark
+  .drui-button--secondary.drui-button--secondary.drui-button--disabled {
+  background: var(--color-secondary--disabled--dark-mode);
+  color: var(--color-white);
+}
+
+.drui-button--secondary.drui-button--secondary.drui-button--loading {
+  background: var(--color-primary);
+
+  &:hover {
+    background: var(--color-primary);
+  }
+}
