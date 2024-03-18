@@ -343,7 +343,7 @@ const Dropdown = ({
           "drui-dropdown-input",
           "drui-dropdown__togglerWrapper",
           disabled && "disabled",
-          parent && "dropdown-anchored",
+          isAnchored && "dropdown-anchored",
         ].join(" ")}
         ref={inputRef}
         style={

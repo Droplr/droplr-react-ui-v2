@@ -61,7 +61,6 @@
   font-family: var(--font-family-primary);
   font-size: var(--font-size-normal);
   color: var(--color-black);
-  background: var(--color-white);
   border-radius: 4px;
   padding: 8px;
   border: 1px solid var(--color-pale-gray);
@@ -70,7 +69,9 @@
   box-shadow: none;
   transition-duration: 250ms;
   position: relative;
-
+  &:not(.dropdown-anchored) {
+    background-color: var(--color-white);
+  }
   &.dropdown-anchored {
     border: none !important;
     background-color: none !important;
@@ -81,6 +82,7 @@
     color: inherit !important;
     &:hover {
       box-shadow: none !important;
+      background-color: none !important;
     }
   }
   &:hover {
