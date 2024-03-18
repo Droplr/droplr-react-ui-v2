@@ -8,6 +8,7 @@ import Icon from "./components/Icons/Icons";
 import Input from "./components/Input";
 import DroplrThemeProvider from "./themes/provider";
 import Tooltip from "./components/Tooltip";
+import Checkbox from "./components/Checkbox";
 
 export {
   DroplrThemeProvider,
@@ -19,4 +20,5 @@ export {
   Tooltip,
   Icon,
   Input,
+  Checkbox
 };
