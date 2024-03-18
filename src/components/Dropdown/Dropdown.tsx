@@ -8,6 +8,7 @@ import Icon from "../Icons";
  * @member {Array<DropdownItem} items Dropdown list items
  * @member {number} [defaultIndex] Index of the default selected item in the items array
  * @member {boolean} [fullWidth] Sets the dropdown input field to it's containers full width
+ * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {number} [minWidth] The miniumum width for the input field of the component (in pixels)
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
@@ -78,6 +79,14 @@ export interface DropdownProps {
    * @defaultValue false
    */
   disabled?: true | false;
+
+
+  /**
+   * @member {any} [parentElement] The parent element of the dropdown component
+   * Overrides the default input field, completely replacing it as the trigger
+   * @defaultValue null
+   */
+  parentElement?: any;
 
   /**
    * @member {boolean} closeOnItemClick Close list on item click
@@ -206,6 +215,7 @@ const Dropdown = ({
   closeOnItemClick = true,
   closeOnClick = false,
   arrowStyles = null,
+  parentElement = null,
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
@@ -234,6 +244,7 @@ const Dropdown = ({
     setDefaultIndex()
   );
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnchored, setIsAnchored] = useState(false);
   const [inputElementSize, setInputElementSize] = useState({
     height: 24,
     width: 0,
@@ -242,7 +253,6 @@ const Dropdown = ({
   const [dropdownHeight, setDropdownHeight] = useState(120);
 
   const inputRef = useRef<HTMLDivElement | null>(null);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
   const rotate = rotateChevron ? "rotate(180deg)" : "rotate(0)";
 
   const toggleDropdown = () => {
@@ -295,6 +305,26 @@ const Dropdown = ({
   }, [items, defaultIndex]);
 
   useEffect(() => {
+    if (
+      parentElement != null &&
+      typeof parentElement !== "undefined" &&
+      !isAnchored
+    ) {
+      setIsAnchored(true);
+    }
+    if (isAnchored) {
+      const parentRef = document.getElementsByClassName(
+        "drui-dropdown__togglerWrapper"
+      );
+      if (parentRef.length < 1) return;
+      setInputElementSize({
+        height: parentRef[0].clientHeight,
+        width: parentRef[0].clientWidth,
+      });
+    }
+  }, [parentElement, isAnchored]);
+
+  useEffect(() => {
     if (items.length > defaultIndex) {
       setSelected(setDefaultIndex());
     }
@@ -313,6 +343,7 @@ const Dropdown = ({
           "drui-dropdown-input",
           "drui-dropdown__togglerWrapper",
           disabled && "disabled",
+          parent && "dropdown-anchored",
         ].join(" ")}
         ref={inputRef}
         style={
@@ -320,27 +351,34 @@ const Dropdown = ({
         }
         onClick={toggleDropdown}
       >
-        <span className="drui-dropdown-input-label">
-          {selected !== null && selected !== undefined ? selected.title : ""}
-        </span>
-        <Icon
-          name={"ChevronDown"}
-          color={"rgb(94, 100, 110)"}
-          size={14}
-          stroke={2}
-          style={{
-            transform: rotate,
-            transition: "all 0.2s linear",
-            marginLeft: "12px",
-            marginTop: "2px",
-          }}
-        />
+        {isAnchored ? (
+          parentElement
+        ) : (
+          <>
+            <span className="drui-dropdown-input-label">
+              {selected !== null && selected !== undefined
+                ? selected.title
+                : ""}
+            </span>
+            <Icon
+              name={"ChevronDown"}
+              color={"rgb(94, 100, 110)"}
+              size={14}
+              stroke={2}
+              style={{
+                transform: rotate,
+                transition: "all 0.2s linear",
+                marginLeft: "12px",
+                marginTop: "2px",
+              }}
+            />
+          </>
+        )}
         {isOpen ? (
           <div
             className={["drui-dropdown", className && `${className}`].join(" ")}
             onMouseLeave={handleMouseLeave}
             style={getDropdownPosition()}
-            ref={dropdownRef}
           >
             <span className="drui-dropdown__arrow" style={arrowStyles} />
             <div

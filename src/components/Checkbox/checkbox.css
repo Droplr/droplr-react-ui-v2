@@ -1,0 +1,89 @@
+.theme-dark {
+    .drui-checkbox {
+        background-color: transparent !important;
+        border: 1px solid var(--color-white) !important;
+
+        &.checked {
+            background-color: var(--color-primary) !important;
+            border: 1px solid var(--color-primary) !important;
+        }
+
+        &.disabled {
+          background-color: var(--color-dark-gray) !important;
+          border: 1px solid var(--color-dark-gray) !important;
+          path {
+            stroke: var(--color-white) !important;
+          }
+        }
+        &.disabled.variant-secondary {
+            background-color: transparent !important;
+            path {
+                stroke: var(--color-dark-gray) !important;
+            }
+        }
+    }
+}
+
+.drui-checkbox-container {
+  .drui-checkbox {
+    height: 22px;
+    width: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color-white);
+    border: 1px solid var(--color-pale-gray);
+    border-radius: 5px;
+
+    cursor: pointer;
+    user-select: none;
+
+    &.disabled {
+      cursor: not-allowed;
+      background-color: var(--color-gray--dark-mode);
+      border: 1px solid var(--color-gray--dark-mode);
+      path {
+        stroke: var(--color-white);
+      }
+    }
+
+    &.disabled.variant-secondary {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gray--dark-mode);
+      path {
+        stroke: var(--color-gray--dark-mode);
+      }
+    }
+
+    &.checked:not(.disabled) {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+
+    &.variant-primary.checked:not(.disabled) {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-primary);
+    }
+    &.variant-secondary.checked:not(.disabled) {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-primary);
+      path {
+        stroke: var(--color-primary);
+      }
+    }
+    &.variant-danger.checked:not(.disabled) {
+      background-color: var(--color-danger);
+      border: 1px solid var(--color-danger);
+    }
+    &.variant-success.checked:not(.disabled) {
+      background-color: var(--color-success);
+      border: 1px solid var(--color-success);
+    }
+    &.variant-warning.checked:not(.disabled) {
+      background-color: var(--color-warning);
+      border: 1px solid var(--color-warning);
+    }
+  }
+}
