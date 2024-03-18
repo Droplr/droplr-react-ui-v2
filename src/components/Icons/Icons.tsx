@@ -94,6 +94,7 @@ export interface IconProps {
     | "ChartAnalytics"
     | "Check"
     | "CheckCircle"
+    | "CheckSimple"
     | "CheckboxOff"
     | "CheckboxOn"
     | "CheckboxOnFilled"
@@ -194,7 +195,7 @@ export interface IconProps {
     | "Phone"
     | "Photo"
     | "PhotoCamera"
-    | "PlayFilled"
+    | "PlayFiiled"
     | "Play"
     | "Plugin"
     | "PlusToBoard"
@@ -206,6 +207,7 @@ export interface IconProps {
     | "Quote"
     | "Redo"
     | "Refresh"
+    | "RemoveSimple"
     | "RemoveTag"
     | "Restore"
     | "Resume"
@@ -323,7 +325,7 @@ const FilledIcons = [
   "Chrome",
   "Code",
   "CodeBlock",
-  "Comment", 
+  "Comment",
   "Cross",
   "CrossBold",
   "Dashboard",
@@ -411,8 +413,8 @@ const FilledIcons = [
   "ZoomReset",
   "AddToBoard",
   "AddPeople",
-  "Documents"
-]
+  "Documents",
+];
 const Icon = ({
   name = "Alert",
   stroke = FilledIcons.includes(name) ? 0 : 1.5,
@@ -435,6 +437,10 @@ const Icon = ({
     ? "0 0 24 24"
     : name === "Step"
     ? "0 0 27 27"
+    : name === "CheckSimple"
+    ? "0 0 14 10"
+    : name === "RemoveSimple"
+    ? "0 0 12 4"
     : "0 0 24 24",
   color = "gray",
   filled = FilledIcons.includes(name) ? true : false,

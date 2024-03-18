@@ -54,8 +54,6 @@
   .drui-inputInfo,
   .drui-inputError {
     font-size: var(--font-size-small);
-    margin-bottom: 0;
-    margin-top: 6px;
   }
 
   .drui-inputError {
@@ -155,8 +153,6 @@
   color: var(--color-black);
   font-size: var(--font-size-small);
   font-family: var(--font-family-primary);
-  margin-bottom: 6px;
-  margin-top: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -166,8 +162,6 @@
   color: var(--color-danger);
   font-size: var(--font-size-small);
   font-family: var(--font-family-primary);
-  margin-bottom: 6px;
-  margin-top: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

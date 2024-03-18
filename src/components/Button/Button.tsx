@@ -62,7 +62,7 @@ export interface ButtonProps {
    * @desc  The button icon (DroplrUI)
    * @defaultValue null
    */
-  icon?: JSX.Element;
+  icon?: any;
   /**
    * @method onClick
    * @desc  Click event handler
@@ -82,7 +82,7 @@ const Button = ({
   loading = false,
   size = "medium",
   variant = "primary",
-  icon = "None" as any,
+  icon = null,
   onClick = (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {},
   label = "",
   flat = false,
