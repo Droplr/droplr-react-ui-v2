@@ -35,6 +35,11 @@ export interface CheckboxProps {
   className?: string;
 
   /**
+   * @member {number} [checkIconSize] Overrides the size of the checkbox icon
+   */
+  checkIconSize?: number;
+
+  /**
    * @method onChange
    * @desc Triggers when the checked state changes
    * @param {Function} [arg] The handling function
@@ -53,6 +58,7 @@ const Checkbox = ({
   variant = "primary",
   disabled = false,
   className = "",
+  checkIconSize = 12,
   onChange = (_e) => {},
   onClick = () => {},
 }): JSX.Element => {
@@ -80,7 +86,7 @@ const Checkbox = ({
           <Icon
             name="CheckSimple"
             color={"#fff"}
-            size={16}
+            size={checkIconSize}
             className={"drui-checkbox-check"}
           />
         )}
@@ -88,7 +94,7 @@ const Checkbox = ({
           <Icon
             name="RemoveSimple"
             color={"#fff"}
-            size={14}
+            size={checkIconSize - 2}
             className={"drui-checkbox-remove"}
           />
         )}
