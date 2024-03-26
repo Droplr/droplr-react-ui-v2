@@ -83,6 +83,7 @@ AnchoredDropdown.args = {
   minWidth: "128px",
   withShadow: true,
   leftOffset: -200,
+  topOffset: 0,
   parentElement: <Button variant="primary" label="Dropdown anchor" />,
   defaultIndex: "KEY_ONE",
   position: "bottom",

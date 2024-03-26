@@ -75,6 +75,12 @@ export interface DropdownProps {
   leftOffset?: number;
 
   /**
+   * @member {number} [topOffset] Top offset of the dropdown
+   * @defaultValue 0
+   */
+  topOffset?: number;
+
+  /**
    * @member {String} [arrowStyles] Custom arrow shapes - PropTypes.shape
    */
   arrowStyles?: any;
@@ -227,8 +233,9 @@ const Dropdown = ({
   closeOnClick = false,
   arrowStyles = null,
   parentElement = null,
-  withShadow = false,
+  withShadow = true,
   leftOffset = 0,
+  topOffset = 0,
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
@@ -304,10 +311,10 @@ const Dropdown = ({
     let coords = { top: "0px", right: "0px", left: "0px", bottom: "0px" };
     switch (position) {
       case "top":
-        coords.top = `${-inputElementSize.height}px`;
+        coords.top = `${-inputElementSize.height + topOffset}px`;
         break;
       case "bottom":
-        coords.top = `${inputElementSize.height}px`;
+        coords.top = `${inputElementSize.height + topOffset}px`;
         break;
     }
     coords.left = leftOffset === 0 ? "0px" : `${leftOffset}px`;
