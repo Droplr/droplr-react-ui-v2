@@ -63,6 +63,18 @@ export interface DropdownProps {
   className?: string;
 
   /**
+   * @member {boolean} [withShadow] Adds shadow to the dropdown
+   * @defaultValue false
+   */
+  withShadow?: boolean;
+
+  /**
+   * @member {number} [leftOffset] Right offset of the dropdown
+   * @defaultValue 0
+   */
+  leftOffset?: number;
+
+  /**
    * @member {String} [arrowStyles] Custom arrow shapes - PropTypes.shape
    */
   arrowStyles?: any;
@@ -79,7 +91,6 @@ export interface DropdownProps {
    * @defaultValue false
    */
   disabled?: true | false;
-
 
   /**
    * @member {any} [parentElement] The parent element of the dropdown component
@@ -216,6 +227,8 @@ const Dropdown = ({
   closeOnClick = false,
   arrowStyles = null,
   parentElement = null,
+  withShadow = false,
+  leftOffset = 0,
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
@@ -297,6 +310,7 @@ const Dropdown = ({
         coords.top = `${inputElementSize.height}px`;
         break;
     }
+    coords.left = leftOffset === 0 ? "0px" : `${leftOffset}px`;
     return coords;
   };
 
@@ -376,7 +390,11 @@ const Dropdown = ({
         )}
         {isOpen ? (
           <div
-            className={["drui-dropdown", className && `${className}`].join(" ")}
+            className={[
+              "drui-dropdown",
+              className && `${className}`,
+              withShadow && "withShadow",
+            ].join(" ")}
             onMouseLeave={handleMouseLeave}
             style={getDropdownPosition()}
           >

@@ -81,6 +81,8 @@ export const AnchoredDropdown = Template.bind({});
 AnchoredDropdown.args = {
   className: "example",
   minWidth: "128px",
+  withShadow: true,
+  leftOffset: -200,
   parentElement: <Button variant="primary" label="Dropdown anchor" />,
   defaultIndex: "KEY_ONE",
   position: "bottom",

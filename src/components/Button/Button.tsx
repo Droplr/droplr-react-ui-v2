@@ -107,7 +107,7 @@ const Button = ({
     >
       <div className="drui-button__content">
         <>
-          {icon !== ("None" as any) && (
+          {(icon !== ("None" as any) && icon !== null) && (
             <span className={label !== "" ? "drui-button__icon" : ""}>
               {icon}
             </span>
