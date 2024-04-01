@@ -2,12 +2,20 @@ import React, { createContext, useContext, useEffect, useReducer } from "react";
 import Toast, { ToastProps } from "../component/Toast";
 import "./provider.css";
 
+export interface NewToastProps {
+  message: string;
+  title?: string;
+  icon?: any;
+  duration?: number;
+  align?: "top" | "bottom";
+  clickToDismiss?: boolean;
+}
 export interface ToastContextProps {
-  Success: Function;
-  Info: Function;
-  Warning: Function;
-  Danger: Function;
-  Remove: Function;
+  Success: (props: NewToastProps) => number;
+  Info: (props: NewToastProps) => number;
+  Warning: (props: NewToastProps) => number;
+  Danger: (props: NewToastProps) => number;
+  Remove: (id: number) => void;
 }
 const ToastContext = createContext<ToastContextProps | null>(null);
 const initialState = {
@@ -34,9 +42,11 @@ const ToastReducer = (state, action) => {
   }
 };
 
-const ToastContainer = ({ toasts }) => {
+const ToastContainer = ({ toasts, offsetTop = 0 }) => {
   return (
-    <div className="drui-toast-list-container">
+    <div className="drui-toast-list-container" style={{
+      marginTop: offsetTop !== 0 ? `${offsetTop}px` : "0"
+    }}>
       {toasts.map((toast: ToastProps) => (
         <Toast
           id={toast.id}
@@ -54,7 +64,7 @@ const ToastContainer = ({ toasts }) => {
   );
 };
 
-export const ToastProvider = ({ children }) => {
+export const ToastProvider = ({ children, offsetTop = 0 }) => {
   const [state, dispatch] = useReducer(ToastReducer, initialState);
 
   const SpawnToast = (
@@ -64,12 +74,22 @@ export const ToastProvider = ({ children }) => {
     icon?: any,
     duration?: number,
     align?: "top" | "bottom",
-    clickToDismiss?: boolean,
+    clickToDismiss?: boolean
   ) => {
     const id = Math.floor(Math.random() * 10000000);
     dispatch({
       type: "CREATE",
-      payload: { id, variant, message, title, icon, duration, align, clickToDismiss },
+      payload: {
+        id,
+        variant,
+        message,
+        title,
+        icon,
+        duration,
+        align,
+        clickToDismiss,
+        offsetTop
+      },
     });
     return id;
   };
@@ -78,59 +98,63 @@ export const ToastProvider = ({ children }) => {
     dispatch({ type: "DELETE", payload: id });
   };
 
-  const Success = (
-    message: string,
-    title?: string,
-    icon?: any,
-    duration?: number,
-    align?: "top" | "bottom",
-    clickToDismiss?: boolean,
-  ) => {
-    return SpawnToast("success", message, title, icon, duration, align, clickToDismiss);
+  const Success = (props: NewToastProps) => {
+    return SpawnToast(
+      "success",
+      props.message,
+      props.title,
+      props.icon,
+      props.duration,
+      props.align,
+      props.clickToDismiss
+    );
   };
 
-  const Info = (
-    message: string,
-    title?: string,
-    icon?: any,
-    duration?: number,
-    align?: "top" | "bottom",
-    clickToDismiss?: boolean,
-  ) => {
-    return SpawnToast("info", message, title, icon, duration, align, clickToDismiss);
+  const Info = (props: NewToastProps) => {
+    return SpawnToast(
+      "info",
+      props.message,
+      props.title,
+      props.icon,
+      props.duration,
+      props.align,
+      props.clickToDismiss
+    );
   };
 
-  const Warning = (
-    message: string,
-    title?: string,
-    icon?: any,
-    duration?: number,
-    align?: "top" | "bottom",
-    clickToDismiss?: boolean,
-  ) => {
-    return SpawnToast("warning", message, title, icon, duration, align, clickToDismiss);
+  const Warning = (props: NewToastProps) => {
+    return SpawnToast(
+      "warning",
+      props.message,
+      props.title,
+      props.icon,
+      props.duration,
+      props.align,
+      props.clickToDismiss
+    );
   };
 
-  const Danger = (
-    message: string,
-    title?: string,
-    icon?: any,
-    duration?: number,
-    align?: "top" | "bottom",
-    clickToDismiss?: boolean,
-  ) => {
-    return SpawnToast("danger", message, title, icon, duration, align, clickToDismiss);
+  const Danger = (props: NewToastProps) => {
+    return SpawnToast(
+      "danger",
+      props.message,
+      props.title,
+      props.icon,
+      props.duration,
+      props.align,
+      props.clickToDismiss
+    );
   };
 
   return (
     <ToastContext.Provider value={{ Success, Warning, Info, Danger, Remove }}>
-      <ToastContainer toasts={state.toasts} />
+      <ToastContainer toasts={state.toasts} offsetTop={offsetTop} />
       {children}
     </ToastContext.Provider>
   );
 };
 
-export const useToast = () => {
+export const useToast = (): ToastContextProps => {
   const ctx = useContext(ToastContext);
   if (!ctx) {
     throw new Error("useToast must be used within a ToastProvider");

@@ -11,7 +11,8 @@
     flex-direction: row;
     gap: 12px;
 
-    height: 48px;
+    height: max-content;
+    min-height: 52px;
     width: 300px;
 
     padding: 12px;
@@ -19,6 +20,7 @@
 
     font-size: var(--font-size-normal);
     cursor: pointer;
+    z-index: 2147483647;
 
     .drui-toast-progress-bar {
       content: "";

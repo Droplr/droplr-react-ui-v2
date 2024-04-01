@@ -103,12 +103,12 @@ const Button = ({
       onClick={
         !disabled
           ? (e) => {
-              Toast.Info(
-                "This is a toast message.",
-                "A test toast title. Have fun!",
-                <Icon name="Alert" size={24} color="var(--color-primary)" />,
-                
-              );
+              Toast.Info({
+                message: "This is a toast message.",
+                title: "A test toast title. Have fun!",
+                icon: <Icon name="Alert" size={24} color="var(--color-primary)" />,
+                duration: 1500,
+              });
               onClick(e);
             }
           : null

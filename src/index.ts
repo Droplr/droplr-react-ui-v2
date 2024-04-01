@@ -10,7 +10,7 @@ import DroplrThemeProvider from "./themes/provider";
 import Tooltip from "./components/Tooltip";
 import Checkbox from "./components/Checkbox";
 import RadioButton from "./components/RadioButton";
-import { ToastProvider } from "./components/Toast/provider";
+import { ToastProvider, useToast } from "./components/Toast/provider";
 import Toast from "./components/Toast/component/Toast";
 
 export {
@@ -27,4 +27,5 @@ export {
   RadioButton,
   ToastProvider,
   Toast,
+  useToast
 };

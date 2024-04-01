@@ -472,7 +472,7 @@ The Toast component and its wrapper
 Element
 
 <a name="toastProps"></a>
-▸ **ToastProps**: Interface
+▸ **NewToastProps**: Interface
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
@@ -493,14 +493,20 @@ Element
         <App />
 </ToastProvider>
 
-// Initialize the context fetch
+// You can add a top-side offset to the provider on a global level, ie. to avoid headers
+<ToastProvider offsetTop={128}>
+        <App />
+</ToastProvider>
+
+// Initialize the context fetch, allows the usage of Toast.Success(), Toast.Error(), Toast.Warning() and Toast.Info()
 const Toast = useToast();
 
 // Spawn the toast message
-Toast.Info(
-    "This is a toast message.",
-    "A test toast title. Have fun!",
-);
+Toast.Info({
+    message: "This is a toast message.",
+    title: "A test toast title. Have fun!",
+    duration: 7500
+    });
 
 ```
 
