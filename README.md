@@ -32,6 +32,12 @@ The up-to-date touch-up to Droplr's react UI Library.
 - [Tooltip](#tooltip)
     - [TooltipProps](#tooltipProps)
     - [Example](#tooltipExample)
+- [Toast](#toast)
+    - [ToastProps](#toastProps)
+    - [Example](#toastExample)
+- [RadioButton](#radioButton)
+    - [RadioButtonprops](#radioButtonProps)
+    - [Example](#radioButtonExample)
 - [ThumbnailSwitch](#thumbnailSwitch)
     - [ThumbnailSwitchProps](#thumbnailSwitchProps)
     - [ThumbnailSwitchItemProps](#thumbnailSwitchItemProps)
@@ -441,6 +447,104 @@ Element
     >
     Hover over me!
 </Tooltip>
+
+```
+
+___
+
+<a name="toast"></a>
+### Toast
+
+▸ **Toast**(`props`): Element
+
+**`Desc`**
+
+The Toast component and its wrapper
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | ToastProps |
+
+#### Returns
+
+Element
+
+<a name="toastProps"></a>
+▸ **ToastProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `message` | string **required** | The content of the toast message |
+| `title` | string | The title of the toast message |
+| `variant` | `success`, `error`, `warning` , `info` | The color variant of the toast message |
+| `icon` | Icon | The icon to be shown on the left side of the toast |
+| `duration` | number | The duration (in ms) of the Toast element <br/> *Default*: `5000` |
+| `withProgressBar` | boolean | Shows a progress bar at the bottom of the toast |
+| `clickToDismiss` | boolean | Enables dismissing the toast by clicking on it |
+
+<a name="toastExample"></a>
+#### Example
+
+```
+// The wrapper around the app's root
+<ToastProvider>
+        <App />
+</ToastProvider>
+
+// Initialize the context fetch
+const Toast = useToast();
+
+// Spawn the toast message
+Toast.Info(
+    "This is a toast message.",
+    "A test toast title. Have fun!",
+);
+
+```
+
+___
+
+<a name="radioButton"></a>
+### RadioButton
+
+▸ **RadioButton**(`props`): Element
+
+**`Desc`**
+
+The RadioButton component
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | RadioButtonprops |
+
+#### Returns
+
+Element
+
+<a name="radioButtonProps"></a>
+▸ **RadioButtonProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `className` | string | Appends additional class names to the component |
+| `checked` | boolean | The checked state of the component |
+| `variant` | `success`, `danger`, `warning` , `secondary` | The color variant of the component |
+| `disabled` | boolean | Disables the component, becomes uninteractive |
+| `onClick` | Function | The click handler for the component |
+
+<a name="radioButtonExample"></a>
+#### Example
+
+```
+<RadioButton
+checked={isChecked}
+onClick={() => {setIsChecked(!isChecked)}}
+variant="primary"
+/>
 
 ```
 

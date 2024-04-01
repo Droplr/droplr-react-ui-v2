@@ -2,6 +2,7 @@ import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Dropdown, { DropdownItemProps, DropdownProps } from "./Dropdown";
 import Button from "../Button/Button";
+import Icon from "../Icons/Icons";
 
 export default {
   title: "Components/Dropdown",
@@ -60,6 +61,7 @@ const dynamicItems = [
     title: "Third Item",
     showItemStatus: true,
     id: "KEY_THREE",
+    Icon: <Icon name="Embed" color="black"  size={14} />,
   },
 ];
 

@@ -118,7 +118,7 @@
   white-space: nowrap;
 }
 
-.drui-dropdown{
+.drui-dropdown {
   display: table;
   position: absolute;
   z-index: 9;
@@ -133,7 +133,6 @@
   &.withShadow {
     box-shadow: 0 0px 4px -1px var(--color-black);
   }
-  
 
   .drui-dropdown--top {
     top: auto;
@@ -247,6 +246,8 @@
 
     .drui-dropdownItem__action {
       flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -304,6 +305,8 @@
     background-color: transparent;
     text-decoration: none;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
       background-color: var(--color-lightest-gray);

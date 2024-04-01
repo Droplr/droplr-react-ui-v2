@@ -1,0 +1,131 @@
+.drui-toast-container {
+  background-color: transparent;
+  font-family: var(--font-family-primary);
+  animation: slide-in 0.4s ease-in-out forwards;
+
+  .drui-toast {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 12px;
+
+    height: 48px;
+    width: 300px;
+
+    padding: 12px;
+    border-radius: 6px;
+
+    font-size: var(--font-size-normal);
+    cursor: pointer;
+
+    .drui-toast-progress-bar {
+      content: "";
+      position: absolute;
+      width: calc(100%);
+      height: calc(100% - 12px);
+      border-radius: 4px;
+      bottom: 0px;
+      right: 0px;
+      opacity: 0.5;
+    }
+
+    .drui-toast-icon-container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .drui-toast-content {
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .drui-toast-title {
+      font-weight: var(--font-weight-bold);
+    }
+
+    .drui-toast-message {
+    }
+  }
+
+  .drui-toast--success {
+    background-color: #f8fcf8;
+    border: 1px solid #eaeef8;
+    color: #3c8f13;
+    transition-duration: 250ms;
+
+    .drui-toast-progress-bar {
+      border-bottom: 4px solid #3c8f13;
+    }
+  }
+  .drui-toast--success:hover {
+    background-color: #eaf6ea;
+    transition-duration: 250ms;
+  }
+
+  .drui-toast--info {
+    background-color: #f8f9fc;
+    border: 1px solid #437e430d;
+    color: var(--color-primary);
+    .drui-toast-progress-bar {
+      border-bottom: 4px solid var(--color-primary);
+    }
+  }
+
+  .drui-toast--warning {
+    background-color: #fffcf8;
+    border: 1px solid #faefe0;
+    color: var(--color-warning);
+    .drui-toast-progress-bar {
+      border-bottom: 4px solid var(--color-warning);
+    }
+  }
+
+  .drui-toast--danger {
+    background-color: #fffaf8;
+    border: 1px solid #f9ece7;
+    color: var(--color-danger);
+    .drui-toast-progress-bar {
+      border-bottom: 4px solid var(--color-danger);
+    }
+  }
+}
+
+@keyframes shrinkWidth {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+.drui-toast-dismissed {
+  animation: slide-out 0.4s ease-in-out forwards;
+}
+
+@keyframes slide-out {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}

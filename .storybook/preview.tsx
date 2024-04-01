@@ -1,4 +1,5 @@
 import { DecoratorFn } from "@storybook/react";
+import { ToastProvider } from "../src/components/Toast/provider";
 import React from "react";
 
 export const parameters = {
@@ -12,12 +13,20 @@ export const parameters = {
   },
 };
 
-const withTheme: DecoratorFn = (StoryFn, context) => {
+const withThemeAndToast: DecoratorFn = (StoryFn, context) => {
   const theme = context.parameters.theme || context.globals.theme;
   return (
     <>
-      <div className={`theme-${theme}`} style={{backgroundColor: theme === "dark" ? "#101d38" : "#FFF", padding: '32px'}}>
-        <StoryFn />
+      <div
+        className={`theme-${theme}`}
+        style={{
+          backgroundColor: theme === "dark" ? "#101d38" : "#FFF",
+          padding: "32px",
+        }}
+      >
+        <ToastProvider>
+          <StoryFn />
+        </ToastProvider>
       </div>
     </>
   );
@@ -39,4 +48,4 @@ export const globalTypes = {
   },
 };
 
-export const decorators = [withTheme];
+export const decorators = [withThemeAndToast];

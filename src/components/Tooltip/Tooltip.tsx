@@ -146,7 +146,6 @@ const Tooltip = ({
     const bodyRef = document.getElementsByTagName("body")[0];
     const bubble = bubbleRef.current;
     const bounds = bubble.getBoundingClientRect();
-    console.log(bounds);
     /**
      * Check if the tooltip bubble is within the bounds
      */

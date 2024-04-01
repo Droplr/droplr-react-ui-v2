@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./button.css";
 import Loader from "../Loader/Loader";
 import "../../assets/shared.css";
+import { useToast } from "../Toast/provider";
+import Icon from "../Icons/Icons";
 
 /**
  * @interface ButtonProps Instance of switch component item
@@ -87,6 +89,7 @@ const Button = ({
   label = "",
   flat = false,
 }: ButtonProps) => {
+  const Toast = useToast();
   return (
     <button
       className={[
@@ -100,6 +103,12 @@ const Button = ({
       onClick={
         !disabled
           ? (e) => {
+              Toast.Info(
+                "This is a toast message.",
+                "A test toast title. Have fun!",
+                <Icon name="Alert" size={24} color="var(--color-primary)" />,
+                
+              );
               onClick(e);
             }
           : null
@@ -107,7 +116,7 @@ const Button = ({
     >
       <div className="drui-button__content">
         <>
-          {(icon !== ("None" as any) && icon !== null) && (
+          {icon !== ("None" as any) && icon !== null && (
             <span className={label !== "" ? "drui-button__icon" : ""}>
               {icon}
             </span>
@@ -115,7 +124,7 @@ const Button = ({
           {label}
         </>
       </div>
-      {loading && <Loader/>}
+      {loading && <Loader />}
     </button>
   );
 };
