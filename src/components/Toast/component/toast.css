@@ -28,7 +28,7 @@
       width: calc(100%);
       height: calc(100% - 12px);
       border-radius: 4px;
-      bottom: 0px;
+      bottom: -1px;
       right: 0px;
       opacity: 0.5;
     }
