@@ -9,6 +9,7 @@ export interface NewToastProps {
   duration?: number;
   align?: "top" | "bottom";
   clickToDismiss?: boolean;
+  onClick?: () => void;
 }
 export interface ToastContextProps {
   Success: (props: NewToastProps) => number;
@@ -57,6 +58,7 @@ const ToastContainer = ({ toasts, offsetTop = 0 }) => {
           duration={toast.duration}
           align={toast.align}
           clickToDismiss={toast.clickToDismiss}
+          onClick={toast.onClick}
           key={`drui-toast-${toast.id}`}
         />
       ))}
@@ -74,7 +76,8 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
     icon?: any,
     duration?: number,
     align?: "top" | "bottom",
-    clickToDismiss?: boolean
+    clickToDismiss?: boolean,
+    onClick?: () => void
   ) => {
     const id = Math.floor(Math.random() * 10000000);
     dispatch({
@@ -88,7 +91,7 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
         duration,
         align,
         clickToDismiss,
-        offsetTop
+        onClick
       },
     });
     return id;
@@ -106,7 +109,8 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
       props.icon,
       props.duration,
       props.align,
-      props.clickToDismiss
+      props.clickToDismiss,
+      props.onClick
     );
   };
 
@@ -118,7 +122,8 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
       props.icon,
       props.duration,
       props.align,
-      props.clickToDismiss
+      props.clickToDismiss,
+      props.onClick
     );
   };
 
@@ -130,7 +135,8 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
       props.icon,
       props.duration,
       props.align,
-      props.clickToDismiss
+      props.clickToDismiss,
+      props.onClick
     );
   };
 
@@ -142,7 +148,8 @@ export const ToastProvider = ({ children, offsetTop = 0 }) => {
       props.icon,
       props.duration,
       props.align,
-      props.clickToDismiss
+      props.clickToDismiss,
+      props.onClick
     );
   };
 

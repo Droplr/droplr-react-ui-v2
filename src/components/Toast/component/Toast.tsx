@@ -12,6 +12,7 @@ import { useToast } from "../provider";
  * @member {string} variant  The color variant: success | error | warning | info
  * @member {boolean} clickToDismiss  Dismiss the toast on click
  * @member {boolean} withProgressBar  Show a progress bar
+ * @member {Function} onClick  Click event handler
  */
 export interface ToastProps {
   /**
@@ -47,6 +48,10 @@ export interface ToastProps {
    * @member {boolean} withProgressBar  Show a progress bar
    */
   withProgressBar?: boolean;
+  /**
+   * @member {Function} onClick  Click event handler
+   */
+  onClick?: () => void;
 }
 
 /**
@@ -64,6 +69,7 @@ const Toast = ({
   align = "top",
   clickToDismiss = true,
   withProgressBar = true,
+  onClick = () => {},
 }: ToastProps) => {
   const Toast = useToast();
   const ToastRef = useRef(null);
@@ -94,6 +100,7 @@ const Toast = ({
         if (clickToDismiss) {
           DismissSelf();
         }
+        onClick();
       }}
       onMouseEnter={() => {
         clearTimeout(DismissTimer.current);

@@ -483,6 +483,7 @@ Element
 | `duration` | number | The duration (in ms) of the Toast element <br/> *Default*: `5000` |
 | `withProgressBar` | boolean | Shows a progress bar at the bottom of the toast |
 | `clickToDismiss` | boolean | Enables dismissing the toast by clicking on it |
+| `onClick` | Function | Triggers this callback if the Toast notification is clicked |
 
 <a name="toastExample"></a>
 #### Example
@@ -505,7 +506,9 @@ const Toast = useToast();
 Toast.Info({
     message: "This is a toast message.",
     title: "A test toast title. Have fun!",
-    duration: 7500
+    duration: 7500,
+    clickToDismiss: true,
+    onClick: () => console.log("I've been clicked away!");
     });
 
 ```

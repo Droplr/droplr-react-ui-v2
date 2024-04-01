@@ -108,6 +108,7 @@ const Button = ({
                 title: "A test toast title. Have fun!",
                 icon: <Icon name="Alert" size={24} color="var(--color-primary)" />,
                 duration: 1500,
+                onClick: () => console.log("Clicked the Toast.")
               });
               onClick(e);
             }
