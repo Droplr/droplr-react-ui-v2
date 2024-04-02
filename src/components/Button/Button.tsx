@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./button.css";
 import Loader from "../Loader/Loader";
 import "../../assets/shared.css";
-import { useToast } from "../Toast/provider";
-import Icon from "../Icons/Icons";
 
 /**
  * @interface ButtonProps Instance of switch component item
@@ -89,7 +87,6 @@ const Button = ({
   label = "",
   flat = false,
 }: ButtonProps) => {
-  const Toast = useToast();
   return (
     <button
       className={[
@@ -103,13 +100,6 @@ const Button = ({
       onClick={
         !disabled
           ? (e) => {
-              Toast.Info({
-                message: "This is a toast message.",
-                title: "A test toast title. Have fun!",
-                icon: <Icon name="Alert" size={24} color="var(--color-primary)" />,
-                duration: 1500,
-                onClick: () => console.log("Clicked the Toast.")
-              });
               onClick(e);
             }
           : null

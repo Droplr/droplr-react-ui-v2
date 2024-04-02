@@ -72,7 +72,7 @@
   }
 
   .drui-toast--info {
-    background-color: #f8f9fc;
+    background-color: var(--color-white);
     border: 1px solid #437e430d;
     color: var(--color-primary);
     .drui-toast-progress-bar {
