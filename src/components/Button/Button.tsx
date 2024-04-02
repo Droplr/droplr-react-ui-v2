@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./button.css";
 import Loader from "../Loader/Loader";
 import "../../assets/shared.css";

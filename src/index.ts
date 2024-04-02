@@ -10,8 +10,15 @@ import DroplrThemeProvider from "./themes/provider";
 import Tooltip from "./components/Tooltip";
 import Checkbox from "./components/Checkbox";
 import RadioButton from "./components/RadioButton";
-import { ToastProvider, useToast } from "./components/Toast/provider";
 import Toast from "./components/Toast/component/Toast";
+import {
+  WithToasts,
+  SuccessToast,
+  InfoToast,
+  WarningToast,
+  ErrorToast,
+  RemoveToast,
+} from "./components/Toast/handler";
 
 export {
   DroplrThemeProvider,
@@ -25,7 +32,11 @@ export {
   Input,
   Checkbox,
   RadioButton,
-  ToastProvider,
   Toast,
-  useToast
+  WithToasts,
+  SuccessToast,
+  InfoToast,
+  WarningToast,
+  ErrorToast,
+  RemoveToast,
 };

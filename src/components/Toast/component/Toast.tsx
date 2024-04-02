@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./toast.css";
-import { useToast } from "../provider";
+import { RemoveToast } from "../handler";
 
 /**
  * @interface ToastProps Component props for a toast message
@@ -71,7 +71,6 @@ const Toast = ({
   withProgressBar = true,
   onClick = () => {},
 }: ToastProps) => {
-  const Toast = useToast();
   const ToastRef = useRef(null);
   const DismissTimer = useRef(null);
   const ProgressRef = useRef(null);
@@ -79,7 +78,7 @@ const Toast = ({
   const [PauseTime, setPauseTime] = useState(0);
 
   const DismissSelf = () => {
-    Toast.Remove(id);
+    RemoveToast(id);
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { DecoratorFn } from "@storybook/react";
-import { ToastProvider } from "../src/components/Toast/provider";
+import { WithToasts } from "../src/components/Toast/handler";
 import React from "react";
 
 export const parameters = {
@@ -17,17 +17,17 @@ const withThemeAndToast: DecoratorFn = (StoryFn, context) => {
   const theme = context.parameters.theme || context.globals.theme;
   return (
     <>
-      <div
-        className={`theme-${theme}`}
-        style={{
-          backgroundColor: theme === "dark" ? "#101d38" : "#FFF",
-          padding: "32px",
-        }}
-      >
-        <ToastProvider>
+      <WithToasts offsetTop={0}>
+        <div
+          className={`theme-${theme}`}
+          style={{
+            backgroundColor: theme === "dark" ? "#101d38" : "#FFF",
+            padding: "32px",
+          }}
+        >
           <StoryFn />
-        </ToastProvider>
-      </div>
+        </div>
+      </WithToasts>
     </>
   );
 };

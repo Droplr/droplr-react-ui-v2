@@ -1,9 +1,0 @@
-.drui-toast-list-container {
-  display: flex;
-  flex-direction: column-reverse;
-  row-gap: 12px;
-  z-index: 2147483647;
-  position: fixed;
-  top: 16px;
-  right: 16px;
-}
