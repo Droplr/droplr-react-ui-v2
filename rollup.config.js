@@ -4,6 +4,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
 import ts from "rollup-plugin-ts";
+import preserveDirectives from 'rollup-preserve-directives'
 
 const packageJson = require("./package.json");
 
@@ -29,6 +30,7 @@ const config =
     resolve(),
     commonjs(),
     ts(),
+    preserveDirectives.default(),
     typescript({
       useTsconfigDeclarationDir: true,
       exclude: ["**/*.stories.tsx"],

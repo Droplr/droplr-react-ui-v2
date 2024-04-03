@@ -1,11 +1,12 @@
+"use client";
 import React, { useEffect } from "react";
 import Toast from "../component";
 import { ToastProps } from "../component/Toast";
 import "./handler.css";
 
 export const TOAST_EVENT = {
-  CREATE: "CREATE",
-  REMOVE: "REMOVE",
+  CREATE: "DRUI_TOAST_CREATE",
+  REMOVE: "DRUI_TOAST_REMOVE",
 };
 export interface NewToastProps {
   message: string;
@@ -18,13 +19,13 @@ export interface NewToastProps {
 }
 
 export const SuccessToast = ({
-  message,
-  title,
-  icon,
-  duration,
-  align,
-  clickToDismiss,
-  onClick,
+  message = "",
+  title = "",
+  icon = null,
+  duration = 5000,
+  align = "top",
+  clickToDismiss = true,
+  onClick = () => {},
 }: NewToastProps) => {
   const event = new CustomEvent(TOAST_EVENT.CREATE, {
     detail: {
@@ -42,13 +43,13 @@ export const SuccessToast = ({
 };
 
 export const InfoToast = ({
-  message,
-  title,
-  icon,
-  duration,
-  align,
-  clickToDismiss,
-  onClick,
+  message = "",
+  title = "",
+  icon = null,
+  duration = 5000,
+  align = "top",
+  clickToDismiss = true,
+  onClick = () => {},
 }: NewToastProps) => {
   const event = new CustomEvent(TOAST_EVENT.CREATE, {
     detail: {
@@ -66,13 +67,13 @@ export const InfoToast = ({
 };
 
 export const WarningToast = ({
-  message,
-  title,
-  icon,
-  duration,
-  align,
-  clickToDismiss,
-  onClick,
+  message = "",
+  title = "",
+  icon = null,
+  duration = 5000,
+  align = "top",
+  clickToDismiss = true,
+  onClick = () => {},
 }: NewToastProps) => {
   const event = new CustomEvent(TOAST_EVENT.CREATE, {
     detail: {
@@ -90,13 +91,13 @@ export const WarningToast = ({
 };
 
 export const ErrorToast = ({
-  message,
-  title,
-  icon,
-  duration,
-  align,
-  clickToDismiss,
-  onClick,
+  message = "",
+  title = "",
+  icon = null,
+  duration = 5000,
+  align = "top",
+  clickToDismiss = true,
+  onClick = () => {},
 }: NewToastProps) => {
   const event = new CustomEvent(TOAST_EVENT.CREATE, {
     detail: {
@@ -133,19 +134,28 @@ const ToastContainer = ({ offsetTop = 0 }) => {
         ...prevToasts,
         {
           id: Math.floor(Math.random() * 10000000),
+          //@ts-ignore
           message: event.detail.message,
+          //@ts-ignore
           title: event.detail.title,
+          //@ts-ignore
           icon: event.detail.icon,
+          //@ts-ignore
           variant: event.detail.variant,
+          //@ts-ignore
           duration: event.detail.duration,
+          //@ts-ignore
           align: event.detail.align,
+          //@ts-ignore
           clickToDismiss: event.detail.clickToDismiss,
+          //@ts-ignore
           onClick: event.detail.onClick,
         },
       ]);
     });
     window.addEventListener(TOAST_EVENT.REMOVE, (event: CustomEvent) => {
       setToasts((prevToasts) =>
+        //@ts-ignore
         prevToasts.filter((toast) => toast.id !== event.detail.id)
       );
     });

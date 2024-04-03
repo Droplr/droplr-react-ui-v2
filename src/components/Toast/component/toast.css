@@ -89,7 +89,7 @@
     }
   }
 
-  .drui-toast--danger {
+  .drui-toast--error {
     background-color: #fffaf8;
     border: 1px solid #f9ece7;
     color: var(--color-danger);

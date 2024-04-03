@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./toast.css";
-import { RemoveToast } from "../handler";
 
 /**
  * @interface ToastProps Component props for a toast message
@@ -78,7 +77,12 @@ const Toast = ({
   const [PauseTime, setPauseTime] = useState(0);
 
   const DismissSelf = () => {
-    RemoveToast(id);
+    const event = new CustomEvent("DRUI_TOAST_REMOVE", {
+      detail: {
+        id,
+      },
+    });
+    window.dispatchEvent(event);
   };
 
   useEffect(() => {
