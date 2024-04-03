@@ -32,6 +32,9 @@ The up-to-date touch-up to Droplr's react UI Library.
 - [Tooltip](#tooltip)
     - [TooltipProps](#tooltipProps)
     - [Example](#tooltipExample)
+- [Badge](#badge)
+    - [BadgeProps](#badgeProps)
+    - [Example](#badgeProps)
 - [Toast](#toast)
     - [ToastProps](#toastProps)
     - [Example](#toastExample)
@@ -73,7 +76,7 @@ Element
 | `label` | string <br/> **required** | The label on the button |
 | `onClick` | Function <br/> *optional* | The click handler function for the button |
 | `className` | string <br/> *optional* | Appends custom class name |
-| `variant` | string <br/>*optional* | Style variants of the button, <br/>**Options** <br/>`primary` `secondary` `success` `info`  `warning`  `alternative` `danger` <br/> *Default*: `primary`|
+| `variant` | string <br/>*optional* | Style variants of the button, <br/>**Options** <br/>`primary` `secondary` `success` `info`  `warning`  `alternative` `danger` `transparent` <br/> *Default*: `primary`|
 | `size`| string <br/> *optional*  | Size variants of the button <br/> **Options** <br/> `small` `medium` `large`  <br/> *Default*: `medium`|
 | `disabled` | boolean <br/> *optional* | Sets the button to the disabled state. <br/> *Default*: `false`|
 | `loading` | boolean <br/> *optional* | Renders a spinner over the button <br/> *Default*: `false` |
@@ -451,6 +454,44 @@ Element
 ```
 
 ___
+
+<a name="badge"></a>
+### Badge
+
+▸ **Badge**(`props`): Element
+
+**`Desc`**
+
+The Badge component
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `props` | BadgeProps |
+
+#### Returns
+
+Element
+
+<a name="badgeProps"></a>
+▸ **BadgeProps**: Interface
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `variant` | `primary` `secondary` `success` `info`  `warning`  `alternative` `danger` <br/> *Default*: `primary` **required** | The variant of the badge component |
+| `label` | string <br/> **required** | The text within the badge |
+
+<a name="badgeExample"></a>
+#### Example
+
+```
+<Badge variant="info" label="My Badge" />
+
+```
+
+___
+
 
 <a name="toast"></a>
 ### Toast

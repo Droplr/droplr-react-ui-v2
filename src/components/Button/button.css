@@ -157,12 +157,41 @@
 .drui-button--info {
   background: var(--color-info);
   color: var(--color-dark-gray);
+  transition-duration: 250ms;
 
   &:hover {
-    background: var(--color-info--active);
+    background: var(--color-info--hover);
   }
   &:active {
-    background: var(--color-info--hover);
+    background: var(--color-info--active);
+    transition-duration: 250ms;
+  }
+
+  &.drui-button--disabled {
+    background: var(--color-info--disabled);
+    color: var(--color-pale-gray);
+  }
+
+  &.drui-button--loading {
+    background: var(--color-light-gray);
+
+    &.drui-button__content {
+      z-index: -1;
+    }
+  }
+}
+
+.drui-button--transparent {
+  background: transparent;
+  color: var(--color-dark-gray);
+  transition-duration: 250ms;
+
+  &:hover {
+    background: transparent;
+  }
+  &:active {
+    background: transparent;
+    transition-duration: 250ms;
   }
 
   &.drui-button--disabled {
@@ -182,7 +211,7 @@
 .drui-button--warning {
   background: var(--color-warning);
 
-  &:hover{
+  &:hover {
     background: var(--color-warning--hover);
   }
   &:active {
@@ -247,16 +276,33 @@
   }
 }
 
-.theme-dark
+.theme-dark {
   .drui-button--secondary.drui-button--secondary.drui-button--disabled {
-  background: var(--color-secondary--disabled--dark-mode);
-  color: var(--color-white);
-}
+    background: var(--color-secondary--disabled--dark-mode);
+    color: var(--color-white);
+  }
 
-.drui-button--secondary.drui-button--secondary.drui-button--loading {
-  background: var(--color-primary);
-
-  &:hover {
+  .drui-button--secondary.drui-button--secondary.drui-button--loading {
     background: var(--color-primary);
+
+    &:hover {
+      background: var(--color-primary);
+    }
+  }
+
+  .drui-button--transparent {
+    color: var(--color-white) !important;
+  }
+
+  .drui-button--info {
+    background-color: var(--color-info--dark-mode);
+    color: var(--color-white) !important;
+
+    &:hover {
+      background-color: var(--color-info--hover--dark-mode);
+    }
+    &:active {
+      background-color: var(--color-info--active--dark-mode);
+    }
   }
 }

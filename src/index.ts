@@ -11,6 +11,7 @@ import Tooltip from "./components/Tooltip";
 import Checkbox from "./components/Checkbox";
 import RadioButton from "./components/RadioButton";
 import Toast from "./components/Toast/component/Toast";
+import Badge from "./components/Badge";
 import {
   WithToasts,
   SuccessToast,
@@ -33,6 +34,7 @@ export {
   Checkbox,
   RadioButton,
   Toast,
+  Badge,
   WithToasts,
   SuccessToast,
   InfoToast,

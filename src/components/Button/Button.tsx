@@ -6,7 +6,7 @@ import "../../assets/shared.css";
 /**
  * @interface ButtonProps Instance of switch component item
  * @member {String} className  Appends custom class names
- * @member {String} Style variants => primary | secondary | success | info | warning | danger | alternative
+ * @member {String} Style variants => primary | secondary | success | info | transparent | warning | danger | alternative
  * @member {String} size  Size variants => small | medium | large
  * @member {String} label  Text switch label
  * @member {boolean} disabled  Disabled and uninteractive
@@ -26,7 +26,7 @@ export interface ButtonProps {
    * @defaultValue 'primary'
    * @options primary | secondary | success | info | warning | danger
    */
-  variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
+  variant?: "primary" | "secondary" | "success" | "info" | "warning" | "danger" | "transparent";
 
   /**
    * @member {boolean} flat  Uses a solid color instead of a gradient

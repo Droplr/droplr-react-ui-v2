@@ -14,7 +14,7 @@
   --color-success--hover: #3fae0f;
   --color-success--active: #2f9d06;
   --color-success--disabled: #50bf1852;
-  --color-info: #fff;
+  --color-info: #F8F9FC;
   --color-info--hover: #f3f4f6;
   --color-info--active: #e8e9ec;
   --color-info--disabled: #ffffff52;
@@ -30,6 +30,9 @@
     * Dark Theme Colors
     */
   --color-info--dark-mode: #324064;
+  --color-info--hover--dark-mode: #485677;
+  --color-info--active--dark-mode: #404c6a;
+  --color-info--disabled--dark-mode: #32406452;
   --color-secondary--dark-mode: #161e34;
   --color-secondary--hover--dark-mode: #1a233c;
   --color-secondary--disabled--dark-mode: #161e3452;
