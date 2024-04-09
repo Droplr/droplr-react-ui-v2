@@ -18,4 +18,4 @@ export default {
 const Template: Story<BadgeProps> = (args) => <Badge {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = { text: "Badge", variant: "primary" };
+Primary.args = { text: "Badge", variant: "primary", onClick: (e) => {console.log('Clicked the badge -> ', e)}, className: "drui-badge-story", hoverable: true };
