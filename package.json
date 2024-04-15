@@ -1,6 +1,6 @@
 {
 	"name": "droplr-react-ui-v2",
-	"version": "0.7.34",
+	"version": "0.7.35",
 	"author": "Droplr Inc.",
 	"private": false,
 	"contributors": [
@@ -13,7 +13,7 @@
 		"url": "https://github.com/Droplr/droplr-react-ui-v2.git"
 	},
 	"scripts": {
-		"start": "start-storybook -p 6006",
+		"start": "export NODE_OPTIONS=--openssl-legacy-provider && start-storybook -p 6006",
 		"build": "rm -rf ./dist && rm -rf ./types && npx tsc && rollup -c --bundleConfigAsCjs",
 		"build-storybook": "build-storybook"
 	},
