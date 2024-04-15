@@ -122,7 +122,7 @@
   }
 
   &.drui-button--loading {
-    background: var(--color-white);
+    background: var(--color-success);
 
     &.drui-button__content {
       z-index: -1;
@@ -146,7 +146,7 @@
   }
 
   &.drui-button--loading {
-    background: var(--color-white);
+    background: var(--color-danger);
 
     &.drui-button__content {
       z-index: -1;
@@ -224,7 +224,7 @@
   }
 
   &.drui-button--loading {
-    background: var(--color-white);
+    background: var(--color-warning);
 
     &.drui-button__content {
       z-index: -1;
