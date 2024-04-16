@@ -36,7 +36,7 @@ export interface InputProps {
   /**
    * @member {string} [name]  The name attribute for the input field
    */
-  name? :string;
+  name?: string;
 
   /**
    * @member {string} [className]  Append a custom class to the component
@@ -125,7 +125,7 @@ const Input = ({
   className = "",
   label = "",
   sublabel = "",
-  name="input-filed",
+  name = "input-filed",
   disabled = false,
   placeholder = "",
   info = "",
@@ -174,33 +174,35 @@ const Input = ({
             onKeyPress={onKeyPress}
             onChange={onChange}
           />
-          <div className="drui-iconsContainer">
-            {type === "password" &&
-              useHidePasswordIcon &&
-              (isPasswordVisible ? (
+          {useHidePasswordIcon && type === "password" && (
+            <div className="drui-iconsContainer">
+              {type === "password" &&
+                useHidePasswordIcon &&
+                (isPasswordVisible ? (
+                  <Icon
+                    name="Eye"
+                    className="drui-input__icon drui-input__passwordVisibilityIcon"
+                    onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
+                    size={18}
+                  />
+                ) : (
+                  <Icon
+                    name="EyeOff"
+                    className="drui-input__icon drui-input__passwordVisibilityIcon"
+                    onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
+                    size={18}
+                  />
+                ))}
+              {error && (
                 <Icon
-                  name="Eye"
-                  className="drui-input__icon drui-input__passwordVisibilityIcon"
-                  onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
-                  size={18}
+                  name="Error"
+                  className="drui-input__icon drui-input__errorIcon"
+                  color="tomato"
+                  size={22}
                 />
-              ) : (
-                <Icon
-                  name="EyeOff"
-                  className="drui-input__icon drui-input__passwordVisibilityIcon"
-                  onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
-                  size={18}
-                />
-              ))}
-            {error && (
-              <Icon
-                name="Error"
-                className="drui-input__icon drui-input__errorIcon"
-                color="tomato"
-                size={22}
-              />
-            )}
-          </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
       {error && <span className="drui-input__styled-error">{error}</span>}

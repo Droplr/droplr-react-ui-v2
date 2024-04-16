@@ -9,6 +9,7 @@ import "./switch.css";
  * @member {String} labelPosition - The position of the label: "top" | "right" | "bottom" | "left"
  * @member {boolean} disabled - Disabled and uninteractive
  * @member {Function} onChange - Click event handler, calls handler with switch state as the parameter
+ * @member {String} variant - The switch variant: "primary" | "secondary" | "info" | "success" | "danger" | "warning"
  */
 export interface SwitchProps {
   /**
@@ -19,7 +20,10 @@ export interface SwitchProps {
    * @member {boolean} disabled - Disabled and uninteractive
    */
   disabled?: boolean;
-  //   variant? : "primary" | "secondary" | "info" | "success" | "danger" | "warning";
+  /**
+   * @member {String} variant - The switch variant: "primary" | "secondary" | "info" | "success" | "danger" | "warning"
+   */
+  variant?: "primary" | "secondary" | "info" | "success" | "danger" | "warning";
   /**
    * @member {String} className - Appends custom class names
    */
@@ -38,7 +42,6 @@ export interface SwitchProps {
   onChange?: (arg: any) => void;
 }
 
-
 /**
  * @desc Switch component
  * @param {SwitchProps} SwitchProps Component props
@@ -49,6 +52,7 @@ const Switch = ({
   className = "",
   label = "",
   labelPosition = "top",
+  variant = "primary",
   onChange,
 }: SwitchProps) => {
   return (
@@ -59,9 +63,9 @@ const Switch = ({
           ? ` switch--${labelPosition != undefined ? labelPosition : "right"}`
           : "",
         disabled ? " disabled" : "",
-        // variant ? ` variant-${variant}` : '',
+        variant ? ` variant-${variant}` : '',
         className !== "" ? className : "",
-      ].join("")}
+      ].join(" ")}
     >
       {label && <span className="switch__label">{label}</span>}
       <input
