@@ -24,9 +24,9 @@ import "./input.css";
  */
 export interface InputProps {
   /**
-   * @member {string} [value]  The default value of the input field
+   * @member {string | number} [value]  The default value of the input field
    */
-  value?: string;
+  value?: string | number;
 
   /**
    * @member {string} [type]  The input type, values => text | password | number
