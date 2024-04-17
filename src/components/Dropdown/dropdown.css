@@ -58,28 +58,21 @@
 }
 
 .drui-dropdown-input {
-  font-family: var(--font-family-primary);
-  font-size: var(--font-size-normal);
-  color: var(--color-black);
-  border-radius: 4px;
-  padding: 8px;
-  border: 1px solid var(--color-pale-gray);
   display: flex;
   justify-content: space-between;
   box-shadow: none;
-  transition-duration: 250ms;
   position: relative;
   &:not(.dropdown-anchored) {
     background-color: var(--color-white);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-normal);
+    color: var(--color-black);
+    border-radius: 4px;
+    border: 1px solid var(--color-pale-gray);
+    padding: 8px;
+    transition-duration: 250ms;
   }
   &.dropdown-anchored {
-    border: none !important;
-    background-color: none !important;
-    border-radius: none !important;
-    padding: 0px !important;
-    font-family: inherit !important;
-    font-size: inherit !important;
-    color: inherit !important;
     &:hover {
       box-shadow: none !important;
       background-color: none !important;
@@ -121,7 +114,7 @@
 .drui-dropdown {
   display: table;
   position: absolute;
-  z-index: 9;
+  z-index: 10000;
   font-family: var(--font-family-primary);
   padding: 12px 0px;
   width: auto;

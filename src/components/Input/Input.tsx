@@ -149,14 +149,18 @@ const Input = ({
 
   return (
     <>
-      <div className="drui-input__styled">
+      <div
+        className={[
+          "drui-input__styled",
+          className ? ` ${className}` : "",
+        ].join(" ")}
+      >
         {label && <span className="drui-inputLabel">{label}</span>}
         {sublabel && <span className="drui-inputSublabel">{sublabel}</span>}
         <div className="drui-inputIconsContainer">
           <input
             className={[
               "drui-input",
-              className ? ` ${className}` : "",
               disabled ? " drui-input--disabled" : "",
               type === "password" ? " drui-input--hasOneIcon" : "",
               error ? " drui-input--error" : "",

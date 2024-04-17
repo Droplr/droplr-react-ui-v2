@@ -86,7 +86,7 @@ AnchoredDropdown.args = {
   withShadow: true,
   leftOffset: -200,
   topOffset: 0,
-  parentElement: <Button variant="primary" label="Dropdown anchor" />,
+  parentElement: <Icon name="Alert" size={32} />,
   defaultIndex: "KEY_ONE",
   position: "bottom",
   closeOnItemClick: false,
