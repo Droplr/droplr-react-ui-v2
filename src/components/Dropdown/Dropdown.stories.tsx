@@ -21,11 +21,11 @@ const DropdownChangeHandler = (arg: any) => {
 
 const args: DropdownItemProps = {
   title: "First Item",
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
   id: 0,
+  icon: <Icon name="UsersShared" color="var(--color-black)" size={14} />,
   onClick: function (arg: any): void {},
 };
+
 
 export const SimpleDropdown = Template.bind({});
 SimpleDropdown.args = {
@@ -38,7 +38,7 @@ SimpleDropdown.args = {
   closeOnMouseOut: true,
   items: [
     args,
-    { ...args, disabled: true, title: "Second Item", id: 1 },
+    { ...args, disabled: true, title: "Second Item", id: 1, description: "Small info..."},
     {
       ...args,
       description:
@@ -46,6 +46,7 @@ SimpleDropdown.args = {
       title: "Third Item",
       showItemStatus: true,
       id: 2,
+      color: "var(--color-danger)",
     },
   ],
   onClick: DropdownChangeHandler,

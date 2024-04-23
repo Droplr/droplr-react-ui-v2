@@ -52,9 +52,11 @@
     */
   --font-family-primary: "Source Sans Pro", sans-serif;
   --font-size-normal: 14px;
+  --font-size-smallest: 10px;
   --font-size-small: 12px;
   --font-size-large: 16px;
 
+  --font-weight-light: 200;
   --font-weight-normal: 400;
   --font-weight-bold: 600;
   --font-weight-bolder: bolder;
