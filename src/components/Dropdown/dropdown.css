@@ -1,4 +1,7 @@
 .theme-dark {
+  .drui-dropdown-placeholder {
+    color: var(--color-gray--dark-mode);
+  }
   .drui-dropdown-input {
     color: var(--color-gray--dark-mode);
     background: var(--color-secondary--hover--dark-mode);
@@ -56,12 +59,15 @@
     }
   }
 }
-
+.drui-dropdown-placeholder {
+  color: var(--color-light-gray);
+}
 .drui-dropdown-input {
   display: flex;
   justify-content: space-between;
   box-shadow: none;
   position: relative;
+
   &:not(.dropdown-anchored) {
     background-color: var(--color-white);
     font-family: var(--font-family-primary);

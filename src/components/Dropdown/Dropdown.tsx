@@ -63,6 +63,11 @@ export interface DropdownProps {
   className?: string;
 
   /**
+   * @member {string} [placeholder] Dropdown input field placeholder
+   */
+  placeholder?: string;
+
+  /**
    * @member {boolean} [withShadow] Adds shadow to the dropdown
    * @defaultValue false
    */
@@ -226,6 +231,7 @@ const Dropdown = ({
   fullWidth = true,
   minWidth = "0px",
   closeOnMouseOut = false,
+  placeholder = "",
   items = [],
   label = "",
   showItemStatus = true,
@@ -239,8 +245,10 @@ const Dropdown = ({
   onMouseLeave = (arg: any) => {},
   onClick = (arg: any) => {},
 }: DropdownProps) => {
+  
   const setDefaultIndex = (): DropdownItemProps => {
-    if (defaultIndex === null || defaultIndex === undefined) return items[0];
+    if (placeholder !== "") return;
+    if (defaultIndex === null || defaultIndex === undefined ) return items[0];
     if (typeof defaultIndex !== typeof "") {
       if (defaultIndex > items.length - 1) {
         return items[0];
@@ -346,7 +354,7 @@ const Dropdown = ({
   }, [parentElement, isAnchored]);
 
   useEffect(() => {
-    if (items.length > defaultIndex) {
+    if (items.length > defaultIndex && placeholder === "") {
       setSelected(setDefaultIndex());
     }
     if (inputRef.current != null) {
@@ -376,10 +384,10 @@ const Dropdown = ({
           parentElement
         ) : (
           <>
-            <span className="drui-dropdown-input-label">
+            <span className={["drui-dropdown-input-label", !selected && "drui-dropdown-placeholder"].join(" ")}>
               {selected !== null && selected !== undefined
                 ? selected.title
-                : ""}
+                : placeholder || "Select an option"}
             </span>
             <Icon
               name={"ChevronDown"}

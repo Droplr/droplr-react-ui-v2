@@ -31,8 +31,8 @@ SimpleDropdown.args = {
   className: "example",
   label: "Simple Dropdown",
   minWidth: "128px",
-  defaultIndex: 2,
   position: "bottom",
+  placeholder: "Select an item",
   closeOnItemClick: false,
   closeOnMouseOut: true,
   items: [
