@@ -15,7 +15,7 @@
     "paths": {
       "react": ["./node_modules/@types/react"]
     },
-    "noImplicitUseStrict": true,
+    "removeComments": false,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,

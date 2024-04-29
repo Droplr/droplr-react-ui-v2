@@ -4,6 +4,7 @@ import Dropdown from "./components/Dropdown";
 import TextSwitch from "./components/TextSwitch";
 import Switch from "./components/Switch";
 import ThumbnailSwitch from "./components/ThumbnailSwitch";
+import AnimatedIcon from "./components/AnimatedIcon";
 import Icon from "./components/Icons/Icons";
 import Input from "./components/Input";
 import DroplrThemeProvider from "./themes/provider";
@@ -29,6 +30,7 @@ export {
   TextSwitch,
   ThumbnailSwitch,
   Tooltip,
+  AnimatedIcon,
   Icon,
   Input,
   Checkbox,

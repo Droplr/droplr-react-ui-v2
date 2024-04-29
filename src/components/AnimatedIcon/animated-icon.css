@@ -1,0 +1,81 @@
+.drui-animated-icon-wrapper {
+  .drui-animated-icon {
+    transition-duration: 300ms;
+    &.drui-animated-chevron-small {
+      transform: rotate(0deg);
+
+      &.drui-animated-icon-toggled {
+        transform: rotate(180deg);
+      }
+      &.drui-animated-icon-reverse {
+        animation: rotateBack 300ms;
+      }
+    }
+    &.drui-animated-chevron-large {
+      line {
+        transition-duration: 300ms;
+      }
+      &.drui-animated-icon-toggled {
+        .drui-chevron-line-one {
+          animation: chevron-line-one-forwards 300ms ease-in-out forwards;
+        }
+        .drui-chevron-line-two {
+          animation: chevron-line-two-forwards 300ms ease-in-out forwards;
+        }
+      }
+      &.drui-animated-icon-reverse {
+        .drui-chevron-line-one {
+          animation: chevron-line-one-backwards 300ms ease-in-out forwards;
+        }
+        .drui-chevron-line-two {
+          animation: chevron-line-two-backwards 300ms ease-in-out forwards;
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotateBack {
+  0% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes chevron-line-one-forwards {
+  0% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  100% {
+    transform: rotate(35deg) translate(10px, -30px);
+  }
+}
+
+@keyframes chevron-line-two-forwards {
+  0% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+  100% {
+    transform: rotate(-35deg) translate(-50px, 14px);
+  }
+}
+
+@keyframes chevron-line-one-backwards {
+  0% {
+    transform: rotate(35deg) translate(10px, -30px);
+  }
+  100% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}
+
+@keyframes chevron-line-two-backwards {
+  0% {
+    transform: rotate(-35deg) translate(-50px, 14px);
+  }
+  100% {
+    transform: rotate(0deg) translate(0px, 0px);
+  }
+}

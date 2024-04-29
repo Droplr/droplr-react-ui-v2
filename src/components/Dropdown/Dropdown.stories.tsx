@@ -1,7 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Dropdown, { DropdownItemProps, DropdownProps } from "./Dropdown";
-import Button from "../Button/Button";
 import Icon from "../Icons/Icons";
 
 export default {
