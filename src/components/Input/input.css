@@ -37,6 +37,11 @@
   position: relative;
   width: 100%;
 
+  .drui-input-field-icon {
+    position: absolute;
+    right: 12px;
+  }
+
   .drui-inputLabel,
   .drui-inputSublabel {
     display: block;
@@ -79,6 +84,10 @@
     font-weight: inherit;
     font-family: inherit;
     transition: all 0.2s ease;
+
+    &.drui-input--has-icon {
+      padding: 0px 38px 0px 12px !important;
+    }
 
     &:hover {
       border-color: var(--color-pale-gray);
