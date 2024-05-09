@@ -20,32 +20,26 @@
   font-family: var(--font-family-primary);
   user-select: none;
   cursor: pointer;
-
-  * {
-    box-sizing: inherit;
-
-    &::before,
-    &::after {
-      box-sizing: inherit;
-    }
-  }
-
-  &:hover {
-    background: var(--color-primary--hover);
-    cursor: pointer;
-    transition-duration: 250ms;
-  }
-
-  &:active {
-    background: var(--color-primary--active);
-    transition-duration: 250ms;
-  }
 }
-
+.drui-button * {
+  box-sizing: inherit;
+}
+.drui-button *::before,
+.drui-button *::after {
+  box-sizing: inherit;
+}
+.drui-button:hover {
+  background: var(--color-primary--hover);
+  cursor: pointer;
+  transition-duration: 250ms;
+}
+.drui-button:active {
+  background: var(--color-primary--active);
+  transition-duration: 250ms;
+}
 .drui-button__icon {
   margin-right: 12px;
 }
-
 .drui-button__content {
   display: flex;
   justify-content: center;
@@ -53,256 +47,205 @@
   position: relative;
   flex: 1;
 }
-
 .drui-button__dropdownIcon {
   width: 24px;
   height: 24px;
-
-  path {
-    fill: var(--color-white);
-  }
 }
-
+.drui-button__dropdownIcon path {
+  fill: var(--color-white);
+}
 .drui-button--withText {
-  &.drui-button__dropdownIcon {
-    margin-left: 8px;
-  }
-
   padding: 0 16px;
 }
-
+.drui-button--withText.drui-button__dropdownIcon {
+  margin-left: 8px;
+}
 .drui-button--withIcon {
   padding: 0 16px;
 }
-
 .drui-button--maxWidth {
   width: 100%;
 }
-
 .drui-button--disabled {
   background: var(--color-primary--disabled);
   box-shadow: none;
   cursor: not-allowed;
   border: none;
-
-  &:hover {
-    background: var(--color-primary--disabled);
-    box-shadow: none;
-    cursor: not-allowed;
-    border: none;
-  }
 }
-
+.drui-button--disabled:hover {
+  background: var(--color-primary--disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+  border: none;
+}
 .drui-button--loading {
   background: var(--color-primary--hover);
-
-  &:hover {
-    background: var(--color-primary--hover);
-  }
-
-  .drui-button__content,
-  &:hover .drui-button__content {
-    z-index: -1;
-  }
 }
-
+.drui-button--loading:hover {
+  background: var(--color-primary--hover);
+}
+.drui-button--loading .drui-button__content,
+.drui-button--loading:hover .drui-button__content {
+  z-index: -1;
+}
 .drui-button--success {
   background: var(--color-success);
-
-  &:hover {
-    background: var(--color-success--hover);
-  }
-  &:active {
-    background: var(--color-success--active);
-  }
-
-  &.drui-button--disabled {
-    background: var(--color-success--disabled);
-    color: var(--color-white);
-  }
-
-  &.drui-button--loading {
-    background: var(--color-success);
-
-    &.drui-button__content {
-      z-index: -1;
-    }
-  }
 }
-
+.drui-button--success:hover {
+  background: var(--color-success--hover);
+}
+.drui-button--success:active {
+  background: var(--color-success--active);
+}
+.drui-button--success.drui-button--disabled {
+  background: var(--color-success--disabled);
+  color: var(--color-white);
+}
+.drui-button--success.drui-button--loading {
+  background: var(--color-success);
+}
+.drui-button--success.drui-button--loading.drui-button__content {
+  z-index: -1;
+}
 .drui-button--danger {
   background: var(--color-danger);
-
-  &:hover {
-    background: var(--color-danger--active);
-  }
-  &:active {
-    background: var(--color-danger--hover);
-  }
-
-  &.drui-button--disabled {
-    background: var(--color-danger--disabled);
-    color: var(--color-white);
-  }
-
-  &.drui-button--loading {
-    background: var(--color-danger);
-
-    &.drui-button__content {
-      z-index: -1;
-    }
-  }
 }
-
+.drui-button--danger:hover {
+  background: var(--color-danger--active);
+}
+.drui-button--danger:active {
+  background: var(--color-danger--hover);
+}
+.drui-button--danger.drui-button--disabled {
+  background: var(--color-danger--disabled);
+  color: var(--color-white);
+}
+.drui-button--danger.drui-button--loading {
+  background: var(--color-danger);
+}
+.drui-button--danger.drui-button--loading.drui-button__content {
+  z-index: -1;
+}
 .drui-button--info {
   background: var(--color-info);
   color: var(--color-dark-gray);
   transition-duration: 250ms;
-
-  &:hover {
-    background: var(--color-info--hover);
-  }
-  &:active {
-    background: var(--color-info--active);
-    transition-duration: 250ms;
-  }
-
-  &.drui-button--disabled {
-    background: var(--color-info--disabled);
-    color: var(--color-pale-gray);
-  }
-
-  &.drui-button--loading {
-    background: var(--color-light-gray);
-
-    &.drui-button__content {
-      z-index: -1;
-    }
-  }
 }
-
+.drui-button--info:hover {
+  background: var(--color-info--hover);
+}
+.drui-button--info:active {
+  background: var(--color-info--active);
+  transition-duration: 250ms;
+}
+.drui-button--info.drui-button--disabled {
+  background: var(--color-info--disabled);
+  color: var(--color-pale-gray);
+}
+.drui-button--info.drui-button--loading {
+  background: var(--color-light-gray);
+}
+.drui-button--info.drui-button--loading.drui-button__content {
+  z-index: -1;
+}
 .drui-button--transparent {
   background: transparent;
   color: var(--color-dark-gray);
   transition-duration: 250ms;
-
-  &:hover {
-    background: transparent;
-  }
-  &:active {
-    background: transparent;
-    transition-duration: 250ms;
-  }
-
-  &.drui-button--disabled {
-    background: var(--color-info--disabled);
-    color: var(--color-pale-gray);
-  }
-
-  &.drui-button--loading {
-    background: var(--color-light-gray);
-
-    &.drui-button__content {
-      z-index: -1;
-    }
-  }
 }
-
+.drui-button--transparent:hover {
+  background: transparent;
+}
+.drui-button--transparent:active {
+  background: transparent;
+  transition-duration: 250ms;
+}
+.drui-button--transparent.drui-button--disabled {
+  background: var(--color-info--disabled);
+  color: var(--color-pale-gray);
+}
+.drui-button--transparent.drui-button--loading {
+  background: var(--color-light-gray);
+}
+.drui-button--transparent.drui-button--loading.drui-button__content {
+  z-index: -1;
+}
 .drui-button--warning {
   background: var(--color-warning);
-
-  &:hover {
-    background: var(--color-warning--hover);
-  }
-  &:active {
-    background: var(--color-warning--active);
-  }
-
-  &.drui-button--disabled {
-    background: var(--color-warning--disabled);
-    color: var(--color-white);
-  }
-
-  &.drui-button--loading {
-    background: var(--color-warning);
-
-    &.drui-button__content {
-      z-index: -1;
-    }
-  }
 }
-
+.drui-button--warning:hover {
+  background: var(--color-warning--hover);
+}
+.drui-button--warning:active {
+  background: var(--color-warning--active);
+}
+.drui-button--warning.drui-button--disabled {
+  background: var(--color-warning--disabled);
+  color: var(--color-white);
+}
+.drui-button--warning.drui-button--loading {
+  background: var(--color-warning);
+}
+.drui-button--warning.drui-button--loading.drui-button__content {
+  z-index: -1;
+}
 .drui-button--secondary {
   background: var(--color-secondary);
   color: var(--color-primary);
   box-shadow: none;
 }
-
 .theme-dark .drui-button--secondary {
   background: var(--color-secondary--dark-mode);
   color: var(--color-white);
 }
-
 .drui-button--secondary:hover {
   background: var(--color-secondary--hover);
 }
-
 .theme-dark .drui-button--secondary:hover {
   background: var(--color-secondary--hover--dark-mode);
 }
-
-.drui-button--secondary {
-  &:active {
-    background: var(--color-secondary--active);
-  }
-
-  &.drui-button__icon path,
-  &.drui-button__dropdownIcon path {
-    fill: var(--color-primary);
-  }
-
-  &.drui-button--secondary.drui-button--disabled {
-    background: var(--color-secondary--disabled);
-    color: var(--color-primary--disabled);
-    box-shadow: none;
-    cursor: not-allowed;
-
-    &:hover {
-      background: var(--color-secondary--disabled);
-      color: var(--color-primary--disabled);
-      box-shadow: none;
-      cursor: not-allowed;
-    }
-  }
+.drui-button--secondary:active {
+  background: var(--color-secondary--active);
 }
-
-.theme-dark {
+.drui-button--secondary.drui-button__icon path,
+.drui-button--secondary.drui-button__dropdownIcon path {
+  fill: var(--color-primary);
+}
+.drui-button--secondary.drui-button--secondary.drui-button--disabled {
+  background: var(--color-secondary--disabled);
+  color: var(--color-primary--disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.drui-button--secondary.drui-button--secondary.drui-button--disabled:hover {
+  background: var(--color-secondary--disabled);
+  color: var(--color-primary--disabled);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.theme-dark
   .drui-button--secondary.drui-button--secondary.drui-button--disabled {
-    background: var(--color-secondary--disabled--dark-mode);
-    color: var(--color-white);
-  }
-
+  background: var(--color-secondary--disabled--dark-mode);
+  color: var(--color-white);
+}
+.theme-dark
   .drui-button--secondary.drui-button--secondary.drui-button--loading {
-    background: var(--color-primary);
-
-    &:hover {
-      background: var(--color-primary);
-    }
-  }
-
-  .drui-button--transparent {
-    color: var(--color-white) !important;
-  }
-
-  .drui-button--info {
-    background-color: var(--color-info--dark-mode);
-    color: var(--color-white) !important;
-
-    &:hover {
-      background-color: var(--color-info--hover--dark-mode);
-    }
-    &:active {
-      background-color: var(--color-info--active--dark-mode);
-    }
-  }
+  background: var(--color-primary);
+}
+.theme-dark
+  .drui-button--secondary.drui-button--secondary.drui-button--loading:hover {
+  background: var(--color-primary);
+}
+.theme-dark .drui-button--transparent {
+  color: var(--color-white) !important;
+}
+.theme-dark .drui-button--info {
+  background-color: var(--color-info--dark-mode);
+  color: var(--color-white) !important;
+}
+.theme-dark .drui-button--info:hover {
+  background-color: var(--color-info--hover--dark-mode);
+}
+.theme-dark .drui-button--info:active {
+  background-color: var(--color-info--active--dark-mode);
 }

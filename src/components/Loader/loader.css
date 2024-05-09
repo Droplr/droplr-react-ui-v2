@@ -1,21 +1,17 @@
-
-
 .drui-loader-container {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-
-  .drui-loader {
-    animation: rotate 0.8s infinite linear;
-    height: 16px;
-    width: 16px;
-    border: 3px solid var(--color-white);
-    border-right-color: transparent !important;
-    border-radius: 50%;
-  }
 }
-
+.drui-loader-container .drui-loader {
+  animation: rotate 0.8s infinite linear;
+  height: 16px;
+  width: 16px;
+  border: 3px solid var(--color-white);
+  border-right-color: transparent !important;
+  border-radius: 50%;
+}
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

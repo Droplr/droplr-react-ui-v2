@@ -1,72 +1,62 @@
-.theme-dark {
-    .drui-text-switch__label {
-        color: var(--color-white);
-    }
-
-    .drui-text-switch {
-        border-color: var(--color-info--dark-mode) !important;
-        background-color: transparent !important;
-
-        .active {
-            background-color: var(--color-info--dark-mode) !important;
-        }
-    }
+.theme-dark .drui-text-switch__label {
+  color: var(--color-white);
+}
+.theme-dark .drui-text-switch {
+  border-color: var(--color-info--dark-mode) !important;
+  background-color: transparent !important;
+}
+.theme-dark .drui-text-switch .active {
+  background-color: var(--color-info--dark-mode) !important;
 }
 .drui-text-switch {
-    padding: 4px;
-    border: 1px solid var(--color-pale-gray);
-    background-color: var(--color-lightest-gray);
-    border-radius: 8px;
-    width: max-content;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    .text-switch-item {
-      width: max-content;
-      background-color: transparent;
-      color: var(--color-gray--dark-mode);
-      font-family: var(--font-family-primary);
-      font-size: 15px;
-      font-weight: var(--font-weight-bold);
-      text-align: center;
-      text-shadow: none;
-      padding: 6px 12px 6px 12px;
-      border-radius: 5px;
-      transition: all 500ms ease-in-out;
-
-      path {
-        fill: var(--color-light-gray);
-      }
-    }
-    label {
-      display: flex;
-      align-items: center;
-    }
-    label:hover {
-      cursor: pointer;
-    }
-
-    .drui-button__icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-    }
-
-    .active {
-      background-color: var(--color-primary);
-      color: var(--color-white);
-
-      path {
-        fill: var(--color-white);
-      }
-    }
+  padding: 4px;
+  border: 1px solid var(--color-pale-gray);
+  background-color: var(--color-lightest-gray);
+  border-radius: 8px;
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.drui-text-switch .text-switch-item {
+  width: max-content;
+  background-color: transparent;
+  color: var(--color-gray--dark-mode);
+  font-family: var(--font-family-primary);
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-shadow: none;
+  padding: 6px 12px 6px 12px;
+  border-radius: 5px;
+  transition: all 500ms ease-in-out;
+}
+.drui-text-switch .text-switch-item path {
+  fill: var(--color-light-gray);
+}
+.drui-text-switch label {
+  display: flex;
+  align-items: center;
+}
+.drui-text-switch label:hover {
+  cursor: pointer;
+}
+.drui-text-switch .drui-button__icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+}
+.drui-text-switch .active {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+.drui-text-switch .active path {
+  fill: var(--color-white);
 }
 .drui-text-switch__label {
-    color: var(--color-black);
-    font-family: var(--font-family-primary);
-    font-size: var(--font-size-normal);
-    font-weight: var(--font-weight-bold);
-    padding-bottom: 8px;
-  
+  color: var(--color-black);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-bold);
+  padding-bottom: 8px;
 }

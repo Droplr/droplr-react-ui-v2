@@ -15,10 +15,10 @@
   margin: 12px;
 
   color: var(--color-light-gray);
+}
 
-  .gallery-item-title {
-    margin-top: 4px;
-    font-size: var(--font-size-small);
-    color: black;
-  }
+.gallery-item-title {
+  margin-top: 4px;
+  font-size: var(--font-size-small);
+  color: black;
 }
