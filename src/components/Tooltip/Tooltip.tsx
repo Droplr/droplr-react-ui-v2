@@ -4,6 +4,8 @@ import "./tooltip.css";
 /**
  * @interface TooltipProps Component Props
  * @member {any} content The content within the tooltip - ideally text
+ * @member {React.ReactNode} children The children of the tooltip
+ * @member {string} className Appends custom class names
  * @member {Function} onTooltipShow The callback triggered when the tooltip is shown
  * @member {Function} onTooltipHide The Callback triggered when the tooltip is hidden
  * @member {"top" | "bottom" | "left" | "right"} position The placement of the tooltip with regards to the item it is wrapping
@@ -18,6 +20,10 @@ export interface TooltipProps {
   content: any;
   // Just the children props attr
   children?: React.ReactNode;
+  /**
+   * @member {string} className Appends custom class names
+   */
+  className?: string;
   /**
    * @member {Function} onTooltipShow The callback triggered when the tooltip is shown
    */
@@ -53,6 +59,7 @@ const Tooltip = ({
   content,
   onTooltipHide = () => {},
   onTooltipShow = () => {},
+  className = "",
   hideDelay = 250,
   title = "",
   closeOnClick = false,
@@ -260,7 +267,7 @@ const Tooltip = ({
       </div>
       {tooltipVisible && (
         <div
-          className={`drui-tooltip tooltip-bubble tooltip-position-${position}`}
+          className={`drui-tooltip tooltip-bubble tooltip-position-${position} ${className}`}
           onClick={() => (closeOnClick ? HideTooltip(true) : null)}
           style={CalculateBounds()}
           ref={bubbleRef}
