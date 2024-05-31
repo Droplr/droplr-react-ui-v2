@@ -225,9 +225,6 @@ const Tooltip = ({
    */
   const CalculateBounds = (): Object => {
     const bodyRef = document.getElementsByTagName("body")[0];
-    const childrenRef = document.getElementsByClassName(
-      "tooltip-children-wrapper"
-    )[0];
     switch (position) {
       case "top":
       case "bottom":
@@ -240,16 +237,17 @@ const Tooltip = ({
           maxHeight: `min(${bodyRef.clientHeight}px, 70px)`,
           maxWidth: `min(${bodyRef.clientWidth - 25}px, ${
             bodyRef.clientWidth -
-            childrenRef.getBoundingClientRect().left -
-            childrenRef.clientWidth -
-            38
+            childrenRef.current!.getBoundingClientRect().left -
+            childrenRef.current!.clientWidth + 36
           }px)`,
         };
       case "right":
         return {
           maxHeight: `min(${bodyRef.clientHeight}px, 70px)`,
           maxWidth: `min(${bodyRef.clientWidth - 25}px, ${
-            bodyRef.clientWidth - childrenRef.getBoundingClientRect().right - 30
+            bodyRef.clientWidth -
+            childrenRef.current!.getBoundingClientRect().right -
+            30
           }px)`,
         };
     }
