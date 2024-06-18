@@ -36,6 +36,8 @@ SimpleDropdown.args = {
   position: "bottom",
   closeOnItemClick: false,
   closeOnMouseOut: true,
+  // inputWidth: '300px',
+  // parentElement: <Button label="Click Me" />,
   items: [
     args,
     { ...args, disabled: true, title: "Second Item", id: 1, description: "Small info..."},

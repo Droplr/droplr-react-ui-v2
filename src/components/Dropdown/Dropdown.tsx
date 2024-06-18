@@ -7,14 +7,15 @@ import Icon from "../Icons";
  * @member {String} label Dropdown component label
  * @member {Array<DropdownItem} items Dropdown list items
  * @member {number} [defaultIndex] Index of the default selected item in the items array
- * @member {boolean} [fullWidth] Sets the dropdown input field to it's containers full width
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
- * @member {number} [minWidth] The miniumum width for the input field of the component (in pixels)
+ * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
+ * @member {string} [inputWidth] Sets the width of the dropdown input field
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
  * @member {boolean} [closeOnItemClick] Close list on item click, default true
- * @member {Function} [onMouseLeave] Mouse-leave event handler
+ * @member {boolean} [closeOnMouseOut] Close list on mouse out, default true
+ * @member {boolean} [closeOnClickOutside] Close list on click outside, default true
  */
 export interface DropdownProps {
   label: string;
@@ -22,7 +23,7 @@ export interface DropdownProps {
   selectedOption: DropdownItemProps;
   align: "left" | "right";
   defaultIndex?: number;
-  fullWidth?: boolean;
+  inputWidth?: string;
   parentElement?: ReactElement;
   minWidth?: string;
   showItemStatus?: boolean;
@@ -30,6 +31,7 @@ export interface DropdownProps {
   disabled?: boolean;
   closeOnItemClick?: boolean;
   closeOnMouseOut?: boolean;
+  closeOnClickOutside?: boolean;
   onClick: (item: any) => void;
 }
 /**
@@ -44,26 +46,64 @@ export interface DropdownProps {
 export interface DropdownItemProps {
   className?: string;
   disabled?: boolean;
-  title: string;
+  title?: string;
+  id?: any;
   description?: string;
   icon?: ReactElement;
   color?: string;
   onClick?: (item) => void;
 }
 
+/**
+ * @interface DropdownProps Component props
+ * @member {String} label Dropdown component label
+ * @member {Array<DropdownItem} items Dropdown list items
+ * @member {number} [defaultIndex] Index of the default selected item in the items array
+ * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
+ * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
+ * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
+ * @member {String} [className] Appends custom class names
+ * @member {boolean} [disabled] Disabled and uninteractive
+ * @member {boolean} [closeOnItemClick] Close list on item click, default true
+ * @member {boolean} [closeOnMouseOut] Close list on mouse out, default true
+ * @member {boolean} [closeOnClickOutside] Close list on click outside, default true
+ */
 const Dropdown = ({
-  label = "This is my label",
-  onClick = (id: any) => {},
+  label = "",
   items = [],
-  selectedOption = {title: "Nothing"},
+  selectedOption = { title: "Nothing" },
   parentElement = null,
   align = "right",
+  closeOnMouseOut = true,
+  closeOnClickOutside = true,
+  onClick = (id: any) => {},
+  minWidth = "auto",
+  inputWidth = "auto",
 }: DropdownProps) => {
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [isDropdownCutOff, setIsDropdownCutOff] = useState(false);
   const [dropdownCutOffTopOffset, setDropdownCutOffTopOffset] = useState(0);
+  const [hasMouseEnteredDropdown, setHasMouseEnteredDropdown] = useState(false);
   const dropdownRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (!dropdownExpanded) return;
+    if (closeOnClickOutside) {
+      /**
+       * Buffer timeout to let the open click event pass
+       */
+      setTimeout(() => {
+        document.addEventListener("click", ClickOutsideHandler);
+      }, 25);
+    }
+    return () => {
+      if (closeOnClickOutside) {
+        document.removeEventListener("click", ClickOutsideHandler);
+      }
+    };
+  }, [dropdownExpanded]);
 
   const WillDropdownBeCutOff = () => {
     if (!dropdownRef.current) return false;
@@ -80,7 +120,12 @@ const Dropdown = ({
     setDropdownCutOffTopOffset(dropdownRect.height + inputRect.height - 10);
   };
 
-  useEffect(() => {}, [isDropdownCutOff, dropdownCutOffTopOffset]);
+  const ClickOutsideHandler = (event: any) => {
+    if (dropdownExpanded) {
+      setIsDropdownCutOff(false);
+      setDropdownExpanded(false);
+    }
+  };
 
   return (
     <div className="drui-dropdown">
@@ -89,16 +134,23 @@ const Dropdown = ({
           className="drui-dropdown-anchor"
           aria-expanded={dropdownExpanded}
           aria-haspopup="menu"
+          ref={inputRef}
           onClick={() => {
             if (!dropdownExpanded) {
               if (WillDropdownBeCutOff()) {
                 setIsDropdownCutOff(true);
                 GetDropdownHeightOffset();
+                setTimeout(() => {
+                  setDropdownExpanded(!dropdownExpanded);
+                }, 25);
               } else {
                 setIsDropdownCutOff(false);
+                setDropdownExpanded(!dropdownExpanded);
               }
+            } else {
+              setDropdownExpanded(false);
+              setIsDropdownCutOff(false);
             }
-            setDropdownExpanded(!dropdownExpanded);
           }}
         >
           {parentElement}
@@ -110,16 +162,26 @@ const Dropdown = ({
           ref={inputRef}
           aria-expanded={dropdownExpanded}
           aria-haspopup="menu"
+          style={{
+            minWidth: minWidth,
+            width: inputWidth,
+          }}
           onClick={() => {
             if (!dropdownExpanded) {
               if (WillDropdownBeCutOff()) {
                 setIsDropdownCutOff(true);
                 GetDropdownHeightOffset();
+                setTimeout(() => {
+                  setDropdownExpanded(!dropdownExpanded);
+                }, 25);
               } else {
                 setIsDropdownCutOff(false);
+                setDropdownExpanded(!dropdownExpanded);
               }
+            } else {
+              setDropdownExpanded(false);
+              setIsDropdownCutOff(false);
             }
-            setDropdownExpanded(!dropdownExpanded);
           }}
         >
           <div className="drui-dropdown-input-text">
@@ -146,6 +208,20 @@ const Dropdown = ({
           top: isDropdownCutOff ? `-${dropdownCutOffTopOffset}px` : "1em",
         }}
         ref={dropdownRef}
+        onMouseEnter={() => {
+          setHasMouseEnteredDropdown(true);
+        }}
+        onMouseLeave={() => {
+          /**
+           * Only close if the mouse has entered the dropdown before.
+           * Take care of the opening animation, it may overflow and cause the trigger for some parentElement heights
+           */
+          if (closeOnMouseOut && hasMouseEnteredDropdown) {
+            setDropdownExpanded(false);
+            setIsDropdownCutOff(false);
+            setHasMouseEnteredDropdown(false);
+          }
+        }}
       >
         {label !== "" && <div className="drui-dropdown-label">{label}</div>}
         {items.map((item, index) => {
