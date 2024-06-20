@@ -1,7 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Dropdown, { DropdownItemProps, DropdownProps } from "./Dropdown";
-import Button from "../Button/Button";
 import Icon from "../Icons/Icons";
 
 export default {
@@ -32,8 +31,8 @@ SimpleDropdown.args = {
   className: "example",
   label: "Simple Dropdown",
   minWidth: "128px",
-  defaultIndex: 2,
   position: "bottom",
+  placeholder: "Select an item",
   closeOnItemClick: false,
   closeOnMouseOut: true,
   // inputWidth: '300px',

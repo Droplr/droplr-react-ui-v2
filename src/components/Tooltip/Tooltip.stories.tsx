@@ -23,12 +23,7 @@ ExampleTooltip.args = {
   title: "Tooltip Title",
   content: (
     <div>
-      This is a giant tooltip component This is a giant tooltip component This
-      is a giant tooltip component This is a giant tooltip component This is a
-      giant tooltip component This is a giant tooltip component This is a giant
-      tooltip component This is a giant tooltip component This is a giant
-      tooltip component This is a giant tooltip component
-      {/* This is a descriptive tooltip */}
+      This is a descriptive tooltip
     </div>
   ),
   position: "bottom",

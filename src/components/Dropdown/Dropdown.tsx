@@ -27,7 +27,7 @@ export interface DropdownProps {
   selectedOption: DropdownItemProps;
   align: "left" | "right";
   inputWidth?: string;
-  parentElement?: ReactElement;
+  parentElement?: any;
   minWidth?: string;
   maxHeight?: string;
   maxWidth?: string;
@@ -120,7 +120,7 @@ const Dropdown = ({
 
   const WillDropdownBeCutOff = () => {
     if (!dropdownRef.current) return false;
-    const dropdownRect = dropdownRef.current.getBoundingClientRect();
+    const dropdownRect = (dropdownRef.current as Element).getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const dropdownBottom = dropdownRect.y + dropdownRect.height;
     return dropdownBottom > viewportHeight - 20;
@@ -128,8 +128,8 @@ const Dropdown = ({
 
   const GetDropdownHeightOffset = () => {
     if (dropdownRef.current === null) return 0;
-    const dropdownRect = dropdownRef.current.getBoundingClientRect();
-    const inputRect = inputRef.current.getBoundingClientRect();
+    const dropdownRect = (dropdownRef.current as Element).getBoundingClientRect();
+    const inputRect = (inputRef.current! as Element).getBoundingClientRect();
     setDropdownCutOffTopOffset(dropdownRect.height + inputRect.height - 10);
   };
 
@@ -191,7 +191,7 @@ const Dropdown = ({
               <div
                 className="drui-dropdown-item-title"
                 style={{
-                  color: typeof item.color === typeof "" && item.color,
+                  color: typeof item.color === typeof "" && item.color || "#000",
                 }}
               >
                 {item.title}

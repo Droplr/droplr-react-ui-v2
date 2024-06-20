@@ -1,153 +1,132 @@
-.theme-dark {
-  .drui-input__styled {
-    .drui-input {
-      background-color: transparent;
-      color: var(--color-white) !important;
-      border-color: var(--color-info--dark-mode);
-
-      &:hover {
-        border-color: var(--color-info--hover--dark-mode) !important;
-      }
-
-      &::placeholder {
-        color: var(--color-white);
-      }
-    }
-    .drui-inputLabel,
-    .drui-inputSublabel {
-      color: var(--color-white);
-    }
-    .drui-inputInfo {
-      color: var(--color-white);
-    }
-  }
-
-  .drui-input--error {
-    border-color: var(--color-danger) !important;
-  }
-
-  .drui-input__styled-info {
-    color: var(--color-white);
-  }
+.theme-dark .drui-input__styled .drui-input {
+  background-color: transparent;
+  color: var(--color-white) !important;
+  border-color: var(--color-info--dark-mode);
 }
-
+.theme-dark .drui-input__styled .drui-input:hover {
+  border-color: var(--color-info--hover--dark-mode) !important;
+}
+.theme-dark .drui-input__styled .drui-input::placeholder {
+  color: var(--color-white);
+}
+.theme-dark .drui-input__styled .drui-inputLabel,
+.theme-dark .drui-input__styled .drui-inputSublabel {
+  color: var(--color-white);
+}
+.theme-dark .drui-input__styled .drui-inputInfo {
+  color: var(--color-white);
+}
+.theme-dark .drui-input--error {
+  border-color: var(--color-danger) !important;
+}
+.theme-dark .drui-input__styled-info {
+  color: var(--color-white);
+}
 .drui-input__styled {
   font-size: var(--font-size-normal);
   font-family: var(--font-family-primary);
   position: relative;
   width: 100%;
-
-  .drui-inputLabel,
-  .drui-inputSublabel {
-    display: block;
-    color: var(--color-black);
-    font-size: var(--font-size-normal);
-    margin-bottom: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .drui-inputSublabel {
-    font-size: var(--font-size-small);
-  }
-
-  .drui-inputInfo,
-  .drui-inputError {
-    font-size: var(--font-size-small);
-  }
-
-  .drui-inputError {
-    margin-top: 0;
-    color: var(--color-danger);
-    font-weight: var(--font-weight-bold);
-  }
-
-  .drui-input {
-    position: relative;
-    box-sizing: border-box;
-    height: 40px;
-    width: 100%;
-    padding: 0 12px;
-    background-color: var(--color-white);
-    color: var(--color-black);
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--color-pale-gray);
-    border-radius: 4px;
-    outline: none;
-    font-size: inherit;
-    font-weight: inherit;
-    font-family: inherit;
-    transition: all 0.2s ease;
-
-    &:hover {
-      border-color: var(--color-pale-gray);
-    }
-
-    &:focus {
-      color: var(--color-black);
-      border-color: var(--color-primary);
-    }
-
-    &::placeholder {
-      color: var(--color-light-gray);
-    }
-  }
-
-  .drui-input--readOnly:hover,
-  .drui-input--readOnly:focus,
-  .drui-input--disabled:hover {
-    outline-color: var(--color-primary);
-    box-shadow: none;
-  }
-
-  .drui-input--readOnly:focus {
-    color: var(--color-dark-gray);
-  }
-
-  .drui-input--disabled {
-    cursor: not-allowed;
-    color: var(--color-pale-gray);
-  }
-
-  .drui-input--hasOneIcon {
-    padding-right: 44px;
-  }
-
-  .drui-input--hasTwoIcons {
-    padding-right: 68px;
-  }
-
-  .drui-input--error {
-    border-color: var(--color-danger);
-  }
-
-  .drui-input--error:hover,
-  .drui-input--error:focus {
-    border-color: var(--color-danger);
-    box-shadow: none;
-  }
-
-  .drui-inputIconsContainer {
-    position: relative;
-
-    .drui-iconsContainer {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-    }
-    .drui-input__passwordVisibilityIcon {
-      cursor: pointer;
-    }
-
-    .drui-input__errorIcon {
-      path {
-        fill: var(--color-danger);
-      }
-    }
-  }
 }
-
+.drui-input__styled .drui-input-field-icon {
+  position: absolute;
+  right: 12px;
+}
+.drui-input__styled .drui-inputLabel,
+.drui-input__styled .drui-inputSublabel {
+  display: block;
+  color: var(--color-black);
+  font-size: var(--font-size-normal);
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.drui-input__styled .drui-inputSublabel {
+  font-size: var(--font-size-small);
+}
+.drui-input__styled .drui-inputInfo,
+.drui-input__styled .drui-inputError {
+  font-size: var(--font-size-small);
+}
+.drui-input__styled .drui-inputError {
+  margin-top: 0;
+  color: var(--color-danger);
+  font-weight: var(--font-weight-bold);
+}
+.drui-input__styled .drui-input {
+  position: relative;
+  box-sizing: border-box;
+  height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-pale-gray);
+  border-radius: 4px;
+  outline: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.drui-input__styled .drui-input.drui-input--has-icon {
+  padding: 0px 38px 0px 12px !important;
+}
+.drui-input__styled .drui-input:hover {
+  border-color: var(--color-pale-gray);
+}
+.drui-input__styled .drui-input:focus {
+  color: var(--color-black);
+  border-color: var(--color-primary);
+}
+.drui-input__styled .drui-input::placeholder {
+  color: var(--color-light-gray);
+}
+.drui-input__styled .drui-input--readOnly:hover,
+.drui-input__styled .drui-input--readOnly:focus,
+.drui-input__styled .drui-input--disabled:hover {
+  outline-color: var(--color-primary);
+  box-shadow: none;
+}
+.drui-input__styled .drui-input--readOnly:focus {
+  color: var(--color-dark-gray);
+}
+.drui-input__styled .drui-input--disabled {
+  cursor: not-allowed;
+  color: var(--color-pale-gray);
+}
+.drui-input__styled .drui-input--hasOneIcon {
+  padding-right: 44px;
+}
+.drui-input__styled .drui-input--hasTwoIcons {
+  padding-right: 68px;
+}
+.drui-input__styled .drui-input--error {
+  border-color: var(--color-danger);
+}
+.drui-input__styled .drui-input--error:hover,
+.drui-input__styled .drui-input--error:focus {
+  border-color: var(--color-danger);
+  box-shadow: none;
+}
+.drui-input__styled .drui-inputIconsContainer {
+  position: relative;
+}
+.drui-input__styled .drui-inputIconsContainer .drui-iconsContainer {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+.drui-input__styled
+  .drui-inputIconsContainer
+  .drui-input__passwordVisibilityIcon {
+  cursor: pointer;
+}
+.drui-input__styled .drui-inputIconsContainer .drui-input__errorIcon path {
+  fill: var(--color-danger);
+}
 .drui-input__styled-info {
   display: block;
   color: var(--color-black);
@@ -156,7 +135,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 .drui-input__styled-error {
   display: block;
   color: var(--color-danger);

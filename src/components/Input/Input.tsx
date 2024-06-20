@@ -89,9 +89,16 @@ export interface InputProps {
   passwordVisible?: boolean;
 
   /**
-   * @member {boolean} [useHidePasswordIcon]  Uses the library's hide password icon to toggle visibility
+   * @member {Element} [icon]  The icon displayed on the right-hand side of the input field
+   * @desc Recommended icon size: 20px
    */
-  useHidePasswordIcon?: boolean;
+  icon?: any;
+
+  /**
+   * @member {number} [iconTopOffset]  The offset from the top of the input field
+   * @desc Default value: 52%
+   */
+  iconTopOffset?: string;
 
   /**
    * @member {function} [onBlur]  Event handler for the 'onBlur' event
@@ -133,7 +140,8 @@ const Input = ({
   autoFocus = false,
   readOnly = false,
   passwordVisible = false,
-  useHidePasswordIcon = false,
+  icon = null,
+  iconTopOffset = "",
   onBlur = (e) => {},
   onChange = (e) => {},
   onFocus = (e) => {},
@@ -157,57 +165,42 @@ const Input = ({
       >
         {label && <span className="drui-inputLabel">{label}</span>}
         {sublabel && <span className="drui-inputSublabel">{sublabel}</span>}
-        <div className="drui-inputIconsContainer">
-          <input
-            className={[
-              "drui-input",
-              disabled ? " drui-input--disabled" : "",
-              type === "password" ? " drui-input--hasOneIcon" : "",
-              error ? " drui-input--error" : "",
-              readOnly ? " drui-input--readOnly" : "",
-            ].join("")}
-            type={type === "password" && isPasswordVisible ? "text" : type}
-            defaultValue={value}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-            readOnly={readOnly}
-            disabled={disabled}
-            name={name}
-            onBlur={onBlur}
-            onFocus={onFocus}
-            onKeyPress={onKeyPress}
-            onChange={onChange}
-          />
-          {useHidePasswordIcon && type === "password" && (
-            <div className="drui-iconsContainer">
-              {type === "password" &&
-                useHidePasswordIcon &&
-                (isPasswordVisible ? (
-                  <Icon
-                    name="Eye"
-                    className="drui-input__icon drui-input__passwordVisibilityIcon"
-                    onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
-                    size={18}
-                  />
-                ) : (
-                  <Icon
-                    name="EyeOff"
-                    className="drui-input__icon drui-input__passwordVisibilityIcon"
-                    onClick={(arg) => setIsPasswordVisible(!isPasswordVisible)}
-                    size={18}
-                  />
-                ))}
-              {error && (
-                <Icon
-                  name="Error"
-                  className="drui-input__icon drui-input__errorIcon"
-                  color="tomato"
-                  size={22}
-                />
-              )}
-            </div>
-          )}
-        </div>
+        <input
+          className={[
+            "drui-input",
+            disabled ? " drui-input--disabled" : "",
+            type === "password" ? " drui-input--hasOneIcon" : "",
+            error ? " drui-input--error" : "",
+            readOnly ? " drui-input--readOnly" : "",
+            icon ? " drui-input--has-icon" : "",
+          ].join("")}
+          type={type === "password" && isPasswordVisible ? "text" : type}
+          defaultValue={value}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          readOnly={readOnly}
+          disabled={disabled}
+          name={name}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          onKeyPress={onKeyPress}
+          onChange={onChange}
+        />
+        {icon && (
+          <div
+            className="drui-input-field-icon"
+            style={{
+              top:
+                iconTopOffset !== ""
+                  ? iconTopOffset
+                  : sublabel !== ""
+                  ? "64%"
+                  : "52%",
+            }}
+          >
+            {icon}
+          </div>
+        )}
       </div>
       {error && <span className="drui-input__styled-error">{error}</span>}
       {info && <span className="drui-input__styled-info">{info}</span>}

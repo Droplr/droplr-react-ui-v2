@@ -1,6 +1,6 @@
 {
 	"name": "droplr-react-ui-v2",
-	"version": "0.7.38",
+	"version": "0.7.48",
 	"author": "Droplr Inc.",
 	"private": false,
 	"contributors": [
@@ -44,7 +44,6 @@
 		"rollup-plugin-dts": "^5.0.0",
 		"rollup-plugin-peer-deps-external": "^2.2.4",
 		"rollup-plugin-postcss": "^4.0.2",
-		"rollup-plugin-scss": "^3.0.0",
 		"rollup-plugin-ts": "^3.0.2",
 		"rollup-plugin-typescript2": "^0.34.1",
 		"rollup-preserve-directives": "^1.1.1",

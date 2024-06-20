@@ -5,7 +5,6 @@
   height: 0;
   width: 0;
 }
-
 .drui-radio-button {
   display: block;
   position: relative;
@@ -18,7 +17,6 @@
   -ms-user-select: none;
   user-select: none;
 }
-
 .drui-radio-button-input {
   position: absolute;
   top: 0;
@@ -31,15 +29,13 @@
   transition-duration: 250ms;
 }
 .drui-radio-button-disabled {
-    cursor: not-allowed;
-    opacity: 0.9;
+  cursor: not-allowed;
+  opacity: 0.9;
 }
-
 .drui-radio-button:not(.drui-radio-button-disabled):hover input ~ .drui-radio-button-input {
   background-color: var(--color-pale-gray);
   transition-duration: 250ms;
 }
-
 .drui-radio-button-primary input:checked ~ .drui-radio-button-input {
   background-color: var(--color-primary);
   border: 1px solid var(--color-primary);
@@ -50,7 +46,6 @@
   border: 1px solid var(--color-success);
   transition-duration: 250ms;
 }
-
 .drui-radio-button-secondary input:checked ~ .drui-radio-button-input {
   background-color: var(--color-secondary);
   border: 1px solid var(--color-secondary);
@@ -66,20 +61,17 @@
   border: 1px solid var(--color-danger);
   transition-duration: 250ms;
 }
-
 .drui-radio-button-input:after {
   content: "";
   position: absolute;
   display: none;
 }
-
 .drui-radio-button input:checked ~ .drui-radio-button-input:after {
   display: block;
 }
-
 .drui-radio-button .drui-radio-button-input:after {
-  top: 10px;
-  left: 10px;
+  top: 9.5px;
+  left: 9.5px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
@@ -87,8 +79,8 @@
   transition-duration: 250ms;
 }
 .drui-radio-button-secondary .drui-radio-button-input:after {
-  top: 10px;
-  left: 10px;
+  top: 9.5px;
+  left: 9.5px;
   width: 6px;
   height: 6px;
   border-radius: 50%;

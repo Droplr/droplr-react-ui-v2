@@ -130,7 +130,7 @@ Element
 | `autoFocus` | boolean <br/> *optional* | Autofocuses the input field |
 | `readOnly` | boolean <br/> *optional* | Makes the component uneditable |
 | `passwordVisible` | boolean <br/> *optional* | Shows or hides the password text |
-| `useHidePasswordIcon` | boolean <br/> *optional* | Uses the library's hide password icon to toggle visibility |
+| `icon` | <Icon /> <br/> *optional* | An optional icon shown on the right-hand side |
 | `onBlur` | function <br/> *optional* | Event handler for the 'onBlur' event |
 | `onFocus` | function <br/> *optional* | Event handler for the 'onFocus' event |
 | `onKeyPress` | function <br/> *optional* | Event handler for the 'onKeyPress' event |

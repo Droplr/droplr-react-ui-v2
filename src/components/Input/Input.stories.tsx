@@ -1,6 +1,7 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import Input, { InputProps } from "./Input";
+import Icon from "../Icons/Icons";
 
 export default {
   title: "Components/Input",
@@ -31,8 +32,8 @@ WithSublabel.args = { label: "My Input Component", onChange: onChange, sublabel:
 export const PasswordInput = Template.bind({});
 PasswordInput.args = { label: "My Input Component", onChange: onChange, type: 'password', value: 'Password'};
 
-export const PasswordWithShowAndHide = Template.bind({});
-PasswordWithShowAndHide.args = { label: "My Input Component", onChange: onChange, type: 'password', value: 'Password', useHidePasswordIcon: true};
+export const WithIcon = Template.bind({});
+WithIcon.args = { label: "My Input Component", onChange: onChange, icon: <Icon name="Alert" size={20} color="var(--color-danger)" />};
 
 export const WithError = Template.bind({});
 WithError.args = { label: "My Input Component", onChange: onChange, error: 'Oops! Something isn`t right.'};
@@ -45,6 +46,3 @@ DisabledInput.args = { label: "My Input Component", onChange: onChange, disabled
 
 export const ReadOnlyInput = Template.bind({});
 ReadOnlyInput.args = { label: "My Input Component", onChange: onChange, readOnly: true, value: 'You can`t touch me!'};
-
-export const AutoFocusInput = Template.bind({});
-AutoFocusInput.args = { label: "My Input Component", onChange: onChange, autoFocus: true};
