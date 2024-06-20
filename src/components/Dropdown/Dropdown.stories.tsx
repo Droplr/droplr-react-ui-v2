@@ -37,15 +37,29 @@ SimpleDropdown.args = {
   closeOnItemClick: false,
   closeOnMouseOut: true,
   // inputWidth: '300px',
-  // parentElement: <Button label="Click Me" />,
+  // parentElement: <Icon name="Alert" size={32} />,
   items: [
     args,
     { ...args, disabled: true, title: "Second Item", id: 1, description: "Small info..."},
+    { ...args, disabled: true, title: "First header", id: 1, type: "HEADER"},
+    { ...args, disabled: true, title: "Third Item", id: 1, description: "Small info..."},
+    { ...args, disabled: true, title: "Fourth Item", id: 1, description: "Small info..."},
+    { ...args, disabled: true, title: "Second header", id: 1, type: "HEADER"},
     {
       ...args,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-      title: "Third Item",
+      title: "Fifth Item",
+      showItemStatus: true,
+      id: 2,
+      color: "var(--color-danger)",
+    },
+    { ...args, id: 1, type: "SPLITTER"},
+    {
+      ...args,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      title: "Sixth Item",
       showItemStatus: true,
       id: 2,
       color: "var(--color-danger)",

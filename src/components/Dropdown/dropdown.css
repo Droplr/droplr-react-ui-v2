@@ -24,6 +24,27 @@
     .drui-dropdown-input-arrow--rotate {
       transform: rotate(-180deg);
     }
+    &.drui-dropdown-input--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    .drui-dropdown-input-loading {
+      pointer-events: none;
+      cursor: not-allowed;
+      width: 100%;
+      padding: 12px 4px 12px 12px;
+      .drui-loader-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding-right: 24px;
+        .drui-loader {
+          border-color: var(--color-primary);
+        }
+      }
+    }
   }
   .drui-dropdown-anchor {
     position: relative;
@@ -35,6 +56,10 @@
   }
   .drui-dropdown-content--align-left {
     left: 0;
+  }
+
+  .drui-dropdown-content::-webkit-scrollbar {
+    display: none;
   }
 
   .drui-dropdown-content {
@@ -58,11 +83,16 @@
     margin-inline-end: 0px;
     padding-inline-start: 0px;
 
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
     &.drui-dropdown-content-visible {
       visibility: visible;
       transform: translateY(1.75em);
     }
-    
+
     .drui-dropdown-label {
       padding: 8px 12px;
       text-transform: uppercase;
@@ -78,6 +108,21 @@
       &:hover {
         background-color: var(--color-lightest-gray);
         cursor: pointer;
+      }
+
+      &.drui-dropdown-item--section-header {
+        padding: 8px 12px;
+        text-transform: uppercase;
+        color: var(--color-dark-gray);
+        font-size: var(--font-size-small);
+        font-weight: var(--font-weight-bold);
+        border-bottom: 1px solid var(--color-pale-gray);
+        pointer-events: none;
+      }
+
+      &.drui-dropdown-item--section-splitter {
+        border-bottom: 1px solid var(--color-pale-gray);
+        pointer-events: none;
       }
 
       .drui-dropdown-item-title-container {
@@ -105,6 +150,10 @@
         opacity: 0.25;
         cursor: not-allowed;
         pointer-events: none;
+      }
+      &.drui-dropdown-item--selected {
+        border-left: 3px solid var(--color-primary);
+        background-color: #2b6af30c;
       }
     }
   }

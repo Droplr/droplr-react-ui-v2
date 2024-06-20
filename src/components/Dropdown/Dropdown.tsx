@@ -1,35 +1,40 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import "./dropdown.css";
 import Icon from "../Icons";
+import Loader from "../Loader/Loader";
 
 /**
  * @interface DropdownProps Component props
  * @member {String} label Dropdown component label
  * @member {Array<DropdownItem} items Dropdown list items
- * @member {number} [defaultIndex] Index of the default selected item in the items array
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
+ * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
+ * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
  * @member {string} [inputWidth] Sets the width of the dropdown input field
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
- * @member {boolean} [closeOnItemClick] Close list on item click, default true
  * @member {boolean} [closeOnMouseOut] Close list on mouse out, default true
  * @member {boolean} [closeOnClickOutside] Close list on click outside, default true
+ * @member {Function} onClick Click event handler
+ * @member {boolean} [loading] Show loading spinner
+ * @member {String} [align] Dropdown list alignment
  */
 export interface DropdownProps {
   label: string;
   items: DropdownItemProps[];
   selectedOption: DropdownItemProps;
   align: "left" | "right";
-  defaultIndex?: number;
   inputWidth?: string;
   parentElement?: ReactElement;
   minWidth?: string;
+  maxHeight?: string;
+  maxWidth?: string;
   showItemStatus?: boolean;
   className?: string;
   disabled?: boolean;
-  closeOnItemClick?: boolean;
+  loading?: boolean;
   closeOnMouseOut?: boolean;
   closeOnClickOutside?: boolean;
   onClick: (item: any) => void;
@@ -44,6 +49,7 @@ export interface DropdownProps {
  * @method onClick Click event handler
  */
 export interface DropdownItemProps {
+  type?: "SPLITTER" | "HEADER" | "ITEM";
   className?: string;
   disabled?: boolean;
   title?: string;
@@ -55,31 +61,38 @@ export interface DropdownItemProps {
 }
 
 /**
- * @interface DropdownProps Component props
  * @member {String} label Dropdown component label
  * @member {Array<DropdownItem} items Dropdown list items
- * @member {number} [defaultIndex] Index of the default selected item in the items array
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
+ * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
+ * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
  * @member {string} [inputWidth] Sets the width of the dropdown input field
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
- * @member {boolean} [closeOnItemClick] Close list on item click, default true
  * @member {boolean} [closeOnMouseOut] Close list on mouse out, default true
  * @member {boolean} [closeOnClickOutside] Close list on click outside, default true
+ * @member {Function} onClick Click event handler
+ * @member {boolean} [loading] Show loading spinner
+ * @member {String} [align] Dropdown list alignment
  */
 const Dropdown = ({
   label = "",
   items = [],
-  selectedOption = { title: "Nothing" },
+  selectedOption = { title: "Nothing", id: 0 },
   parentElement = null,
-  align = "right",
+  align = "left",
   closeOnMouseOut = true,
   closeOnClickOutside = true,
-  onClick = (id: any) => {},
   minWidth = "auto",
+  maxHeight = "300px",
+  maxWidth = "auto",
   inputWidth = "auto",
+  disabled = false,
+  loading = false,
+  showItemStatus = false,
+  onClick = (id: any) => {},
 }: DropdownProps) => {
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [isDropdownCutOff, setIsDropdownCutOff] = useState(false);
@@ -127,6 +140,73 @@ const Dropdown = ({
     }
   };
 
+  const FetchDropdownItemContent = (item: DropdownItemProps, index) => {
+    switch (item.type) {
+      case "SPLITTER":
+        return (
+          <li
+            key={index}
+            className={[
+              "drui-dropdown-item",
+              "drui-dropdown-item--section-splitter",
+              item.className && item.className,
+            ].join(" ")}
+          ></li>
+        );
+      case "HEADER":
+        return (
+          <li
+            key={index}
+            className={[
+              "drui-dropdown-item",
+              "drui-dropdown-item--section-header",
+              item.className && item.className,
+            ].join(" ")}
+          >
+            {item.title}
+          </li>
+        );
+      case "ITEM":
+      default:
+        return (
+          <li
+            key={index}
+            className={[
+              "drui-dropdown-item",
+              item.disabled && "drui-dropdown-item--disabled",
+              item.className && item.className,
+              item.id === selectedOption.id &&
+                showItemStatus &&
+                "drui-dropdown-item--selected",
+            ].join(" ")}
+            onClick={() => {
+              setDropdownExpanded(false);
+              onClick(item);
+            }}
+          >
+            <div className="drui-dropdown-item-title-container">
+              {item.icon !== null && (
+                <div className="drui-dropdown-item-icon">{item.icon}</div>
+              )}
+              <div
+                className="drui-dropdown-item-title"
+                style={{
+                  color: typeof item.color === typeof "" && item.color,
+                }}
+              >
+                {item.title}
+              </div>
+            </div>
+            {item.description && (
+              <div className="drui-dropdown-item-description">
+                {item.description}
+              </div>
+            )}
+          </li>
+        );
+    }
+  };
+
   return (
     <div className="drui-dropdown">
       {parentElement !== null && (
@@ -158,7 +238,10 @@ const Dropdown = ({
       )}
       {parentElement === null && (
         <div
-          className="drui-dropdown-input"
+          className={[
+            "drui-dropdown-input",
+            disabled && "drui-dropdown-input--disabled",
+          ].join(" ")}
           ref={inputRef}
           aria-expanded={dropdownExpanded}
           aria-haspopup="menu"
@@ -184,17 +267,30 @@ const Dropdown = ({
             }
           }}
         >
-          <div className="drui-dropdown-input-text">
-            {selectedOption ? selectedOption.title : "Nothing"}
-          </div>
-          <div
-            className={[
-              "drui-dropdown-input-arrow",
-              dropdownExpanded && "drui-dropdown-input-arrow--rotate",
-            ].join(" ")}
-          >
-            <Icon name="DropdownDown" color="var(--color-black)" size={24} />
-          </div>
+          {!loading && (
+            <>
+              <div className="drui-dropdown-input-text">
+                {selectedOption ? selectedOption.title : "Nothing"}
+              </div>
+              <div
+                className={[
+                  "drui-dropdown-input-arrow",
+                  dropdownExpanded && "drui-dropdown-input-arrow--rotate",
+                ].join(" ")}
+              >
+                <Icon
+                  name="DropdownDown"
+                  color="var(--color-black)"
+                  size={24}
+                />
+              </div>
+            </>
+          )}
+          {loading && (
+            <div className="drui-dropdown-input-loading">
+              <Loader></Loader>
+            </div>
+          )}
         </div>
       )}
       <ul
@@ -206,6 +302,8 @@ const Dropdown = ({
         ].join(" ")}
         style={{
           top: isDropdownCutOff ? `-${dropdownCutOffTopOffset}px` : "1em",
+          maxHeight: maxHeight,
+          maxWidth: maxWidth,
         }}
         ref={dropdownRef}
         onMouseEnter={() => {
@@ -225,39 +323,7 @@ const Dropdown = ({
       >
         {label !== "" && <div className="drui-dropdown-label">{label}</div>}
         {items.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className={[
-                "drui-dropdown-item",
-                item.disabled && "drui-dropdown-item--disabled",
-                item.className && item.className,
-              ].join(" ")}
-              onClick={() => {
-                setDropdownExpanded(false);
-                onClick(item);
-              }}
-            >
-              <div className="drui-dropdown-item-title-container">
-                {item.icon !== null && (
-                  <div className="drui-dropdown-item-icon">{item.icon}</div>
-                )}
-                <div
-                  className="drui-dropdown-item-title"
-                  style={{
-                    color: typeof item.color === typeof "" && item.color,
-                  }}
-                >
-                  {item.title}
-                </div>
-              </div>
-              {item.description && (
-                <div className="drui-dropdown-item-description">
-                  {item.description}
-                </div>
-              )}
-            </li>
-          );
+          return FetchDropdownItemContent(item, index);
         })}
       </ul>
     </div>
