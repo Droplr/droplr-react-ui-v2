@@ -189,6 +189,7 @@ Element
 | `inputWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the width for the input field <br/> *Default*: auto|
 | `maxWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the maximum width for the dropdown list <br/> *Default*: auto|
 | `maxHeight`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the maximum height for the dropdown list <br/> *Default*: 300px|
+| `dropdownTopOffset`| number <br/> *optional*  | Offsets the top alignment of the dropdown list <br/> *Default*: 0|
 | `closeOnMouseOut`| boolean <br/> *optional*  | Closes the dropdown when the mouse leaves the list <br/> *Default*: true|
 | `closeOnClickOutside`| boolean <br/> *optional*  | Closes the dropdown when the mouse clicks outside of list <br/> *Default*: true|
 | `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |

@@ -69,7 +69,8 @@
     z-index: 10000;
     width: max-content;
     visibility: hidden;
-    transform: translateY(1em);
+    pointer-events: none;
+    transform: translateY(1.1em);
     transition: transform ease 0.3s;
 
     background-color: var(--color-white);
@@ -91,6 +92,7 @@
     &.drui-dropdown-content-visible {
       visibility: visible;
       transform: translateY(1.75em);
+      pointer-events: all;
     }
 
     .drui-dropdown-label {

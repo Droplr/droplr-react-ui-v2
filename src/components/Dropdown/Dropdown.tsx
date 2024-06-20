@@ -11,6 +11,7 @@ import Loader from "../Loader/Loader";
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
  * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
  * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
+ * @member {string} [dropdownTopOffset] Sets the top offset of the dropdown list
  * @member {string} [inputWidth] Sets the width of the dropdown input field
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
@@ -31,6 +32,7 @@ export interface DropdownProps {
   minWidth?: string;
   maxHeight?: string;
   maxWidth?: string;
+  dropdownTopOffset?: number;
   showItemStatus?: boolean;
   className?: string;
   disabled?: boolean;
@@ -68,6 +70,7 @@ export interface DropdownItemProps {
  * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
  * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
  * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {string} [dropdownTopOffset] Sets the top offset of the dropdown list
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
@@ -89,6 +92,7 @@ const Dropdown = ({
   maxHeight = "300px",
   maxWidth = "auto",
   inputWidth = "auto",
+  dropdownTopOffset = 0,
   disabled = false,
   loading = false,
   showItemStatus = false,
@@ -130,7 +134,7 @@ const Dropdown = ({
     if (dropdownRef.current === null) return 0;
     const dropdownRect = (dropdownRef.current as Element).getBoundingClientRect();
     const inputRect = (inputRef.current! as Element).getBoundingClientRect();
-    setDropdownCutOffTopOffset(dropdownRect.height + inputRect.height - 10);
+    setDropdownCutOffTopOffset(dropdownRect.height + inputRect.height - 10 + dropdownTopOffset);
   };
 
   const ClickOutsideHandler = (event: any) => {
@@ -222,7 +226,7 @@ const Dropdown = ({
                 GetDropdownHeightOffset();
                 setTimeout(() => {
                   setDropdownExpanded(!dropdownExpanded);
-                }, 25);
+                }, 500);
               } else {
                 setIsDropdownCutOff(false);
                 setDropdownExpanded(!dropdownExpanded);
@@ -230,6 +234,7 @@ const Dropdown = ({
             } else {
               setDropdownExpanded(false);
               setIsDropdownCutOff(false);
+              (dropdownRef.current! as Element).scrollTop = 0;
             }
           }}
         >
@@ -256,7 +261,7 @@ const Dropdown = ({
                 GetDropdownHeightOffset();
                 setTimeout(() => {
                   setDropdownExpanded(!dropdownExpanded);
-                }, 25);
+                }, 500);
               } else {
                 setIsDropdownCutOff(false);
                 setDropdownExpanded(!dropdownExpanded);
@@ -264,6 +269,7 @@ const Dropdown = ({
             } else {
               setDropdownExpanded(false);
               setIsDropdownCutOff(false);
+              (dropdownRef.current! as Element).scrollTop = 0;
             }
           }}
         >
@@ -301,7 +307,7 @@ const Dropdown = ({
           isDropdownCutOff && "drui-dropdown-content--align-top",
         ].join(" ")}
         style={{
-          top: isDropdownCutOff ? `-${dropdownCutOffTopOffset}px` : "1em",
+          top: isDropdownCutOff ? `-${dropdownCutOffTopOffset}px` : `calc(1em + ${dropdownTopOffset}px)`,
           maxHeight: maxHeight,
           maxWidth: maxWidth,
         }}
@@ -310,15 +316,18 @@ const Dropdown = ({
           setHasMouseEnteredDropdown(true);
         }}
         onMouseLeave={() => {
-          /**
-           * Only close if the mouse has entered the dropdown before.
-           * Take care of the opening animation, it may overflow and cause the trigger for some parentElement heights
-           */
-          if (closeOnMouseOut && hasMouseEnteredDropdown) {
-            setDropdownExpanded(false);
-            setIsDropdownCutOff(false);
-            setHasMouseEnteredDropdown(false);
-          }
+          setTimeout(() => {
+            /**
+             * Only close if the mouse has entered the dropdown before.
+             * Take care of the opening animation, it may overflow and cause the trigger for some parentElement heights
+             */
+            if (closeOnMouseOut && hasMouseEnteredDropdown) {
+              setDropdownExpanded(false);
+              setIsDropdownCutOff(false);
+              setHasMouseEnteredDropdown(false);
+              (dropdownRef.current! as Element).scrollTop = 0;
+            }
+          }, 500)
         }}
       >
         {label !== "" && <div className="drui-dropdown-label">{label}</div>}
