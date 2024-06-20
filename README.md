@@ -178,32 +178,36 @@ Element
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `items` | Array<DropdownItem> <br/> **required** | The list of the dropdown items <br/> Instances of `DropdownItemProps` |
+| `selectedOption` | DropdownItem <br/> **required** | The selected item from the provided `items` array |
 | `label` | string <br/> **required** | The label of the dropdown |
+| `parentElement` | Element <br/> *optional* | Replaces the default input field with the provided element and attaches the dropdown onto it |
 | `className` | string <br/> *optional* | Appends custom class name |
-| `defaultIndex` | number <br/>*optional* | Index of the default selected item in the items array. <br/> *Default*: 0|
-| `disabled` | boolean <br/> *optional* | Sets the dropdown input field to the disabled state. <br/> *Default*: `false`|
-| `fullWidth`| boolean <br/> *optional*  | Has the dropdown input field occupy the full width of its parent <br/> *Default*: false |
-| `minWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the minimum width for the input field <br/> *Default*: 0px|
+| `disabled` | boolean <br/> *optional* | Sets the dropdown input field to the disabled state. No effect if the `parentElement is provided` <br/> *Default*: `false`|
+| `loading` | boolean <br/> *optional* | Renders a loading spinner over the dropdown input field. No effect if the `parentElement is provided`|
+| `align` | `left` `right` <br/> *optional* | Aligns the item to the left or right side of the parent trigger |
+| `minWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the minimum width for the input field <br/> *Default*: auto|
+| `inputWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the width for the input field <br/> *Default*: auto|
+| `maxWidth`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the maximum width for the dropdown list <br/> *Default*: auto|
+| `maxHeight`| pixel-format string, ie. `12px` <br/> *optional*  | Sets the maximum height for the dropdown list <br/> *Default*: 300px|
+| `dropdownTopOffset`| number <br/> *optional*  | Offsets the top alignment of the dropdown list <br/> *Default*: 0|
 | `closeOnMouseOut`| boolean <br/> *optional*  | Closes the dropdown when the mouse leaves the list <br/> *Default*: true|
-| `closeOnItemClick`| boolean <br/> *optional*  | Closes the dropdown when an option in selected <br/> *Default*: true|
+| `closeOnClickOutside`| boolean <br/> *optional*  | Closes the dropdown when the mouse clicks outside of list <br/> *Default*: true|
 | `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
-| `onMouseLeave` | Function <br/> *optional* | Handler function for when the mouse leaves the dropdown |
 
 <a name="dropdownItemProps"></a>
 ▸ **DropdownItemProps**: Interface
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `id` | any <br/> *optional* | An optional identifier for an item |
 | `title` | string <br/> **required** | The title of the list item |
-| `onClick` | Function <br/> **required** | The click handler function for the list item. <br/> Provides the currently selected item as the argument (`typeof DropdownItemProps`) |
+| `type` | `ITEM` `HEADER` `SPLITTER` <br/> *optional* | The type of the list item. Splitters are a simple border break and a header displays its `title` prop |
 | `description` | string <br/> *optional* | The description of the list item |
 | `disabled` | boolean <br/> *optional* | Sets the list item to the disabled state. <br/> *Default*: `false`|
 | `className` | string <br/> *optional* | Appends custom class name |
+| `color` | string <br/> *optional* | Colors the `title` prop of the item |
 | `icon` | Icon <br/> *optional* | Renders an icon before the title text of the list item |
-| `href` | string <br/> *optional* | The `href` attribute target for the item click |
-| `target` | string <br/> *optional* | The `target` attribute target for the item click |
-| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected item<br/> *Default*: `false` |
-| `active` | boolean <br/> *optional* | Sets the item to active state by default <br/> *Default*: false|
+| `onClick` | Function <br/> **required** | The click handler function for the list item. <br/> Provides the currently selected item as the argument (`typeof DropdownItemProps`) |
 
 <a name="dropdownExample"></a>
 #### Example
@@ -214,13 +218,16 @@ const dropdown_items: Array<DropdownItemProps> = [{
     onClick: itemClickHandler(),
     disabled: false,
     },{
+    title: 'A new section',
+    type: 'HEADER',
+    },{
     title: 'My list item - two',
     description: 'My item's description',
     icon: <Icon name='List' size={12} />,
     onClick: itemClickHandler(),
     disabled: true,
 }];
-<Dropdown items={dropdown_items} label='My Dropdown' closeOnMouseOut={false} />
+<Dropdown items={dropdown_items} selectedOption={dropdownSelectedOption} label='My Dropdown' closeOnMouseOut={false} onClick={(item) => {setSelectedOption(item)}} />
 ```
 
 #### Defined in
