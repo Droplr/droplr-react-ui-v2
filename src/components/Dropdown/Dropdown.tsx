@@ -9,10 +9,12 @@ import Loader from "../Loader/Loader";
  * @member {Array<DropdownItem} items Dropdown list items
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
- * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
- * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
+ * @member {string} [maxListHeight] Sets the max height for the dropdown list, default is 300px
+ * @member {String} [maxListWidth] Sets the max width for the dropdown list, default is auto
+ * @member {boolean} [matchListWidthToInput] Match the width of the dropdown list to the input field
  * @member {string} [dropdownTopOffset] Sets the top offset of the dropdown list
  * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {string} [textAlign] Sets the text alignment of the dropdown list items
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
@@ -23,15 +25,17 @@ import Loader from "../Loader/Loader";
  * @member {String} [align] Dropdown list alignment
  */
 export interface DropdownProps {
-  label: string;
+  label?: string;
   items: DropdownItemProps[];
-  selectedOption: DropdownItemProps;
+  selectedOption?: DropdownItemProps | undefined;
   align: "left" | "right";
   inputWidth?: string;
   parentElement?: any;
   minWidth?: string;
-  maxHeight?: string;
-  maxWidth?: string;
+  maxListHeight?: string;
+  maxListWidth?: string;
+  matchListWidthToInput?: boolean;
+  textAlign?: "start" | "center" | "end";
   dropdownTopOffset?: number;
   showItemStatus?: boolean;
   className?: string;
@@ -39,7 +43,7 @@ export interface DropdownProps {
   loading?: boolean;
   closeOnMouseOut?: boolean;
   closeOnClickOutside?: boolean;
-  onClick: (item: any) => void;
+  onClick?: (item: any) => void;
 }
 /**
  * @interface DropdownItemProps Component props
@@ -63,14 +67,17 @@ export interface DropdownItemProps {
 }
 
 /**
+ * @interface DropdownProps Component props
  * @member {String} label Dropdown component label
  * @member {Array<DropdownItem} items Dropdown list items
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
- * @member {string} [maxHeight] Sets the max height for the dropdown list, default is 300px
- * @member {String} [maxWidth] Sets the max width for the dropdown list, default is auto
- * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {string} [maxListHeight] Sets the max height for the dropdown list, default is 300px
+ * @member {String} [maxListWidth] Sets the max width for the dropdown list, default is auto
+ * @member {boolean} [matchListWidthToInput] Match the width of the dropdown list to the input field
  * @member {string} [dropdownTopOffset] Sets the top offset of the dropdown list
+ * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {string} [textAlign] Sets the text alignment of the dropdown list items
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
  * @member {boolean} [disabled] Disabled and uninteractive
@@ -83,16 +90,19 @@ export interface DropdownItemProps {
 const Dropdown = ({
   label = "",
   items = [],
-  selectedOption = { title: "Nothing", id: 0 },
+  selectedOption = undefined,
+  className = "",
   parentElement = null,
   align = "left",
   closeOnMouseOut = true,
   closeOnClickOutside = true,
   minWidth = "auto",
-  maxHeight = "300px",
-  maxWidth = "auto",
+  maxListHeight = "300px",
+  maxListWidth = "auto",
   inputWidth = "auto",
+  textAlign = "start",
   dropdownTopOffset = 0,
+  matchListWidthToInput = false,
   disabled = false,
   loading = false,
   showItemStatus = false,
@@ -124,7 +134,9 @@ const Dropdown = ({
 
   const WillDropdownBeCutOff = () => {
     if (!dropdownRef.current) return false;
-    const dropdownRect = (dropdownRef.current as Element).getBoundingClientRect();
+    const dropdownRect = (
+      dropdownRef.current as Element
+    ).getBoundingClientRect();
     const viewportHeight = window.innerHeight;
     const dropdownBottom = dropdownRect.y + dropdownRect.height;
     return dropdownBottom > viewportHeight - 20;
@@ -132,9 +144,13 @@ const Dropdown = ({
 
   const GetDropdownHeightOffset = () => {
     if (dropdownRef.current === null) return 0;
-    const dropdownRect = (dropdownRef.current as Element).getBoundingClientRect();
+    const dropdownRect = (
+      dropdownRef.current as Element
+    ).getBoundingClientRect();
     const inputRect = (inputRef.current! as Element).getBoundingClientRect();
-    setDropdownCutOffTopOffset(dropdownRect.height + inputRect.height - 10 + dropdownTopOffset);
+    setDropdownCutOffTopOffset(
+      dropdownRect.height + inputRect.height - 10 + (WillDropdownBeCutOff() ? -dropdownTopOffset : dropdownTopOffset)
+    );
   };
 
   const ClickOutsideHandler = (event: any) => {
@@ -143,6 +159,12 @@ const Dropdown = ({
       setDropdownExpanded(false);
     }
   };
+
+  const GetDropdownInputFieldWidth = (): string => {
+    if (inputRef.current === null) return "max-content";
+    const inputRect = (inputRef.current as Element).getBoundingClientRect();
+    return `${inputRect.width}px`;
+  }
 
   const FetchDropdownItemContent = (item: DropdownItemProps, index) => {
     switch (item.type) {
@@ -179,7 +201,8 @@ const Dropdown = ({
               "drui-dropdown-item",
               item.disabled && "drui-dropdown-item--disabled",
               item.className && item.className,
-              item.id === selectedOption.id &&
+              selectedOption &&
+                item.id === selectedOption!.id &&
                 showItemStatus &&
                 "drui-dropdown-item--selected",
             ].join(" ")}
@@ -188,14 +211,18 @@ const Dropdown = ({
               onClick(item);
             }}
           >
-            <div className="drui-dropdown-item-title-container">
+            <div
+                className={["drui-dropdown-item-title-container", 
+                  `drui-dropdown-item-title--align-${textAlign}`
+                ].join(" ")}>
               {item.icon !== null && (
                 <div className="drui-dropdown-item-icon">{item.icon}</div>
               )}
               <div
-                className="drui-dropdown-item-title"
+                className={["drui-dropdown-item-title"].join(" ")}
                 style={{
-                  color: typeof item.color === typeof "" && item.color || "#000",
+                  color:
+                    (typeof item.color === typeof "" && item.color) || "#000",
                 }}
               >
                 {item.title}
@@ -212,7 +239,7 @@ const Dropdown = ({
   };
 
   return (
-    <div className="drui-dropdown">
+    <div className={["drui-dropdown", className && className].join(" ")}>
       {parentElement !== null && (
         <div
           className="drui-dropdown-anchor"
@@ -307,9 +334,12 @@ const Dropdown = ({
           isDropdownCutOff && "drui-dropdown-content--align-top",
         ].join(" ")}
         style={{
-          top: isDropdownCutOff ? `-${dropdownCutOffTopOffset}px` : `calc(1em + ${dropdownTopOffset}px)`,
-          maxHeight: maxHeight,
-          maxWidth: maxWidth,
+          top: isDropdownCutOff
+            ? `-${dropdownCutOffTopOffset}px`
+            : `calc(1em + ${dropdownTopOffset}px)`,
+          maxHeight: maxListHeight,
+          maxWidth: maxListWidth,
+          width: matchListWidthToInput ? GetDropdownInputFieldWidth() : "max-content",
         }}
         ref={dropdownRef}
         onMouseEnter={() => {
@@ -327,7 +357,7 @@ const Dropdown = ({
               setHasMouseEnteredDropdown(false);
               (dropdownRef.current! as Element).scrollTop = 0;
             }
-          }, 500)
+          }, 500);
         }}
       >
         {label !== "" && <div className="drui-dropdown-label">{label}</div>}

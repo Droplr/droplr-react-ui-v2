@@ -1,5 +1,4 @@
 .drui-dropdown {
-  width: 100%;
   user-select: none;
   position: relative;
   .drui-dropdown-input {
@@ -7,7 +6,7 @@
     font-size: var(--font-size-normal);
     color: var(--color-black);
 
-    padding: 8px 4px 8px 12px;
+    padding: 5px 4px 5px 12px;
     border: 1px solid var(--color-pale-gray);
     border-radius: 6px;
     cursor: pointer;
@@ -132,6 +131,15 @@
         justify-content: flex-start;
         align-items: center;
         flex-direction: row;
+        &.drui-dropdown-item-title--align-start {
+          justify-content: flex-start;
+        }
+        &.drui-dropdown-item-title--align-center {
+          justify-content: center;
+        }
+        &.drui-dropdown-item-title--align-end {
+          justify-content: flex-end;
+        }
         .drui-dropdown-item-icon {
           display: inline-block;
           margin-right: 8px;

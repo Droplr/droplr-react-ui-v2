@@ -152,7 +152,8 @@ const Tooltip = ({
     }
     const bodyRef = document.getElementsByTagName("body")[0];
     const bubble = bubbleRef.current;
-    const bounds = bubble.getBoundingClientRect();
+    if (typeof bubble === "undefined" || bubble == null) return;
+    const bounds = (bubble as Element).getBoundingClientRect();
     /**
      * Check if the tooltip bubble is within the bounds
      */
