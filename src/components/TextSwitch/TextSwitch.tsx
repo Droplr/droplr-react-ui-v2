@@ -108,7 +108,7 @@ const TextSwitch = ({
       return (selected.id?.toString() || '') === item.id.toString();
     }
   }
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<any>(null);
 
   const handleChange = (selectedId: any) => {
     const selectedOption = items.find((x) => x.id.toString() === selectedId.toString());

@@ -21,7 +21,7 @@
 .drui-text-switch .text-switch-item {
   width: max-content;
   background-color: transparent;
-  color: var(--color-gray--dark-mode);
+  color: var(--color-black);
   font-family: var(--font-family-primary);
   font-size: 15px;
   font-weight: var(--font-weight-bold);
