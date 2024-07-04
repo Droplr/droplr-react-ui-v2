@@ -17,6 +17,8 @@ import "./input.css";
  * @member {boolean} [readOnly]  Makes the component uneditable
  * @member {boolean} [passwordVisible] Shows or hides the password text
  * @member {boolean} [useHidePasswordIcon]  Uses the library's hide password icon to toggle visibility
+ * @member {number} [min]  The minimum value for the input field
+ * @member {number} [max]  The maximum value for the input field
  * @member {function} [onBlur]  Event handler for the 'onBlur' event
  * @member {function} [onFocus]  Event handler for the 'onFocus' event
  * @member {function} [onKeyPress]  Event handler for the 'onKeyPress' event
@@ -101,6 +103,17 @@ export interface InputProps {
   iconTopOffset?: string;
 
   /**
+   * @member {number} [min]  The minimum value for the input field
+   */
+  min?: number;
+
+  /**
+   * @member {number} [max]  The maximum value for the input field
+   */
+
+  max?: number;
+
+  /**
    * @member {function} [onBlur]  Event handler for the 'onBlur' event
    */
   onBlur?: (e) => void;
@@ -142,6 +155,8 @@ const Input = ({
   passwordVisible = false,
   icon = null,
   iconTopOffset = "",
+  min = 0,
+  max = 9999999999999,
   onBlur = (e) => {},
   onChange = (e) => {},
   onFocus = (e) => {},
@@ -180,6 +195,8 @@ const Input = ({
           autoFocus={autoFocus}
           readOnly={readOnly}
           disabled={disabled}
+          min={min}
+          max={max}
           name={name}
           onBlur={onBlur}
           onFocus={onFocus}
