@@ -195,6 +195,11 @@ Element
 | `closeOnMouseOut`| boolean <br/> *optional*  | Closes the dropdown when the mouse leaves the list <br/> *Default*: true|
 | `closeOnClickOutside`| boolean <br/> *optional*  | Closes the dropdown when the mouse clicks outside of list <br/> *Default*: true|
 | `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
+| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
+| `showItemStatus` | boolean <br/> *optional* | Shows a checkmark icon next to selected items<br/> *Default*: `false` |
+| `withInput` | boolean <br/> *optional* | Toggles the input field <br/> *Default*: `false` |
+| `inputLoading` | boolean <br/> *optional* | Shows the input field loader (requires `withInput`) <br/> *Default*: `false` |
+| `onInputChanged` | Function <br/> *optional* | Callback for input changed events (requires `withInput`) |
 
 <a name="dropdownItemProps"></a>
 ▸ **DropdownItemProps**: Interface

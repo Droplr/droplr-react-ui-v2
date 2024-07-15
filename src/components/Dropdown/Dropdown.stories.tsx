@@ -35,8 +35,10 @@ SimpleDropdown.args = {
   placeholder: "Select an item",
   closeOnItemClick: false,
   closeOnMouseOut: true,
-  // inputWidth: '300px',
-  // parentElement: <Icon name="Alert" size={32} />,
+  withInput: true,
+  inputLoading: false,
+  closeOnClickOutside: true,
+  onInputChanged: (event) => { console.log(event.target.value)},
   items: [
     args,
     { ...args, disabled: true, title: "Second Item", id: 1, description: "Small info..."},

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./button.css";
 import Loader from "../Loader/Loader";
 import "../../assets/shared.css";
@@ -8,7 +8,7 @@ import "../../assets/shared.css";
  * @member {String} className  Appends custom class names
  * @member {String} Style variants => primary | secondary | success | info | transparent | warning | danger | alternative
  * @member {String} size  Size variants => small | medium | large
- * @member {String} label  Text switch label
+ * @member {String | JSX.Element} label  Text switch label
  * @member {boolean} disabled  Disabled and uninteractive
  * @member {boolean} loading  Shows loading spinner
  * @member {boolean} icon  The button icon (DroplrUI)
@@ -68,7 +68,7 @@ export interface ButtonProps {
    * @desc  Click event handler
    * @param {Function} event  Handler function
    */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (event) => void;
 }
 
 /**
@@ -102,7 +102,7 @@ const Button = ({
           ? (e) => {
               onClick(e);
             }
-          : null
+          : undefined
       }
     >
       <div className="drui-button__content">

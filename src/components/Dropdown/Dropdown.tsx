@@ -23,6 +23,9 @@ import Loader from "../Loader/Loader";
  * @member {Function} onClick Click event handler
  * @member {boolean} [loading] Show loading spinner
  * @member {String} [align] Dropdown list alignment
+ * @member {boolean} [withInput] Toggles the input field
+ * @member {boolean} [inputLoading] Triggers the input loading state
+ * @member {Function} [onInputChanged] Callback to the on input changed event
  */
 export interface DropdownProps {
   label?: string;
@@ -43,7 +46,12 @@ export interface DropdownProps {
   loading?: boolean;
   closeOnMouseOut?: boolean;
   closeOnClickOutside?: boolean;
+  withInput?: boolean;
+  inputLoading?: boolean;
+  resetInputOnClose?: boolean;
+  onInputChanged?: (event) => void;
   onClick?: (item: any) => void;
+  onClose?: () => void;
 }
 /**
  * @interface DropdownItemProps Component props
@@ -86,6 +94,9 @@ export interface DropdownItemProps {
  * @member {Function} onClick Click event handler
  * @member {boolean} [loading] Show loading spinner
  * @member {String} [align] Dropdown list alignment
+ * @member {boolean} [withInput] Toggles the input field
+ * @member {boolean} [inputLoading] Triggers the input loading state
+ * @member {Function} [onInputChanged] Callback to the on input changed event
  */
 const Dropdown = ({
   label = "",
@@ -106,17 +117,32 @@ const Dropdown = ({
   disabled = false,
   loading = false,
   showItemStatus = false,
+  withInput = false,
+  inputLoading = false,
+  resetInputOnClose = true,
+  onInputChanged = (event) => {},
   onClick = (id: any) => {},
+  onClose = () => {},
 }: DropdownProps) => {
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [isDropdownCutOff, setIsDropdownCutOff] = useState(false);
   const [dropdownCutOffTopOffset, setDropdownCutOffTopOffset] = useState(0);
   const [hasMouseEnteredDropdown, setHasMouseEnteredDropdown] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef(null);
+  const [customInputFieldQuery, setCustomInputFieldQuery] = useState("");
+  const customInputFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (!dropdownExpanded) return;
+    if (!dropdownExpanded) {
+      if (resetInputOnClose) {
+        setCustomInputFieldQuery("");
+      }
+      if (!!onClose) {
+        onClose();
+      }
+      return;
+    }
     if (closeOnClickOutside) {
       /**
        * Buffer timeout to let the open click event pass
@@ -149,22 +175,32 @@ const Dropdown = ({
     ).getBoundingClientRect();
     const inputRect = (inputRef.current! as Element).getBoundingClientRect();
     setDropdownCutOffTopOffset(
-      dropdownRect.height + inputRect.height - 10 + (WillDropdownBeCutOff() ? -dropdownTopOffset : dropdownTopOffset)
+      dropdownRect.height +
+        inputRect.height -
+        10 +
+        (WillDropdownBeCutOff() ? -dropdownTopOffset : dropdownTopOffset)
     );
   };
 
-  const ClickOutsideHandler = (event: any) => {
-    if (dropdownExpanded) {
-      setIsDropdownCutOff(false);
-      setDropdownExpanded(false);
+  const IsContentOverflowing = () => {
+    if (!!dropdownRef.current) {
+      const { scrollHeight, clientHeight } = dropdownRef.current;
+      return scrollHeight > clientHeight;
+    } else {
+      return false;
     }
+  };
+
+  const ClickOutsideHandler = (_event: any) => {
+    setIsDropdownCutOff(false);
+    setDropdownExpanded(false);
   };
 
   const GetDropdownInputFieldWidth = (): string => {
     if (inputRef.current === null) return "max-content";
     const inputRect = (inputRef.current as Element).getBoundingClientRect();
     return `${inputRect.width}px`;
-  }
+  };
 
   const FetchDropdownItemContent = (item: DropdownItemProps, index) => {
     switch (item.type) {
@@ -212,9 +248,11 @@ const Dropdown = ({
             }}
           >
             <div
-                className={["drui-dropdown-item-title-container", 
-                  `drui-dropdown-item-title--align-${textAlign}`
-                ].join(" ")}>
+              className={[
+                "drui-dropdown-item-title-container",
+                `drui-dropdown-item-title--align-${textAlign}`,
+              ].join(" ")}
+            >
               {item.icon !== null && (
                 <div className="drui-dropdown-item-icon">{item.icon}</div>
               )}
@@ -238,6 +276,37 @@ const Dropdown = ({
     }
   };
 
+  const CustomDRUIInput = () => {
+    const onChangeHandler = (e: any) => {
+      setCustomInputFieldQuery(e.target.value);
+
+      if (onInputChanged) {
+        onInputChanged(e);
+      }
+    };
+    return (
+      <div
+        className="custom-drui-dropdown-input"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <input
+          ref={customInputFieldRef}
+          type="text"
+          value={customInputFieldQuery}
+          className={[
+            "custom-dropdown-input-field",
+            inputLoading && "custom-dropdown-input-field--loading",
+          ].join(" ")}
+          autoFocus
+          onChange={onChangeHandler}
+        />
+        {inputLoading && <Loader></Loader>}
+      </div>
+    );
+  };
+
   return (
     <div className={["drui-dropdown", className && className].join(" ")}>
       {parentElement !== null && (
@@ -246,7 +315,8 @@ const Dropdown = ({
           aria-expanded={dropdownExpanded}
           aria-haspopup="menu"
           ref={inputRef}
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             if (!dropdownExpanded) {
               if (WillDropdownBeCutOff()) {
                 setIsDropdownCutOff(true);
@@ -261,7 +331,9 @@ const Dropdown = ({
             } else {
               setDropdownExpanded(false);
               setIsDropdownCutOff(false);
-              (dropdownRef.current! as Element).scrollTop = 0;
+              if (!!dropdownRef.current) {
+                dropdownRef.current.scrollTop = 0;
+              }
             }
           }}
         >
@@ -296,7 +368,9 @@ const Dropdown = ({
             } else {
               setDropdownExpanded(false);
               setIsDropdownCutOff(false);
-              (dropdownRef.current! as Element).scrollTop = 0;
+              if (!!dropdownRef.current) {
+                dropdownRef.current.scrollTop = 0;
+              }
             }
           }}
         >
@@ -331,6 +405,7 @@ const Dropdown = ({
           "drui-dropdown-content",
           dropdownExpanded && "drui-dropdown-content-visible",
           `drui-dropdown-content--align-${align}`,
+          IsContentOverflowing() && "drui-dropdown-content--with-scrollbars",
           isDropdownCutOff && "drui-dropdown-content--align-top",
         ].join(" ")}
         style={{
@@ -339,7 +414,9 @@ const Dropdown = ({
             : `calc(1em + ${dropdownTopOffset}px)`,
           maxHeight: maxListHeight,
           maxWidth: maxListWidth,
-          width: matchListWidthToInput ? GetDropdownInputFieldWidth() : "max-content",
+          width: matchListWidthToInput
+            ? GetDropdownInputFieldWidth()
+            : "max-content",
         }}
         ref={dropdownRef}
         onMouseEnter={() => {
@@ -355,12 +432,15 @@ const Dropdown = ({
               setDropdownExpanded(false);
               setIsDropdownCutOff(false);
               setHasMouseEnteredDropdown(false);
-              (dropdownRef.current! as Element).scrollTop = 0;
+              if (!!dropdownRef.current) {
+                dropdownRef.current.scrollTop = 0;
+              }
             }
           }, 500);
         }}
       >
         {label !== "" && <div className="drui-dropdown-label">{label}</div>}
+        {withInput && <CustomDRUIInput></CustomDRUIInput>}
         {items.map((item, index) => {
           return FetchDropdownItemContent(item, index);
         })}
