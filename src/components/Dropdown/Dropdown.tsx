@@ -316,7 +316,7 @@ const Dropdown = ({
           aria-haspopup="menu"
           ref={inputRef}
           onClick={(e) => {
-            e.stopPropagation();
+            e.preventDefault();
             if (!dropdownExpanded) {
               if (WillDropdownBeCutOff()) {
                 setIsDropdownCutOff(true);
