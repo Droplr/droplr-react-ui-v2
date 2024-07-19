@@ -81,22 +81,14 @@ const Tooltip = ({
 
   const HideTooltip = (hasBeenClicked?: boolean): void => {
     if (document.getElementsByClassName("tooltip-bubble").length === 0) return;
-    if (
-      typeof document.getElementsByClassName("tooltip-bubble")[0].classList ===
-      "undefined"
-    )
-      return;
+    if (!(!!bubbleRef.current)) return;
     /**
      * Closing on click has priority
      */
-    if (closeOnClick && hasBeenClicked) {
-      document
-        .getElementsByClassName("tooltip-bubble")[0]
-        .classList.add("fade-out");
+    if (closeOnClick && hasBeenClicked && !!bubbleRef.current) {
+      bubbleRef.current.classList.add("fade-out");
       setTimeout(() => {
-        document
-          .getElementsByClassName("tooltip-bubble")[0]
-          .classList.remove("fade-out");
+        bubbleRef.current.classList.remove("fade-out");
         onTooltipHide();
         setTooltipVisible(false);
       }, 250);
@@ -105,29 +97,27 @@ const Tooltip = ({
     /**
      * Check if the timeout is less than the fade out animation duration, to not overcomplicate the timings (250ms)
      */
-    if (hideDelay <= 250) {
-      document
-        .getElementsByClassName("tooltip-bubble")[0]
-        .classList.add("fade-out");
+    if (hideDelay <= 250 && !!bubbleRef.current) {
+      bubbleRef.current.classList.add("fade-out");
       setTimeout(() => {
-        document
-          .getElementsByClassName("tooltip-bubble")[0]
-          .classList.remove("fade-out");
-        onTooltipHide();
-        setTooltipVisible(false);
+        if (!!bubbleRef.current) {
+          bubbleRef.current.classList.remove("fade-out");
+          onTooltipHide();
+          setTooltipVisible(false);
+        }
       }, hideDelay);
     } else {
       setTimeout(() => {
-        document
-          .getElementsByClassName("tooltip-bubble")[0]
-          .classList.add("fade-out");
+        if (!!bubbleRef.current) {
+          bubbleRef.current.classList.add("fade-out");
+        }
       }, hideDelay - 250);
       setTimeout(() => {
-        setTooltipVisible(false);
-        document
-          .getElementsByClassName("tooltip-bubble")[0]
-          .classList.remove("fade-out");
-        onTooltipHide();
+        if (!!bubbleRef.current) {
+          setTooltipVisible(false);
+          bubbleRef.current.classList.remove("fade-out");
+          onTooltipHide();
+        }
       }, hideDelay);
     }
   };

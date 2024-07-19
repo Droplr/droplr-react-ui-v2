@@ -43,15 +43,16 @@ const AnimatedIcon = ({
   }
   const iconRef = React.useRef(null);
   useEffect(() => {
-    if (!iconRef.current) return;
-    if (toggleState) {
-      iconRef.current.classList.add("drui-animated-icon-toggled");
-    } else {
-      iconRef.current.classList.add("drui-animated-icon-reverse");
-      setTimeout(() => {
-        iconRef.current.classList.remove("drui-animated-icon-reverse");
-        iconRef.current.classList.remove("drui-animated-icon-toggled");
-      }, 300);
+    if (!!iconRef && !!iconRef.current && !!iconRef.current.classList) {
+      if (toggleState) {
+        iconRef.current.classList.add("drui-animated-icon-toggled");
+      } else {
+        iconRef.current.classList.add("drui-animated-icon-reverse");
+        setTimeout(() => {
+          iconRef.current.classList.remove("drui-animated-icon-reverse");
+          iconRef.current.classList.remove("drui-animated-icon-toggled");
+        }, 300);
+      }
     }
   }, [toggleState]);
 

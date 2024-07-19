@@ -242,7 +242,8 @@ const Dropdown = ({
                 showItemStatus &&
                 "drui-dropdown-item--selected",
             ].join(" ")}
-            onClick={() => {
+            onClick={(e) => {
+              e.stopPropagation();
               setDropdownExpanded(false);
               onClick(item);
             }}
@@ -316,7 +317,19 @@ const Dropdown = ({
           aria-haspopup="menu"
           ref={inputRef}
           onClick={(e) => {
-            e.preventDefault();
+            e.stopPropagation();
+            /**
+             * Fires a fake event due to stop propagation
+             * -
+             * There is an interaction when you can open multiple dropdowns by only clicking on the parent element
+             */
+            const event = new MouseEvent("click", {
+              view: window,
+              bubbles: true,
+              cancelable: true,
+            });
+            document.dispatchEvent(event);
+
             if (!dropdownExpanded) {
               if (WillDropdownBeCutOff()) {
                 setIsDropdownCutOff(true);

@@ -87,8 +87,10 @@ const Toast = ({
 
   useEffect(() => {
     DismissTimer.current = setTimeout(() => {
-      ToastRef.current.classList.add("drui-toast-dismissed");
-      setTimeout(() => DismissSelf(), 400);
+      if (!!ToastRef && !!ToastRef.current) {
+        ToastRef.current.classList.add("drui-toast-dismissed");
+        setTimeout(() => DismissSelf(), 400);
+      }
     }, duration);
     return () => {
       clearTimeout(DismissTimer.current);

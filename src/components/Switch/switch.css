@@ -62,6 +62,7 @@
 .drui-switch.disabled {
   cursor: not-allowed;
   color: var(--color-dark-gray);
+  opacity: 0.5;
 }
 .drui-switch.switch--right {
   flex-direction: row-reverse;
