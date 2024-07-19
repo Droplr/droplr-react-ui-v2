@@ -49,8 +49,10 @@ const AnimatedIcon = ({
       } else {
         iconRef.current.classList.add("drui-animated-icon-reverse");
         setTimeout(() => {
-          iconRef.current.classList.remove("drui-animated-icon-reverse");
-          iconRef.current.classList.remove("drui-animated-icon-toggled");
+          if (!!iconRef && !!iconRef.current && !!iconRef.current.classList) {
+            iconRef.current.classList.remove("drui-animated-icon-reverse");
+            iconRef.current.classList.remove("drui-animated-icon-toggled");
+          }
         }, 300);
       }
     }
