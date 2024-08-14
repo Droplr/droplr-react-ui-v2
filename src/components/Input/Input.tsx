@@ -114,6 +114,11 @@ export interface InputProps {
   max?: number;
 
   /**
+   * @member {number} [step]  The step value for the input field
+   */
+  step?: number;
+
+  /**
    * @member {function} [onBlur]  Event handler for the 'onBlur' event
    */
   onBlur?: (e) => void;
@@ -157,6 +162,7 @@ const Input = ({
   iconTopOffset = "",
   min = 0,
   max = 9999999999999,
+  step = 1,
   onBlur = (e) => {},
   onChange = (e) => {},
   onFocus = (e) => {},
@@ -197,6 +203,7 @@ const Input = ({
           disabled={disabled}
           min={min}
           max={max}
+          step={step}
           name={name}
           onBlur={onBlur}
           onFocus={onFocus}
