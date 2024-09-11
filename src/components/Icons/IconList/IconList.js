@@ -345,6 +345,10 @@ const Cross = [
 const CrossBold = [
 	"M19 17.026 17.026 19 12 13.974 6.974 19 5 17.026 10.026 12 5 6.974 6.974 5 12 10.026 17.026 5 19 6.974 13.974 12z"
 ];
+const CursorSelect = [
+	"M12.2,11.8l-7.1,7.1 M12.2,18.1v-6.3 M12.2,11.8H5.9|",
+	"M15.3,18.4h1.4c1.2,0,2.2-1,2.2-2.2V7.3c0-1.2-1-2.2-2.2-2.2H7.8c-1.2,0-2.2,1-2.2,2.2v1.4|"
+];
 const Cut = [
 	"M9.15 14.85L18 4M6 4L14.85 14.85M10 17C10 18.6569 8.65685 20 7 20C5.34315 20 4 18.6569 4 17C4 15.3431 5.34315 14 7 14C8.65685 14 10 15.3431 10 17ZM20 17C20 18.6569 18.6569 20 17 20C15.3431 20 14 18.6569 14 17C14 15.3431 15.3431 14 17 14C18.6569 14 20 15.3431 20 17Z|+SF+SWF-2+SLCF-round+SLJF-round"
 ];
@@ -406,6 +410,9 @@ const Enable = [
 const EntirePage = [
 	"M21,3 L3,3 C1.89,3 1,3.89 1,5 L1,19 C1,20.11 1.89,21 3,21 L21,21 C22.11,21 23,20.11 23,19 L23,5 C23,3.89 22.11,3 21,3 Z M21,19.02 L3,19.02 L3,4.98 L21,4.98 L21,19.02 Z M14,12 L16,12 L12,16 L8,12 L10,12 L10,8 L14,8 L14,12 Z|+HF"
 ];
+const Eraser = [
+	"M8.7,20.4l-5.1-5.1c-0.8-0.8-0.8-2,0-2.7l8.9-8.9c0.8-0.8,2-0.8,2.7,0l5.1,5.1 c0.8,0.8,0.8,2,0,2.7l-8.9,8.9C10.7,21.1,9.4,21.1,8.7,20.4z M10.4,5.9l7.8,7.8|"
+];
 const Error = [
 	"M12,4 C7.6,4 4,7.6 4,12 C4,16.4 7.6,20 12,20 C16.4,20 20,16.4 20,12 C20,7.6 16.4,4 12,4 Z M12,16 C11.4,16 11,15.6 11,15 C11,14.4 11.4,14 12,14 C12.6,14 13,14.4 13,15 C13,15.6 12.6,16 12,16 Z M13,13 L11,13 L11,8 L13,8 L13,13 Z|+HF"
 ];
@@ -463,6 +470,12 @@ const HeadlineSecond = [
 ];
 const Heart = [
 	"M18.68175,6.31775 C16.92475,4.56075 14.07475,4.56075 12.31775,6.31775 C12.19675,6.43875 12.10375,6.57675 11.99975,6.70675 C11.89575,6.57675 11.80275,6.43875 11.68175,6.31775 C9.92475,4.56075 7.07475,4.56075 5.31775,6.31775 C3.56075,8.07475 3.56075,10.92475 5.31775,12.68175 L11.99975,18.99975 L18.68175,12.68175 C20.43875,10.92475 20.43875,8.07475 18.68175,6.31775 Z|+HF"
+];
+const Highlighter = [
+	"M-32,13.2h1.4c1.2,0,2.2-1,2.2-2.2V2.2c0-1.2-1-2.2-2.2-2.2h-8.8c-1.2,0-2.2,1-2.2,2.2v1.4|",
+	"M19,21v-4.8c0-2.2-0.8-3.9-1.8-3.9H6.9c-1,0-1.8,1.8-1.8,3.9V21|",
+	"M17.5,12l-0.8-2.4c-0.2-0.5-0.8-0.9-1.5-0.8l-6.3,0c-0.7,0-1.4,0.4-1.6,0.9L6.5,12|",
+	"M14.7,8.8V6.3c0-0.5-0.3-1-0.8-1.2l-3.1-1.5c-0.7-0.3-1.5,0.1-1.5,0.8v4.4|"
 ];
 const Hyperlink = [
 	"M10 14C10.6583 14.6719 11.5594 15.0505 12.5 15.0505C13.4406 15.0505 14.3417 14.6719 15 14L19 10C20.3807 8.61928 20.3807 6.38071 19 5C17.6193 3.61928 15.3807 3.61928 14 5L13.5 5.5|+SF+SWF-1.5+SLCF-round+SLJF-round",
@@ -918,6 +931,7 @@ export {
 	Crop,
 	Cross,
 	CrossBold,
+	CursorSelect,
 	Cut,
 	Dashboard,
 	Delete,
@@ -937,6 +951,7 @@ export {
 	Elements,
 	Enable,
 	EntirePage,
+	Eraser,
 	Error,
 	ExpandSidebar,
 	ExpireTime,
@@ -956,6 +971,7 @@ export {
 	HeadlineFirst,
 	HeadlineSecond,
 	Heart,
+	Highlighter,
 	Hyperlink,
 	Image,
 	Italic,
@@ -1058,3 +1074,5 @@ export {
 	ZoomOut,
 	ZoomReset
 };
+// The following is used for TS Strict Types
+// 'Blur' | 'Checkmark' | 'ClipboardVariant' | 'DragHand' | 'Drag' | 'Edit2' | 'Embed' | 'Emoji' | 'FolderSearch' | 'FolderMove' | 'Folders' | 'FullScreenTab' | 'FullDesktopScreen' | 'Group' | 'Info' | 'LineArrow' | 'LineStroke' | 'Merge' | 'NewWindowTabExternal' | 'NewWindowVariant' | 'Notes' | 'Pause' | 'PhotoCopyClipboard' | 'RateStarFull' | 'RateStar' | 'RemoveMulti' | 'Remove' | 'Screen' | 'Search' | 'SelfDestructTimer2' | 'SelfDestructTimer' | 'SendShare' | 'Settings' | 'ShareMemberAdd' | 'StackLayers' | 'TagOff' | 'Tag' | 'Tags' | 'TextEditor' | 'User' | 'UsersShared' | 'Users' | 'WholePage' | 'Window' | 'Add' | 'AddOn' | 'AddPeople' | 'AddToBoard' | 'AdjustModify' | 'Alert' | 'AlignCenter' | 'AlignLeft' | 'AlignRight' | 'AllItems' | 'ArrowBold' | 'ArrowLeftNarrow' | 'ArrowRightNarrow' | 'Audio' | 'Back' | 'Bell' | 'Billing' | 'BillingInvoice' | 'Binoculars' | 'Board' | 'BoardShared' | 'BoardSingle' | 'Bold' | 'Browser' | 'BrowserTab' | 'CalendarTime' | 'Calendar' | 'CamOnly' | 'CamOnlyOff' | 'Camera' | 'Cancel' | 'ChartAnalytics' | 'Check' | 'CheckCircle' | 'CheckSimple' | 'CheckboxOff' | 'CheckboxOn' | 'CheckboxOnFilled' | 'ChevronDown' | 'ChevronLeft' | 'ChevronRight' | 'Chrome' | 'Clipboard' | 'Close' | 'CloudDownload' | 'CloudUpload' | 'CloudUploadOld' | 'Code' | 'CodeBlock' | 'CollapseSidebar' | 'Comment' | 'Copy' | 'CopyDuplicate' | 'CopyDuplicateAdd' | 'CopyDuplicateMulti' | 'CopyDuplicateVariant' | 'CreateBoard' | 'CreditCard' | 'Crop' | 'Cross' | 'CrossBold' | 'CursorSelect' | 'Cut' | 'Dashboard' | 'Delete' | 'Destruct' | 'DetachBoard' | 'Disable' | 'Documents' | 'Dots' | 'Down' | 'Download' | 'Draw' | 'DropdownDown' | 'DropdownLeft' | 'DropdownRight' | 'DropdownUp' | 'Edit' | 'Elements' | 'Enable' | 'EntirePage' | 'Eraser' | 'Error' | 'ExpandSidebar' | 'ExpireTime' | 'Export' | 'EyeOff' | 'Eye' | 'Face' | 'Facebook' | 'FileText' | 'FileZip' | 'Folder' | 'FullScreen' | 'FullDesktop' | 'Gear' | 'Gif' | 'HdVideo' | 'HeadlineFirst' | 'HeadlineSecond' | 'Heart' | 'Highlighter' | 'Hyperlink' | 'Image' | 'Italic' | 'Key' | 'KeyboardShortcuts' | 'LayoutGrid' | 'LayoutList' | 'Leave' | 'Link' | 'LockOpenUnlock' | 'LockOpen' | 'Lock' | 'Logout' | 'Mail' | 'Markdown' | 'MicrophoneOff' | 'Microphone' | 'Money' | 'MoreHorizontal' | 'MoreVertical' | 'More' | 'Move' | 'NewWindow' | 'Nib' | 'NotesBold' | 'Notification' | 'OrderArrow' | 'OrderedList' | 'Others' | 'PadlockLock' | 'PadlockUnlock' | 'Paragraph' | 'Pen' | 'Phone' | 'Photo' | 'PhotoCamera' | 'PlayFiiled' | 'Play' | 'Plugin' | 'PlusToBoard' | 'Private' | 'Profile' | 'Public' | 'PublicFolder' | 'QuestionMark' | 'Quote' | 'Redo' | 'Refresh' | 'RemoveSimple' | 'RemoveTag' | 'Restore' | 'Resume' | 'Save' | 'ScreenOnly' | 'Screenrecording' | 'SearchBold' | 'SelectedArea' | 'Send' | 'Separator' | 'Share' | 'Shared' | 'SortAsc' | 'SortBy' | 'SortDesc' | 'Sort' | 'Star' | 'Step' | 'Success' | 'TagFilled' | 'Task' | 'Team' | 'Terminal' | 'TimerCountdown' | 'ToolCustomize' | 'TrashBin' | 'Twitter' | 'Typography' | 'Underline' | 'Undo' | 'UnorderedList' | 'Up' | 'Upload' | 'UploadFile' | 'Url' | 'VerticalDots' | 'Video' | 'VideoCam' | 'VideoCamPlus' | 'ViewGrid' | 'ViewList' | 'Wallet' | 'Warning' | 'WatchFolder' | 'WebcamScreenAlt' | 'WebcamScreen' | 'Webcam' | 'XClear' | 'Zip' | 'ZoomIn' | 'ZoomOut' | 'ZoomReset'
