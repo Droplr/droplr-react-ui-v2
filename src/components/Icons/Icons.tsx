@@ -17,6 +17,7 @@ export interface IconProps {
    */
   name:
     | "Blur"
+    | "Brush"
     | "Checkmark"
     | "BlurDrop"
     | "CursorSelect"
