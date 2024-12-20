@@ -9,6 +9,19 @@ export default {
   argTypes: {
     backgroundColor: { control: 'color' },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Input component with support for various types including text, number, and password.
+For password type inputs, it includes a visibility toggle feature:
+- Shows Eye/EyeOff icons to toggle password visibility
+- Clicking the icon switches between showing and hiding the password
+- Initial visibility can be controlled via the passwordVisible prop
+        `,
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
@@ -30,7 +43,37 @@ export const WithSublabel = Template.bind({});
 WithSublabel.args = { label: "My Input Component", onChange: onChange, sublabel: 'An example of a sublabel'};
 
 export const PasswordInput = Template.bind({});
-PasswordInput.args = { label: "My Input Component", onChange: onChange, type: 'password', value: 'Password'};
+PasswordInput.args = { 
+  label: "Password Input", 
+  onChange: onChange, 
+  type: 'password', 
+  value: 'MySecretPassword123',
+  placeholder: 'Enter your password'
+};
+PasswordInput.parameters = {
+  docs: {
+    description: {
+      story: 'Password input with visibility toggle. Click the eye icon to show/hide the password.',
+    },
+  },
+};
+
+export const PasswordInputInitiallyVisible = Template.bind({});
+PasswordInputInitiallyVisible.args = { 
+  label: "Password Input (Initially Visible)", 
+  onChange: onChange, 
+  type: 'password', 
+  value: 'MySecretPassword123',
+  passwordVisible: true,
+  placeholder: 'Enter your password'
+};
+PasswordInputInitiallyVisible.parameters = {
+  docs: {
+    description: {
+      story: 'Password input that starts with the password visible. The passwordVisible prop controls the initial visibility state.',
+    },
+  },
+};
 
 export const WithIcon = Template.bind({});
 WithIcon.args = { label: "My Input Component", onChange: onChange, icon: <Icon name="Alert" size={20} color="var(--color-danger)" />};

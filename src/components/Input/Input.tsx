@@ -26,12 +26,13 @@ import "./input.css";
  */
 export interface InputProps {
   /**
-   * @member {string | number} [value]  The default value of the input field
+   * @member {string | number} [value] The default value of the input field
    */
   value?: string | number;
 
   /**
-   * @member {string} [type]  The input type, values => text | password | number
+   * @member {string} [type] The input type
+   * @default "text"
    */
   type?: "text" | "password" | "number";
 
@@ -86,18 +87,20 @@ export interface InputProps {
   readOnly?: boolean;
 
   /**
-   * @member {boolean} [passwordVisible] Shows or hides the password text
+   * @member {boolean} [passwordVisible] Initial visibility state for password fields
+   * @description When type is "password", shows a toggle icon that switches between showing and hiding the password text
+   * @default false
    */
   passwordVisible?: boolean;
 
   /**
-   * @member {Element} [icon]  The icon displayed on the right-hand side of the input field
-   * @desc Recommended icon size: 20px
+   * @member {React.ReactNode} [icon] The icon displayed on the right-hand side of the input field
+   * @description Recommended icon size: 20px. For password fields, the Eye/EyeOff icons are automatically shown
    */
-  icon?: any;
+  icon?: React.ReactNode;
 
   /**
-   * @member {number} [iconTopOffset]  The offset from the top of the input field
+   * @member {string} [iconTopOffset]  The offset from the top of the input field
    * @desc Default value: 52%
    */
   iconTopOffset?: string;
@@ -110,7 +113,6 @@ export interface InputProps {
   /**
    * @member {number} [max]  The maximum value for the input field
    */
-
   max?: number;
 
   /**
@@ -121,22 +123,22 @@ export interface InputProps {
   /**
    * @member {function} [onBlur]  Event handler for the 'onBlur' event
    */
-  onBlur?: (e) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * @member {function} [onFocus]  Event handler for the 'onFocus' event
    */
-  onFocus?: (e) => void;
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 
   /**
    * @member {function} [onKeyPress]  Event handler for the 'onKeyPress' event
    */
-  onKeyPress?: (e) => void;
+  onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 
   /**
    * @member {function} [onChange]  Event handler for the 'onChange' event
    */
-  onChange?: (e) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -150,7 +152,7 @@ const Input = ({
   className = "",
   label = "",
   sublabel = "",
-  name = "input-filed",
+  name = "input-field",
   disabled = false,
   placeholder = "",
   info = "",
@@ -210,7 +212,7 @@ const Input = ({
           onKeyPress={onKeyPress}
           onChange={onChange}
         />
-        {icon && (
+        {(icon || type === "password") && (
           <div
             className="drui-input-field-icon"
             style={{
@@ -220,9 +222,15 @@ const Input = ({
                   : sublabel !== ""
                   ? "64%"
                   : "52%",
+              cursor: type === "password" ? "pointer" : "default",
             }}
+            onClick={type === "password" ? () => setIsPasswordVisible(!isPasswordVisible) : undefined}
           >
-            {icon}
+            {type === "password" ? (
+              <Icon name={isPasswordVisible ? "EyeOff" : "Eye"} size={20} />
+            ) : (
+              icon
+            )}
           </div>
         )}
       </div>

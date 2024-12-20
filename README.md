@@ -129,7 +129,7 @@ Element
 | `error` | string <br/> *optional* | Displays an error message under the input field |
 | `autoFocus` | boolean <br/> *optional* | Autofocuses the input field |
 | `readOnly` | boolean <br/> *optional* | Makes the component uneditable |
-| `passwordVisible` | boolean <br/> *optional* | Shows or hides the password text |
+| `passwordVisible` | boolean <br/> *optional* | Initial visibility state for password fields. When type is "password", shows a toggle icon that switches between showing and hiding the password text |
 | `icon` | <Icon /> <br/> *optional* | An optional icon shown on the right-hand side |
 | `onBlur` | function <br/> *optional* | Event handler for the 'onBlur' event |
 | `onFocus` | function <br/> *optional* | Event handler for the 'onFocus' event |
@@ -144,11 +144,20 @@ const onChange = (e) => {
     handleInput(e.target.value);
 };
 
+// Basic text input
 <Input 
-    value={'My Input Component' }
+    value={'My Input Component'}
     type={'text'} 
     autoFocus 
     info={'Please fill out the form'} 
+    onChange={onChange}/>
+
+// Password input with visibility toggle
+<Input
+    type={'password'}
+    value={'mySecretPassword'}
+    label={'Password'}
+    passwordVisible={false} // Initially hidden
     onChange={onChange}/>
 ```
 ___
@@ -675,4 +684,3 @@ const switch_items = items: [
     onChange={onChangeHandler} />
 
 ```
-
