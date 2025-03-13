@@ -52,7 +52,7 @@
   font-family: var(--font-family-primary);
   font-size: var(--font-size-normal);
   color: var(--color-black);
-  padding: 5px 4px 5px 12px;
+  padding: 7px 4px 7px 12px;
   border: 1px solid var(--color-pale-gray);
   border-radius: 6px;
   cursor: pointer;
@@ -64,6 +64,9 @@
 .drui-dropdown .drui-dropdown-input .drui-dropdown-input-arrow {
   margin-left: 12px;
   transition-duration: 0.3s;
+}
+.drui-dropdown-input-text--empty {
+  color: var(--color-light-gray);
 }
 .drui-dropdown .drui-dropdown-input .drui-dropdown-input-arrow--rotate {
   transform: rotate(-180deg);

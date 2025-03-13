@@ -389,7 +389,7 @@ const Dropdown = ({
         >
           {!loading && (
             <>
-              <div className="drui-dropdown-input-text">
+              <div className={["drui-dropdown-input-text", !selectedOption && "drui-dropdown-input-text--empty"].join(" ")}>
                 {selectedOption ? selectedOption.title : "Nothing"}
               </div>
               <div
