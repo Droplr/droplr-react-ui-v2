@@ -1,6 +1,16 @@
 import React from "react";
+import { WithToastProps, WithToasts } from "../components/Toast/handler";
 
-const DroplrThemeProvider = ({ theme, children }) => {
+export interface DroplrUIProviderProps {
+  theme: "light" | "dark";
+  children: any;
+  toastProps?: WithToastProps;
+}
+const DroplrUIProvider = ({
+  theme = "light",
+  children,
+  toastProps = null,
+}: DroplrUIProviderProps) => {
   return (
     <div
       className={[
@@ -12,8 +22,26 @@ const DroplrThemeProvider = ({ theme, children }) => {
         width: "100%",
       }}
     >
-      {children}
+      <WithToasts {...toastProps}>
+        {children}
+        <div
+          className="drui-tooltip-portal-root"
+          id="drui-tooltip-portal-root"
+          style={{
+            position: "fixed",
+            zIndex: "2147483647 !important",
+          }}
+        ></div>
+        <div
+          className="drui-dropdown-portal-root"
+          id="drui-dropdown-portal-root"
+          style={{
+            position: "fixed",
+            zIndex: "2147483647 !important",
+          }}
+        ></div>
+      </WithToasts>
     </div>
   );
 };
-export default DroplrThemeProvider;
+export default DroplrUIProvider;

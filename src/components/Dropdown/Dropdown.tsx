@@ -1,12 +1,33 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
+import reactDOM from "react-dom";
 import "./dropdown.css";
 import Icon from "../Icons";
 import Loader from "../Loader/Loader";
 
+const Portal = ({ children }: any) => {
+  const portal = document.getElementById("drui-dropdown-portal-root");
+  const el = document.createElement("div");
+
+  useEffect(() => {
+    if (!portal) return;
+    if (portal.children.length > 0) {
+      for (let c of portal.children) {
+        portal.removeChild(c);
+      }
+    }
+    portal.appendChild(el);
+    return () => {
+      portal.removeChild(el);
+    };
+  }, [el, portal]);
+
+  return reactDOM.createPortal(children, el);
+};
+
 /**
  * @interface DropdownProps Component props
  * @member {String} label Dropdown component label
- * @member {Array<DropdownItem} items Dropdown list items
+ * @member {Array<DropdownItem>} items Dropdown list items
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
  * @member {string} [maxListHeight] Sets the max height for the dropdown list, default is 300px
@@ -23,6 +44,8 @@ import Loader from "../Loader/Loader";
  * @member {Function} onClick Click event handler
  * @member {boolean} [loading] Show loading spinner
  * @member {String} [align] Dropdown list alignment
+ * @member {number} [offsetPosition] Sets the vertical offset of the dropdown list
+ * @member {number} [offsetAlign] Sets the horizontal offset of the dropdown list
  * @member {boolean} [withInput] Toggles the input field
  * @member {boolean} [inputLoading] Triggers the input loading state
  * @member {Function} [onInputChanged] Callback to the on input changed event
@@ -32,6 +55,9 @@ export interface DropdownProps {
   items: DropdownItemProps[];
   selectedOption?: DropdownItemProps | undefined;
   align: "left" | "right";
+  position: "top" | "bottom";
+  offsetPosition?: number;
+  offsetAlign?: number;
   inputWidth?: string;
   parentElement?: any;
   minWidth?: string;
@@ -77,7 +103,7 @@ export interface DropdownItemProps {
 /**
  * @interface DropdownProps Component props
  * @member {String} label Dropdown component label
- * @member {Array<DropdownItem} items Dropdown list items
+ * @member {Array<DropdownItem>} items Dropdown list items
  * @member {any} [parentElement] The parent element of the dropdown component, replaces the default input field
  * @member {string} [minWidth] The miniumum width for the input field of the component (in pixels)
  * @member {string} [maxListHeight] Sets the max height for the dropdown list, default is 300px
@@ -85,6 +111,8 @@ export interface DropdownItemProps {
  * @member {boolean} [matchListWidthToInput] Match the width of the dropdown list to the input field
  * @member {string} [dropdownTopOffset] Sets the top offset of the dropdown list
  * @member {string} [inputWidth] Sets the width of the dropdown input field
+ * @member {number} [offsetPosition] Sets the vertical offset of the dropdown list
+ * @member {number} [offsetAlign] Sets the horizontal offset of the dropdown list
  * @member {string} [textAlign] Sets the text alignment of the dropdown list items
  * @member {boolean} [showItemStatus] Show the status of the dropdown list item next to the title
  * @member {String} [className] Appends custom class names
@@ -97,6 +125,8 @@ export interface DropdownItemProps {
  * @member {boolean} [withInput] Toggles the input field
  * @member {boolean} [inputLoading] Triggers the input loading state
  * @member {Function} [onInputChanged] Callback to the on input changed event
+ * @member {Function} [onClose] Callback to the on close event
+ *
  */
 const Dropdown = ({
   label = "",
@@ -104,7 +134,6 @@ const Dropdown = ({
   selectedOption = undefined,
   className = "",
   parentElement = null,
-  align = "left",
   closeOnMouseOut = true,
   closeOnClickOutside = true,
   minWidth = "auto",
@@ -112,7 +141,6 @@ const Dropdown = ({
   maxListWidth = "auto",
   inputWidth = "auto",
   textAlign = "start",
-  dropdownTopOffset = 0,
   matchListWidthToInput = false,
   disabled = false,
   loading = false,
@@ -120,18 +148,35 @@ const Dropdown = ({
   withInput = false,
   inputLoading = false,
   resetInputOnClose = true,
+  //
+  offsetPosition = 0,
+  offsetAlign = 0,
+  align = "left",
   onInputChanged = (event) => {},
   onClick = (id: any) => {},
   onClose = () => {},
 }: DropdownProps) => {
+  interface OriginProps {
+    top: number;
+    left: number;
+    right: number;
+    bottom: number;
+  }
+
   const [dropdownExpanded, setDropdownExpanded] = useState(false);
-  const [isDropdownCutOff, setIsDropdownCutOff] = useState(false);
-  const [dropdownCutOffTopOffset, setDropdownCutOffTopOffset] = useState(0);
   const [hasMouseEnteredDropdown, setHasMouseEnteredDropdown] = useState(false);
   const dropdownRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef(null);
   const [customInputFieldQuery, setCustomInputFieldQuery] = useState("");
   const customInputFieldRef = useRef<HTMLInputElement>(null);
+
+  const [show, setShow] = useState<boolean>(false);
+  const [origin, setOrigin] = useState<OriginProps>({
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  });
 
   useEffect(() => {
     if (!dropdownExpanded) {
@@ -158,48 +203,19 @@ const Dropdown = ({
     };
   }, [dropdownExpanded]);
 
-  const WillDropdownBeCutOff = () => {
-    if (!dropdownRef.current) return false;
-    const dropdownRect = (
-      dropdownRef.current as Element
-    ).getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const dropdownBottom = dropdownRect.y + dropdownRect.height;
-    return dropdownBottom > viewportHeight - 20;
-  };
-
-  const GetDropdownHeightOffset = () => {
-    if (dropdownRef.current === null) return 0;
-    const dropdownRect = (
-      dropdownRef.current as Element
-    ).getBoundingClientRect();
-    const inputRect = (inputRef.current! as Element).getBoundingClientRect();
-    setDropdownCutOffTopOffset(
-      dropdownRect.height +
-        inputRect.height -
-        10 +
-        (WillDropdownBeCutOff() ? -dropdownTopOffset : dropdownTopOffset)
-    );
-  };
-
-  const IsContentOverflowing = () => {
-    if (!!dropdownRef.current) {
-      const { scrollHeight, clientHeight } = dropdownRef.current;
-      return scrollHeight > clientHeight;
-    } else {
-      return false;
+  const ShouldShiftDropdownToTop = () => {
+    if (!inputRef.current) return false;
+    if (
+      window.innerHeight - inputRef.current.getBoundingClientRect().bottom <
+      200
+    ) {
+      return true;
     }
+    return false;
   };
 
   const ClickOutsideHandler = (_event: any) => {
-    setIsDropdownCutOff(false);
-    setDropdownExpanded(false);
-  };
-
-  const GetDropdownInputFieldWidth = (): string => {
-    if (inputRef.current === null) return "max-content";
-    const inputRect = (inputRef.current as Element).getBoundingClientRect();
-    return `${inputRect.width}px`;
+    setShow(false);
   };
 
   const FetchDropdownItemContent = (item: DropdownItemProps, index) => {
@@ -308,6 +324,22 @@ const Dropdown = ({
     );
   };
 
+  const DistanceToBottomOfPage = () => {
+    if (inputRef.current) {
+      const rect = inputRef.current.getBoundingClientRect();
+      return window.innerHeight - rect.bottom;
+    }
+    return 0;
+  };
+
+  const GetAnchorElementWidth = () => {
+    if (inputRef.current && inputRef.current.getBoundingClientRect) {
+      const rect = inputRef.current.getBoundingClientRect();
+      return `${rect.width}px`;
+    }
+    return "auto";
+  };
+
   return (
     <div className={["drui-dropdown", className && className].join(" ")}>
       {parentElement !== null && (
@@ -323,31 +355,27 @@ const Dropdown = ({
              * -
              * There is an interaction when you can open multiple dropdowns by only clicking on the parent element
              */
-            const event = new MouseEvent("click", {
-              view: window,
-              bubbles: true,
-              cancelable: true,
-            });
-            document.dispatchEvent(event);
-
-            if (!dropdownExpanded) {
-              if (WillDropdownBeCutOff()) {
-                setIsDropdownCutOff(true);
-                GetDropdownHeightOffset();
-                setTimeout(() => {
-                  setDropdownExpanded(!dropdownExpanded);
-                }, 500);
-              } else {
-                setIsDropdownCutOff(false);
-                setDropdownExpanded(!dropdownExpanded);
-              }
-            } else {
-              setDropdownExpanded(false);
-              setIsDropdownCutOff(false);
-              if (!!dropdownRef.current) {
-                dropdownRef.current.scrollTop = 0;
-              }
+            if (show) {
+              setShow(false);
+              return;
             }
+            if (
+              !!inputRef.current &&
+              !!inputRef.current.getBoundingClientRect
+            ) {
+              const rect = inputRef.current.getBoundingClientRect();
+              setOrigin({
+                left: align === "left" ? rect.left + offsetAlign : 0,
+                right:
+                  align === "right"
+                    ? window.innerWidth - rect.right - offsetAlign
+                    : 0,
+                top: rect.bottom + offsetPosition,
+                bottom: window.innerHeight - rect.top - offsetPosition,
+              });
+              setShow(true);
+            }
+            return;
           }}
         >
           {parentElement}
@@ -367,29 +395,36 @@ const Dropdown = ({
             width: inputWidth,
           }}
           onClick={() => {
-            if (!dropdownExpanded) {
-              if (WillDropdownBeCutOff()) {
-                setIsDropdownCutOff(true);
-                GetDropdownHeightOffset();
-                setTimeout(() => {
-                  setDropdownExpanded(!dropdownExpanded);
-                }, 500);
-              } else {
-                setIsDropdownCutOff(false);
-                setDropdownExpanded(!dropdownExpanded);
-              }
-            } else {
-              setDropdownExpanded(false);
-              setIsDropdownCutOff(false);
-              if (!!dropdownRef.current) {
-                dropdownRef.current.scrollTop = 0;
-              }
+            if (show) {
+              setShow(false);
+              return;
+            }
+            if (
+              !!inputRef.current &&
+              !!inputRef.current.getBoundingClientRect
+            ) {
+              const rect = inputRef.current.getBoundingClientRect();
+              setOrigin({
+                left: align === "left" ? rect.left + offsetAlign : 0,
+                right:
+                  align === "right"
+                    ? window.innerWidth - rect.right - offsetAlign
+                    : 0,
+                top: rect.bottom,
+                bottom: window.innerHeight - rect.top,
+              });
+              setShow(true);
             }
           }}
         >
           {!loading && (
             <>
-              <div className={["drui-dropdown-input-text", !selectedOption && "drui-dropdown-input-text--empty"].join(" ")}>
+              <div
+                className={[
+                  "drui-dropdown-input-text",
+                  !selectedOption && "drui-dropdown-input-text--empty",
+                ].join(" ")}
+              >
                 {selectedOption ? selectedOption.title : "Nothing"}
               </div>
               <div
@@ -413,51 +448,55 @@ const Dropdown = ({
           )}
         </div>
       )}
-      <ul
-        className={[
-          "drui-dropdown-content",
-          dropdownExpanded && "drui-dropdown-content-visible",
-          `drui-dropdown-content--align-${align}`,
-          IsContentOverflowing() && "drui-dropdown-content--with-scrollbars",
-          isDropdownCutOff && "drui-dropdown-content--align-top",
-        ].join(" ")}
-        style={{
-          top: isDropdownCutOff
-            ? `-${dropdownCutOffTopOffset}px`
-            : `calc(1em + ${dropdownTopOffset}px)`,
-          maxHeight: maxListHeight,
-          maxWidth: maxListWidth,
-          width: matchListWidthToInput
-            ? GetDropdownInputFieldWidth()
-            : "max-content",
-        }}
-        ref={dropdownRef}
-        onMouseEnter={() => {
-          setHasMouseEnteredDropdown(true);
-        }}
-        onMouseLeave={() => {
-          setTimeout(() => {
-            /**
-             * Only close if the mouse has entered the dropdown before.
-             * Take care of the opening animation, it may overflow and cause the trigger for some parentElement heights
-             */
-            if (closeOnMouseOut && hasMouseEnteredDropdown) {
-              setDropdownExpanded(false);
-              setIsDropdownCutOff(false);
-              setHasMouseEnteredDropdown(false);
-              if (!!dropdownRef.current) {
-                dropdownRef.current.scrollTop = 0;
-              }
-            }
-          }, 500);
-        }}
-      >
-        {label !== "" && <div className="drui-dropdown-label">{label}</div>}
-        {withInput && <CustomDRUIInput></CustomDRUIInput>}
-        {items.map((item, index) => {
-          return FetchDropdownItemContent(item, index);
-        })}
-      </ul>
+      {show && (
+        <Portal>
+          <ul
+            className={[
+              "drui-dropdown-content",
+              "drui-dropdown-content-visible",
+              "drui-dropdown-content--with-scrollbars",
+            ].join(" ")}
+            ref={dropdownRef}
+            style={{
+              left: origin.left !== 0 ? origin.left : "auto",
+              right: origin.right !== 0 ? origin.right : "auto",
+              top: !ShouldShiftDropdownToTop() ? origin.top : "auto",
+              bottom: ShouldShiftDropdownToTop() ? origin.bottom : "auto",
+              width: matchListWidthToInput ? GetAnchorElementWidth() : "auto",
+              maxHeight: Math.min(
+                parseInt(maxListHeight.replace("px", "")),
+                DistanceToBottomOfPage()
+              ) + "px",
+              maxWidth: maxListWidth,
+            }}
+            onMouseEnter={() => {
+              setHasMouseEnteredDropdown(true);
+            }}
+            onMouseLeave={() => {
+              setTimeout(() => {
+                /**
+                 * Only close if the mouse has entered the dropdown before.
+                 * Take care of the opening animation, it may overflow and cause the trigger for some parentElement heights
+                 */
+                if (closeOnMouseOut && hasMouseEnteredDropdown) {
+                  setShow(false);
+                  setDropdownExpanded(false);
+                  setHasMouseEnteredDropdown(false);
+                  if (!!dropdownRef.current) {
+                    dropdownRef.current.scrollTop = 0;
+                  }
+                }
+              }, 500);
+            }}
+          >
+            {label !== "" && <div className="drui-dropdown-label">{label}</div>}
+            {withInput && <CustomDRUIInput></CustomDRUIInput>}
+            {items.map((item, index) => {
+              return FetchDropdownItemContent(item, index);
+            })}
+          </ul>
+        </Portal>
+      )}
     </div>
   );
 };

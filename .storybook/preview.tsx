@@ -1,6 +1,6 @@
 import { DecoratorFn } from "@storybook/react";
-import { WithToasts } from "../src/components/Toast/handler";
 import React from "react";
+import DroplrUIProvider from "../src/themes/provider";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -17,17 +17,17 @@ const withThemeAndToast: DecoratorFn = (StoryFn, context) => {
   const theme = context.parameters.theme || context.globals.theme;
   return (
     <>
-      <WithToasts offsetTop={0}>
-        <div
-          className={`theme-${theme}`}
-          style={{
-            backgroundColor: theme === "dark" ? "#101d38" : "#FFF",
-            padding: "32px",
-          }}
-        >
+      <div
+        style={{
+          backgroundColor: theme === "light" ? "#FFF" : "#000",
+          padding: "30px",
+          color: theme === "light" ? "#000" : "#FFF",
+        }}
+      >
+        <DroplrUIProvider theme={theme}>
           <StoryFn />
-        </div>
-      </WithToasts>
+        </DroplrUIProvider>
+      </div>
     </>
   );
 };

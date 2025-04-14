@@ -186,6 +186,10 @@ const ToastContainer = ({ offsetTop = 0 }) => {
   );
 };
 
+export interface WithToastProps {
+  children: any;
+  offsetTop?: number;
+}
 export const WithToasts = ({ children, offsetTop = 0 }) => {
   return (
     <>

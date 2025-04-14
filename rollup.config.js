@@ -35,6 +35,12 @@ const config =
       useTsconfigDeclarationDir: true,
       exclude: ["**/*.stories.tsx"],
       tsconfig: "./tsconfig.json",
+      sourceMapCallback: (file, map) => {
+        if (file.endsWith(".js")) {
+          return map;
+        }
+        return null;
+      }
     }),
     postcss({
       extensions: [".css"],

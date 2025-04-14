@@ -7,8 +7,8 @@ import ThumbnailSwitch from "./components/ThumbnailSwitch";
 import AnimatedIcon from "./components/AnimatedIcon";
 import Icon from "./components/Icons/Icons";
 import Input from "./components/Input";
-import DroplrThemeProvider from "./themes/provider";
-import Tooltip from "./components/Tooltip";
+import DroplrUIProvider from "./themes/provider";
+import Tooltip from "./components/Tooltip/component";
 import Checkbox from "./components/Checkbox";
 import RadioButton from "./components/RadioButton";
 import Toast from "./components/Toast/component/Toast";
@@ -23,7 +23,7 @@ import {
 } from "./components/Toast/handler";
 
 export {
-  DroplrThemeProvider,
+  DroplrUIProvider,
   Button,
   Dropdown,
   Switch,

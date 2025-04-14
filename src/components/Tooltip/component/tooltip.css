@@ -1,0 +1,41 @@
+.theme-dark .drui-tooltip {
+  background-color: var(--color-dark-blue) !important;
+  color: var(--color-white) !important;
+}
+
+.drui-tooltip {
+  position: fixed;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-small);
+  background-color: var(--color-white);
+  box-shadow: 0 2px 12px -1px rgba(161, 170, 183, 0.3);
+  border-radius: 4px;
+  padding: 4px 6px;
+  z-index: 2147483647 !important;
+}
+
+.drui-tooltip--animated {
+  opacity: 0;
+  animation: fadeIn 250ms ease-in-out forwards;
+}
+
+.drui-tooltip--animated-exit {
+  animation: fadeOut 250ms ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
