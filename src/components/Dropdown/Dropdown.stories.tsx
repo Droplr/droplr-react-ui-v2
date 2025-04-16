@@ -34,7 +34,7 @@ SimpleDropdown.args = {
   position: "bottom",
   placeholder: "Select an item",
   closeOnItemClick: true,
-  closeOnMouseOut: false,
+  closeOnMouseOut: true,
   withInput: true,
   inputLoading: false,
   closeOnClickOutside: true,

@@ -118,7 +118,14 @@
   z-index: 2147483647 !important;
   width: max-content;
   pointer-events: all;
-  animation: dropdown-fade-in 0.2s ease-in-out forwards;
+  /**
+  * Animation removed due to an issue with portalled mouseEnterEvents
+  * ie. https://github.com/facebook/react/issues/21049
+  * This will cause the dropdown to replay its entry animation every time it's hovered.
+  */
+  /* animation: dropdown-fade-in 0.2s ease-in-out forwards; */
+  /**/
+  /**/
   background-color: var(--color-white);
   border-radius: 6px;
   box-shadow: 0 2px 12px -1px rgba(161, 170, 183, 0.3);
@@ -129,16 +136,7 @@
   margin: 0;
 
 }
-@keyframes dropdown-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(1.75em);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 .drui-dropdown-content .custom-drui-dropdown-input {
   padding: 8px 12px;
   width: 100%;

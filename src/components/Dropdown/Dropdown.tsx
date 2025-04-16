@@ -163,7 +163,6 @@ const Dropdown = ({
     bottom: number;
   }
 
-  const [dropdownExpanded, setDropdownExpanded] = useState(false);
   const [hasMouseEnteredDropdown, setHasMouseEnteredDropdown] = useState(false);
   const dropdownRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef(null);
@@ -179,16 +178,7 @@ const Dropdown = ({
   });
 
   useEffect(() => {
-    if (!dropdownExpanded) {
-      if (resetInputOnClose) {
-        setCustomInputFieldQuery("");
-      }
-      if (!!onClose) {
-        onClose();
-      }
-      return;
-    }
-    if (closeOnClickOutside) {
+    if (closeOnClickOutside && show) {
       /**
        * Buffer timeout to let the open click event pass
        */
@@ -197,11 +187,14 @@ const Dropdown = ({
       }, 25);
     }
     return () => {
+      if (onClose) {
+        onClose();
+      }
       if (closeOnClickOutside) {
         document.removeEventListener("click", ClickOutsideHandler);
       }
     };
-  }, [dropdownExpanded]);
+  }, [show])
 
   const ShouldShiftDropdownToTop = () => {
     if (!inputRef.current) return false;
@@ -260,7 +253,6 @@ const Dropdown = ({
             ].join(" ")}
             onClick={(e) => {
               e.stopPropagation();
-              setDropdownExpanded(false);
               onClick(item);
             }}
           >
@@ -345,8 +337,6 @@ const Dropdown = ({
       {parentElement !== null && (
         <div
           className="drui-dropdown-anchor"
-          aria-expanded={dropdownExpanded}
-          aria-haspopup="menu"
           ref={inputRef}
           onClick={(e) => {
             e.stopPropagation();
@@ -388,8 +378,6 @@ const Dropdown = ({
             disabled && "drui-dropdown-input--disabled",
           ].join(" ")}
           ref={inputRef}
-          aria-expanded={dropdownExpanded}
-          aria-haspopup="menu"
           style={{
             minWidth: minWidth,
             width: inputWidth,
@@ -430,7 +418,6 @@ const Dropdown = ({
               <div
                 className={[
                   "drui-dropdown-input-arrow",
-                  dropdownExpanded && "drui-dropdown-input-arrow--rotate",
                 ].join(" ")}
               >
                 <Icon
@@ -469,7 +456,7 @@ const Dropdown = ({
               ) + "px",
               maxWidth: maxListWidth,
             }}
-            onMouseEnter={() => {
+            onMouseEnter={(_e) => {
               setHasMouseEnteredDropdown(true);
             }}
             onMouseLeave={() => {
@@ -480,13 +467,9 @@ const Dropdown = ({
                  */
                 if (closeOnMouseOut && hasMouseEnteredDropdown) {
                   setShow(false);
-                  setDropdownExpanded(false);
                   setHasMouseEnteredDropdown(false);
-                  if (!!dropdownRef.current) {
-                    dropdownRef.current.scrollTop = 0;
-                  }
                 }
-              }, 500);
+              }, 250);
             }}
           >
             {label !== "" && <div className="drui-dropdown-label">{label}</div>}
