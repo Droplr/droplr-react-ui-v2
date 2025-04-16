@@ -12,12 +12,16 @@ const Portal = ({ children }: any) => {
     if (!portal) return;
     if (portal.children.length > 0) {
       for (let c of portal.children) {
-        portal.removeChild(c);
+        if (c) {
+          portal.removeChild(c);
+        }
       }
     }
     portal.appendChild(el);
     return () => {
-      portal.removeChild(el);
+      if (el) {
+        el.remove();
+      }
     };
   }, [el, portal]);
 
@@ -194,7 +198,7 @@ const Dropdown = ({
         document.removeEventListener("click", ClickOutsideHandler);
       }
     };
-  }, [show])
+  }, [show]);
 
   const ShouldShiftDropdownToTop = () => {
     if (!inputRef.current) return false;
@@ -415,11 +419,7 @@ const Dropdown = ({
               >
                 {selectedOption ? selectedOption.title : "Nothing"}
               </div>
-              <div
-                className={[
-                  "drui-dropdown-input-arrow",
-                ].join(" ")}
-              >
+              <div className={["drui-dropdown-input-arrow"].join(" ")}>
                 <Icon
                   name="DropdownDown"
                   color="var(--color-black)"
@@ -450,10 +450,11 @@ const Dropdown = ({
               top: !ShouldShiftDropdownToTop() ? origin.top : "auto",
               bottom: ShouldShiftDropdownToTop() ? origin.bottom : "auto",
               width: matchListWidthToInput ? GetAnchorElementWidth() : "auto",
-              maxHeight: Math.min(
-                parseInt(maxListHeight.replace("px", "")),
-                DistanceToBottomOfPage()
-              ) + "px",
+              maxHeight:
+                Math.min(
+                  parseInt(maxListHeight.replace("px", "")),
+                  DistanceToBottomOfPage()
+                ) + "px",
               maxWidth: maxListWidth,
             }}
             onMouseEnter={(_e) => {

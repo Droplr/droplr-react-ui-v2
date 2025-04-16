@@ -50,7 +50,9 @@ const Portal = ({ children }: any) => {
     if (!portal) return;
     portal.appendChild(el);
     return () => {
-      portal.removeChild(el);
+      if (el) {
+        el.remove();
+      }
     };
   }, [el, portal]);
 
