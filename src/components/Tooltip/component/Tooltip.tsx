@@ -31,6 +31,8 @@ export interface TooltipProps {
   customStyle?: any;
   animated?: boolean;
   closeOnClick?: boolean;
+  className?: string;
+  onClick?: () => void;
   onTooltipShow?: () => void;
   onTooltipHide?: () => void;
 }
@@ -83,6 +85,8 @@ const Tooltip = ({
   customStyle = {},
   animated = true,
   closeOnClick = true,
+  className = "",
+  onClick = () => {},
   onTooltipShow = () => {},
   onTooltipHide = () => {},
 }: TooltipProps) => {
@@ -130,10 +134,11 @@ const Tooltip = ({
 
   return (
     <div
-      className="drui-tooltip-container"
+      className={["drui-tooltip-container", className].join(" ")}
       ref={containerRef}
       onMouseEnter={HandleMouseEnter}
       onMouseLeave={HandleMouseLeave}
+      onClick={onClick}
     >
       {children}
       {show && (
